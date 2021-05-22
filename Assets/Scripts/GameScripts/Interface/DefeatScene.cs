@@ -11,9 +11,9 @@ public class DefeatScene : MonoBehaviour
     void Start()
     {
         hints = new string[3];
-        hints[0] = "a";
-        hints[1] = "aa";
-        hints[2] = "aaa";
+        hints[0] = "You can hide in some places";
+        hints[1] = "You can hide in some places";
+        hints[2] = "You can hide in some places";
 
         hintsText.text = hints[0];
     }
