@@ -124,54 +124,95 @@ public class PlayerC : MonoBehaviour
         /*sc_playerM.pos_lookDirection = sc_playerM.pos_lookAt.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(sc_playerM.pos_lookDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation,10);*/
-        if(obj_Box.canPushz && obj_Box.canPushx)
+        //if(obj_Box.canPushz && obj_Box.canPushx&& Input.GetKey(interactKey) && Input.GetKey(keyUp))
+        //{           
+        //       obj_Box.PushBox(3, 3);
+        //        sc_playerM.isMovingBox = true;                    
+        //}
+        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz && !obj_Box.canPushx)
+        //{
+        //    sc_playerM.isMovingBox = false;
+        //    obj_Box.PushBox(0, 0);
+        //}
+        ///////////////////////////////////
+        //if(obj_Box.canPushx && !obj_Box.canPushz&& Input.GetKey(interactKey) && Input.GetKey(keyUp))
+        //{
+
+        //        obj_Box.PushBox(3, 0);
+        //        sc_playerM.isMovingBox = true;        
+
+        //}
+        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushx)
+        //{
+        //    sc_playerM.isMovingBox = false;
+        //    obj_Box.PushBox(0, 0);
+        //}
+        ////////////////////////////////////////
+        // if(!obj_Box.canPushx && obj_Box.canPushz&& Input.GetKey(interactKey) && Input.GetKey(keyUp))
+        //{ 
+        //    sc_playerM.isMovingBox = true;
+        //    obj_Box.PushBox(0, 3);   
+        //}
+        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz)
+        //{
+        //    sc_playerM.isMovingBox = false;
+        //    obj_Box.PushBox(0, 0);
+        //}
+        // ///////////////////////////////////////////
+        //if(!obj_Box.canPushx && !obj_Box.canPushz&&Input.GetKey(interactKey) && Input.GetKey(keyUp))
+        //{            
+        //        obj_Box.PushBox(0, 0);
+        //        sc_playerM.isMovingBox = true;                   
+        //}
+        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz && !obj_Box.canPushx)
+        //{
+        //    sc_playerM.isMovingBox = false;
+        //    obj_Box.PushBox(0, 0);
+        //}
+        
+        if (Input.GetKey(interactKey) && Input.GetKey(keyUp))
         {
-            if (Input.GetKey(interactKey) && Input.GetKey(keyUp))
+            if(obj_Box.canPushz && obj_Box.canPushx)
             {
                 obj_Box.PushBox(3, 3);
-            }
-            else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz && !obj_Box.canPushx)
+                sc_playerM.isMovingBox = true;
+            }else if(!obj_Box.canPushz && !obj_Box.canPushx)
             {
                 sc_playerM.isMovingBox = false;
                 obj_Box.PushBox(0, 0);
             }
-        }
-        else if(obj_Box.canPushx && !obj_Box.canPushz)
-        {
-            if (Input.GetKey(interactKey) && Input.GetKey(keyUp))
+
+            else if(obj_Box.canPushx && !obj_Box.canPushz)
             {
-                obj_Box.PushBox(3, 0);
-            }
-            else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) &&  !obj_Box.canPushx)
-            {
-                sc_playerM.isMovingBox = false;
-                obj_Box.PushBox(0, 0);
-            }
-        }
-        else if(!obj_Box.canPushx && obj_Box.canPushz)
-        {
-            if (Input.GetKey(interactKey) && Input.GetKey(keyUp))
-            {
+                sc_playerM.isMovingBox = true;
                 obj_Box.PushBox(0, 3);
-            }
-            else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz)
+            }else if (!obj_Box.canPushx)
+            {
+                sc_playerM.isMovingBox = false;
+                obj_Box.PushBox(0, 0);
+            }else if(!obj_Box.canPushx && obj_Box.canPushz)
+            {
+                sc_playerM.isMovingBox = true;
+                obj_Box.PushBox(0, 3);
+            }else if (!obj_Box.canPushz)
+            {
+                sc_playerM.isMovingBox = false;
+                obj_Box.PushBox(0, 0);
+            }else if(!obj_Box.canPushx && !obj_Box.canPushz)
+            {
+                obj_Box.PushBox(0, 0);
+                sc_playerM.isMovingBox = true;
+            }else if (!obj_Box.canPushx)
             {
                 sc_playerM.isMovingBox = false;
                 obj_Box.PushBox(0, 0);
             }
         }
-        else if(!obj_Box.canPushx && !obj_Box.canPushz)
+        else
         {
-            if (Input.GetKey(interactKey) && Input.GetKey(keyUp))
-            {
-                obj_Box.PushBox(0, 0);
-            }
-            else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz && !obj_Box.canPushx)
-            {
-                sc_playerM.isMovingBox = false;
-                obj_Box.PushBox(0, 0);
-            }
+            obj_Box.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         }
+       
 
     }
     public void BoxPull()
@@ -180,6 +221,7 @@ public class PlayerC : MonoBehaviour
         {
             obj_Box.PullBox(7, 7);
         }
+       
     }
     public void DetectBox(Collider other)
     {

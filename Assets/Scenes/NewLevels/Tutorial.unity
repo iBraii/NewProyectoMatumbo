@@ -762,7 +762,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-103318
+  m_Name: pb_Mesh-6814
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -944,6 +944,10 @@ PrefabInstance:
       propertyPath: myText
       value: 
       objectReference: {fileID: 13984900}
+    - target: {fileID: 7480504747606613684, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.30000305
+      objectReference: {fileID: 0}
     - target: {fileID: 8595832447899779027, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1006,6 +1010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box
       objectReference: {fileID: 0}
+    - target: {fileID: 6671792935604239080, guid: c1945d5388443204ca5d128d7480970b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239081, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1032,7 +1040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239084, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 65.908
+      value: 64.53
       objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239084, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1076,7 +1084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239087, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: wallDistance
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1945d5388443204ca5d128d7480970b, type: 3}
@@ -1324,7 +1332,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: edbaf1100b4ed4a479f11a50b068b28c, type: 2}
+  sharedProfile: {fileID: 0}
 --- !u!4 &1046615255
 Transform:
   m_ObjectHideFlags: 0
@@ -1349,6 +1357,10 @@ PrefabInstance:
     - target: {fileID: 6671792935604239080, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_Name
       value: Box (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671792935604239080, guid: c1945d5388443204ca5d128d7480970b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239082, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2232,6 +2244,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4488916807187917175, guid: fd0e9a8597a23054ab370761d2420ecd, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4488916807187917175, guid: fd0e9a8597a23054ab370761d2420ecd, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -2508,6 +2524,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6830164146040315487, guid: fd0e9a8597a23054ab370761d2420ecd, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830164146040315487, guid: fd0e9a8597a23054ab370761d2420ecd, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -2718,11 +2738,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017047187
+      value: -0.000000017047189
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000023351674
+      value: 0.0000000023351676
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952827834573, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2758,11 +2778,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017086744
+      value: -0.000000017086744
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000002025522
+      value: 0.000000002025522
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2774,11 +2794,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008523592
+      value: -0.000000008523594
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000011675833
+      value: 0.0000000011675837
       objectReference: {fileID: 0}
     - target: {fileID: 7670060518033672143, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_RootOrder
@@ -3040,6 +3060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6671792935604239080, guid: c1945d5388443204ca5d128d7480970b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239082, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3112,6 +3136,10 @@ PrefabInstance:
     - target: {fileID: 6671792935604239080, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_Name
       value: Box (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671792935604239080, guid: c1945d5388443204ca5d128d7480970b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6671792935604239082, guid: c1945d5388443204ca5d128d7480970b, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -50,15 +50,16 @@ public class BoxPush : MonoBehaviour
     ////////////////////////////////////////////////////////////////////////////////////////////
     private void Update()
     {
-        left = Physics.Raycast(transform.localPosition, Vector3.left, wallDistance, wallMask);
-        right = Physics.Raycast(transform.localPosition, Vector3.right, wallDistance, wallMask);
-        back = Physics.Raycast(transform.localPosition, Vector3.back, wallDistance, wallMask);
-        forward = Physics.Raycast(transform.localPosition, Vector3.forward, wallDistance, wallMask);
-        if(left || right)
+        this.left = Physics.Raycast(this.transform.localPosition, Vector3.left, wallDistance, wallMask);
+        this.right = Physics.Raycast(this.transform.localPosition, Vector3.right, wallDistance, wallMask);
+        this.back = Physics.Raycast(this.transform.localPosition, Vector3.back, wallDistance, wallMask);
+        this.forward = Physics.Raycast(this.transform.localPosition, Vector3.forward, wallDistance, wallMask);
+
+        if (left || right)
         {
             canPushx = false;
         }
-        else
+        else if (!left&&!right)
         {
             canPushx = true;
         }
@@ -66,11 +67,11 @@ public class BoxPush : MonoBehaviour
         {
             canPushz = false;
         }
-        else
+        else if(!back&&!forward)
         {
             canPushz = true;
         }
-        Debug.Log(left+"a");
+        Debug.Log(this.forward+"a");
     }
 
    /* public bool BoxLeftWall()
@@ -132,4 +133,6 @@ public class BoxPush : MonoBehaviour
             sc_movement.Move_Anydir(0, 0, speedz);
         }
     }
+
+
 }
