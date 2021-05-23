@@ -17,8 +17,16 @@ public class PlayerV : MonoBehaviour
         sc_movement = GetComponent<Movement>();
         
     }
+    //private void FixedUpdate()
+    //{
+    //    if (sc_playerC.obj_Box != null)
+    //    {
 
-    
+    //        sc_playerC.BoxPush();
+
+    //    }
+    //}
+
 
     // Update is called once per frame
     void Update()
@@ -38,10 +46,11 @@ public class PlayerV : MonoBehaviour
         }
         if (sc_playerC.obj_Box != null)
         {
-            
-            sc_playerC.BoxPush();
 
+            sc_playerC.BoxPush();
+            sc_playerC.BoxPull();
         }
+
     }
     //--------------------Triggers-------------------------------------
     private void OnTriggerEnter(Collider other)

@@ -80,6 +80,7 @@ public class PlayerM : Characters
 
     private void Awake()
     {
+        //boxPos = GameObject.Find("BoxPos");
         screenShake = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         isHiding = false;
         obj_enemyTest = GameObject.Find("EnemyTest");

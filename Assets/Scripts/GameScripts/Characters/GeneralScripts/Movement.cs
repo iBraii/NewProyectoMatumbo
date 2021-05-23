@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour
     public void Move_Anydir(float speedx,float speedy,float speedz)
     {
         rb.velocity = new Vector3(speedx, speedy, speedz);
+        //rb.MovePosition(new Vector3(0,0,0));
     }
 
 }
