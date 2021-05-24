@@ -8,6 +8,7 @@ public class PlayerC : MonoBehaviour
     //------Scripts--------
     private PlayerM sc_playerM;
     public BoxPush obj_Box;
+    public GameObject box;
     
     //private PlayerController sc_playerController;
     //---------------------
@@ -116,122 +117,79 @@ public class PlayerC : MonoBehaviour
 
 
     //------------------------------------------------------------------------------------------------------------------------------------
-
-
-    //-------------------------------------------------Empuje de cajas----------------------------------------------------------------------------
-    public void BoxPush()
+    public void MoveBoxController()
     {
-        /*sc_playerM.pos_lookDirection = sc_playerM.pos_lookAt.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(sc_playerM.pos_lookDirection);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation,10);*/
-        //if(obj_Box.canPushz && obj_Box.canPushx&& Input.GetKey(interactKey) && Input.GetKey(keyUp))
-        //{           
-        //       obj_Box.PushBox(3, 3);
-        //        sc_playerM.isMovingBox = true;                    
-        //}
-        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz && !obj_Box.canPushx)
-        //{
-        //    sc_playerM.isMovingBox = false;
-        //    obj_Box.PushBox(0, 0);
-        //}
-        ///////////////////////////////////
-        //if(obj_Box.canPushx && !obj_Box.canPushz&& Input.GetKey(interactKey) && Input.GetKey(keyUp))
-        //{
 
-        //        obj_Box.PushBox(3, 0);
-        //        sc_playerM.isMovingBox = true;        
-
-        //}
-        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushx)
-        //{
-        //    sc_playerM.isMovingBox = false;
-        //    obj_Box.PushBox(0, 0);
-        //}
-        ////////////////////////////////////////
-        // if(!obj_Box.canPushx && obj_Box.canPushz&& Input.GetKey(interactKey) && Input.GetKey(keyUp))
-        //{ 
-        //    sc_playerM.isMovingBox = true;
-        //    obj_Box.PushBox(0, 3);   
-        //}
-        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz)
-        //{
-        //    sc_playerM.isMovingBox = false;
-        //    obj_Box.PushBox(0, 0);
-        //}
-        // ///////////////////////////////////////////
-        //if(!obj_Box.canPushx && !obj_Box.canPushz&&Input.GetKey(interactKey) && Input.GetKey(keyUp))
-        //{            
-        //        obj_Box.PushBox(0, 0);
-        //        sc_playerM.isMovingBox = true;                   
-        //}
-        //else if (!Input.GetKey(interactKey) || !Input.GetKey(keyUp) && !obj_Box.canPushz && !obj_Box.canPushx)
-        //{
-        //    sc_playerM.isMovingBox = false;
-        //    obj_Box.PushBox(0, 0);
-        //}
-        
-        if (Input.GetKey(interactKey) && Input.GetKey(keyUp))
+        if (Input.GetKey(interactKey))
         {
-            if(obj_Box.canPushz && obj_Box.canPushx)
-            {
-                obj_Box.PushBox(3, 3);
-                sc_playerM.isMovingBox = true;
-            }else if(!obj_Box.canPushz && !obj_Box.canPushx)
-            {
-                sc_playerM.isMovingBox = false;
-                obj_Box.PushBox(0, 0);
-            }
+            //sc_playerM.pos_lookDirection = sc_playerM.pos_lookAt.position - transform.position;
+            //Quaternion rotation = Quaternion.LookRotation(new Vector3(0, sc_playerM.pos_lookDirection.y,0));
+            //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10);
+            sc_playerM.isMovingBox = true;
+        }
+        else if(!Input.GetKey(interactKey) || obj_Box == null)
+        {
+            sc_playerM.isMovingBox = false;
+        }
 
-            else if(obj_Box.canPushx && !obj_Box.canPushz)
+        if(sc_playerM.isMovingBox)
+        {
+            box.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            if (Input.GetKey(keyUp))
+            {  
+                BoxPush();
+            }
+            else if (Input.GetKey(keyDown))
             {
-                sc_playerM.isMovingBox = true;
-                obj_Box.PushBox(0, 3);
-            }else if (!obj_Box.canPushx)
-            {
-                sc_playerM.isMovingBox = false;
-                obj_Box.PushBox(0, 0);
-            }else if(!obj_Box.canPushx && obj_Box.canPushz)
-            {
-                sc_playerM.isMovingBox = true;
-                obj_Box.PushBox(0, 3);
-            }else if (!obj_Box.canPushz)
-            {
-                sc_playerM.isMovingBox = false;
-                obj_Box.PushBox(0, 0);
-            }else if(!obj_Box.canPushx && !obj_Box.canPushz)
-            {
-                obj_Box.PushBox(0, 0);
-                sc_playerM.isMovingBox = true;
-            }else if (!obj_Box.canPushx)
-            {
-                sc_playerM.isMovingBox = false;
-                obj_Box.PushBox(0, 0);
+                BoxPull();
             }
         }
         else
         {
-            obj_Box.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            box.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            obj_Box.PushBox(0, 0);
+            obj_Box.PullBox(0, 0);
         }
-       
+    }
+
+    //-------------------------------------------------Empuje de cajas----------------------------------------------------------------------------
+    public void BoxPush()
+    {
+        if(obj_Box.canPushz == true && obj_Box.canPushx == true)
+        {
+            obj_Box.PushBox(3, 3);
+        }
+        if(obj_Box.canPushz == true && obj_Box.canPushx == false)
+        {
+            obj_Box.PushBox(0, 3);
+        }
+        if(obj_Box.canPushz == false && obj_Box.canPushx == true)
+        {
+            obj_Box.PushBox(3, 0);
+        }
+        if(obj_Box.canPushz == false && obj_Box.canPushx == false)
+        {
+            obj_Box.PushBox(0, 0);
+        }
 
     }
     public void BoxPull()
     {
-        if (Input.GetKey(interactKey) && Input.GetKey(keyDown))
-        {
-            obj_Box.PullBox(7, 7);
-        }
-       
+        obj_Box.PullBox(7, 7);
     }
+
+
     public void DetectBox(Collider other)
     {
         if (other.gameObject.CompareTag("Box"))
         {
             obj_Box = other.gameObject.GetComponent<BoxPush>();
+            box = other.gameObject;
         }
         else
         {
             obj_Box = null;
+            box = null;
         }
     }
     //----------------------------------------------------------------------------------------------------------------------------------------

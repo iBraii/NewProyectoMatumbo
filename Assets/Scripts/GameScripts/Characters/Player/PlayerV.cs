@@ -44,11 +44,13 @@ public class PlayerV : MonoBehaviour
         {
             sc_playerC.PlayerJump();
         }
-        if (sc_playerC.obj_Box != null)
+        if (sc_playerC.obj_Box != null || sc_playerC.box != null)
         {
-
-            sc_playerC.BoxPush();
-            sc_playerC.BoxPull();
+            sc_playerC.MoveBoxController();
+        }
+        else
+        {
+            sc_playerM.isMovingBox = false;
         }
 
     }
@@ -77,6 +79,7 @@ public class PlayerV : MonoBehaviour
         if (other.gameObject.CompareTag("Box"))
         {
             sc_playerC.obj_Box = null;
+            sc_playerC.box = null;
         }
     }
     

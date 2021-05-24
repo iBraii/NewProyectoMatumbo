@@ -88,17 +88,17 @@ public class PlayerM : Characters
         cmp_controller = GetComponent<CharacterController>();
         pos_playerVelocity = new Vector3(0f, 0f, 0f);
         sc_playerC = GetComponent<PlayerC>();
-        if (sc_playerC.obj_Box != null)
+        if (sc_playerC.box != null)
         {
-            pos_lookAt = sc_playerC.obj_Box.transform;
+            pos_lookAt = sc_playerC.box.transform;
         }
         //life = 0f;
     }
     private void Update()
     {
-        if (sc_playerC.obj_Box != null)
+        if (sc_playerC.box != null)
         {
-            pos_lookAt = sc_playerC.obj_Box.transform;
+            pos_lookAt = sc_playerC.box.transform;
         }
     }
 }

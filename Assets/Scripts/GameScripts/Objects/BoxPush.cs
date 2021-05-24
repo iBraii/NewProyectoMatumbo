@@ -20,40 +20,42 @@ public class BoxPush : MonoBehaviour
         sc_movement = GetComponent<Movement>();
         canPushx = true;
         canPushz = true;
-        //groundSum = new Vector3(0,0.75f, 0);
+        groundSum = new Vector3(0, 0.75f, 0);
     }
 
     // Update is called once per frame
     public bool BoxLeftSide()
     {
-        return Physics.Raycast(transform.localPosition, Vector3.left, mxDistance, playerMask);
+        return Physics.Raycast(groundPoint+groundSum, Vector3.left, mxDistance, playerMask);
     }
     public bool BoxRightSide()
     {
-        return Physics.Raycast(transform.localPosition, Vector3.right, mxDistance, playerMask);
+        return Physics.Raycast(groundPoint + groundSum, Vector3.right, mxDistance, playerMask);
     }
     public bool BoxBackSide()
     {
-        return Physics.Raycast(transform.localPosition, Vector3.back, mxDistance, playerMask);
+        return Physics.Raycast(groundPoint + groundSum, Vector3.back, mxDistance, playerMask);
     }
     public bool BoxForwardSide()
     {
-        return Physics.Raycast(transform.localPosition, Vector3.forward, mxDistance, playerMask);
+        return Physics.Raycast(groundPoint + groundSum, Vector3.forward, mxDistance, playerMask);
     }
-    //void GroundRayCheck()
-    //{
-    //    if(Physics.Raycast(transform.localPosition, Vector3.down,out groundHit, 20, wallMask))
-    //    {
-    //        groundPoint = groundHit.point;
-    //    }
-    //}
+    void GroundRayCheck()
+    {
+        if (Physics.Raycast(transform.localPosition, Vector3.down, out groundHit, 20, wallMask))
+        {
+            groundPoint = groundHit.point;
+        }
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////
     private void Update()
     {
-        this.left = Physics.Raycast(this.transform.localPosition, Vector3.left, wallDistance, wallMask);
-        this.right = Physics.Raycast(this.transform.localPosition, Vector3.right, wallDistance, wallMask);
-        this.back = Physics.Raycast(this.transform.localPosition, Vector3.back, wallDistance, wallMask);
-        this.forward = Physics.Raycast(this.transform.localPosition, Vector3.forward, wallDistance, wallMask);
+        GroundRayCheck();
+        Debug.DrawRay(groundPoint + groundSum, Vector3.left);
+        this.left = Physics.Raycast(groundPoint + groundSum, Vector3.left, wallDistance, wallMask);
+        this.right = Physics.Raycast(groundPoint + groundSum, Vector3.right, wallDistance, wallMask);
+        this.back = Physics.Raycast(groundPoint + groundSum, Vector3.back, wallDistance, wallMask);
+        this.forward = Physics.Raycast(groundPoint + groundSum, Vector3.forward, wallDistance, wallMask);
 
         if (left || right)
         {
@@ -71,47 +73,28 @@ public class BoxPush : MonoBehaviour
         {
             canPushz = true;
         }
-        Debug.Log(this.forward+"a");
+       // Debug.Log(this.forward+"a");
     }
-
-   /* public bool BoxLeftWall()
-    {
-        return Physics.Raycast(transform.localPosition, Vector3.left, wallDistance, wallMask);
-    }
-    public bool BoxRightWall()
-    {
-        return Physics.Raycast(transform.localPosition, Vector3.right, wallDistance, wallMask);
-    }
-    public bool BoxBackWall()
-    {
-        return Physics.Raycast(transform.localPosition, Vector3.back, wallDistance, wallMask);
-    }
-    public bool BoxForwardWall()
-    {
-        return Physics.Raycast(transform.localPosition, Vector3.forward, wallDistance, wallMask);
-    }*/
-
-
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     public void PushBox(float speedx, float speedz)
     {
-        if (BoxLeftSide() && !right)
-        {
-            sc_movement.Move_Anydir(-speedx, 0, 0);
-        }
-        if (BoxRightSide() && !left)
+        if (BoxLeftSide())
         {
             sc_movement.Move_Anydir(speedx, 0, 0);
         }
-        if (BoxBackSide() && !forward)
+        if (BoxRightSide())
         {
-            sc_movement.Move_Anydir(0, 0, -speedz);
+            sc_movement.Move_Anydir(-speedx, 0, 0);
         }
-        if (BoxForwardSide() && !back)
+        if (BoxBackSide())
         {
             sc_movement.Move_Anydir(0, 0, speedz);
+        }
+        if (BoxForwardSide())
+        {
+            sc_movement.Move_Anydir(0, 0, -speedz);
         }
     }
     public void PullBox(float speedx, float speedz)
