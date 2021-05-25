@@ -122,9 +122,8 @@ public class PlayerC : MonoBehaviour
 
         if (Input.GetKey(interactKey))
         {
-            //sc_playerM.pos_lookDirection = sc_playerM.pos_lookAt.position - transform.position;
-            //Quaternion rotation = Quaternion.LookRotation(new Vector3(0, sc_playerM.pos_lookDirection.y,0));
-            //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10);
+            Quaternion rotation = Quaternion.LookRotation(sc_playerM.pos_lookDirection);
+            transform.localRotation = rotation;
             sc_playerM.isMovingBox = true;
         }
         else if(!Input.GetKey(interactKey) || obj_Box == null)

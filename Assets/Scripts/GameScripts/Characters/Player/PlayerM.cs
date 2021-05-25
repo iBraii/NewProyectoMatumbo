@@ -62,7 +62,7 @@ public class PlayerM : Characters
     //-------PushBoxVars-----
     public bool isCloseToBox;
     public float distanceToBox;
-    public Transform pos_lookAt;
+    public Vector3 pos_lookAt;
     public Vector3 pos_lookDirection;
     //public Vector3 pos_pushBoxDir;
     public ObjectPush sc_box;
@@ -90,7 +90,8 @@ public class PlayerM : Characters
         sc_playerC = GetComponent<PlayerC>();
         if (sc_playerC.box != null)
         {
-            pos_lookAt = sc_playerC.box.transform;
+            pos_lookAt = new Vector3(sc_playerC.box.transform.position.x, transform.position.y, sc_playerC.box.transform.position.z);
+            pos_lookDirection = pos_lookAt - transform.position;
         }
         //life = 0f;
     }
@@ -98,7 +99,8 @@ public class PlayerM : Characters
     {
         if (sc_playerC.box != null)
         {
-            pos_lookAt = sc_playerC.box.transform;
+            pos_lookAt = new Vector3(sc_playerC.box.transform.position.x, transform.position.y, sc_playerC.box.transform.position.z);
+            pos_lookDirection = pos_lookAt - transform.position;
         }
     }
 }
