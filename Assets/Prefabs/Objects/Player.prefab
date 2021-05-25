@@ -134,7 +134,7 @@ MonoBehaviour:
   boxSpeedV: 0
   pos_playerVelocity: {x: 0, y: 0, z: 0}
   gravity: -9.81
-  jumpForce: 2
+  jumpForce: 2.5
   grounded: 1
   maxStress: 10
   stressCooldown: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   isHiding: 0
   isCloseToBox: 0
   distanceToBox: 1.1
-  pos_lookAt: {fileID: 0}
+  pos_lookAt: {x: 0, y: 0, z: 0}
   pos_lookDirection: {x: 0, y: 0, z: 0}
   sc_box: {fileID: 0}
   isMovingBox: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   playerLook:
     serializedVersion: 2
     m_Bits: 64
+  MovementLearned: 0
 --- !u!114 &6263043963273987785
 MonoBehaviour:
   m_ObjectHideFlags: 0

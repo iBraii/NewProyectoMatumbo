@@ -76,7 +76,7 @@ public class PlayerM : Characters
     //-------LayerMask----------
     public LayerMask playerLook;
     //--------------------------
-
+    public bool MovementLearned;
 
     private void Awake()
     {
@@ -94,6 +94,7 @@ public class PlayerM : Characters
             pos_lookDirection = pos_lookAt - transform.position;
         }
         //life = 0f;
+        MovementLearned = false;
     }
     private void Update()
     {

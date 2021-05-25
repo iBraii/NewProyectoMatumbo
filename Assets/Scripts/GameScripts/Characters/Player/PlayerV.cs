@@ -36,14 +36,19 @@ public class PlayerV : MonoBehaviour
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
         sc_playerC.Die();
-        if (sc_playerM.canMove && sc_playerM.isUsingWeapon == false && sc_playerM.isHiding == false)
+        if (sc_playerM.MovementLearned)
         {
-            sc_movement.PlayerMovement(sc_playerM.speed, sc_playerM.rotationSpeed, sc_playerM.turnTime, sc_playerM.pos_cam);
+            if (sc_playerM.canMove && sc_playerM.isUsingWeapon == false && sc_playerM.isHiding == false)
+            {
+                sc_movement.PlayerMovement(sc_playerM.speed, sc_playerM.rotationSpeed, sc_playerM.turnTime, sc_playerM.pos_cam);
+            }
+            if (sc_playerM.isHiding == false)
+            {
+                sc_playerC.PlayerJump();
+            }
         }
-        if (sc_playerM.isHiding == false)
-        {
-            sc_playerC.PlayerJump();
-        }
+       
+        
         if (sc_playerC.obj_Box != null || sc_playerC.box != null)
         {
             sc_playerC.MoveBoxController();
