@@ -9,11 +9,12 @@ public class IndicationsTutorial : MonoBehaviour
     public GameObject obj_indicationSign;
     public GameObject player;
     public GameObject thirdPersonCamera;
+    public GameObject DreamCatcherPresentation;
     private PlayerM sc_playerM;
     public Text indicationText;
     public Animator obj_indicationAm;
     public GameObject enemy;
-    public bool learningMovement, learningPush, learningDreamCatcher, cameraFollowenemy,learningHide,hideLearned,dreamCatcherHint,hasLearnedDreamCatcher,learningButton,buttonLearned,
+    public bool learningMovement, learningPush, learningDreamCatcher, cameraFollowenemy,cameraFollowDC, learningHide,hideLearned,dreamCatcherHint,hasLearnedDreamCatcher,learningButton,buttonLearned,
         learningDark;
     private bool hasLearnedPush;
     public GameObject newCameraPosition;
@@ -22,6 +23,7 @@ public class IndicationsTutorial : MonoBehaviour
     public float startTime;
     public float timeToReturnCamera,buttonIndicationTimer;
     private Vector3 cameraInitialPosition;
+    private GameObject obj_dreamCatcher;
     void Start()
     {
         player = GameObject.Find("Player");
@@ -31,6 +33,7 @@ public class IndicationsTutorial : MonoBehaviour
         obj_indicationAm = obj_indicationSign.GetComponent<Animator>();
         Invoke("LearnMovement", 2);
         newCameraPosition = GameObject.Find("EnemyFollowOBJ");
+        obj_dreamCatcher = GameObject.Find("DreamCatcher");
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class IndicationsTutorial : MonoBehaviour
         LearnDreamCatcherHint();
         LearnButton();
         LearnDark();
+        CameraFollowDC();
     }
 
     public void LearnMovement()
@@ -127,6 +131,7 @@ public class IndicationsTutorial : MonoBehaviour
         cameraInitialPosition = mainC.transform.position;
         cameraFollowenemy = true;
         enemy.SetActive(true);
+        newCameraPosition = GameObject.Find("EnemyFollowOBJ");
         sc_playerM.isHiding=true;
     }
 
@@ -139,7 +144,7 @@ public class IndicationsTutorial : MonoBehaviour
             timeToReturnCamera += Time.deltaTime;
             thirdPersonCamera.SetActive(false);
             float distCovered = (timeToReturnCamera - startTime) * 3;
-            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, newCameraPosition.transform.position, distCovered / journeyLenght);
+            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, DreamCatcherPresentation.transform.position, distCovered / journeyLenght);
             Debug.Log(distCovered);
             
             
@@ -147,6 +152,35 @@ public class IndicationsTutorial : MonoBehaviour
             {
                 timeToReturnCamera = 0;
                 cameraFollowenemy = false;
+                thirdPersonCamera.SetActive(true);
+                sc_playerM.isHiding = false;
+            }
+        }
+        
+    }
+    public void ActivateDCP()
+    {
+        cameraInitialPosition = mainC.transform.position;
+        cameraFollowDC = true;    
+        sc_playerM.isHiding = true;
+        newCameraPosition = DreamCatcherPresentation;
+    }
+    public void CameraFollowDC()
+    {
+        if (cameraFollowDC)
+        {
+            mainC.transform.LookAt(obj_dreamCatcher.transform);
+            timeToReturnCamera += Time.deltaTime;
+            thirdPersonCamera.SetActive(false);
+            float distCovered = (timeToReturnCamera - startTime) * 1;
+            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, newCameraPosition.transform.position, distCovered / journeyLenght);
+            Debug.Log(distCovered);
+
+
+            if (timeToReturnCamera >= 5f)
+            {
+                timeToReturnCamera = 0;
+                cameraFollowDC = false;
                 thirdPersonCamera.SetActive(true);
                 sc_playerM.isHiding = false;
             }

@@ -42,6 +42,10 @@ public class IndicationTrigger : MonoBehaviour
                     sc_indicationsTutorial.learningDark = true;
                     this.gameObject.SetActive(false);
                     break;
+                case "DCP":
+                    sc_indicationsTutorial.ActivateDCP();
+                    this.gameObject.SetActive(false);
+                    break;
             }
         }
     }
