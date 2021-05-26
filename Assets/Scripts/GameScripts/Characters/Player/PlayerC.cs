@@ -21,7 +21,7 @@ public class PlayerC : MonoBehaviour
     public KeyCode keyLeft;
     public KeyCode keyRight;
     public KeyCode interactKey;
-    public KeyCode hideKey;
+    //public KeyCode hideKey;
     public KeyCode jumpKey;
     //------------------
 
@@ -197,29 +197,15 @@ public class PlayerC : MonoBehaviour
     //---------------------------------------------Mantita---------------------------------------------
     public void HideOnBlanket()
     {
-        if (Input.GetKeyDown(hideKey))
+        if (Input.GetKeyDown(interactKey) && sc_playerM.isCloseToBlanket && sc_playerM.isHiding == false)
         {
-            if (sc_playerM.isCloseToBlanket && sc_playerM.isHiding == false)
-            {
-                //if (Input.GetKeyDown(hideKey))
-                //{
                 sc_playerM.isInmune = true;
                 sc_playerM.isHiding = true;
-                //}
-            }
         }
-        if (Input.GetKeyDown(interactKey))
+        else if (Input.GetKeyDown(interactKey) && sc_playerM.isCloseToBlanket && sc_playerM.isHiding == true)
         {
-            if (sc_playerM.isCloseToBlanket && sc_playerM.isHiding == true)
-            {
-
-            //if (Input.GetKeyDown(interactKey))
-            //{
                 sc_playerM.isInmune = false;
                 sc_playerM.isHiding = false;
-            //}
-
-            }
         }
     }
     //------------------------------------------------------------------------------------------------------

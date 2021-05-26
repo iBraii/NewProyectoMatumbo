@@ -24,10 +24,10 @@ public class TransitionTrigger : MonoBehaviour
     }
     public void TimeControl()
     {
-        maxTimer -= Time.deltaTime;
-        if (maxTimer <= 0)
-        {
-            sc_scCh.Change(defeatName);
-        }
+        maxTimer += Time.deltaTime;
+        //if (maxTimer <= 0)
+        //{
+        //    sc_scCh.Change(defeatName);
+        //}
     }
 }
