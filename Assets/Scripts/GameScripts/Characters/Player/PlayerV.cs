@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 [RequireComponent(typeof(Movement))]
 public class PlayerV : MonoBehaviour
 {
@@ -15,7 +14,6 @@ public class PlayerV : MonoBehaviour
         sc_playerC = GetComponent<PlayerC>();
         sc_playerM = GetComponent<PlayerM>();
         sc_movement = GetComponent<Movement>();
-        
     }
     //private void FixedUpdate()
     //{
@@ -36,6 +34,7 @@ public class PlayerV : MonoBehaviour
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
         sc_playerC.Die();
+
         if (sc_playerM.MovementLearned)
         {
             if (sc_playerM.canMove && sc_playerM.isUsingWeapon == false && sc_playerM.isHiding == false)
