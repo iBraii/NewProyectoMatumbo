@@ -94,7 +94,7 @@ public class PlayerM : Characters
             pos_lookDirection = pos_lookAt - transform.position;
         }
         //life = 0f;
-        MovementLearned = false;
+        //MovementLearned = false;
     }
     private void Update()
     {

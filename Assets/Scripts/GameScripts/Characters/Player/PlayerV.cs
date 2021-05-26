@@ -56,7 +56,6 @@ public class PlayerV : MonoBehaviour
         {
             sc_playerM.isMovingBox = false;
         }
-
     }
     //--------------------Triggers-------------------------------------
     private void OnTriggerEnter(Collider other)

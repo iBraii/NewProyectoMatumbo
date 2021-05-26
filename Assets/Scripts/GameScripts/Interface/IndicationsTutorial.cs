@@ -11,6 +11,7 @@ public class IndicationsTutorial : MonoBehaviour
     public GameObject thirdPersonCamera;
     public GameObject DreamCatcherPresentation;
     private PlayerM sc_playerM;
+    private PlayerC sc_playerC;
     public Text indicationText;
     public Animator obj_indicationAm;
     public GameObject enemy;
@@ -29,6 +30,7 @@ public class IndicationsTutorial : MonoBehaviour
         player = GameObject.Find("Player");
         thirdPersonCamera = GameObject.Find("ThirdPersonCamera");
         sc_playerM = player.GetComponent<PlayerM>();
+        sc_playerC = player.GetComponent<PlayerC>();
         //obj_indicationSign = GameObject.Find("IndicationOBJ");
         obj_indicationAm = obj_indicationSign.GetComponent<Animator>();
         Invoke("LearnMovement", 2);
@@ -73,7 +75,7 @@ public class IndicationsTutorial : MonoBehaviour
             
             obj_indicationSign.SetActive(true);
             indicationText.text = "USE WASD KEYS TO MOVE AND SPACE BAR TO JUMP";
-            if(Input.GetKeyDown(KeyCode.W)|| (Input.GetKeyDown(KeyCode.A)||(Input.GetKeyDown(KeyCode.S)|| (Input.GetKeyDown(KeyCode.D)|| (Input.GetKeyDown(KeyCode.Space))))))
+            if(Input.GetKeyDown(sc_playerC.keyUp)|| (Input.GetKeyDown(sc_playerC.keyDown) ||(Input.GetKeyDown(sc_playerC.keyLeft) || (Input.GetKeyDown(sc_playerC.keyRight) || (Input.GetKeyDown(sc_playerC.jumpKey))))))
             {
                 learningMovement = false;
                 obj_indicationAm.SetBool("Deactivate", true);
