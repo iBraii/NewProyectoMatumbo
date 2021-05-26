@@ -6,6 +6,7 @@ public class TimerText : MonoBehaviour
 {
     public Text myText;
     private TransitionTrigger sc_TT;
+    private string minutes, seconds, miliseconds;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,9 @@ public class TimerText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        myText.text = ("" + sc_TT.maxTimer.ToString("00"));
+        minutes = ((int)sc_TT.maxTimer / 60).ToString("00");
+        seconds = (sc_TT.maxTimer % 60).ToString("00");
+        miliseconds = (sc_TT.maxTimer % 1 * 100).ToString("00");
+        myText.text = ("Level Time: " + minutes + ":" + seconds + ":" + miliseconds);
     } 
 }

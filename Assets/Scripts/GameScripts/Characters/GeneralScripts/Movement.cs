@@ -24,8 +24,38 @@ public class Movement : MonoBehaviour
     {
 
 
-        sc_playerC.horizontal = Input.GetAxisRaw("Horizontal");
-        sc_playerC.vertical = Input.GetAxisRaw("Vertical");
+        if (Input.GetKey(sc_playerC.keyUp))
+        {
+            sc_playerC.vertical = 1;
+        }
+        else if (Input.GetKey(sc_playerC.keyDown))
+        {
+            sc_playerC.vertical = -1;
+        }
+        else if (!Input.GetKey(sc_playerC.keyDown) && !Input.GetKey(sc_playerC.keyUp))
+        {
+            sc_playerC.vertical = 0;
+        }
+        if (Input.GetKey(sc_playerC.keyRight))
+        {
+            sc_playerC.horizontal = 1;
+        }
+        else if (Input.GetKey(sc_playerC.keyLeft))
+        {
+            sc_playerC.horizontal = -1;
+        }
+        else if (!Input.GetKey(sc_playerC.keyLeft) && !Input.GetKey(sc_playerC.keyRight))
+        {
+            sc_playerC.horizontal = 0;
+        }
+        if (Input.GetKey(sc_playerC.keyDown) && Input.GetKey(sc_playerC.keyUp))
+        {
+            sc_playerC.vertical = 0;
+        }
+        if (Input.GetKey(sc_playerC.keyLeft) && Input.GetKey(sc_playerC.keyRight))
+        {
+            sc_playerC.horizontal = 0;
+        }
 
         Vector3 direction = new Vector3(sc_playerC.horizontal, 0f, sc_playerC.vertical).normalized;
 
