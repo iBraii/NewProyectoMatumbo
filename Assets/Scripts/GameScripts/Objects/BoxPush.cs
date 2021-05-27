@@ -73,11 +73,11 @@ public class BoxPush : MonoBehaviour
         distanceToGround = Vector3.Distance(transform.position, groundPoint);
 
         escalaY = transform.localScale.y;
-        Debug.Log(escalaY);
+        //Debug.Log(escalaY);
         groundSum = new Vector3(0, distanceToGround-(escalaY/2)+0.75f, 0);
 
 
-        Debug.DrawRay(groundPoint+groundSum, Vector3.left);
+        //Debug.DrawRay(groundPoint+groundSum, Vector3.left);
         this.left = Physics.Raycast(groundPoint + groundSum, Vector3.left, wallDistance, wallMask);
         this.right = Physics.Raycast(groundPoint + groundSum, Vector3.right, wallDistance, wallMask);
         this.back = Physics.Raycast(groundPoint + groundSum, Vector3.back, wallDistance, wallMask);
