@@ -146,7 +146,7 @@ public class IndicationsTutorial : MonoBehaviour
             timeToReturnCamera += Time.deltaTime;
             thirdPersonCamera.SetActive(false);
             float distCovered = (timeToReturnCamera - startTime) * 3;
-            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, DreamCatcherPresentation.transform.position, distCovered / journeyLenght);
+            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, newCameraPosition.transform.position, distCovered / journeyLenght);
             Debug.Log(distCovered);
             
             
@@ -175,7 +175,7 @@ public class IndicationsTutorial : MonoBehaviour
             timeToReturnCamera += Time.deltaTime;
             thirdPersonCamera.SetActive(false);
             float distCovered = (timeToReturnCamera - startTime) * 1;
-            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, newCameraPosition.transform.position, distCovered / journeyLenght);
+            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, DreamCatcherPresentation.transform.position, distCovered / journeyLenght);
             Debug.Log(distCovered);
 
 

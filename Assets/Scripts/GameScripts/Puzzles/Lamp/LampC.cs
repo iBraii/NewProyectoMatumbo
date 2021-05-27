@@ -24,13 +24,19 @@ public class LampC : MonoBehaviour
     }
     public void CompletedUpdater()
     {
-        if(sc_lampM.allButtonsPressed)
+        if (sc_lampM.allButtonsPressed)
         {
             sc_lampM.isCompleted = true;
         }
+        else
+            sc_lampM.isCompleted = false;
         if(sc_lampM.isCompleted)
         {
             sc_lampM.isLightOn = true;
+        }
+        else
+        {
+            sc_lampM.isLightOn = false;
         }
     }
     public void LightAndZoneUpdater()
