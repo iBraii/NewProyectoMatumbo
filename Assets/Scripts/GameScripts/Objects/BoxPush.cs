@@ -12,7 +12,7 @@ public class BoxPush : MonoBehaviour
     public RaycastHit groundHit;
     public Vector3 groundPoint;
     public Vector3 groundSum;
-
+    public GameObject obj_player;
     public float distanceToGround;
     public float escalaY;
 
@@ -20,7 +20,7 @@ public class BoxPush : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        obj_player = GameObject.Find("Player");
         sc_movement = GetComponent<Movement>();
         canPushx = true;
         canPushz = true;
@@ -56,7 +56,7 @@ public class BoxPush : MonoBehaviour
 
     public void BoxGravity()
     {
-        if (!isGrounded)
+        if (!isGrounded||obj_player.GetComponent<PlayerM>().isMovingBox)
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }
@@ -77,7 +77,7 @@ public class BoxPush : MonoBehaviour
         groundSum = new Vector3(0, distanceToGround-(escalaY/2)+0.75f, 0);
 
 
-        //Debug.DrawRay(groundPoint+groundSum, Vector3.left);
+        Debug.DrawRay(groundPoint+groundSum, Vector3.left);
         this.left = Physics.Raycast(groundPoint + groundSum, Vector3.left, wallDistance, wallMask);
         this.right = Physics.Raycast(groundPoint + groundSum, Vector3.right, wallDistance, wallMask);
         this.back = Physics.Raycast(groundPoint + groundSum, Vector3.back, wallDistance, wallMask);

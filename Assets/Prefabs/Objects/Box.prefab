@@ -128,6 +128,9 @@ MonoBehaviour:
   canPushz: 0
   groundPoint: {x: 0, y: 0, z: 0}
   groundSum: {x: 0, y: 0, z: 0}
+  distanceToGround: 0
+  escalaY: 0
+  isGrounded: 0
 --- !u!54 &6671792935604239086
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,5 +173,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.3764408, y: 0.5603039, z: 1.3982748}
+  m_Center: {x: -0.002910614, y: -0.21984875, z: -0.004445394}

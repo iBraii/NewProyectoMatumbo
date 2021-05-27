@@ -856,7 +856,7 @@ RectTransform:
   - {fileID: 475855085}
   - {fileID: 1763695513}
   m_Father: {fileID: 1512388447}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1689,7 +1689,7 @@ RectTransform:
   - {fileID: 1271212458}
   - {fileID: 1052254180}
   m_Father: {fileID: 1512388447}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2017,6 +2017,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 540
       objectReference: {fileID: 0}
+    - target: {fileID: 1534287914508171822, guid: 12ef53a8172dce6408c6db86fff57c5e, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534287914508171823, guid: 12ef53a8172dce6408c6db86fff57c5e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1534287914957279036, guid: 12ef53a8172dce6408c6db86fff57c5e, type: 3}
       propertyPath: m_Name
       value: TransitionScreen
@@ -2063,6 +2071,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1534287914957279039, guid: 12ef53a8172dce6408c6db86fff57c5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534287915564061395, guid: 12ef53a8172dce6408c6db86fff57c5e, type: 3}
+      propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2254,7 +2266,7 @@ RectTransform:
   - {fileID: 743482857}
   - {fileID: 752596752}
   m_Father: {fileID: 1512388447}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2274,7 +2286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2844,9 +2856,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1115600392}
   - {fileID: 850193748}
   - {fileID: 433835300}
+  - {fileID: 1115600392}
   - {fileID: 1737929673}
   m_Father: {fileID: 0}
   m_RootOrder: 2
