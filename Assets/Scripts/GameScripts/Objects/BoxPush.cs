@@ -13,6 +13,10 @@ public class BoxPush : MonoBehaviour
     public Vector3 groundPoint;
     public Vector3 groundSum;
 
+    public float distanceToGround;
+    public float escalaY;
+
+    public bool isGrounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +24,7 @@ public class BoxPush : MonoBehaviour
         sc_movement = GetComponent<Movement>();
         canPushx = true;
         canPushz = true;
-        groundSum = new Vector3(0, 0.75f, 0);
+        groundSum = new Vector3(0,Vector3.Distance(transform.position,groundPoint)-0.75f, 0);
     }
 
     // Update is called once per frame
@@ -46,12 +50,34 @@ public class BoxPush : MonoBehaviour
         {
             groundPoint = groundHit.point;
         }
+        isGrounded = Physics.Raycast(transform.localPosition, Vector3.down,escalaY/2, wallMask);
+
+    }
+
+    public void BoxGravity()
+    {
+        if (!isGrounded)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+        }
+        else
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+        }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////
     private void Update()
     {
         GroundRayCheck();
-        Debug.DrawRay(groundPoint + groundSum, Vector3.left);
+        BoxGravity();
+        distanceToGround = Vector3.Distance(transform.position, groundPoint);
+
+        escalaY = transform.localScale.y;
+        Debug.Log(escalaY);
+        groundSum = new Vector3(0, distanceToGround-(escalaY/2)+0.75f, 0);
+
+
+        Debug.DrawRay(groundPoint+groundSum, Vector3.left);
         this.left = Physics.Raycast(groundPoint + groundSum, Vector3.left, wallDistance, wallMask);
         this.right = Physics.Raycast(groundPoint + groundSum, Vector3.right, wallDistance, wallMask);
         this.back = Physics.Raycast(groundPoint + groundSum, Vector3.back, wallDistance, wallMask);
