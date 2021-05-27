@@ -33,7 +33,6 @@ public class PlayerV : MonoBehaviour
         sc_playerC.DreamCatcher();
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
-        sc_playerC.Die();
 
         if (sc_playerM.MovementLearned)
         {

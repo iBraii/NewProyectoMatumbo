@@ -10,9 +10,10 @@ public class MainMenu : MonoBehaviour
     public GameObject obj_optionsPanel;
     public GameObject obj_rankingPanel;
     public GameObject obj_mainPanel;
+    private ChangeScene sc_changescn;
     void Start()
     {
-        
+        sc_changescn = GetComponent<ChangeScene>();
     }
 
     // Update is called once per frame
@@ -24,11 +25,11 @@ public class MainMenu : MonoBehaviour
     {
         if (tutorialCompleted && animaticSeen)
         {
-            SceneManager.LoadScene("Level1");
+            sc_changescn.Change("Level1");
         }
         else
         {
-            SceneManager.LoadScene("AnimaticStart");
+            sc_changescn.Change("AnimaticStart");
         }
     }
     public void QuitGame()

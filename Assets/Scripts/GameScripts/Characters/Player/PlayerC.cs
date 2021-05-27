@@ -10,7 +10,6 @@ public class PlayerC : MonoBehaviour
     private PlayerM sc_playerM;
     public BoxPush obj_Box;
     public GameObject box;
-    
     //private PlayerController sc_playerController;
     //---------------------
 
@@ -49,13 +48,6 @@ public class PlayerC : MonoBehaviour
         sc_playerM.life -= ammount;
     }
     
-    public void Die()
-    {
-        if(sc_playerM.life >= 10)
-        {
-            gameObject.SetActive(false);
-        }
-    }
 
 
     public void PlayerJump()

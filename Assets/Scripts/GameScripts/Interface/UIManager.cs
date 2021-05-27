@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     public GameObject obj_player;
     public PlayerM sc_playerM;
     public PlayerC sc_playerC;
-
+    private ChangeScene sc_changescn;
     public Image dreamCatcher;
     public Sprite[] dreamCatcherSprite;
 
@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
+        sc_changescn = GetComponent<ChangeScene>();
         obj_player = GameObject.Find("Player");
         sc_playerC = obj_player.GetComponent<PlayerC>();
         PlayerPrefs.SetInt("prevLevel", SceneManager.GetActiveScene().buildIndex);
@@ -31,13 +32,20 @@ public class UIManager : MonoBehaviour
     {
         UpdateHUD();
         CursorController();
-
-        if (Input.GetKeyDown(KeyCode.P))
+        KillPlayer();
+        /*if (Input.GetKeyDown(KeyCode.P))
         {
             SceneManager.LoadScene("VictoryScene");
+        }*/
+    }
+    void KillPlayer()
+    {
+        if (obj_player.gameObject.GetComponent<PlayerM>().life >= 10)
+        {
+            obj_player.gameObject.SetActive(false);
+            sc_changescn.Change("DefeatScene");
         }
     }
-
     public void UpdateHUD()
     {
         sc_playerM = obj_player.GetComponent<PlayerM>();
