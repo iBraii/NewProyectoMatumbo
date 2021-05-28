@@ -69,7 +69,7 @@ public class PlayerV : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        sc_playerC.PickDC(other);
+        //sc_playerC.PickDC(other);
         sc_playerC.IsOnBlanket(other);
         sc_playerC.PickSH(other);
         sc_playerC.DetectBox(other);

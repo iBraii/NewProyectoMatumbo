@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScratchTrigger : MonoBehaviour
+public class DamageTrigger : MonoBehaviour
 {
     public string playerTag;
     private EnemiesAttack sc_enemiesAtk;
-    public float stressDamage;
+    public float damageValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class ScratchTrigger : MonoBehaviour
     {
         if(other.gameObject.CompareTag(playerTag))
         {
-            sc_enemiesAtk.SpectresAttack(stressDamage);
+            sc_enemiesAtk.SpectresAttack(damageValue);
             Debug.Log("Hola");
         }
     }
@@ -24,7 +24,7 @@ public class ScratchTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag(playerTag))
         {
-            sc_enemiesAtk.SpectresAttack(stressDamage);
+            sc_enemiesAtk.SpectresAttack(damageValue);
             Debug.Log("Holass");
         }
     }

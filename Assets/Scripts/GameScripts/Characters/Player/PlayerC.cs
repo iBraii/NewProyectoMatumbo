@@ -20,7 +20,7 @@ public class PlayerC : MonoBehaviour
     public KeyCode keyLeft;
     public KeyCode keyRight;
     public KeyCode interactKey;
-    //public KeyCode hideKey;
+    public KeyCode useWeaponKey;
     public KeyCode jumpKey;
     //------------------
 
@@ -81,11 +81,11 @@ public class PlayerC : MonoBehaviour
     {
         if (sc_playerM.hasWeapon)
         {
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(useWeaponKey))
             {
                 sc_playerM.isUsingWeapon = true;
             }
-            else if (Input.GetKeyUp(KeyCode.Q))
+            else if (Input.GetKeyUp(useWeaponKey))
             {
                 sc_playerM.isUsingWeapon = false;
             }
@@ -228,12 +228,11 @@ public class PlayerC : MonoBehaviour
         //--------------DreamCatcher----------------------------
         if (other.gameObject.CompareTag("DreamCatcher"))
         {
-            if (Input.GetKeyDown(interactKey))
-            {
+
                 sc_playerM.hasWeapon = true;
                 sc_playerM.useLimit = 20;
                 other.gameObject.SetActive(false);
-            }
+            
         }
         //-------------------------------------------------------
     }
