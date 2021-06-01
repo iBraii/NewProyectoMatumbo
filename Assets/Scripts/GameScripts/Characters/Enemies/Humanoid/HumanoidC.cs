@@ -126,9 +126,11 @@ public class HumanoidC : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (sc_humanoidM == null)
+            return;
         if (sc_humanoidM.visionAngle <= 0)
             return;
-
+        
         float halfVisonAngle = sc_humanoidM.visionAngle / 2;
         Vector3 point1, point2;
         point1 = PointForAngle(halfVisonAngle,sc_humanoidM.visionDistance);
