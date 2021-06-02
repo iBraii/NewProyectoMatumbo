@@ -7,11 +7,14 @@ public class Movement : MonoBehaviour
     public CharacterController cmp_controller;
     public Rigidbody rb;
     public PlayerC sc_playerC;
+    //private float smoothVel;
     void Start()
     {
         //controller = gameObject.AddComponent<CharacterController>() as CharacterController;
+        //rb = GetComponent<Rigidbody>();
         cmp_controller = GetComponent<CharacterController>();
         sc_playerC = GetComponent<PlayerC>();
+        //smoothVel = 1;
     }
 
     // Update is called once per frame
@@ -22,40 +25,6 @@ public class Movement : MonoBehaviour
 
     public void PlayerMovement(float speed, float rotationSpeed,float turnTime, Transform pos_cam)
     {
-
-
-        if (Input.GetKey(sc_playerC.keyUp))
-        {
-            sc_playerC.vertical = 1;
-        }
-        else if (Input.GetKey(sc_playerC.keyDown))
-        {
-            sc_playerC.vertical = -1;
-        }
-        else if (!Input.GetKey(sc_playerC.keyDown) && !Input.GetKey(sc_playerC.keyUp))
-        {
-            sc_playerC.vertical = 0;
-        }
-        if (Input.GetKey(sc_playerC.keyRight))
-        {
-            sc_playerC.horizontal = 1;
-        }
-        else if (Input.GetKey(sc_playerC.keyLeft))
-        {
-            sc_playerC.horizontal = -1;
-        }
-        else if (!Input.GetKey(sc_playerC.keyLeft) && !Input.GetKey(sc_playerC.keyRight))
-        {
-            sc_playerC.horizontal = 0;
-        }
-        if (Input.GetKey(sc_playerC.keyDown) && Input.GetKey(sc_playerC.keyUp))
-        {
-            sc_playerC.vertical = 0;
-        }
-        if (Input.GetKey(sc_playerC.keyLeft) && Input.GetKey(sc_playerC.keyRight))
-        {
-            sc_playerC.horizontal = 0;
-        }
 
         Vector3 direction = new Vector3(sc_playerC.horizontal, 0f, sc_playerC.vertical).normalized;
 
@@ -70,15 +39,24 @@ public class Movement : MonoBehaviour
 
        
     }
-    public void PlayerRotation()
-    {
 
-    }
     public void Move_Anydir(float speedx,float speedy,float speedz)
     {
         rb.velocity = new Vector3(speedx, speedy, speedz);
         //rb.AddForce(new Vector3(speedx, speedy, speedz),ForceMode.VelocityChange);
         //rb.MovePosition(new Vector3(0,0,0));
     }
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //public void PlayerRotation(Vector3 move, float spd,Transform pos_cam)
+    //{
+    //    if (move.magnitude >= 0.1f)
+    //    {
+    //        float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg + pos_cam.eulerAngles.y;
+    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref smoothVel, 0.1f);
+    //        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    //        Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+    //        rb.velocity = moveDirection * spd * Time.deltaTime;
+    //    }
+    //}
 
 }

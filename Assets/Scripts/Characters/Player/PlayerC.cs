@@ -8,6 +8,7 @@ public class PlayerC : MonoBehaviour
 {
     //------Scripts--------
     private PlayerM sc_playerM;
+    private Movement sc_Movement;
     public BoxPush obj_Box;
     public GameObject box;
     //private PlayerController sc_playerController;
@@ -29,11 +30,13 @@ public class PlayerC : MonoBehaviour
     public float vertical;
     //------------------
 
-
-
     void Start()
     {
+        
         sc_playerM = GetComponent<PlayerM>();
+        sc_Movement = GetComponent<Movement>();
+        //sc_Movement.rb = GetComponent<Rigidbody>();
+        //sc_Movement.rb.centerOfMass = new Vector3(0, -1.5f, 0);
         //sc_playerController = GetComponent<PlayerController>();
     }
 
@@ -55,7 +58,6 @@ public class PlayerC : MonoBehaviour
         sc_playerM.GroundCheck();
         sc_playerM.grounded = sc_playerM.GroundCheck();
         sc_playerM.pos_playerVelocity.y += sc_playerM.gravity * Time.deltaTime;
-
         if (sc_playerM.grounded && sc_playerM.pos_playerVelocity.y < 0)
         {
             sc_playerM.pos_playerVelocity.y = 0f;
@@ -67,13 +69,70 @@ public class PlayerC : MonoBehaviour
         }
         sc_playerM.cmp_controller.Move(sc_playerM.pos_playerVelocity * Time.deltaTime);
 
-
-        if (Input.GetKeyDown(KeyCode.Space) && sc_playerM.grounded)
+        if (Input.GetKeyDown(jumpKey) && sc_playerM.grounded)
         {
             sc_playerM.pos_playerVelocity.y += Mathf.Sqrt(sc_playerM.jumpForce * -3f * sc_playerM.gravity);
         }
 
     }
+    public void Inputs()
+    {
+        if (Input.GetKey(keyUp))
+        {
+            vertical = 1;
+        }
+        else if (Input.GetKey(keyDown))
+        {
+            vertical = -1;
+        }
+        else if (!Input.GetKey(keyDown) && !Input.GetKey(keyUp))
+        {
+            vertical = 0;
+        }
+        if (Input.GetKey(keyRight))
+        {
+            horizontal = 1;
+        }
+        else if (Input.GetKey(keyLeft))
+        {
+            horizontal = -1;
+        }
+        else if (!Input.GetKey(keyLeft) && !Input.GetKey(keyRight))
+        {
+            horizontal = 0;
+        }
+        if (Input.GetKey(keyDown) && Input.GetKey(keyUp))
+        {
+            vertical = 0;
+        }
+        if (Input.GetKey(keyLeft) && Input.GetKey(keyRight))
+        {
+            horizontal = 0;
+        }
+    }
+    //public void ControllerMoveAndRotate()
+    //{
+    //    Debug.Log(sc_Movement.rb.centerOfMass);
+    //    float angl_rot = gameObject.transform.eulerAngles.y % 360;
+    //    if (Input.GetKey(keyRight) & Input.GetKey(keyUp))
+    //    {
+    //        angl_rot = 45;
+    //    }
+    //    else if (Input.GetKey(keyRight) & Input.GetKey(keyDown))
+    //    {
+    //        angl_rot = 135;
+    //    }
+    //    if (Input.GetKey(keyLeft) & Input.GetKey(keyUp))
+    //    {
+    //        angl_rot = 315;
+    //    }
+    //    else if (Input.GetKey(keyLeft) & Input.GetKey(keyDown))
+    //    {
+    //        angl_rot = 225;
+    //    }
+    //    sc_playerM.rotatioProves = new Vector3(horizontal, 0f, vertical);
+    //    sc_Movement.PlayerRotation(sc_playerM.rotatioProves.normalized, 100, sc_playerM.pos_cam);
+    //}
 
     //---------------------------------------------------DreamCatcher----------------------------------------------------------------------
 

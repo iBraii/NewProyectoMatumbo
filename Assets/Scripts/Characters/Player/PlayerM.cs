@@ -14,6 +14,7 @@ public class PlayerM : Characters
     public float turnTime = 1;
     public Transform pos_cam;
     public bool canMove = true;
+    public Vector3 rotatioProves;
     //--------------------------------------
     public float boxSpeedH, boxSpeedV;
 

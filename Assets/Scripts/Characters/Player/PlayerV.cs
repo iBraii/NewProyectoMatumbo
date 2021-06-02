@@ -39,6 +39,8 @@ public class PlayerV : MonoBehaviour
             if (sc_playerM.canMove && sc_playerM.isUsingWeapon == false && sc_playerM.isHiding == false)
             {
                 sc_movement.PlayerMovement(sc_playerM.speed, sc_playerM.rotationSpeed, sc_playerM.turnTime, sc_playerM.pos_cam);
+                sc_playerC.Inputs();
+                //sc_playerC.ControllerMoveAndRotate();
             }
             if (sc_playerM.isHiding == false)
             {

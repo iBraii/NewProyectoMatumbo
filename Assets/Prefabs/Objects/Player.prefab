@@ -127,9 +127,10 @@ MonoBehaviour:
   cmp_controller: {fileID: 0}
   speed: 5
   rotationSpeed: 1
-  turnTime: 0.03
+  turnTime: 0.015
   pos_cam: {fileID: 0}
   canMove: 1
+  rotatioProves: {x: 0, y: 0, z: 0}
   boxSpeedH: 0
   boxSpeedV: 0
   pos_playerVelocity: {x: 0, y: 0, z: 0}
@@ -153,7 +154,6 @@ MonoBehaviour:
   distanceToBox: 1.1
   pos_lookAt: {x: 0, y: 0, z: 0}
   pos_lookDirection: {x: 0, y: 0, z: 0}
-  sc_box: {fileID: 0}
   isMovingBox: 0
   solvingPuzzle: 0
   closeToPuzzle: 0
