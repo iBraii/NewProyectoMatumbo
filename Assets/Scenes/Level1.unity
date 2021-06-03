@@ -332,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6263043963500208934, guid: f7d34eda103459d4497edb347a67ed17, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7d34eda103459d4497edb347a67ed17, type: 3}
 --- !u!1 &13708260 stripped
@@ -1090,11 +1094,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000003413325
+      value: 0.000000034133265
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000043770414
+      value: -0.0000000043770436
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952827834573, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1118,11 +1122,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952827834573, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 8.619646e-15
+      value: -1.6271901e-15
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952827834573, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.284736e-16
+      value: 2.6894993e-16
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1142,11 +1146,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000001912314
+      value: -0.000000019122322
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021003705
+      value: 0.0000000021002806
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1166,11 +1170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017066606
+      value: 0.000000017066634
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021885176
+      value: -0.0000000021885216
       objectReference: {fileID: 0}
     - target: {fileID: 7670060518033672143, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_RootOrder
@@ -1985,6 +1989,10 @@ PrefabInstance:
     - target: {fileID: 3316764479360275240, guid: f043a435f618ceb428f5a02790841e9d, type: 3}
       propertyPath: levelName
       value: VictoryScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316764479360275240, guid: f043a435f618ceb428f5a02790841e9d, type: 3}
+      propertyPath: levelCompleted
+      value: Chapter2Completed
       objectReference: {fileID: 0}
     - target: {fileID: 3316764479360275243, guid: f043a435f618ceb428f5a02790841e9d, type: 3}
       propertyPath: m_RootOrder
@@ -10281,7 +10289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4537651440162107037, guid: ceff65378f4440c408cf2ab2efc61ce7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8999958
+      value: -2.87
       objectReference: {fileID: 0}
     - target: {fileID: 4537651440162107037, guid: ceff65378f4440c408cf2ab2efc61ce7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12738,6 +12746,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4226136648878744704, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.07647705
+      objectReference: {fileID: 0}
     - target: {fileID: 4847794627723795190, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12753,6 +12765,10 @@ PrefabInstance:
     - target: {fileID: 7480504747606613684, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.30000305
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520478427834142565, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.34783936
       objectReference: {fileID: 0}
     - target: {fileID: 7688354475460433943, guid: 28e60cab651194f4182cc2aaad45bb29, type: 3}
       propertyPath: m_FontData.m_Alignment

@@ -11,9 +11,19 @@ public class MainMenu : MonoBehaviour
     public GameObject obj_rankingPanel;
     public GameObject obj_mainPanel;
     private ChangeScene sc_changescn;
+    public GameObject obj_chapterSelectionPanel;
+
+    public GameObject obj_chapter2Block;
+    public GameObject obj_chapter3Block;
+
+    public int level1;
+    public int level2;
     void Start()
     {
         sc_changescn = GetComponent<ChangeScene>();
+        UpdateChapterSelection();
+        level1 = PlayerPrefs.GetInt("TutorialCompleted");
+        level2 = PlayerPrefs.GetInt("Chapter2Completed");
     }
 
     // Update is called once per frame
@@ -21,6 +31,11 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PlayerPrefs.SetInt("TutorialCompleted",0);
+            PlayerPrefs.SetInt("Chapter2Completed",0);
+        }
     }
     public void LoadGame()
     {
@@ -33,6 +48,7 @@ public class MainMenu : MonoBehaviour
             sc_changescn.Change("AnimaticStart");
         }
     }
+    
     public void QuitGame()
     {
         LoadScene.CloseGame();
@@ -55,5 +71,35 @@ public class MainMenu : MonoBehaviour
         obj_rankingPanel.SetActive(false);
         obj_optionsPanel.SetActive(false);
     }
+    public void OpenChapterSelection()
+    {
+        obj_chapterSelectionPanel.SetActive(true);
+        obj_mainPanel.SetActive(false);
+    }
+    public void CloseChapterSelection()
+    {
+        obj_chapterSelectionPanel.SetActive(false);
+        obj_mainPanel.SetActive(true);
+    }
 
+    public void UpdateChapterSelection()
+    {
+        if (PlayerPrefs.GetInt("TutorialCompleted") == 1)
+        {
+            obj_chapter2Block.SetActive(false);
+        }
+        else
+        {
+            obj_chapter2Block.SetActive(true);
+        }
+
+        if (PlayerPrefs.GetInt("Chapter2Completed") == 1)
+        {
+            obj_chapter3Block.SetActive(false);
+        }
+        else 
+        {
+            obj_chapter3Block.SetActive(true);
+        }
+    }
 }

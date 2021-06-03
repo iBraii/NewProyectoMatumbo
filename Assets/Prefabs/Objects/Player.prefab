@@ -100,10 +100,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 0.3
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0.000000074505806, y: 0.01587053, z: -0.000000074505806}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6263043963273987784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 0
   movSpeed: 0
-  distanceToTheGround: 1.09
+  distanceToTheGround: 1.08
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -208,7 +208,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.08
@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6263043963500208933
 Transform:
   m_ObjectHideFlags: 0

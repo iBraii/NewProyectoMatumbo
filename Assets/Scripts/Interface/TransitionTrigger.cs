@@ -5,6 +5,7 @@ using UnityEngine;
 public class TransitionTrigger : MonoBehaviour
 {
     private ChangeScene sc_scCh;
+    public string levelCompleted;
     public string levelName, defeatName;
     public float maxTimer;
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class TransitionTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         sc_scCh.Change(levelName);
+        PlayerPrefs.SetInt(levelCompleted, 1);
     }
     public void TimeControl()
     {
