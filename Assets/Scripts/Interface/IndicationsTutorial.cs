@@ -244,7 +244,7 @@ public class IndicationsTutorial : MonoBehaviour
         {
             buttonIndicationTimer += Time.deltaTime;
             obj_indicationSign.SetActive(true);
-            indicationText.text = "DARK AREAS WILL GREATLY INCREASE YOUR STRESS BAR. FIND A WAY TO LIGH THE PATH";
+            indicationText.text = "DARK AREAS WILL GREATLY INCREASE YOUR STRESS BAR";
             if (buttonIndicationTimer >= 3f)
             {
                 learningDark = false;
