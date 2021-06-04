@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -16,10 +17,14 @@ public class MainMenu : MonoBehaviour
     public GameObject obj_chapter2Block;
     public GameObject obj_chapter3Block;
 
+    public GameObject obj_sensSlider;
+
     public int level1;
     public int level2;
     void Start()
     {
+       
+        obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
         sc_changescn = GetComponent<ChangeScene>();
         UpdateChapterSelection();
         level1 = PlayerPrefs.GetInt("TutorialCompleted");
@@ -35,6 +40,11 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("TutorialCompleted",0);
             PlayerPrefs.SetInt("Chapter2Completed",0);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            PlayerPrefs.SetInt("TutorialCompleted", 1);
+            PlayerPrefs.SetInt("Chapter2Completed", 1);
         }
     }
     public void LoadGame()
@@ -101,5 +111,10 @@ public class MainMenu : MonoBehaviour
         {
             obj_chapter3Block.SetActive(true);
         }
+    }
+    public void ApplySettings()
+    {
+        PlayerPrefs.SetFloat("Sens", obj_sensSlider.GetComponent<Slider>().value);
+        Debug.Log(obj_sensSlider.GetComponent<Slider>().value);
     }
 }

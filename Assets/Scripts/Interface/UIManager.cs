@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class UIManager : MonoBehaviour
     public Image dreamCatcherBar;
 
     public Text hintText;
+    public CinemachineFreeLook thirdPersonCamera;
     
     void Start()
     {
@@ -25,6 +27,8 @@ public class UIManager : MonoBehaviour
         sc_playerC = obj_player.GetComponent<PlayerC>();
         PlayerPrefs.SetInt("prevLevel", SceneManager.GetActiveScene().buildIndex);
         Debug.Log(PlayerPrefs.GetInt("prevLevel"));
+        thirdPersonCamera = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineFreeLook>();
+        thirdPersonCamera.m_XAxis.m_MaxSpeed = PlayerPrefs.GetFloat("Sens");
     }
 
     // Update is called once per frame
