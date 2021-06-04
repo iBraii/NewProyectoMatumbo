@@ -88,20 +88,11 @@ public class PlayerM : Characters
         cmp_controller = GetComponent<CharacterController>();
         pos_playerVelocity = new Vector3(0f, 0f, 0f);
         sc_playerC = GetComponent<PlayerC>();
-        if (sc_playerC.box != null)
-        {
-            pos_lookAt = new Vector3(sc_playerC.box.transform.position.x, transform.position.y, sc_playerC.box.transform.position.z);
-            pos_lookDirection = pos_lookAt - transform.position;
-        }
         //life = 0f;
         //MovementLearned = false;
     }
     private void Update()
     {
-        if (sc_playerC.box != null)
-        {
-            pos_lookAt = new Vector3(sc_playerC.box.transform.position.x, transform.position.y, sc_playerC.box.transform.position.z);
-            pos_lookDirection = pos_lookAt - transform.position;
-        }
+        
     }
 }

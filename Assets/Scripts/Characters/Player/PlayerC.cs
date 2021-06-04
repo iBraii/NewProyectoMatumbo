@@ -11,6 +11,7 @@ public class PlayerC : MonoBehaviour
     private Movement sc_Movement;
     public BoxPush obj_Box;
     public GameObject box;
+    
     //private PlayerController sc_playerController;
     //---------------------
 
@@ -174,9 +175,28 @@ public class PlayerC : MonoBehaviour
 
         if (Input.GetKey(interactKey))
         {
-            Quaternion rotation = Quaternion.LookRotation(sc_playerM.pos_lookDirection);
-            transform.localRotation = rotation;
-            sc_playerM.isMovingBox = true;
+            if(obj_Box.BoxLeftSide())
+            {
+                transform.localRotation = Quaternion.Euler(0, 90, 0);
+                sc_playerM.isMovingBox = true;
+            }
+            else if(obj_Box.BoxRightSide())
+            {
+                transform.localRotation = Quaternion.Euler(0, -90, 0);
+                sc_playerM.isMovingBox = true;
+            }
+            else if(obj_Box.BoxForwardSide())
+            {
+                transform.localRotation = Quaternion.Euler(0, -180, 0);
+                sc_playerM.isMovingBox = true;
+            }
+            else if(obj_Box.BoxBackSide())
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                sc_playerM.isMovingBox = true;
+            }
+            /*Quaternion rotation = Quaternion.LookRotation(sc_playerM.pos_lookDirection);
+            transform.localRotation = rotation;*/
         }
         else if(!Input.GetKey(interactKey) || obj_Box == null)
         {
