@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
         UpdateChapterSelection();
         level1 = PlayerPrefs.GetInt("TutorialCompleted");
         level2 = PlayerPrefs.GetInt("Chapter2Completed");
+        ApplySettings();
     }
 
     // Update is called once per frame

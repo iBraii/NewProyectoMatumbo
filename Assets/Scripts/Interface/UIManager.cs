@@ -37,7 +37,6 @@ public class UIManager : MonoBehaviour
         UpdateHUD();
         CursorController();
         KillPlayer();
-       
     }
     void KillPlayer()
     {
@@ -75,11 +74,14 @@ public class UIManager : MonoBehaviour
         //-------------------------Hint text------------------------------------------------------------------------------
         if (sc_playerM.closeToPuzzle && !sc_playerM.solvingPuzzle)
         {
-            
+
             hintText.text = "E TO INTERACT";
-        }else if (sc_playerC.obj_Box!=null && !Input.GetKey(KeyCode.E))
+        } else if (sc_playerC.obj_Box != null)
         {
-            hintText.text = "HOLD E TO INTERACT";
+            if(sc_playerC.obj_Box.BoxLeftSide() || sc_playerC.obj_Box.BoxRightSide() || sc_playerC.obj_Box.BoxForwardSide() || sc_playerC.obj_Box.BoxBackSide())
+            {
+                hintText.text = "HOLD E TO INTERACT";
+            }     
         }
         else
         {
