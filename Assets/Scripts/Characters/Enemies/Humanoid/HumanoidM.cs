@@ -38,6 +38,9 @@ public class HumanoidM : Enemies
     //public bool isDenied;
     public float stunTime;
     public float maxStunTime;
+    //LayerMask
+    public LayerMask whatIsGround;
+    public RaycastHit hit;
 
     // Start is called before the first frame update
 

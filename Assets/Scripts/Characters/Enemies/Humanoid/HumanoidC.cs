@@ -11,7 +11,7 @@ public class HumanoidC : MonoBehaviour
     void Start()
     {
         sc_humanoidM = GetComponent<HumanoidM>();
-        sc_playerM = GetComponent<PlayerM>();
+        sc_playerM = GameObject.Find("Player").GetComponent<PlayerM>();
     }
 
     //----------------------------Movimiento en patrulla--------------------------------------------------
@@ -93,16 +93,27 @@ public class HumanoidC : MonoBehaviour
     }
     public void DetectPlayer()
     {
+        bool viewClear = Physics.Raycast(transform.position, sc_humanoidM.player.transform.position-transform.position,out sc_humanoidM.hit,sc_humanoidM.visionDistance, sc_humanoidM.whatIsGround);
+        Debug.Log(viewClear);
         Vector3 playerVector = sc_humanoidM.player.transform.position - transform.position;
-        if (Vector3.Angle(playerVector.normalized, transform.forward) < sc_humanoidM.visionAngle / 2)
+       
+        if (!viewClear)
         {
-            if (playerVector.magnitude < sc_humanoidM.visionDistance)
+            if (Vector3.Angle(playerVector.normalized, transform.forward) < sc_humanoidM.visionAngle / 2)
             {
-                sc_humanoidM.playerOnView = true;
+                if (playerVector.magnitude < sc_humanoidM.visionDistance && sc_playerM.isHiding == false)
+                {
+                    sc_humanoidM.playerOnView = true;
+                }
+                else if (playerVector.magnitude > sc_humanoidM.visionDistance||sc_playerM.isHiding)
+                {
+                    sc_humanoidM.playerOnView = false;
+                }
+
             }
-            else
-                sc_humanoidM.playerOnView = false;
         }
+
+        
     }
     //----------------------------Aturdimiento con el atrapasuenos--------------------------------------------------
     public void Stunned()
@@ -140,5 +151,6 @@ public class HumanoidC : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + point2);
 
         Gizmos.DrawRay(transform.position, transform.forward * 4);
+        Gizmos.DrawRay(transform.position, sc_humanoidM.player.transform.position-transform.position);
     }
 }
