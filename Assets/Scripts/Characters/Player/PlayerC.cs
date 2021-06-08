@@ -90,11 +90,11 @@ public class PlayerC : MonoBehaviour
         {
             vertical = 0;
         }
-        if (Input.GetKey(keyRight))
+        if (Input.GetKey(keyRight) && !sc_playerM.isMovingBox)
         {
             horizontal = 1;
         }
-        else if (Input.GetKey(keyLeft))
+        else if (Input.GetKey(keyLeft) && !sc_playerM.isMovingBox)
         {
             horizontal = -1;
         }

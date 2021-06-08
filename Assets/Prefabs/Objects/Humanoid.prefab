@@ -285,8 +285,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9999996, y: 0.85715437, z: 0.9999998}
+  m_Center: {x: 0, y: -0.14946659, z: 0}
 --- !u!114 &8518922323206881050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,6 +492,9 @@ MonoBehaviour:
   halfVisionAngle: 0
   stunTime: 0
   maxStunTime: 4
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &7531061382564320474
 MonoBehaviour:
   m_ObjectHideFlags: 0
