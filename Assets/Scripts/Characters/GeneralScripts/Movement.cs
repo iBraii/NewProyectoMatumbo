@@ -32,7 +32,6 @@ public class Movement : MonoBehaviour
 
     public void PlayerMovement(float speed, float rotationSpeed,float turnTime, Transform pos_cam)
     {
-
         Vector3 direction = new Vector3(sc_playerC.horizontal, 0f, sc_playerC.vertical).normalized;
 
 

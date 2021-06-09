@@ -8,6 +8,7 @@ public class Characters : MonoBehaviour
     public float movSpeed;
     public float distanceToTheGround;
     public LayerMask GroundLayer;
+    public bool isMoving;
 
     public bool GroundCheck()
     {

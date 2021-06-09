@@ -110,7 +110,17 @@ public class PlayerC : MonoBehaviour
         {
             horizontal = 0;
         }
+
+        if (horizontal != 0 || vertical != 0)
+        {
+            sc_playerM.isMoving = true;
+        }
+        else
+        {
+            sc_playerM.isMoving = false;
+        }
     }
+
     //public void ControllerMoveAndRotate()
     //{
     //    Debug.Log(sc_Movement.rb.centerOfMass);
