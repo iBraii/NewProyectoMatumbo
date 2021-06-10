@@ -158,22 +158,33 @@ public class PlayerC : MonoBehaviour
             else if (Input.GetKeyUp(useWeaponKey))
             {
                 sc_playerM.isUsingWeapon = false;
+                sc_playerM.cooldownForRegen = 0;
             }
             if (sc_playerM.isUsingWeapon)
             {
-                
-                //sc_playerM.obj_enemyTest.GetComponent<EnemyTesting>().Paralize();
-                sc_playerM.useLimit -= 1 * Time.deltaTime;
+                sc_playerM.uses -= .5f * Time.deltaTime;
+                if(sc_playerM.closeToEnemies == true)
+                {
+                    sc_playerM.usedTime += Time.deltaTime;
+                }     
+                sc_playerM.lastUsedTime = sc_playerM.usedTime;
             }
             else
             {
-
+                sc_playerM.cooldownForRegen += Time.deltaTime;
+                if (sc_playerM.cooldownForRegen >= 2f)
+                {
+                    sc_playerM.uses += .2f * Time.deltaTime;
+                }
             }
-            if (sc_playerM.useLimit <= 0)
+            if (sc_playerM.uses <= 0)
             {
                 sc_playerM.isUsingWeapon = false;
-                sc_playerM.hasWeapon = false;
-                sc_playerM.useLimit = 0;
+                sc_playerM.uses = 0;
+            }
+            if(sc_playerM.uses >= sc_playerM.useLimit)
+            {
+                sc_playerM.uses = sc_playerM.useLimit;
             }
         }
     }

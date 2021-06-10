@@ -19,25 +19,21 @@ public class HumanoidV : MonoBehaviour
     void Update()
     {
         sc_humanoidC.CloseToWaypoint();
-        sc_humanoidM.Denied();
         sc_humanoidC.FollowPlayer();
         sc_humanoidC.DetectPlayer();
-        //sc_humanoidC.DeniedUpdater();
+        sc_humanoidM.Denied();
         sc_humanoidC.Stunned();
+
+
         //Prueba de aturdimiento
+
         if (Input.GetMouseButtonDown(1))
         {
             sc_humanoidM.isDenied = true;
         }
-    }
-    /*private void OnDrawGizmos()
-    {
-        for (int i = 0; i < sc_humanoidM.waypoint.Length; i++)
-        {
-            Gizmos.DrawCube(sc_humanoidM.waypoint[i].position, Vector3.one / 2);
-        }
 
-    }*/
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

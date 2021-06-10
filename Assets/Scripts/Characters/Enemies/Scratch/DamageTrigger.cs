@@ -6,7 +6,7 @@ public class DamageTrigger : MonoBehaviour
 {
     public string playerTag;
     private EnemiesAttack sc_enemiesAtk;
-    public float damageValue;
+    public float enemiesDamageValue, aurasDamageValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +16,22 @@ public class DamageTrigger : MonoBehaviour
     {
         if(other.gameObject.CompareTag(playerTag))
         {
-            sc_enemiesAtk.SpectresAttack(damageValue);
-            Debug.Log("Hola");
+            if(sc_enemiesAtk.sc_enemies != null)
+            {
+                sc_enemiesAtk.SpectresAttack(enemiesDamageValue);
+            }
+            sc_enemiesAtk.AurasDamage(aurasDamageValue);
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag(playerTag))
         {
-            sc_enemiesAtk.SpectresAttack(damageValue);
-            Debug.Log("Holass");
+            if (sc_enemiesAtk.sc_enemies != null)
+            {
+                sc_enemiesAtk.SpectresAttack(enemiesDamageValue);
+            }
+            sc_enemiesAtk.AurasDamage(aurasDamageValue);
         }
     }
 }

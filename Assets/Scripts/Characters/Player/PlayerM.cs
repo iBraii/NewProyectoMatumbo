@@ -38,7 +38,11 @@ public class PlayerM : Characters
     //---------DreamCatcher-----------
     public bool hasWeapon;
     public bool isUsingWeapon;
+    public float uses;
     public float useLimit;
+    public float usedTime;
+    public float lastUsedTime;
+    public float cooldownForRegen;
     //---------------------------------
 
 
@@ -49,8 +53,8 @@ public class PlayerM : Characters
 
 
 
-    //---------Enemies-----------------
-    public GameObject obj_enemyTest;
+    //---------DistanceToEnemies-----------------
+    public bool closeToEnemies;
 
     //-------HideOnBlanketVars-----
     public bool isInmune;
@@ -83,7 +87,6 @@ public class PlayerM : Characters
         //boxPos = GameObject.Find("BoxPos");
         screenShake = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         isHiding = false;
-        obj_enemyTest = GameObject.Find("EnemyTest");
         maxStoryHints = 20;
         cmp_controller = GetComponent<CharacterController>();
         pos_playerVelocity = new Vector3(0f, 0f, 0f);

@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
         if (sc_playerM.hasWeapon)
         {
             dreamCatcherBar.GetComponent<Image>().enabled = true;
-            dreamCatcherBar.fillAmount = sc_playerM.useLimit / 20;
+            dreamCatcherBar.fillAmount = sc_playerM.uses / sc_playerM.useLimit;
         }
         else
         {

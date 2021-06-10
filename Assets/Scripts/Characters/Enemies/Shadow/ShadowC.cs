@@ -63,7 +63,7 @@ public class ShadowC : MonoBehaviour
     {
         if (sc_ShadowM.isDenied)
         {
-            sc_ShadowM.deniedTimer += Time.deltaTime;
+                sc_ShadowM.deniedTimer += Time.deltaTime;
             sc_ShadowM.canChase = false;
             
 
@@ -71,7 +71,7 @@ public class ShadowC : MonoBehaviour
             {
                 sc_ShadowM.deniedTimer = 0;
                 sc_ShadowM.isDenied = false;
-            }
+            }      
         }
     }
 }
