@@ -13,7 +13,10 @@ public class HumanoidC : MonoBehaviour
         sc_humanoidM = GetComponent<HumanoidM>();
         sc_playerM = GameObject.Find("Player").GetComponent<PlayerM>();
     }
-
+    private void Update()
+    {
+        sc_humanoidM.maxStunTime = sc_playerM.lastUsedTime;
+    }
     //----------------------------Movimiento en patrulla--------------------------------------------------
     void IncreaseIndex()
     {
@@ -77,14 +80,6 @@ public class HumanoidC : MonoBehaviour
         }
         
     }
-    public void DeniedUpdater()
-    {
-        if(sc_playerM.isUsingWeapon)
-        {
-            sc_humanoidM.isDenied = true;
-        }     
-    }
-
     public Vector3 PointForAngle(float angle, float distance)
     {
         return transform.TransformDirection(
@@ -120,16 +115,18 @@ public class HumanoidC : MonoBehaviour
     {
         if (sc_humanoidM.isDenied)
         {
-            sc_humanoidM.isDenied = true;
-            sc_humanoidM.stunTime += Time.deltaTime;
-            sc_humanoidM.pAgent.isStopped = true;
-
-            if (sc_humanoidM.stunTime >= sc_humanoidM.maxStunTime)
+            if (sc_playerM.isUsingWeapon == false)
             {
-                sc_humanoidM.stunTime = 0;
-                sc_humanoidM.isDenied = false;
-                sc_humanoidM.pAgent.isStopped = false;
-                sc_humanoidM.pAgent.SetDestination(sc_humanoidM.waypoint[sc_humanoidM.waypointIndex].position);
+                sc_humanoidM.stunTime += Time.deltaTime;
+                sc_humanoidM.pAgent.isStopped = true;
+                if (sc_humanoidM.stunTime >= sc_humanoidM.maxStunTime)
+                {
+                    sc_playerM.usedTime = 0;
+                    sc_humanoidM.stunTime = 0;
+                    sc_humanoidM.isDenied = false;
+                    sc_humanoidM.pAgent.isStopped = false;
+                    sc_humanoidM.pAgent.SetDestination(sc_humanoidM.waypoint[sc_humanoidM.waypointIndex].position);
+                }
             }
         }
         

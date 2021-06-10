@@ -5,15 +5,17 @@ using UnityEngine;
 public class ObjectC : MonoBehaviour
 {
     private ObjectM sc_ObjectM;
+    private PlayerM sc_playerM;
     void Start()
     {
         sc_ObjectM = GetComponent<ObjectM>();
+        sc_playerM = GameObject.Find("Player").GetComponent<PlayerM>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        sc_ObjectM.deniedDuration = sc_playerM.lastUsedTime;
     }
 
     
@@ -38,7 +40,7 @@ public class ObjectC : MonoBehaviour
             sc_ObjectM.timeToIddle = 0;
             //Debug.Log("te grito");
         }
-        else
+        else if(sc_ObjectM.isDenied == true || sc_ObjectM.isIddle == true)
         {
             Deactivate();
             //Debug.Log("no te grito");
@@ -91,13 +93,17 @@ public class ObjectC : MonoBehaviour
     {
         if (sc_ObjectM.isDenied)
         {
-            sc_ObjectM.deniedTimer += Time.deltaTime;
-            
-            if (sc_ObjectM.deniedTimer >= sc_ObjectM.deniedDuration)
+            if (sc_playerM.isUsingWeapon == false)
             {
-                sc_ObjectM.isDenied = false;
-                sc_ObjectM.deniedTimer = 0;
+                sc_ObjectM.deniedTimer += Time.deltaTime;
+            
+                if (sc_ObjectM.deniedTimer >= sc_ObjectM.deniedDuration)
+                {
+                    sc_playerM.usedTime = 0;
+                    sc_ObjectM.isDenied = false;
+                    sc_ObjectM.deniedTimer = 0;
                 
+                }
             }
         }
     }

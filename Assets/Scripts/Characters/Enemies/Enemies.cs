@@ -23,17 +23,18 @@ public class Enemies : MonoBehaviour
     }
     public void Denied()
     {
-        if (obj_player.GetComponent<PlayerM>().isUsingWeapon)
+        if (obj_player.GetComponent<PlayerM>().isUsingWeapon && obj_player.GetComponent<PlayerM>().closeToEnemies == true)
         {
-            //pAgent.isStopped = true;
             isDenied = true;
-            //Debug.Log("a");
         }
-        /*else
+        if(Vector3.Distance(transform.position, obj_player.transform.position) > 15)
         {
-            //pAgent.isStopped = false;
-            //isDenied = false;
-        }*/
+            obj_player.GetComponent<PlayerM>().closeToEnemies = false;
+        }
+        else if(Vector3.Distance(transform.position, obj_player.transform.position) < 15)
+        {
+            obj_player.GetComponent<PlayerM>().closeToEnemies = true;
+        }
     }
 
     public void DamageTaken()
