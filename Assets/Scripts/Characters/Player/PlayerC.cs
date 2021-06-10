@@ -319,7 +319,7 @@ public class PlayerC : MonoBehaviour
         {
 
                 sc_playerM.hasWeapon = true;
-                sc_playerM.useLimit = 20;
+                //sc_playerM.useLimit = 20;
                 other.gameObject.SetActive(false);
             
         }

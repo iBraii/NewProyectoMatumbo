@@ -122,6 +122,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isMoving: 0
   screenShake: {fileID: 0}
   sc_playerC: {fileID: 0}
   cmp_controller: {fileID: 0}
@@ -139,9 +140,9 @@ MonoBehaviour:
   grounded: 1
   maxStress: 10
   stressCooldown: 0
-  hasWeapon: 0
+  hasWeapon: 1
   isUsingWeapon: 0
-  useLimit: 0
+  useLimit: 20
   storyHints: 0
   maxStoryHints: 0
   obj_enemyTest: {fileID: 0}
