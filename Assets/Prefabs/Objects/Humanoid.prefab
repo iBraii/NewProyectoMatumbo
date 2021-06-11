@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803ecc82181c98442a13186e88c471cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atkRate: 0.2
+  sc_enemies: {fileID: 0}
 --- !u!114 &8079898424814264268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  damageValue: 0.7
+  enemiesDamageValue: 0
+  aurasDamageValue: 0
 --- !u!1 &7531061382402371164
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public GameObject obj_chapter3Block;
 
     public GameObject obj_sensSlider;
-
+    public float sensF;
     public int level1;
     public int level2;
     void Start()
@@ -80,6 +80,7 @@ public class MainMenu : MonoBehaviour
 
     public void BackButton()
     {
+        obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens"); 
         obj_mainPanel.SetActive(true);
         obj_rankingPanel.SetActive(false);
         obj_optionsPanel.SetActive(false);
