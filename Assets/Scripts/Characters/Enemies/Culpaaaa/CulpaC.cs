@@ -6,9 +6,11 @@ using Cinemachine;
 public class CulpaC : MonoBehaviour
 {
     public CulpaM sc_culpaM;
+
     void Start()
     {
         sc_culpaM = GetComponent<CulpaM>();
+        sc_culpaM.player.GetComponent<PlayerM>().canMove = false;
         Presentation();
     }
 
@@ -44,6 +46,7 @@ public class CulpaC : MonoBehaviour
     }
     public void ResetCamera()
     {
+        sc_culpaM.player.GetComponent<PlayerM>().canMove = true;
         sc_culpaM.thirdPersonCamera.GetComponent<CinemachineFreeLook>().LookAt = sc_culpaM.player.transform;
     }
    
