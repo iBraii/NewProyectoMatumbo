@@ -118,10 +118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 0
   movSpeed: 0
-  distanceToTheGround: 1.08
+  distanceToTheGround: 1.09
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
   isMoving: 0
   screenShake: {fileID: 0}
   sc_playerC: {fileID: 0}
@@ -142,10 +142,14 @@ MonoBehaviour:
   stressCooldown: 0
   hasWeapon: 1
   isUsingWeapon: 0
-  useLimit: 20
+  uses: 3
+  useLimit: 3
+  usedTime: 0
+  lastUsedTime: 0
+  cooldownForRegen: 0
   storyHints: 0
   maxStoryHints: 0
-  obj_enemyTest: {fileID: 0}
+  closeToEnemies: 0
   isInmune: 0
   isInmuneTimer: 0
   isInmuneMaxTimer: 0
