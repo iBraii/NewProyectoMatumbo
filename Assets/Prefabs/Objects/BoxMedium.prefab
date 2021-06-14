@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1682967036486475848}
   - component: {fileID: 1682967036486475849}
   - component: {fileID: 1682967036486475850}
-  - component: {fileID: 1682967036486475847}
   m_Layer: 6
   m_Name: BoxMedium
   m_TagString: Box
@@ -164,19 +163,6 @@ MonoBehaviour:
   cmp_controller: {fileID: 0}
   rb: {fileID: 1682967036486475849}
   sc_playerC: {fileID: 0}
---- !u!65 &1682967036486475847
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682967036486475855}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3764408, y: 0.5603039, z: 1.3982748}
-  m_Center: {x: -0.002910614, y: -0.21984875, z: -0.004445394}
 --- !u!1001 &5462270179165351272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,7 +230,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CajaMediana
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4801551064049492019, guid: ccabe2871752170468dfdbf74e148c0c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ccabe2871752170468dfdbf74e148c0c, type: 3}
 --- !u!4 &1073494932526787254 stripped
 Transform:

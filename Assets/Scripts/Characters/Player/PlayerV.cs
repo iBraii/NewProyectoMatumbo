@@ -33,6 +33,7 @@ public class PlayerV : MonoBehaviour
         sc_playerC.DreamCatcher();
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
+        sc_playerC.DetectBox();
 
         if (sc_playerM.MovementLearned)
         {
@@ -66,25 +67,17 @@ public class PlayerV : MonoBehaviour
         sc_playerC.IsOnBlanket(other);
         sc_playerC.PickSH(other);
         sc_playerC.PickSweets(other);
-        sc_playerC.DetectBox(other);
 
     }
     private void OnTriggerStay(Collider other)
     {
-        //sc_playerC.PickDC(other);
         sc_playerC.IsOnBlanket(other);
         sc_playerC.PickSH(other);
-        sc_playerC.DetectBox(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
         sc_playerC.IsOffBlanket(other);
-        if (other.gameObject.CompareTag("Box"))
-        {
-            sc_playerC.obj_Box = null;
-            sc_playerC.box = null;
-        }
     }
     
 }

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8592191494736859065}
   - component: {fileID: 8592191494736859064}
   - component: {fileID: 8592191494736859067}
-  - component: {fileID: 8592191494736859062}
   m_Layer: 6
   m_Name: BoxBigControl
   m_TagString: Box
@@ -164,19 +163,6 @@ MonoBehaviour:
   cmp_controller: {fileID: 0}
   rb: {fileID: 8592191494736859064}
   sc_playerC: {fileID: 0}
---- !u!65 &8592191494736859062
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8592191494736859070}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.3764408, y: 0.5603039, z: 1.3982748}
-  m_Center: {x: -0.002910614, y: -0.21984875, z: -0.004445394}
 --- !u!1001 &3184487192762781381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,7 +230,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2261491931407666825, guid: 0586a9826e4b0224ba4186bc6310c917, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0586a9826e4b0224ba4186bc6310c917, type: 3}
 --- !u!4 &3808151555075614629 stripped
 Transform:

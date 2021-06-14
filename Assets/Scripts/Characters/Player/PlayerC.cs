@@ -51,8 +51,15 @@ public class PlayerC : MonoBehaviour
     {
         sc_playerM.life -= ammount;
     }
-    
 
+    private void Update()
+    {
+        //Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - .295f), Vector3.down);
+        //Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + .295f), Vector3.down);
+        //Debug.DrawRay(new Vector3(transform.localPosition.x - .295f, transform.localPosition.y, transform.localPosition.z), Vector3.down);
+        //Debug.DrawRay(new Vector3(transform.localPosition.x + .295f, transform.localPosition.y, transform.localPosition.z), Vector3.down);
+        Debug.DrawRay(transform.position, transform.forward);
+    }
 
     public void PlayerJump()
     {
@@ -267,16 +274,26 @@ public class PlayerC : MonoBehaviour
     }
     public void BoxPull()
     {
-        obj_Box.PullBox(7, 7);
+        obj_Box.PullBox(6, 6);
     }
 
 
-    public void DetectBox(Collider other)
+    public void DetectBox()
     {
-        if (other.gameObject.CompareTag("Box"))
+        Physics.Raycast(transform.position, transform.forward, out sc_playerM.hit,sc_playerM.distanceToBox);
+
+        if(sc_playerM.hit.collider != null)
         {
-            obj_Box = other.gameObject.GetComponent<BoxPush>();
-            box = other.gameObject;
+            if (sc_playerM.hit.collider.CompareTag("Box"))
+            {
+                obj_Box = sc_playerM.hit.collider.gameObject.GetComponent<BoxPush>();
+                box = sc_playerM.hit.collider.gameObject;
+            }
+            else
+            {
+                obj_Box = null;
+                box = null;
+            }
         }
         else
         {

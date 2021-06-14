@@ -12,7 +12,18 @@ public class Characters : MonoBehaviour
 
     public bool GroundCheck()
     {
-        return Physics.Raycast(transform.position, Vector3.down, distanceToTheGround, GroundLayer);
+       if( Physics.Raycast(new Vector3(transform.localPosition.x - .155f, transform.localPosition.y, transform.localPosition.z ), Vector3.down, distanceToTheGround, GroundLayer) ||
+        Physics.Raycast(new Vector3(transform.localPosition.x + .295f, transform.localPosition.y, transform.localPosition.z), Vector3.down, distanceToTheGround, GroundLayer) ||
+        Physics.Raycast(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - .295f), Vector3.down, distanceToTheGround, GroundLayer)||
+        Physics.Raycast(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + .295f), Vector3.down, distanceToTheGround, GroundLayer))
+        {
+            return true;
+        }
+       else
+        {
+            return false;
+        }
+
 
     }
     public void LifeController(float _maxLife)

@@ -69,6 +69,7 @@ public class PlayerM : Characters
     public float distanceToBox;
     public Vector3 pos_lookAt;
     public Vector3 pos_lookDirection;
+    public RaycastHit hit;
     //public Vector3 pos_pushBoxDir;
     public bool isMovingBox;
     //-----------------------------
