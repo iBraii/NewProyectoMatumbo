@@ -18,13 +18,14 @@ public class MainMenu : MonoBehaviour
     public GameObject obj_chapter3Block;
 
     public GameObject obj_sensSlider;
-    public float sensF;
+    public GameObject obj_volumeSlider;
     public int level1;
     public int level2;
     void Start()
     {
-       
         obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
+        obj_volumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
+        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
         sc_changescn = GetComponent<ChangeScene>();
         UpdateChapterSelection();
         level1 = PlayerPrefs.GetInt("TutorialCompleted");
@@ -80,7 +81,8 @@ public class MainMenu : MonoBehaviour
 
     public void BackButton()
     {
-        obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens"); 
+        obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
+        obj_volumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
         obj_mainPanel.SetActive(true);
         obj_rankingPanel.SetActive(false);
         obj_optionsPanel.SetActive(false);
@@ -119,6 +121,7 @@ public class MainMenu : MonoBehaviour
     public void ApplySettings()
     {
         PlayerPrefs.SetFloat("Sens", obj_sensSlider.GetComponent<Slider>().value);
-        Debug.Log(obj_sensSlider.GetComponent<Slider>().value);
+        PlayerPrefs.SetFloat("volume", obj_volumeSlider.GetComponent<Slider>().value);
+        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
     }
 }

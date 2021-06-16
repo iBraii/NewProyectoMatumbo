@@ -52,15 +52,6 @@ public class PlayerC : MonoBehaviour
         sc_playerM.life -= ammount;
     }
 
-    private void Update()
-    {
-        //Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - .295f), Vector3.down);
-        //Debug.DrawRay(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + .295f), Vector3.down);
-        //Debug.DrawRay(new Vector3(transform.localPosition.x - .295f, transform.localPosition.y, transform.localPosition.z), Vector3.down);
-        //Debug.DrawRay(new Vector3(transform.localPosition.x + .295f, transform.localPosition.y, transform.localPosition.z), Vector3.down);
-        Debug.DrawRay(transform.position, transform.forward);
-    }
-
     public void PlayerJump()
     {
         sc_playerM.GroundCheck();
@@ -235,16 +226,19 @@ public class PlayerC : MonoBehaviour
         {
             box.gameObject.GetComponent<Rigidbody>().isKinematic = false;
             if (Input.GetKey(keyUp))
-            {  
+            {
+                sc_playerM.speed = 5f;
                 BoxPush();
             }
             else if (Input.GetKey(keyDown))
             {
+                sc_playerM.speed = 1.9f;
                 BoxPull();
             }
         }
         else
         {
+            sc_playerM.speed = 5f;
             box.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             obj_Box.PushBox(0, 0);
             obj_Box.PullBox(0, 0);
@@ -256,15 +250,15 @@ public class PlayerC : MonoBehaviour
     {
         if(obj_Box.canPushz == true && obj_Box.canPushx == true)
         {
-            obj_Box.PushBox(3, 3);
+            obj_Box.PushBox(2, 2);
         }
         if(obj_Box.canPushz == true && obj_Box.canPushx == false)
         {
-            obj_Box.PushBox(0, 3);
+            obj_Box.PushBox(0, 2);
         }
         if(obj_Box.canPushz == false && obj_Box.canPushx == true)
         {
-            obj_Box.PushBox(3, 0);
+            obj_Box.PushBox(2, 0);
         }
         if(obj_Box.canPushz == false && obj_Box.canPushx == false)
         {
@@ -274,7 +268,7 @@ public class PlayerC : MonoBehaviour
     }
     public void BoxPull()
     {
-        obj_Box.PullBox(6, 6);
+        obj_Box.PullBox(2.2f, 2.2f);
     }
 
 

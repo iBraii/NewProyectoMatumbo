@@ -56,9 +56,12 @@ public class Movement : MonoBehaviour
     public void Move_Anydir(float speedx,float speedy,float speedz)
     {
         rb.velocity = new Vector3(speedx, speedy, speedz);
-        //rb.AddForce(new Vector3(speedx, speedy, speedz),ForceMode.VelocityChange);
+        //rb.AddForce(new Vector3(speedx, speedy, speedz),ForceMode.Force);
         //rb.MovePosition(new Vector3(0,0,0));
     }
+
+
+
     ///////////////////////////////////////////////////////////////////////////////////////
     //public void PlayerRotation(Vector3 move, float spd,Transform pos_cam)
     //{

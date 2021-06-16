@@ -48,8 +48,8 @@ public class PlayerV : MonoBehaviour
                 sc_playerC.PlayerJump();
             }
         }
-       
-        
+
+
         if (sc_playerC.obj_Box != null || sc_playerC.box != null)
         {
             sc_playerC.MoveBoxController();
@@ -59,6 +59,7 @@ public class PlayerV : MonoBehaviour
             sc_playerM.isMovingBox = false;
         }
     }
+
     //--------------------Triggers-------------------------------------
     private void OnTriggerEnter(Collider other)
     {

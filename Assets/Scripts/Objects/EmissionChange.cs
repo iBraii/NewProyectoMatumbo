@@ -10,7 +10,7 @@ public class EmissionChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //mat1 = GetComponent<Material>();
+        mat1 = GetComponent<Material>();
         color = mat1.color;
         
     }
