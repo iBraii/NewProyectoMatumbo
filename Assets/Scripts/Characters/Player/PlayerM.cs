@@ -52,10 +52,6 @@ public class PlayerM : Characters
     //--------------------------------
 
 
-
-    //---------DistanceToEnemies-----------------
-    public bool closeToEnemies;
-
     //-------HideOnBlanketVars-----
     public bool isInmune;
     public float isInmuneTimer, isInmuneMaxTimer;

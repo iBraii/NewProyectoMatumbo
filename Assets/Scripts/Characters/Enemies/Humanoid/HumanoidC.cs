@@ -89,7 +89,7 @@ public class HumanoidC : MonoBehaviour
     public void DetectPlayer()
     {
         bool viewClear = Physics.Raycast(transform.position, sc_humanoidM.player.transform.position-transform.position,out sc_humanoidM.hit,sc_humanoidM.visionDistance, sc_humanoidM.whatIsGround);
-        Debug.Log(viewClear);
+        //Debug.Log(viewClear);
         Vector3 playerVector = sc_humanoidM.player.transform.position - transform.position;
        
         if (!viewClear)

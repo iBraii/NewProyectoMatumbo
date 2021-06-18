@@ -9,6 +9,7 @@ public class Enemies : MonoBehaviour
     public Vector3 pos_Player;
     public GameObject obj_player;
     public bool isDenied;
+    public bool closeToPlayer;
     public Rigidbody rb;
     public NavMeshAgent pAgent;
     private void Awake()
@@ -17,23 +18,20 @@ public class Enemies : MonoBehaviour
         obj_player = GameObject.Find("Player");
         
     }
-    private void PlayerIsNearby()
-    {
-
-    }
     public void Denied()
     {
-        if (obj_player.GetComponent<PlayerM>().isUsingWeapon && obj_player.GetComponent<PlayerM>().closeToEnemies == true)
+        if (obj_player.GetComponent<PlayerM>().isUsingWeapon && closeToPlayer == true)
         {
+            obj_player.GetComponent<PlayerM>().usedTime += Time.deltaTime;
             isDenied = true;
         }
         if(Vector3.Distance(transform.position, obj_player.transform.position) > 15)
         {
-            obj_player.GetComponent<PlayerM>().closeToEnemies = false;
+            closeToPlayer = false;
         }
         else if(Vector3.Distance(transform.position, obj_player.transform.position) < 15)
         {
-            obj_player.GetComponent<PlayerM>().closeToEnemies = true;
+            closeToPlayer = true;
         }
     }
 

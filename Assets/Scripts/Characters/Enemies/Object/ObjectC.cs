@@ -100,8 +100,9 @@ public class ObjectC : MonoBehaviour
                 if (sc_ObjectM.deniedTimer >= sc_ObjectM.deniedDuration)
                 {
                     sc_playerM.usedTime = 0;
-                    sc_ObjectM.isDenied = false;
                     sc_ObjectM.deniedTimer = 0;
+                    sc_ObjectM.isDenied = false;
+                    
                 
                 }
             }
