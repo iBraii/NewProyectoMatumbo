@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.02
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 86b66ca8984e9a44dabe75bb54dde917, type: 2}
 --- !u!1001 &3866803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263043963273987788, guid: f7d34eda103459d4497edb347a67ed17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.9
+      value: 10.8
       objectReference: {fileID: 0}
     - target: {fileID: 6263043963273987788, guid: f7d34eda103459d4497edb347a67ed17, type: 3}
       propertyPath: m_LocalPosition.y
@@ -233,7 +233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6263043963273987788, guid: f7d34eda103459d4497edb347a67ed17, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.1
+      value: -137.8
       objectReference: {fileID: 0}
     - target: {fileID: 6263043963273987788, guid: f7d34eda103459d4497edb347a67ed17, type: 3}
       propertyPath: m_LocalRotation.w
@@ -980,7 +980,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4978
+  m_Name: pb_Mesh-5664
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1669,6 +1669,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lavabo con textura xd
       objectReference: {fileID: 0}
+    - target: {fileID: 7495761875577130310, guid: d5902694813943947a921fce15060e41, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7495761875577130310, guid: d5902694813943947a921fce15060e41, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5902694813943947a921fce15060e41, type: 3}
 --- !u!1001 &184916533
@@ -1700,7 +1708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442951910414215, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.886986
+      value: 10.786988
       objectReference: {fileID: 0}
     - target: {fileID: 1046442951910414215, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1708,11 +1716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442951910414215, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.93336
+      value: -149.96664
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.886986
+      value: 10.786988
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1720,7 +1728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.93336
+      value: -149.96664
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1732,11 +1740,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000034133265
+      value: 0.00000003413302
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952509144918, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000043770436
+      value: -0.0000000043770116
       objectReference: {fileID: 0}
     - target: {fileID: 1046442952827834573, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1784,15 +1792,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.10917738
+      value: 0.1091774
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001762991
+      value: -0.000000019115774
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953627721766, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000019363626
+      value: 0.0000000020995614
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1816,11 +1824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017066634
+      value: 0.000000017066139
       objectReference: {fileID: 0}
     - target: {fileID: 1046442953722756103, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000021885216
+      value: -0.0000000021884574
       objectReference: {fileID: 0}
     - target: {fileID: 7670060518033672143, guid: 8be283852309094419465231338da35a, type: 3}
       propertyPath: m_RootOrder
@@ -3609,6 +3617,10 @@ PrefabInstance:
     - target: {fileID: 6703907395102322811, guid: 5e375f54117c18444bb9679b0ef05a8b, type: 3}
       propertyPath: m_Name
       value: Mueble de sala de estar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703907395102322811, guid: 5e375f54117c18444bb9679b0ef05a8b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e375f54117c18444bb9679b0ef05a8b, type: 3}
@@ -6631,6 +6643,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesa de noche (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3670388530810106397, guid: 5470ec7cd68ebba44985ae4e98d4441b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670388530810106397, guid: 5470ec7cd68ebba44985ae4e98d4441b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4153451630641735847, guid: 5470ec7cd68ebba44985ae4e98d4441b, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -7441,7 +7461,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6552
+  m_Name: pb_Mesh-7306
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7775,6 +7795,10 @@ PrefabInstance:
       propertyPath: sc_enemies
       value: 
       objectReference: {fileID: 892940824}
+    - target: {fileID: 6069166010257128599, guid: c0aeca25d65d981499c492f3fd9679c8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6069166010731645750, guid: c0aeca25d65d981499c492f3fd9679c8, type: 3}
       propertyPath: m_Name
       value: Enemigo2 (1)
@@ -9515,7 +9539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977252439248167000, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75.05
+      value: 73.12
       objectReference: {fileID: 0}
     - target: {fileID: 5977252439248167000, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9548,6 +9572,14 @@ PrefabInstance:
     - target: {fileID: 6465101708913097442, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
       propertyPath: m_Name
       value: Ropero 2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465101708913097442, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465101708913097442, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
@@ -9967,6 +9999,10 @@ PrefabInstance:
       propertyPath: sc_enemies
       value: 
       objectReference: {fileID: 1921775381}
+    - target: {fileID: 6069166010257128599, guid: c0aeca25d65d981499c492f3fd9679c8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6069166010731645750, guid: c0aeca25d65d981499c492f3fd9679c8, type: 3}
       propertyPath: m_Name
       value: Enemigo2
@@ -10101,6 +10137,14 @@ PrefabInstance:
     - target: {fileID: 3474895721456240834, guid: acc47e2d88c7b0a4cbdb926abc2c705b, type: 3}
       propertyPath: m_Name
       value: Mesa (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474895721456240834, guid: acc47e2d88c7b0a4cbdb926abc2c705b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474895721456240834, guid: acc47e2d88c7b0a4cbdb926abc2c705b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4283661653290832504, guid: acc47e2d88c7b0a4cbdb926abc2c705b, type: 3}
       propertyPath: m_RootOrder
@@ -11021,7 +11065,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5104
+  m_Name: pb_Mesh-5790
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11426,6 +11470,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -8764591222424872372, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8764591222424872372, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -11482,9 +11534,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_3D-N1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2040542448765327740, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040542448765327740, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040542448765327740, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2547c3225a980604f83cd6a0e49bd78b, type: 3}
@@ -11779,6 +11843,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 86042045}
+    - target: {fileID: 4261086150994788651, guid: 3ac4a49b97e5eaf4d8a46b7b4c2ffc8e, type: 3}
+      propertyPath: aurasDamageValue
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4570118043753266703, guid: 3ac4a49b97e5eaf4d8a46b7b4c2ffc8e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -12398,6 +12466,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1363608014}
+    - target: {fileID: 4261086150994788651, guid: 3ac4a49b97e5eaf4d8a46b7b4c2ffc8e, type: 3}
+      propertyPath: aurasDamageValue
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4570118043753266703, guid: 3ac4a49b97e5eaf4d8a46b7b4c2ffc8e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -12607,7 +12679,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-5088
+  m_Name: pb_Mesh-5774
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12841,7 +12913,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6568
+  m_Name: pb_Mesh-7322
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13891,7 +13963,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4962
+  m_Name: pb_Mesh-5648
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17229,7 +17301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977252439248167000, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 75.05
+      value: 73.12
       objectReference: {fileID: 0}
     - target: {fileID: 5977252439248167000, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17262,6 +17334,14 @@ PrefabInstance:
     - target: {fileID: 6465101708913097442, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
       propertyPath: m_Name
       value: Ropero 2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465101708913097442, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465101708913097442, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 581ac00b5f42c574a8656bbe17033c75, type: 3}
