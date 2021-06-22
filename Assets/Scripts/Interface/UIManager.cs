@@ -42,8 +42,13 @@ public class UIManager : MonoBehaviour
     {
         if (obj_player.gameObject.GetComponent<PlayerM>().life >= 10)
         {
-            sc_changescn.Change("DefeatScene");  
+            sc_playerM.canMove = false;
+            Invoke("TransitionToDefeat", .5f);
         }
+    }
+    void TransitionToDefeat()
+    {
+        sc_changescn.Change("DefeatScene");
     }
     public void UpdateHUD()
     {

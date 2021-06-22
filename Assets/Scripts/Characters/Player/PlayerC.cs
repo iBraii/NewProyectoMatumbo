@@ -160,6 +160,7 @@ public class PlayerC : MonoBehaviour
             }
             if (sc_playerM.isUsingWeapon)
             {
+                sc_playerM.isMoving = false;
                 sc_playerM.uses -= .5f * Time.deltaTime;
                 sc_playerM.lastUsedTime = sc_playerM.usedTime;
             }
@@ -300,6 +301,7 @@ public class PlayerC : MonoBehaviour
         {
                 sc_playerM.isInmune = true;
                 sc_playerM.isHiding = true;
+            sc_playerM.isMoving = false;
         }
         else if (Input.GetKeyDown(interactKey) && sc_playerM.isCloseToBlanket && sc_playerM.isHiding == true)
         {

@@ -8,11 +8,13 @@ public class HumanoidV : MonoBehaviour
 {
     private HumanoidC sc_humanoidC;
     private HumanoidM sc_humanoidM;
+    public Animator animControl;
     // Start is called before the first frame update
     void Start()
     {
         sc_humanoidC = GetComponent<HumanoidC>();
         sc_humanoidM = GetComponent<HumanoidM>();
+        animControl = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class HumanoidV : MonoBehaviour
         sc_humanoidC.DetectPlayer();
         sc_humanoidM.Denied();
         sc_humanoidC.Stunned();
-
+        AnimationController();
 
         //Prueba de aturdimiento
 
@@ -33,7 +35,10 @@ public class HumanoidV : MonoBehaviour
         }
 
     }
-
+    void AnimationController()
+    {
+        animControl.SetBool("onPatrol", true);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

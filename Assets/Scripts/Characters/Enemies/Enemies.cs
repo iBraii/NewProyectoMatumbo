@@ -25,11 +25,11 @@ public class Enemies : MonoBehaviour
             obj_player.GetComponent<PlayerM>().usedTime += Time.deltaTime;
             isDenied = true;
         }
-        if(Vector3.Distance(transform.position, obj_player.transform.position) > 15)
+        if(Vector3.Distance(transform.position, obj_player.transform.position) > 7.5f)
         {
             closeToPlayer = false;
         }
-        else if(Vector3.Distance(transform.position, obj_player.transform.position) < 15)
+        else if(Vector3.Distance(transform.position, obj_player.transform.position) < 7.5f)
         {
             closeToPlayer = true;
         }

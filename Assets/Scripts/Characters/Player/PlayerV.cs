@@ -8,12 +8,14 @@ public class PlayerV : MonoBehaviour
     private PlayerC sc_playerC;
     private PlayerM sc_playerM;
     private Movement sc_movement;
+    public Animator animCntr;
     // Start is called before the first frame update
     void Awake()
     {
         sc_playerC = GetComponent<PlayerC>();
         sc_playerM = GetComponent<PlayerM>();
         sc_movement = GetComponent<Movement>();
+        animCntr = GetComponent<Animator>();
     }
     //private void FixedUpdate()
     //{
@@ -34,7 +36,7 @@ public class PlayerV : MonoBehaviour
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
         sc_playerC.DetectBox();
-
+        AnimationController();
         if (sc_playerM.MovementLearned)
         {
             if (sc_playerM.canMove && sc_playerM.isUsingWeapon == false && sc_playerM.isHiding == false)
@@ -60,6 +62,11 @@ public class PlayerV : MonoBehaviour
         }
     }
 
+    void AnimationController()
+    {
+        animCntr.SetBool("isMoving", sc_playerM.isMoving);
+        animCntr.SetFloat("life", sc_playerM.life);
+    }
     //--------------------Triggers-------------------------------------
     private void OnTriggerEnter(Collider other)
     {
