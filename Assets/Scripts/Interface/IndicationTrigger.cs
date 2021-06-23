@@ -46,6 +46,10 @@ public class IndicationTrigger : MonoBehaviour
                     sc_indicationsTutorial.ActivateDCP();
                     this.gameObject.SetActive(false);
                     break;
+                case "DarkArea":
+                    sc_indicationsTutorial.ActivateDarkArea();
+                    this.gameObject.SetActive(false);
+                    break;
             }
         }
     }

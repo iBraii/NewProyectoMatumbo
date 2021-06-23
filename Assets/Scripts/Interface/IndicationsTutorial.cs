@@ -10,6 +10,10 @@ public class IndicationsTutorial : MonoBehaviour
     public GameObject player;
     public GameObject thirdPersonCamera;
     public GameObject DreamCatcherPresentation;
+    public GameObject DarkAreaPresentation;
+    public GameObject DarkArea;
+    public Transform box;
+    public Transform blanket;
     private PlayerM sc_playerM;
     private PlayerC sc_playerC;
     public Text indicationText;
@@ -18,6 +22,7 @@ public class IndicationsTutorial : MonoBehaviour
     public bool learningMovement, learningPush, learningDreamCatcher, cameraFollowenemy,cameraFollowDC, learningHide,hideLearned,dreamCatcherHint,hasLearnedDreamCatcher,learningButton,buttonLearned,
         learningDark;
     private bool hasLearnedPush;
+    private bool cameraDarkArea;
     public GameObject newCameraPosition;
     public Camera mainC;
     public float journeyLenght;
@@ -25,6 +30,8 @@ public class IndicationsTutorial : MonoBehaviour
     public float timeToReturnCamera,buttonIndicationTimer;
     private Vector3 cameraInitialPosition;
     private GameObject obj_dreamCatcher;
+    [SerializeField]
+    private float moveTimerSign, enemiesDCHint;
     void Start()
     {
         player = GameObject.Find("Player");
@@ -36,17 +43,22 @@ public class IndicationsTutorial : MonoBehaviour
         Invoke("LearnMovement", 2);
         newCameraPosition = GameObject.Find("EnemyFollowOBJ");
         obj_dreamCatcher = GameObject.Find("DreamCatcher");
+        sc_playerM.MovementLearned = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= 2)
+        
+        if(Time.time > 1)
         {
+            moveTimerSign += Time.deltaTime;
             LearnMovement();
         }
+
         LearnPush();
-        if (player.GetComponent<PlayerC>().obj_Box != null&&!hasLearnedPush)
+
+        if (Vector3.Distance(player.transform.position, box.position) < 3 && hasLearnedPush == false)
         {
             learningPush = true;
         }
@@ -57,7 +69,8 @@ public class IndicationsTutorial : MonoBehaviour
             learningDreamCatcher=true;
         }
         CameraFollowEnemy();
-        if (sc_playerM.isCloseToBlanket&&!hideLearned)
+
+        if (Vector3.Distance(player.transform.position, blanket.position) < 5 && !hideLearned)
         {
             learningHide = true;
         }
@@ -66,21 +79,22 @@ public class IndicationsTutorial : MonoBehaviour
         LearnButton();
         LearnDark();
         CameraFollowDC();
+        CameraShowDarkArea();
     }
 
     public void LearnMovement()
     {
         if (learningMovement)
         {
-            
             obj_indicationSign.SetActive(true);
-            indicationText.text = "USE THE MOUSE TO CONTROL THE CAMERA AND 'W','A','S','D' KEYS TO MOVE AROUND";
-            if(Input.GetKeyDown(sc_playerC.keyUp)|| (Input.GetKeyDown(sc_playerC.keyDown) ||(Input.GetKeyDown(sc_playerC.keyLeft) || (Input.GetKeyDown(sc_playerC.keyRight) || (Input.GetKeyDown(sc_playerC.jumpKey))))))
+            indicationText.text = "USE THE MOUSE TO CONTROL THE CAMERA AND PRESS 'W', 'A', 'S', 'D' KEYS TO MOVE AROUND";
+            if((Input.GetKeyDown(sc_playerC.keyUp) || Input.GetKeyDown(sc_playerC.keyRight) ||
+                Input.GetKeyDown(sc_playerC.keyLeft) || Input.GetKeyDown(sc_playerC.keyDown)) && moveTimerSign >= 3f)
             {
-                learningMovement = false;
+                
                 obj_indicationAm.SetBool("Deactivate", true);
-                sc_playerM.MovementLearned = true;
                 Invoke("DeactivateSign", 1);
+                learningMovement = false;
             }
         }
         
@@ -98,16 +112,21 @@ public class IndicationsTutorial : MonoBehaviour
         if (learningPush)
         {
             obj_indicationSign.SetActive(true);
-            indicationText.text = "HOLD 'E' WHILE MOVING FORWARD/BACKWARD TO PUSH/PULL AN INTERACTABLE BOX";
-            if (sc_playerM.isMovingBox)
+            indicationText.text = "HOLD 'E' NEAR TO AN INTERACTABLE BOX AND MOVE FORWARD/BACKWARD TO PUSH/PULL";
+            if (Vector3.Distance(player.transform.position,box.position) >= 3)
             {
-                learningPush = false;
-                hasLearnedPush = true;
                 obj_indicationAm.SetBool("Deactivate", true);
                 Invoke("DeactivateSign", 1);
             }
-        }
-     
+            if(sc_playerM.isMovingBox)
+            {
+                
+                obj_indicationAm.SetBool("Deactivate", true);
+                Invoke("DeactivateSign", 1);
+                learningPush = false;
+                hasLearnedPush = true;
+            }
+        }   
     }
 
     public void LearnDreamCatcher()
@@ -115,14 +134,13 @@ public class IndicationsTutorial : MonoBehaviour
         if (learningDreamCatcher)
         {
             obj_indicationSign.SetActive(true);
-            
-            indicationText.text = "HOLD 'Q' TO TEMPORARILY STUN ENEMIES. THE LONGER YOU HOLD, THE LONGER THE STUN TIME";
+            indicationText.text = "HOLD 'Q' TO TEMPORARILY STUN ENEMIES. THE LONGER YOU HOLD, THE LONGER THEY WILL BE STUNNED";
             if (sc_playerM.isUsingWeapon)
-            {
-                hasLearnedDreamCatcher = true;
-                learningDreamCatcher = false;
+            {  
                 obj_indicationAm.SetBool("Deactivate", true);
                 Invoke("DeactivateSign", 1);
+                hasLearnedDreamCatcher = true;
+                learningDreamCatcher = false;
             }
         }
     }
@@ -188,18 +206,50 @@ public class IndicationsTutorial : MonoBehaviour
         }
         
     }
+    public void ActivateDarkArea()
+    {
+        cameraInitialPosition = mainC.transform.position;
+        cameraDarkArea = true;
+        sc_playerM.isHiding = true;
+        newCameraPosition = DarkAreaPresentation;
+    }
+    public void CameraShowDarkArea()
+    {
+        if (cameraDarkArea)
+        {
+            mainC.transform.LookAt(DarkArea.transform);
+            timeToReturnCamera += Time.deltaTime;
+            thirdPersonCamera.SetActive(false);
+            float distCovered = (timeToReturnCamera - startTime) * 1;
+            mainC.transform.position = Vector3.Lerp(cameraInitialPosition, DarkAreaPresentation.transform.position, distCovered / journeyLenght);
+            Debug.Log(distCovered);
+
+            if (timeToReturnCamera >= 5f)
+            {
+                timeToReturnCamera = 0;
+                cameraDarkArea = false;
+                thirdPersonCamera.SetActive(true);
+                sc_playerM.isHiding = false;
+            }
+        }
+    }
     public void LearnToHide()
     {
         if (learningHide)
         {
             obj_indicationSign.SetActive(true);
             indicationText.text = "PRESS 'E' NEAR TO A BLANKET TO HIDE IN IT";
-            if (sc_playerM.isHiding)
+            if (Vector3.Distance(player.transform.position, blanket.position) >= 5)
             {
-                learningHide = false;
-                hideLearned=true;
                 obj_indicationAm.SetBool("Deactivate", true);
                 Invoke("DeactivateSign", 1);
+            }
+            if(sc_playerM.isHiding)
+            {
+                obj_indicationAm.SetBool("Deactivate", true);
+                Invoke("DeactivateSign", 1);
+                learningHide = false;
+                hideLearned = true;
             }
         }
     }
@@ -209,12 +259,13 @@ public class IndicationsTutorial : MonoBehaviour
         if (dreamCatcherHint)
         {
             obj_indicationSign.SetActive(true);
+            enemiesDCHint += Time.deltaTime;
             indicationText.text = "NIGHMARES WILL FILL UP YOUR STRESS BAR. DO NOT LET YOUR STRESS BUILD";
-            if (sc_playerM.isUsingWeapon)
+            if (enemiesDCHint >= 3)
             {
-                dreamCatcherHint = false;
                 obj_indicationAm.SetBool("Deactivate", true);
                 Invoke("DeactivateSign", 1);
+                dreamCatcherHint = false;
             }
         }
     }
