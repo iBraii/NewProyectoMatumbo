@@ -160,12 +160,14 @@ public class PlayerC : MonoBehaviour
             }
             if (sc_playerM.isUsingWeapon)
             {
+                sc_playerM.canMove = false;
                 sc_playerM.isMoving = false;
                 sc_playerM.uses -= .5f * Time.deltaTime;
                 sc_playerM.lastUsedTime = sc_playerM.usedTime;
             }
             else
             {
+                sc_playerM.canMove = true;
                 sc_playerM.cooldownForRegen += Time.deltaTime;
                 if (sc_playerM.cooldownForRegen >= 2f)
                 {

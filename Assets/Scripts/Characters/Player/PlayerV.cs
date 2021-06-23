@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 [RequireComponent(typeof(Movement))]
 public class PlayerV : MonoBehaviour
 {
+    public VisualEffect DreamCatcherVFX, AreaEffectVFX;
     private PlayerC sc_playerC;
     private PlayerM sc_playerM;
     private Movement sc_movement;
@@ -37,6 +39,7 @@ public class PlayerV : MonoBehaviour
         sc_playerM.LifeController(10);
         sc_playerC.DetectBox();
         AnimationController();
+        ParticlesController();
         if (sc_playerM.MovementLearned)
         {
             if (sc_playerM.canMove && sc_playerM.isUsingWeapon == false && sc_playerM.isHiding == false)
@@ -66,6 +69,19 @@ public class PlayerV : MonoBehaviour
     {
         animCntr.SetBool("isMoving", sc_playerM.isMoving);
         animCntr.SetFloat("life", sc_playerM.life);
+    }
+    void ParticlesController()
+    {
+        if(sc_playerM.isUsingWeapon == true)
+        {
+            DreamCatcherVFX.Play();
+            AreaEffectVFX.Play();
+        }
+        else
+        {
+            DreamCatcherVFX.Stop();
+            AreaEffectVFX.Stop();
+        }
     }
     //--------------------Triggers-------------------------------------
     private void OnTriggerEnter(Collider other)
