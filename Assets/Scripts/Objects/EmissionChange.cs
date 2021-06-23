@@ -10,15 +10,14 @@ public class EmissionChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mat1 = GetComponent<Material>();
-        color = mat1.color;
+        mat1 = GetComponent<MeshRenderer>().material;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        intensity = Mathf.PingPong(Time.time / 4, .3f);
+        intensity = Mathf.PingPong(Time.time / 4, .6f);
         mat1.SetColor("_EmissionColor", color * intensity);
     }
 }
