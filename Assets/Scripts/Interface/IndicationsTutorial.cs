@@ -74,7 +74,7 @@ public class IndicationsTutorial : MonoBehaviour
         {
             
             obj_indicationSign.SetActive(true);
-            indicationText.text = "USE WASD KEYS TO MOVE AND SPACE BAR TO JUMP";
+            indicationText.text = "USE THE MOUSE TO CONTROL THE CAMERA AND 'W','A','S','D' KEYS TO MOVE AROUND";
             if(Input.GetKeyDown(sc_playerC.keyUp)|| (Input.GetKeyDown(sc_playerC.keyDown) ||(Input.GetKeyDown(sc_playerC.keyLeft) || (Input.GetKeyDown(sc_playerC.keyRight) || (Input.GetKeyDown(sc_playerC.jumpKey))))))
             {
                 learningMovement = false;
@@ -98,7 +98,7 @@ public class IndicationsTutorial : MonoBehaviour
         if (learningPush)
         {
             obj_indicationSign.SetActive(true);
-            indicationText.text = "YOU CAN HOLD E TO EITHER PUSH OR PULL AN INTERACTABLE OBJECT";
+            indicationText.text = "HOLD 'E' WHILE MOVING FORWARD/BACKWARD TO PUSH/PULL AN INTERACTABLE BOX";
             if (sc_playerM.isMovingBox)
             {
                 learningPush = false;
@@ -116,7 +116,7 @@ public class IndicationsTutorial : MonoBehaviour
         {
             obj_indicationSign.SetActive(true);
             
-            indicationText.text = "PRESS AND HOLD Q TO USE THE DREAM CATCHER";
+            indicationText.text = "HOLD 'Q' TO TEMPORARILY STUN ENEMIES. THE LONGER YOU HOLD, THE LONGER THE STUN TIME";
             if (sc_playerM.isUsingWeapon)
             {
                 hasLearnedDreamCatcher = true;
@@ -178,7 +178,6 @@ public class IndicationsTutorial : MonoBehaviour
             mainC.transform.position = Vector3.Lerp(cameraInitialPosition, DreamCatcherPresentation.transform.position, distCovered / journeyLenght);
             Debug.Log(distCovered);
 
-
             if (timeToReturnCamera >= 5f)
             {
                 timeToReturnCamera = 0;
@@ -194,7 +193,7 @@ public class IndicationsTutorial : MonoBehaviour
         if (learningHide)
         {
             obj_indicationSign.SetActive(true);
-            indicationText.text = "PRESS E NEAR TO A BLANKET TO HIDE IN IT.";
+            indicationText.text = "PRESS 'E' NEAR TO A BLANKET TO HIDE IN IT";
             if (sc_playerM.isHiding)
             {
                 learningHide = false;
@@ -210,7 +209,7 @@ public class IndicationsTutorial : MonoBehaviour
         if (dreamCatcherHint)
         {
             obj_indicationSign.SetActive(true);
-            indicationText.text = "NIGHMARES WILL FILL UP YOUR STRESS BAR. DO NOT LET YOUR STRESS BUILD.PERHAPS YOU COULD USE THE DREAM CATCHER";
+            indicationText.text = "NIGHMARES WILL FILL UP YOUR STRESS BAR. DO NOT LET YOUR STRESS BUILD";
             if (sc_playerM.isUsingWeapon)
             {
                 dreamCatcherHint = false;
@@ -226,7 +225,7 @@ public class IndicationsTutorial : MonoBehaviour
         {
             buttonIndicationTimer += Time.deltaTime;
             obj_indicationSign.SetActive(true);
-            indicationText.text = "A BUTTON, SEEMS TO ACTIVATE SOMETHING";
+            indicationText.text = "USE AN INTERACTABLE BOX TO ACTIVATE BUTTONS";
             if (buttonIndicationTimer>=3f)
             {
                 buttonIndicationTimer = 0;

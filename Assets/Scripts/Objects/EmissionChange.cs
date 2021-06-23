@@ -17,7 +17,7 @@ public class EmissionChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        intensity = Mathf.PingPong(Time.time / 4, .6f);
+        intensity = Mathf.PingPong(Time.time / 3, .6f);
         mat1.SetColor("_EmissionColor", color * intensity);
     }
 }
