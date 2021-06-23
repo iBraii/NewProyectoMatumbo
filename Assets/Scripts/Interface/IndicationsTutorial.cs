@@ -12,6 +12,7 @@ public class IndicationsTutorial : MonoBehaviour
     public GameObject DreamCatcherPresentation;
     public GameObject DarkAreaPresentation;
     public GameObject DarkArea;
+    public GameObject panelsInd;
     public Transform box;
     public Transform blanket;
     private PlayerM sc_playerM;
@@ -89,7 +90,7 @@ public class IndicationsTutorial : MonoBehaviour
             obj_indicationSign.SetActive(true);
             indicationText.text = "USE THE MOUSE TO CONTROL THE CAMERA AND PRESS 'W', 'A', 'S', 'D' KEYS TO MOVE AROUND";
             if((Input.GetKeyDown(sc_playerC.keyUp) || Input.GetKeyDown(sc_playerC.keyRight) ||
-                Input.GetKeyDown(sc_playerC.keyLeft) || Input.GetKeyDown(sc_playerC.keyDown)) && moveTimerSign >= 3f)
+                Input.GetKeyDown(sc_playerC.keyLeft) || Input.GetKeyDown(sc_playerC.keyDown)) && moveTimerSign >= 2.3f)
             {
                 
                 obj_indicationAm.SetBool("Deactivate", true);
@@ -259,12 +260,15 @@ public class IndicationsTutorial : MonoBehaviour
         if (dreamCatcherHint)
         {
             obj_indicationSign.SetActive(true);
+            //panelsInd.SetActive(true);
             enemiesDCHint += Time.deltaTime;
             indicationText.text = "NIGHMARES WILL FILL UP YOUR STRESS BAR. DO NOT LET YOUR STRESS BUILD";
             if (enemiesDCHint >= 3)
             {
+                
                 obj_indicationAm.SetBool("Deactivate", true);
                 Invoke("DeactivateSign", 1);
+                //panelsInd.SetActive(false);
                 dreamCatcherHint = false;
             }
         }
