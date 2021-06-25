@@ -37,7 +37,22 @@ public class HumanoidV : MonoBehaviour
     }
     void AnimationController()
     {
-        animControl.SetBool("onPatrol", true);
+        //if(sc_humanoidM.isFollowingPlayer)
+        //{
+        //    animControl.SetBool("chasing", true);
+        //}
+        //else
+        //{
+        //    animControl.SetBool("chasing", false);
+        //}
+        //if(sc_humanoidM.isDenied)
+        //{
+        //    animControl.SetBool("Asustado", true);
+        //}
+        //else
+        //{
+        //    animControl.SetBool("Asustado", false);
+        //}
     }
     private void OnTriggerEnter(Collider other)
     {
