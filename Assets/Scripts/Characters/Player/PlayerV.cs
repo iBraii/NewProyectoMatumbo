@@ -11,6 +11,7 @@ public class PlayerV : MonoBehaviour
     private PlayerM sc_playerM;
     private Movement sc_movement;
     public Animator animCntr;
+    public GameObject boxVol;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,6 +34,7 @@ public class PlayerV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ActivateVolume();
         sc_playerC.HideOnBlanket();
         sc_playerC.DreamCatcher();
         sc_playerC.StoryHintsControl();
@@ -70,6 +72,7 @@ public class PlayerV : MonoBehaviour
         animCntr.SetBool("isMoving", sc_playerM.isMoving);
         animCntr.SetFloat("life", sc_playerM.life);
     }
+
     void ParticlesController()
     {
         if(sc_playerM.isUsingWeapon == true)
@@ -103,5 +106,18 @@ public class PlayerV : MonoBehaviour
     {
         sc_playerC.IsOffBlanket(other);
     }
-    
+    void ActivateVolume()
+    {
+        if(Input.GetMouseButtonDown(1))
+        {
+            if(boxVol.activeInHierarchy == true)
+            {
+                boxVol.SetActive(false);
+            }
+            else
+            {
+                boxVol.SetActive(true);
+            }      
+        }
+    }
 }
