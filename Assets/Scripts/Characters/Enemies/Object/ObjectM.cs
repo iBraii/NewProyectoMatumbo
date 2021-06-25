@@ -21,9 +21,12 @@ public class ObjectM : Enemies
     public float blinkTime;
     public float maxBlinkTime;
     public bool blink;
+    public GameObject player;
+    public Vector3 lookDirection;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         isDenied = false;
         isIddle = true;
         form[0].SetActive(true);
@@ -36,5 +39,8 @@ public class ObjectM : Enemies
     void Update()
     {
         distanceToPlayer = Vector3.Distance(transform.position, obj_player.transform.position);
+        
+
+       
     }
 }

@@ -54,7 +54,9 @@ public class ObjectC : MonoBehaviour
         AttackingVisual();
         sc_ObjectM.form[0].SetActive(false);
         sc_ObjectM.form[1].SetActive(true);
-        sc_ObjectM.timeToIddle = 0;   
+        sc_ObjectM.timeToIddle = 0;
+        transform.LookAt(sc_ObjectM.transform.position);
+        
     }
     
     public void Deactivate()
