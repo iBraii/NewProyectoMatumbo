@@ -36,15 +36,18 @@ public class UIManager : MonoBehaviour
     {
         UpdateHUD();
         CursorController();
-        KillPlayer();
+        if (obj_player.gameObject.GetComponent<PlayerM>().life >= 10)
+        {
+            KillPlayer();
+        }
     }
     void KillPlayer()
     {
-        if (obj_player.gameObject.GetComponent<PlayerM>().life >= 10)
-        {
+        
             sc_playerM.canMove = false;
+            sc_playerM.isHiding = true;
             Invoke("TransitionToDefeat", .5f);
-        }
+        
     }
     void TransitionToDefeat()
     {

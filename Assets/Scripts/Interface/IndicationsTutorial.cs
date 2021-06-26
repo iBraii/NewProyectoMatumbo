@@ -89,8 +89,8 @@ public class IndicationsTutorial : MonoBehaviour
         {
             obj_indicationSign.SetActive(true);
             indicationText.text = "USE THE MOUSE TO CONTROL THE CAMERA AND PRESS 'W', 'A', 'S', 'D' KEYS TO MOVE AROUND";
-            if((Input.GetKeyDown(sc_playerC.keyUp) || Input.GetKeyDown(sc_playerC.keyRight) ||
-                Input.GetKeyDown(sc_playerC.keyLeft) || Input.GetKeyDown(sc_playerC.keyDown)) && moveTimerSign >= 2.3f)
+            if((Input.GetKey(sc_playerC.keyUp) || Input.GetKey(sc_playerC.keyRight) ||
+                Input.GetKey(sc_playerC.keyLeft) || Input.GetKey(sc_playerC.keyDown)) && moveTimerSign >= 2.3f)
             {
                 
                 obj_indicationAm.SetBool("Deactivate", true);
