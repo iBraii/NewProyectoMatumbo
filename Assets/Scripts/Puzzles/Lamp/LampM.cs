@@ -9,7 +9,7 @@ public class LampM : Puzzles
     public int buttonsPressedCounter;
     public bool isLightOn;
     public GameObject obj_light;
-    public GameObject obj_blockedZone;
+    public GameObject [] obj_blockedZone;
 
     // Start is called before the first frame update
     void Start()
