@@ -24,7 +24,10 @@ public class HumanoidV : MonoBehaviour
         sc_humanoidC.FollowPlayer();
         sc_humanoidC.DetectPlayer();
         sc_humanoidM.Denied();
+        sc_humanoidM.DetectPlayer();
         sc_humanoidC.Stunned();
+        //sc_humanoidC.KnockBack();
+        //sc_humanoidC.KnockDetection();
         AnimationController();
 
         //Prueba de aturdimiento

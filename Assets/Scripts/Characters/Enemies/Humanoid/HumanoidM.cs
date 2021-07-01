@@ -42,6 +42,7 @@ public class HumanoidM : Enemies
     public LayerMask whatIsGround;
     public RaycastHit hit;
 
+    public bool isCloseForKnock;
     // Start is called before the first frame update
 
     void Start()

@@ -7,11 +7,13 @@ public class HumanoidC : MonoBehaviour
 {
     private HumanoidM sc_humanoidM;
     private PlayerM sc_playerM;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         sc_humanoidM = GetComponent<HumanoidM>();
         sc_playerM = GameObject.Find("Player").GetComponent<PlayerM>();
+        player = GameObject.Find("Player");
     }
     private void Update()
     {
@@ -131,7 +133,28 @@ public class HumanoidC : MonoBehaviour
         }
         
     }
-
+    public void KnockDetection()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) < 3)
+        {
+            sc_humanoidM.isCloseForKnock = true;
+        }
+        else if(Vector3.Distance(transform.position, player.transform.position) >= 3)
+        {
+            sc_humanoidM.isCloseForKnock = false;
+        }
+    }
+    public void KnockBack()
+    {
+        if(sc_humanoidM.isCloseForKnock)
+        {
+            if (Input.GetKeyDown(player.GetComponent<PlayerC>().useWeaponKey) && sc_playerM.useLimit > 0)
+            {
+                Vector3 dir = transform.position - player.transform.position;
+                gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * sc_playerM.knockBackForce, ForceMode.Impulse);
+            }
+        }
+    }
     private void OnDrawGizmos()
     {
         if (sc_humanoidM == null)
