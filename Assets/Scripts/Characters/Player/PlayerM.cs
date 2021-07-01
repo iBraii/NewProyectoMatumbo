@@ -43,6 +43,7 @@ public class PlayerM : Characters
     public float usedTime;
     public float lastUsedTime;
     public float cooldownForRegen;
+    public float knockBackForce;
     //---------------------------------
 
 

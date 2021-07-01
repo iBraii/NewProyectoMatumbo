@@ -20,6 +20,7 @@ public class ObjectV : MonoBehaviour
         sc_ObjectC.PlayerDistanceCheck();
         sc_ObjectM.Denied();
         sc_ObjectC.Stunned();
+        sc_ObjectM.DetectPlayer();
         AnimatorController();
         
     }
