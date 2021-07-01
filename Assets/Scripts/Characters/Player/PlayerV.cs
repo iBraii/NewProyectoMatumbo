@@ -20,6 +20,10 @@ public class PlayerV : MonoBehaviour
         sc_movement = GetComponent<Movement>();
         animCntr = GetComponent<Animator>();
     }
+    private void Start()
+    {
+        //SoundManager.instance.Play("PlayerWalk");
+    }
     //private void FixedUpdate()
     //{
     //    if (sc_playerC.obj_Box != null)
@@ -64,13 +68,16 @@ public class PlayerV : MonoBehaviour
         else
         {
             sc_playerM.isMovingBox = false;
-        }
+        }      
     }
+
 
     void AnimationController()
     {
         animCntr.SetBool("isMoving", sc_playerM.isMoving);
         animCntr.SetFloat("life", sc_playerM.life);
+        animCntr.SetBool("pushingBox", sc_playerM.isMovingBox);
+        animCntr.SetBool("isHiding", sc_playerM.isHiding);
     }
 
     void ParticlesController()

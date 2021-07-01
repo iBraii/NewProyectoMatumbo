@@ -8,6 +8,7 @@ public class TransitionTrigger : MonoBehaviour
     public string levelCompleted;
     public string levelName, defeatName;
     public float maxTimer;
+
     // Start is called before the first frame update
     void Start()
     {

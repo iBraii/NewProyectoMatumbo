@@ -301,14 +301,24 @@ public class PlayerC : MonoBehaviour
     {
         if (Input.GetKeyDown(interactKey) && sc_playerM.isCloseToBlanket && sc_playerM.isHiding == false)
         {
-                sc_playerM.isInmune = true;
-                sc_playerM.isHiding = true;
+            sc_playerM.isInmune = true;
+            sc_playerM.isHiding = true;
             sc_playerM.isMoving = false;
         }
         else if (Input.GetKeyDown(interactKey) && sc_playerM.isCloseToBlanket && sc_playerM.isHiding == true)
         {
-                sc_playerM.isInmune = false;
-                sc_playerM.isHiding = false;
+            sc_playerM.hideTimer = true;
+            sc_playerM.isHiding = false;
+            sc_playerM.isInmune = false;  
+        }
+        if(sc_playerM.hideTimer == true)
+        {
+            sc_playerM.UnhideTimer += Time.deltaTime;
+            if(sc_playerM.UnhideTimer >= 2)
+            {
+                sc_playerM.UnhideTimer = 0;
+                sc_playerM.hideTimer = false;
+            }
         }
     }
     //------------------------------------------------------------------------------------------------------

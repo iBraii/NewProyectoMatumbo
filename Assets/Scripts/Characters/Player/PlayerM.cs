@@ -56,7 +56,8 @@ public class PlayerM : Characters
     public bool isInmune;
     public float isInmuneTimer, isInmuneMaxTimer;
     public bool isCloseToBlanket;
-    public bool isHiding;
+    public bool isHiding, hideTimer;
+    public float UnhideTimer;
     //-----------------------------
 
 
