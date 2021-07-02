@@ -45,16 +45,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generalVolume: 1
   array_sounds:
-  - name: MusicTheme
-    audioClip: {fileID: 8300000, guid: a37a65f7a7277e34f837e606fd02261c, type: 3}
+  - name: MenuTheme
+    audioClip: {fileID: 8300000, guid: 9b713f789d8368e4785f04b338481d09, type: 3}
     loop: 1
     volume: 0.2
     pitch: 1
     audioSource: {fileID: 0}
-  - name: PlayerWalk
-    audioClip: {fileID: 8300000, guid: 2e7952bbfa436df4980f96609397de7a, type: 3}
+  - name: Level1Theme
+    audioClip: {fileID: 8300000, guid: 44fee35bf716d744ea23cbf61c56c06b, type: 3}
     loop: 1
-    volume: 0.15
+    volume: 0.2
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: LowRumble
+    audioClip: {fileID: 8300000, guid: cec8a7d28660f124abc2b17b3752434a, type: 3}
+    loop: 1
+    volume: 0.09
     pitch: 1
     audioSource: {fileID: 0}
   mixer: {fileID: 24300002, guid: 3033dd9c762d47b4bb238d11941700cb, type: 2}

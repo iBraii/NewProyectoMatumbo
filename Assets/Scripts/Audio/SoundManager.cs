@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
-    [Range(0f,2f)]
+    [Range(0.0001f,2f)]
     public float generalVolume;
     public Sounds[] array_sounds;
     public static SoundManager instance;
@@ -30,13 +30,10 @@ public class SoundManager : MonoBehaviour
             sounds.audioSource.clip = sounds.audioClip;
             sounds.audioSource.volume = sounds.volume * generalVolume;
             sounds.audioSource.pitch = sounds.pitch;
-            //sounds.audioSource.outputAudioMixerGroup = mixer;
+            sounds.audioSource.outputAudioMixerGroup = mixer;
         }
     }
-    void Start()
-    {
-        //Play("MusicTheme");
-    }
+    
     public void Play(string name)
     {
         Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
@@ -76,5 +73,9 @@ public class SoundManager : MonoBehaviour
             return;
         }
         sounds.audioSource.UnPause();
+    }
+    public void SetVolume(float volumeVal)
+    {
+        mixer.audioMixer.SetFloat("MyExposedParam", Mathf.Log10(volumeVal) * 20);
     }
 }

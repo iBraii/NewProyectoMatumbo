@@ -28,6 +28,8 @@ public class PauseMenu : MonoBehaviour
 
         obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
         obj_volumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
+        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
+        SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
     }
 
     // Update is called once per frame
@@ -59,13 +61,13 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
         Time.timeScale = 0f;
         obj_pausePanel.SetActive(true);
-        
     }
     public void ApplyAndClose()
     {
         PlayerPrefs.SetFloat("Sens", obj_sensSlider.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("volume", obj_volumeSlider.GetComponent<Slider>().value);
-
+        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
+        SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
         thirdPersonCamera.m_XAxis.m_MaxSpeed = PlayerPrefs.GetFloat("Sens");
         optionsOn = false;
         CloseOptions();

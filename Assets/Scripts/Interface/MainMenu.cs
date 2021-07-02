@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
@@ -21,11 +22,18 @@ public class MainMenu : MonoBehaviour
     public GameObject obj_volumeSlider;
     public int level1;
     public int level2;
+
     void Start()
     {
+        //SLIDERS
         obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
         obj_volumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
         SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
+        SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
+
+        SoundManager.instance.Stop("LowRumble");
+        SoundManager.instance.Play("MenuTheme");
+
         sc_changescn = GetComponent<ChangeScene>();
         UpdateChapterSelection();
         level1 = PlayerPrefs.GetInt("TutorialCompleted");
@@ -123,5 +131,6 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("Sens", obj_sensSlider.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("volume", obj_volumeSlider.GetComponent<Slider>().value);
         SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
+        SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
     }
 }

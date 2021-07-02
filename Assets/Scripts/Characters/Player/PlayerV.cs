@@ -22,7 +22,8 @@ public class PlayerV : MonoBehaviour
     }
     private void Start()
     {
-        //SoundManager.instance.Play("PlayerWalk");
+        SoundManager.instance.Play("LowRumble");
+        SoundManager.instance.Stop("MenuTheme");
     }
     //private void FixedUpdate()
     //{

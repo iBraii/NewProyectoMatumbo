@@ -55,7 +55,7 @@ public class LampC : MonoBehaviour
             sc_lampM.obj_light.SetActive(false);
             for (int i = 0; i < sc_lampM.obj_blockedZone.Length; i++)
             {
-                sc_lampM.obj_blockedZone[i].SetActive(false);
+                sc_lampM.obj_blockedZone[i].SetActive(true);
             }
             
         }

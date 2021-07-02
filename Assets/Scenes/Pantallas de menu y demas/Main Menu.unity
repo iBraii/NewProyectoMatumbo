@@ -1266,6 +1266,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272822062}
   m_CullTransparentMesh: 1
+--- !u!114 &273187503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591030986272639596, guid: 1b60b883e1d5f9949892c7014174ffb3, type: 3}
+  m_PrefabInstance: {fileID: 662588074}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0195067c3b26359468f403069777a6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &293956357
 GameObject:
   m_ObjectHideFlags: 0
@@ -4989,7 +5000,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 273187503}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1339166321
 GameObject:
   m_ObjectHideFlags: 0
