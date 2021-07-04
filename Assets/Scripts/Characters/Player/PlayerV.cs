@@ -80,8 +80,12 @@ public class PlayerV : MonoBehaviour
     {
         animCntr.SetBool("isMoving", sc_playerM.isMoving);
         animCntr.SetFloat("life", sc_playerM.life);
-        animCntr.SetBool("pushingBox", sc_playerM.isMovingBox);
+        animCntr.SetBool("boxState", sc_playerM.isMovingBox);
+        animCntr.SetBool("pushingBox", sc_playerM.isMovingBox && Input.GetKey(sc_playerC.keyUp));
+        animCntr.SetBool("pullingBox", sc_playerM.isMovingBox && Input.GetKey(sc_playerC.keyDown));
         animCntr.SetBool("isHiding", sc_playerM.isHiding);
+        animCntr.SetFloat("playerYVelocity",sc_playerM.pos_playerVelocity.y);
+        animCntr.SetBool("onGround", sc_playerM.GroundCheck());
     }
 
     void ParticlesController()
