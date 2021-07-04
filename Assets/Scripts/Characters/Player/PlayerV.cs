@@ -41,7 +41,10 @@ public class PlayerV : MonoBehaviour
     {
         ActivateVolume();
         sc_playerC.HideOnBlanket();
-        sc_playerC.DreamCatcher();
+        if(sc_playerM.isHiding == false && sc_playerM.GroundCheck() && sc_playerM.isMovingBox == false)
+        {
+            sc_playerC.DreamCatcher();
+        } 
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
         sc_playerC.DetectBox();
@@ -55,7 +58,7 @@ public class PlayerV : MonoBehaviour
                 sc_playerC.Inputs();
                 //sc_playerC.ControllerMoveAndRotate();
             }
-            if (sc_playerM.isHiding == false)
+            if (sc_playerM.isHiding == false && sc_playerM.isUsingWeapon == false)
             {
                 sc_playerC.PlayerJump();
             }
