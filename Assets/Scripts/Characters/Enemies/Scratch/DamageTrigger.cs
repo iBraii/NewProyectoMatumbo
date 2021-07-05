@@ -19,6 +19,7 @@ public class DamageTrigger : MonoBehaviour
             if(sc_enemiesAtk.sc_enemies != null)
             {
                 sc_enemiesAtk.SpectresAttack(enemiesDamageValue);
+                other.gameObject.GetComponent<PlayerM>().cooldownForStressRegen = 0;
             }
             sc_enemiesAtk.AurasDamage(aurasDamageValue);
         }
@@ -30,6 +31,7 @@ public class DamageTrigger : MonoBehaviour
             if (sc_enemiesAtk.sc_enemies != null)
             {
                 sc_enemiesAtk.SpectresAttack(enemiesDamageValue);
+                other.gameObject.GetComponent<PlayerM>().cooldownForStressRegen = 0;
             }
             sc_enemiesAtk.AurasDamage(aurasDamageValue);
         }

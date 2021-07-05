@@ -41,10 +41,8 @@ public class PlayerV : MonoBehaviour
     {
         ActivateVolume();
         sc_playerC.HideOnBlanket();
-        if(sc_playerM.isHiding == false && sc_playerM.GroundCheck() && sc_playerM.isMovingBox == false)
-        {
-            sc_playerC.DreamCatcher();
-        } 
+        sc_playerC.RegenStress(.1f,3);
+        sc_playerC.DreamCatcher();
         sc_playerC.StoryHintsControl();
         sc_playerM.LifeController(10);
         sc_playerC.DetectBox();
@@ -99,12 +97,15 @@ public class PlayerV : MonoBehaviour
     {
         if(sc_playerM.isUsingWeapon == true)
         {
+            sc_playerM.VFXTime += Time.deltaTime;
             DreamCatcherVFX.Play();
             AreaEffectVFX.Play();
+            AreaEffectVFX.SetFloat("InputFloat", sc_playerM.VFXTime);
         }
         else
         {
             DreamCatcherVFX.Stop();
+            sc_playerM.VFXTime = 4f;
             AreaEffectVFX.Stop();
         }
     }

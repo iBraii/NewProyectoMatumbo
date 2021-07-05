@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class PlayerM : Characters
 {
+    public float cooldownForStressRegen;
+    public float VFXTime = 4f;
     public CinemachineBasicMultiChannelPerlin screenShake;
     public PlayerC sc_playerC;
     //--------Movement Vars---------------

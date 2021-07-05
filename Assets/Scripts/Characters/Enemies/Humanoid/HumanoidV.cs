@@ -40,7 +40,14 @@ public class HumanoidV : MonoBehaviour
     }
     void AnimationController()
     {
-        animControl.SetBool("chasing", sc_humanoidM.isFollowingPlayer);
+        if(sc_humanoidM.isFollowingPlayer)
+        {
+            animControl.SetBool("chasing", true);
+        }
+        if(sc_humanoidM.player.GetComponent<PlayerM>().isInmune || sc_humanoidM.isFollowingPlayer == false)
+        {
+            animControl.SetBool("chasing", false);
+        }
         animControl.SetBool("Asustado", sc_humanoidM.isDenied);
     }
     private void OnTriggerEnter(Collider other)

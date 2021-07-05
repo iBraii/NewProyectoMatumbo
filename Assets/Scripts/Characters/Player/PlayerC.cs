@@ -52,6 +52,17 @@ public class PlayerC : MonoBehaviour
         sc_playerM.life -= ammount;
     }
 
+    public void RegenStress(float regenValue, float initialDelay)
+    {
+        if(sc_playerM.life > 0)
+        {
+            sc_playerM.cooldownForStressRegen += Time.deltaTime;
+            if (sc_playerM.cooldownForStressRegen >= initialDelay)
+            {
+                sc_playerM.life -= regenValue * Time.deltaTime;
+            }
+        }    
+    }
     public void PlayerJump()
     {
         sc_playerM.GroundCheck();
@@ -149,9 +160,9 @@ public class PlayerC : MonoBehaviour
     {
         if (sc_playerM.hasWeapon)
         {
-            if (Input.GetKey(useWeaponKey))
+            if (Input.GetKey(useWeaponKey) && sc_playerM.GroundCheck() && sc_playerM.isMovingBox == false && sc_playerM.isHiding == false)
             {
-                sc_playerM.isUsingWeapon = true;
+                sc_playerM.isUsingWeapon = true;  
             }
             else if (Input.GetKeyUp(useWeaponKey))
             {

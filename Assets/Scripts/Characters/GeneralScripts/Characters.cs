@@ -32,6 +32,9 @@ public class Characters : MonoBehaviour
         {
             life = _maxLife;
         }
-        
+        if(life <= 0)
+        {
+            life = 0;
+        }
     }
 }

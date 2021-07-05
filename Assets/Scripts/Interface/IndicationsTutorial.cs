@@ -148,12 +148,13 @@ public class IndicationsTutorial : MonoBehaviour
 
     public void ActivateEnemy()
     {
+        sc_playerM.canMove = false;
+        sc_playerM.speed = 0;
         Debug.Log("SpawningEnemy");
         cameraInitialPosition = mainC.transform.position;
         cameraFollowenemy = true;
         enemy.SetActive(true);
         newCameraPosition = GameObject.Find("EnemyFollowOBJ");
-        sc_playerM.canMove=false;
     }
 
     public void CameraFollowEnemy()
@@ -175,6 +176,7 @@ public class IndicationsTutorial : MonoBehaviour
                 cameraFollowenemy = false;
                 thirdPersonCamera.SetActive(true);
                 sc_playerM.canMove = true;
+                sc_playerM.speed = 5;
             }
         }
         
@@ -203,6 +205,7 @@ public class IndicationsTutorial : MonoBehaviour
                 cameraFollowDC = false;
                 thirdPersonCamera.SetActive(true);
                 sc_playerM.canMove = true;
+                distCovered = 0;
             }
         }
         
