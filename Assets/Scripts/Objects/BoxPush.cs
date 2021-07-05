@@ -56,13 +56,13 @@ public class BoxPush : MonoBehaviour
 
     public void BoxGravity()
     {
-        if (!isGrounded||obj_player.GetComponent<PlayerM>().isMovingBox)
+        if (!isGrounded||(obj_player.GetComponent<PlayerM>().isMovingBox && obj_player.GetComponent<PlayerC>().box == this.gameObject))
         {
-            GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<Rigidbody>().isKinematic = false;
         }
         else
         {
-            GetComponent<Rigidbody>().isKinematic = true;
+            this.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
     ////////////////////////////////////////////////////////////////////////////////////////////

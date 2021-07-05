@@ -249,15 +249,15 @@ public class PlayerC : MonoBehaviour
     {
         if(obj_Box.canPushz == true && obj_Box.canPushx == true)
         {
-            obj_Box.PushBox(2, 2);
+            obj_Box.PushBox(2.5f, 2.5f);
         }
         if(obj_Box.canPushz == true && obj_Box.canPushx == false)
         {
-            obj_Box.PushBox(0, 2);
+            obj_Box.PushBox(0, 2.5f);
         }
         if(obj_Box.canPushz == false && obj_Box.canPushx == true)
         {
-            obj_Box.PushBox(2, 0);
+            obj_Box.PushBox(2.5f, 0);
         }
         if(obj_Box.canPushz == false && obj_Box.canPushx == false)
         {
@@ -267,7 +267,7 @@ public class PlayerC : MonoBehaviour
     }
     public void BoxPull()
     {
-        obj_Box.PullBox(2.2f, 2.2f);
+        obj_Box.PullBox(3f, 3f);
     }
 
 
@@ -307,17 +307,17 @@ public class PlayerC : MonoBehaviour
         }
         else if (Input.GetKeyDown(interactKey) && sc_playerM.isCloseToBlanket && sc_playerM.isHiding == true)
         {
-            sc_playerM.hideTimer = true;
-            sc_playerM.isHiding = false;
-            sc_playerM.isInmune = false;  
+            sc_playerM.hideTimer = true;  
         }
         if(sc_playerM.hideTimer == true)
         {
             sc_playerM.UnhideTimer += Time.deltaTime;
-            if(sc_playerM.UnhideTimer >= 2)
+            if(sc_playerM.UnhideTimer >= 3f)
             {
-                sc_playerM.UnhideTimer = 0;
+                sc_playerM.isHiding = false;
+                sc_playerM.isInmune = false;
                 sc_playerM.hideTimer = false;
+                sc_playerM.UnhideTimer = 0;
             }
         }
     }

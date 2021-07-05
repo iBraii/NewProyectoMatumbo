@@ -153,7 +153,7 @@ public class IndicationsTutorial : MonoBehaviour
         cameraFollowenemy = true;
         enemy.SetActive(true);
         newCameraPosition = GameObject.Find("EnemyFollowOBJ");
-        sc_playerM.isHiding=true;
+        sc_playerM.canMove=false;
     }
 
     public void CameraFollowEnemy()
@@ -174,7 +174,7 @@ public class IndicationsTutorial : MonoBehaviour
                 timeToReturnCamera = 0;
                 cameraFollowenemy = false;
                 thirdPersonCamera.SetActive(true);
-                sc_playerM.isHiding = false;
+                sc_playerM.canMove = true;
             }
         }
         
@@ -182,8 +182,8 @@ public class IndicationsTutorial : MonoBehaviour
     public void ActivateDCP()
     {
         cameraInitialPosition = mainC.transform.position;
-        cameraFollowDC = true;    
-        sc_playerM.isHiding = true;
+        cameraFollowDC = true;
+        sc_playerM.canMove = false;
         newCameraPosition = DreamCatcherPresentation;
     }
     public void CameraFollowDC()
@@ -202,7 +202,7 @@ public class IndicationsTutorial : MonoBehaviour
                 timeToReturnCamera = 0;
                 cameraFollowDC = false;
                 thirdPersonCamera.SetActive(true);
-                sc_playerM.isHiding = false;
+                sc_playerM.canMove = true;
             }
         }
         
@@ -211,7 +211,7 @@ public class IndicationsTutorial : MonoBehaviour
     {
         cameraInitialPosition = mainC.transform.position;
         cameraDarkArea = true;
-        sc_playerM.isHiding = true;
+        sc_playerM.canMove = false;
         newCameraPosition = DarkAreaPresentation;
     }
     public void CameraShowDarkArea()
@@ -230,7 +230,7 @@ public class IndicationsTutorial : MonoBehaviour
                 timeToReturnCamera = 0;
                 cameraDarkArea = false;
                 thirdPersonCamera.SetActive(true);
-                sc_playerM.isHiding = false;
+                sc_playerM.canMove = true;
             }
         }
     }
