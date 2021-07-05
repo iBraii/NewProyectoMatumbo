@@ -91,6 +91,7 @@ public class PlayerV : MonoBehaviour
         }       
         animCntr.SetFloat("playerYVelocity",sc_playerM.pos_playerVelocity.y);
         animCntr.SetBool("onGround", sc_playerM.GroundCheck());
+        animCntr.SetBool("attacking", sc_playerM.isUsingWeapon);
     }
 
     void ParticlesController()

@@ -172,7 +172,6 @@ public class PlayerC : MonoBehaviour
             if (sc_playerM.isUsingWeapon)
             {
                 sc_playerM.canMove = false;
-                sc_playerM.isMoving = false;
                 sc_playerM.uses -= .5f * Time.deltaTime;
                 sc_playerM.lastUsedTime = sc_playerM.usedTime;
             }
