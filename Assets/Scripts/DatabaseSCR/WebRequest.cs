@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class WebRequest : MonoBehaviour
 {
+    public Text rankText;
     void Start()
     {
-        //StartCoroutine(GetRank());
+        StartCoroutine(GetRank());
         //StartCoroutine(AddRank("Bruno", 8,100,400,20));
     }
 
@@ -83,13 +85,13 @@ public class WebRequest : MonoBehaviour
             .Replace("}", "")
             .Replace("\"", ""); 
 
-        string[] rows = data.Split(',');
+        //string[] rows = data.Split(',');
 
-        foreach (string row in rows)
-        {
-            string[] keyValue = row.Split(':');
-
-            Debug.Log(keyValue[0] + ": " + keyValue[1]);
-        }
+        //foreach (string row in rows)
+        //{
+        //    string[] keyValue = row.Split(':');
+            rankText.text = (data);
+            //Debug.Log(keyValue[0] + ": " + keyValue[1]);
+        //}
     }
 }
