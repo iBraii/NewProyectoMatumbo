@@ -57,13 +57,13 @@ public class HumanoidC : MonoBehaviour
             sc_humanoidM.blinkTime += Time.deltaTime;
             if (sc_humanoidM.blinkTime >= sc_humanoidM.maxBlinkTime)
             {
-                sc_humanoidM.warningRenderer.enabled = !sc_humanoidM.warningRenderer.enabled;
+                //sc_humanoidM.warningRenderer.enabled = !sc_humanoidM.warningRenderer.enabled;
                 sc_humanoidM.blinkTime = 0;
             }
         }
         else
         {
-            sc_humanoidM.warningRenderer.enabled = false;
+            //sc_humanoidM.warningRenderer.enabled = false;
         }
         if((sc_humanoidM.isFollowingPlayer && sc_humanoidM.distanceToPlayer >= sc_humanoidM.agroRange)||
             (sc_humanoidM.isFollowingPlayer && sc_humanoidM.player.GetComponent<PlayerM>().isHiding)||

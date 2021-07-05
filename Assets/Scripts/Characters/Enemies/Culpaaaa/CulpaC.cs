@@ -11,7 +11,6 @@ public class CulpaC : MonoBehaviour
     {
         sc_culpaM = GetComponent<CulpaM>();
         sc_culpaM.player.GetComponent<PlayerM>().canMove = false;
-        sc_culpaM.player.GetComponent<PlayerM>().isHiding = true;
         Presentation();
     }
 
@@ -48,7 +47,6 @@ public class CulpaC : MonoBehaviour
     public void ResetCamera()
     {
         sc_culpaM.player.GetComponent<PlayerM>().canMove = true;
-        sc_culpaM.player.GetComponent<PlayerM>().isHiding = false;
         sc_culpaM.thirdPersonCamera.GetComponent<CinemachineFreeLook>().LookAt = sc_culpaM.player.transform;
     }
    
