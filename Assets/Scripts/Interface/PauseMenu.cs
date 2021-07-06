@@ -112,4 +112,8 @@ public class PauseMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Closing game...");
     }
+    public void PlayMusic()
+    {
+        SoundManager.instance.Play("ButtonPressed");
+    }
 }

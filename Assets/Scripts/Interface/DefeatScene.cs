@@ -29,4 +29,8 @@ public class DefeatScene : MonoBehaviour
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("prevLevel"));
     }
+    public void PlayMusic()
+    {
+        SoundManager.instance.Play("ButtonPressed");
+    }
 }

@@ -29,13 +29,11 @@ public class PlayerM : Characters
     //public LayerMask whatIsGround;
     //-------------------------------------
 
-
-
     //---------Stress Vars----------------
     public float maxStress = 10f;
     public float stressCooldown;
     //------------------------------------
-
+    public AudioSource steps;
 
     //---------DreamCatcher-----------
     public bool hasWeapon;
@@ -85,6 +83,7 @@ public class PlayerM : Characters
 
     private void Awake()
     {
+        steps = GetComponent<AudioSource>();
         //boxPos = GameObject.Find("BoxPos");
         screenShake = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
         isHiding = false;

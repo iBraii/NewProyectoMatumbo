@@ -39,6 +39,7 @@ public class PlayerV : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sc_playerC.Steps();
         ActivateVolume();
         sc_playerC.HideOnBlanket();
         sc_playerC.RegenStress(.1f,3);
