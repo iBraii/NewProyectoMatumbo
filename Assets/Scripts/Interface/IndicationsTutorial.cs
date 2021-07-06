@@ -183,6 +183,7 @@ public class IndicationsTutorial : MonoBehaviour
     }
     public void ActivateDCP()
     {
+        SoundManager.instance.Play("DCIdle");
         cameraInitialPosition = mainC.transform.position;
         cameraFollowDC = true;
         sc_playerM.canMove = false;

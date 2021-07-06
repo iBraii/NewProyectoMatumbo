@@ -31,4 +31,8 @@ public class VictoryScene : MonoBehaviour
     {
         SceneManager.LoadScene(PlayerPrefs.GetInt("prevLevel")+1);
     }
+    public void PlayMusic()
+    {
+        SoundManager.instance.Play("ButtonPressed");
+    }
 }

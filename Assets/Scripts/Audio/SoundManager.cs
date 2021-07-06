@@ -74,6 +74,19 @@ public class SoundManager : MonoBehaviour
         }
         sounds.audioSource.UnPause();
     }
+    public void UpdatePlay(string name)
+    {
+        Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
+        if (sounds == null)
+        {
+            Debug.Log("El sonido " + name + " no se encontró");
+            return;
+        }
+        if(sounds.audioSource.isPlaying == false)
+        {
+            sounds.audioSource.Play();
+        }
+    }
     public void SetVolume(float volumeVal)
     {
         mixer.audioMixer.SetFloat("MyExposedParam", Mathf.Log10(volumeVal) * 20);

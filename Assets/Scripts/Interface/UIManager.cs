@@ -38,16 +38,15 @@ public class UIManager : MonoBehaviour
         CursorController();
         if (obj_player.gameObject.GetComponent<PlayerM>().life >= 10)
         {
+            SoundManager.instance.Play("Dying");
             KillPlayer();
         }
     }
     void KillPlayer()
     {
-        
-            sc_playerM.canMove = false;
-            sc_playerM.isHiding = true;
-            Invoke("TransitionToDefeat", .5f);
-        
+        sc_playerM.canMove = false;
+        sc_playerM.isHiding = true;
+        Invoke("TransitionToDefeat", .5f);
     }
     void TransitionToDefeat()
     {

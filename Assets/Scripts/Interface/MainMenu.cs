@@ -133,4 +133,8 @@ public class MainMenu : MonoBehaviour
         SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
         SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
     }
+    public void PlayMusic()
+    {
+        SoundManager.instance.Play("ButtonPressed");
+    }
 }

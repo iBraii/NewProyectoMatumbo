@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using UnityEngine.Audio;
 [RequireComponent(typeof(PlayerM))]
 public class PlayerC : MonoBehaviour
 {
@@ -33,7 +33,7 @@ public class PlayerC : MonoBehaviour
 
     void Start()
     {
-        
+        SoundManager.instance.Play("PlayerIdle");
         sc_playerM = GetComponent<PlayerM>();
         sc_Movement = GetComponent<Movement>();
         //sc_Movement.rb = GetComponent<Rigidbody>();
@@ -155,6 +155,15 @@ public class PlayerC : MonoBehaviour
     //}
 
     //---------------------------------------------------DreamCatcher----------------------------------------------------------------------
+    public void Steps()
+    {
+        if(sc_playerM.steps.isPlaying == false && sc_playerM.isMoving)
+        {
+            float pitch = Random.Range(0.7f, 1.1f);
+            sc_playerM.steps.pitch = pitch;
+            sc_playerM.steps.Play();
+        }
+    }
 
     public void DreamCatcher()
     {
@@ -171,6 +180,7 @@ public class PlayerC : MonoBehaviour
             }
             if (sc_playerM.isUsingWeapon)
             {
+                SoundManager.instance.UpdatePlay("DCUsing");
                 sc_playerM.canMove = false;
                 sc_playerM.uses -= .5f * Time.deltaTime;
                 sc_playerM.lastUsedTime = sc_playerM.usedTime;
