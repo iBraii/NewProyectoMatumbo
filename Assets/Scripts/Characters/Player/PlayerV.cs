@@ -24,6 +24,7 @@ public class PlayerV : MonoBehaviour
     {
         SoundManager.instance.Play("LowRumble");
         SoundManager.instance.Stop("MenuTheme");
+        
     }
     //private void FixedUpdate()
     //{

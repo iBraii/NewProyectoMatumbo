@@ -82,13 +82,13 @@ public class ObjectC : MonoBehaviour
             sc_ObjectM.blinkTime += Time.deltaTime;
             if (sc_ObjectM.blinkTime >= sc_ObjectM.maxBlinkTime)
             {
-                sc_ObjectM.warningRenderer.enabled = !sc_ObjectM.warningRenderer.enabled;
+                //sc_ObjectM.warningRenderer.enabled = !sc_ObjectM.warningRenderer.enabled;
                 sc_ObjectM.blinkTime = 0;
             }
         }
         else
         {
-            sc_ObjectM.warningRenderer.enabled = false;
+            //sc_ObjectM.warningRenderer.enabled = false;
         }
     }
     public void Stunned()
