@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
         obj_player = GameObject.Find("Player");
         sc_playerC = obj_player.GetComponent<PlayerC>();
         PlayerPrefs.SetInt("prevLevel", SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(PlayerPrefs.GetInt("prevLevel"));
+        //Debug.Log(PlayerPrefs.GetInt("prevLevel"));
         thirdPersonCamera = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineFreeLook>();
         thirdPersonCamera.m_XAxis.m_MaxSpeed = PlayerPrefs.GetFloat("Sens");
     }

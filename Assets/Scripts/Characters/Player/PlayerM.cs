@@ -83,14 +83,7 @@ public class PlayerM : Characters
 
     private void Awake()
     {
-        if(PlayerPrefs.GetString("position") == "position1")
-        {
-            transform.position = new Vector3(2647.7f, 1.1f, 1.7f);
-        }
-        if (PlayerPrefs.GetString("position") == "position2")
-        {
-            transform.position = new Vector3(3004.4f, 1.1f, 1.7f);
-        }
+        CheckPoint();
         steps = GetComponent<AudioSource>();
         //boxPos = GameObject.Find("BoxPos");
         screenShake = GameObject.Find("ThirdPersonCamera").GetComponent<CinemachineBasicMultiChannelPerlin>();
@@ -102,6 +95,26 @@ public class PlayerM : Characters
         //life = 0f;
         //MovementLearned = false;
     }
+
+    void CheckPoint()
+    {
+        if(GameObject.Find("CheckPoints") != null)
+        {
+            switch (PlayerPrefs.GetInt("position"))
+            {
+                case 0:
+                    transform.position = new Vector3(2293.9f, 1.1f, 1.7f);
+                    break;
+                case 1:
+                    transform.position = new Vector3(2647.7f, 1.1f, 1.7f);
+                    break;
+                case 2:
+                    transform.position = new Vector3(3004.4f, 1.1f, 1.7f);
+                    break;
+            }
+        }
+    }
+    
     private void Update()
     {
         

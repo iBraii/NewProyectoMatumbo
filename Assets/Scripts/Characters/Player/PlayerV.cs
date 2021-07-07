@@ -121,6 +121,24 @@ public class PlayerV : MonoBehaviour
         sc_playerC.PickSH(other);
         sc_playerC.PickSweets(other);
 
+        if (other.gameObject.CompareTag("cp0"))
+        {
+            PlayerPrefs.SetInt("position", 0);
+            Debug.Log(PlayerPrefs.GetInt("position"));
+        }
+
+        if (other.gameObject.CompareTag("cp1"))
+        {
+            PlayerPrefs.SetInt("position", 1);
+            Debug.Log(PlayerPrefs.GetInt("position"));
+        }
+
+        if (other.gameObject.CompareTag("cp2"))
+        {
+            PlayerPrefs.SetInt("position", 2);
+            Debug.Log(PlayerPrefs.GetInt("position"));
+        }
+
     }
     private void OnTriggerStay(Collider other)
     {

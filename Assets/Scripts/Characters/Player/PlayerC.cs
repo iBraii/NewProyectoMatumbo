@@ -157,12 +157,12 @@ public class PlayerC : MonoBehaviour
     //---------------------------------------------------DreamCatcher----------------------------------------------------------------------
     public void Steps()
     {
-        if(sc_playerM.steps.isPlaying == false && sc_playerM.isMoving)
-        {
-            float pitch = Random.Range(0.7f, 1.1f);
-            sc_playerM.steps.pitch = pitch;
-            sc_playerM.steps.Play();
-        }
+        //if(sc_playerM.steps.isPlaying == false && sc_playerM.isMoving)
+        //{
+        //    float pitch = Random.Range(0.7f, 1.1f);
+        //    sc_playerM.steps.pitch = pitch;
+        //    sc_playerM.steps.Play();
+        //}
     }
 
     public void DreamCatcher()
