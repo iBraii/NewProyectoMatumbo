@@ -15,6 +15,8 @@ public class Creditos : MonoBehaviour
         initialVolume = PlayerPrefs.GetFloat("volume");
         initialVolume *= ad.volume;
         ad.volume = initialVolume;
+        SoundManager.instance.Stop("PlayerIdle");
+        SoundManager.instance.Stop("LowRumble");
     }
 
     // Update is called once per frame
