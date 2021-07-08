@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         //SLIDERS
+        PlayerPrefs.SetFloat("volume", obj_volumeSlider.GetComponent<Slider>().value);
         obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
         obj_volumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
         SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
