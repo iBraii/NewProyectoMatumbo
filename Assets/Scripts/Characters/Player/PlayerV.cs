@@ -41,7 +41,7 @@ public class PlayerV : MonoBehaviour
     void Update()
     {
         sc_playerC.Steps();
-        ActivateVolume();
+        //ActivateVolume();
         sc_playerC.HideOnBlanket();
         sc_playerC.RegenStress(.1f,3);
         sc_playerC.DreamCatcher();
