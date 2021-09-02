@@ -11,7 +11,7 @@ public class PlayerM : Characters
     public PlayerC sc_playerC;
     //--------Movement Vars---------------
     public CharacterController cmp_controller;
-    public float speed = 5;
+    public float speed;
     public float rotationSpeed = 1;
     public float turnTime = 1;
     public Transform pos_cam;
@@ -22,8 +22,8 @@ public class PlayerM : Characters
 
     //---------Jump Vars------------------
     public Vector3 pos_playerVelocity;
-    public float gravity = -9.81f;
-    public float jumpForce = 2f;
+    public float gravity;
+    public float jumpForce;
     public bool grounded;
     //public float jumpRaycastDistance;
     //public LayerMask whatIsGround;
