@@ -1,12 +1,17 @@
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System;
 
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController _characterController;
+
+    //Input vars
+    private PlayerInput _playerInput;
+    private InputAction _moveAction;
+    
+
 
     //Movement vars
     public float movementSpeed;
@@ -14,6 +19,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection; //Direction of camera
     public float turnSmoothTime = .1f;
     float turnSmoothvelocity;
+
+    private void Awake()
+    {
+        _playerInput = GetComponent<PlayerInput>();
+        _moveAction = _playerInput.actions["Move"];
+        _moveAction.ReadValue<float>();
+    }
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -28,9 +40,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Movement()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        direction = new Vector3(horizontal, 0f, vertical).normalized;
+        //float horizontal = Input.GetAxisRaw("Horizontal");
+        //float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector2 input = _moveAction.ReadValue<Vector2>();
+        direction = new Vector3(input.x, 0f, input.y).normalized;
 
         if(direction.magnitude >= .1f)
         {
