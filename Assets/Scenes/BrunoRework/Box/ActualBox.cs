@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ActualBox : MonoBehaviour
 {
-    public Vector3 boxMovement;
-    public float gravity;
-    public bool onGround;
+    public Rigidbody rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -18,8 +16,12 @@ public class ActualBox : MonoBehaviour
         
     }
 
-    public void Gravity()
+    public void AddMotion(Vector3 motion)
     {
         
     }
+
+   
+
+    
 }
