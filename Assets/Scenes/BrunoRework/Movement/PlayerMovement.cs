@@ -40,9 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Movement()
     {
-        //float horizontal = Input.GetAxisRaw("Horizontal");
-        //float vertical = Input.GetAxisRaw("Vertical");
-
         Vector2 input = _moveAction.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0f, input.y).normalized;
 

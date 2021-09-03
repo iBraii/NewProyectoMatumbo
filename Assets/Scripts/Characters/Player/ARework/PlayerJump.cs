@@ -10,26 +10,24 @@ public class PlayerJump : MonoBehaviour
     CharacterController controller;
 
     //ActionVars
-    [SerializeField] LayerMask GroundLayer;
-    [SerializeField] float floorDistance;
     [SerializeField] Vector3 playerVelocity;
-    float gravity = -9.81f;
+    float gravity = -4.5f;
     [SerializeField] float jumpForce;
+
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         jumpAction = playerInput.actions["Jump"];
+        
     }
-
-    bool Grounded() => Physics.Raycast(transform.position, Vector3.down, floorDistance, GroundLayer);
 
     private void Update()
     {
         playerVelocity.y += gravity * Time.deltaTime;
 
-        if (Grounded() && playerVelocity.y < 0)
+        if (PlayerSingleton.Instance.isGrounded && playerVelocity.y < 0)
             playerVelocity.y = 0f;
 
         if(playerVelocity.y > 0)
@@ -37,7 +35,7 @@ public class PlayerJump : MonoBehaviour
 
         controller.Move(playerVelocity * Time.deltaTime);
 
-        if (jumpAction.triggered && Grounded())
+        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
         }
