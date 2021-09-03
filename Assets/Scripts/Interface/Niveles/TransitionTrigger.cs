@@ -22,11 +22,8 @@ public class TransitionTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        UpdateData.ud.actualTotalTime += maxTimer;
         if(SceneManager.GetActiveScene().name == "Level2")
         {
-            UpdateData.ud.lastTotalTime = UpdateData.ud.actualTotalTime;
-            UpdateData.ud.SendLeaderBoard((int)UpdateData.ud.lastTotalTime);
         }
         PlayerPrefs.SetInt(levelCompleted, 1);
         sc_scCh.Change(levelName);    
