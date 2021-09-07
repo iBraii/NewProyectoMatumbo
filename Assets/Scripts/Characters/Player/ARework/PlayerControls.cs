@@ -49,6 +49,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""725d9e98-970d-4433-89f2-e375c641dedc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""891b0bf0-4fa6-45a1-844b-f0ebe04720e1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -151,6 +170,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Land_Move = m_Land.FindAction("Move", throwIfNotFound: true);
         m_Land_Look = m_Land.FindAction("Look", throwIfNotFound: true);
         m_Land_Interact = m_Land.FindAction("Interact", throwIfNotFound: true);
+        m_Land_Attack = m_Land.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,6 +224,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Move;
     private readonly InputAction m_Land_Look;
     private readonly InputAction m_Land_Interact;
+    private readonly InputAction m_Land_Attack;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -212,6 +233,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Land_Move;
         public InputAction @Look => m_Wrapper.m_Land_Look;
         public InputAction @Interact => m_Wrapper.m_Land_Interact;
+        public InputAction @Attack => m_Wrapper.m_Land_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,6 +255,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnInteract;
+                @Attack.started -= m_Wrapper.m_LandActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -249,6 +274,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -259,5 +287,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
