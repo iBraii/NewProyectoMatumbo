@@ -21,5 +21,6 @@ public class PlayerSingleton : MonoBehaviour
         _instance = this;
     }
     public bool isGrounded { get; set; }
+    public bool isHiding { get; set; }
 }
 

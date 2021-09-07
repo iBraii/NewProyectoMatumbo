@@ -1675,7 +1675,6 @@ GameObject:
   - component: {fileID: 1948477931}
   - component: {fileID: 1948477930}
   - component: {fileID: 1948477934}
-  - component: {fileID: 1948477936}
   - component: {fileID: 1948477935}
   - component: {fileID: 1948477937}
   - component: {fileID: 1948477938}
@@ -1783,6 +1782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 0.75
   turnSmoothTime: 0.1
+  jumpForce: 0
 --- !u!114 &1948477935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,20 +1833,6 @@ MonoBehaviour:
   m_DefaultActionMap: Land
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1948477936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948477929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0537a0b7c964cda4292bde67d810dcae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerVelocity: {x: 0, y: 0, z: 0}
-  jumpForce: 0.5
 --- !u!114 &1948477937
 MonoBehaviour:
   m_ObjectHideFlags: 0
