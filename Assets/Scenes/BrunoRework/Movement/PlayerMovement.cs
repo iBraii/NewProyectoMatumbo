@@ -40,14 +40,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //Rotate();
         //Movement();
         OldMovement();
-        Jumping();
     }
 
+    private void Update()
+    {
+        Jumping();
+    }
 
     private void OldMovement()
     {

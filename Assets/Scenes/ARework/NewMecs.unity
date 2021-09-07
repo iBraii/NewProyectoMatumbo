@@ -912,8 +912,8 @@ MonoBehaviour:
   m_LegacyBlendHint: 0
   m_YAxis:
     Value: 0.5
-    m_SpeedMode: 0
-    m_MaxSpeed: 1
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.01
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -936,8 +936,8 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
     Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 150
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.1
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -1699,7 +1699,7 @@ CharacterController:
   m_Height: 0.99999994
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_StepOffset: 0.1
   m_SkinWidth: 0.003
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -1781,8 +1781,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.75
+  direction: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
   turnSmoothTime: 0.1
-  jumpForce: 0
+  jumpForce: 0.5
+  playerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1948477935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,7 +1851,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  floorDistance: 0
+  floorDistance: 0.1635
 --- !u!114 &1948477938
 MonoBehaviour:
   m_ObjectHideFlags: 0

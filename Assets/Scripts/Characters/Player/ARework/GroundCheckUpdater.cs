@@ -3,7 +3,7 @@ using UnityEngine;
 public class GroundCheckUpdater : MonoBehaviour
 {
     [SerializeField] LayerMask GroundLayer;
-    [SerializeField]float floorDistance;
+    [SerializeField] float floorDistance;
     bool Grounded() => Physics.Raycast(transform.position, Vector3.down, floorDistance, GroundLayer);
     private void Awake()
     {
