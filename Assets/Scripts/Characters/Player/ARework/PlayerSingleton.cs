@@ -19,8 +19,10 @@ public class PlayerSingleton : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        stress = 0;
     }
     public bool isGrounded { get; set; }
     public bool isHiding { get; set; }
+    public float stress { get; set; }
 }
 
