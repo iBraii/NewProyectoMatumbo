@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     //Movement vars
     public float movementSpeed;
     [SerializeField]
-    private Vector3 direction;
+    public Vector3 direction;
     [SerializeField]
     public Vector3 moveDirection; //Direction of camera
     public float turnSmoothTime = .1f;
@@ -42,9 +42,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Rotate();
-        //Movement();
-        OldMovement();
+        Rotate();
+        Movement();
+        //OldMovement();
     }
 
     private void Update()
@@ -52,40 +52,46 @@ public class PlayerMovement : MonoBehaviour
         Jumping();
     }
 
-    private void OldMovement()
-    {
-        Vector2 input = _moveAction.ReadValue<Vector2>();
-        direction = new Vector3(input.x, 0f, input.y).normalized;
-        if (direction.magnitude >= 0.1f )
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
-            transform.localRotation = Quaternion.Euler(0f, angle, 0f);
-            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _characterController.Move(moveDirection * movementSpeed * Time.fixedDeltaTime);
-        }
-    }
-    //public void Movement()
+    //private void OldMovement()
     //{
     //    Vector2 input = _moveAction.ReadValue<Vector2>();
     //    direction = new Vector3(input.x, 0f, input.y).normalized;
-
-    //    if(direction.magnitude >= .1f)
-    //    {
-    //        _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
-    //    }
-    //}
-
-    //public void Rotate()
-    //{
-    //    if (direction.magnitude >= .1f)
+    //    if (direction.magnitude >= 0.1f )
     //    {
     //        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity,turnSmoothTime);
-    //        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
+    //        transform.localRotation = Quaternion.Euler(0f, angle, 0f);
     //        moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+    //        _characterController.Move(moveDirection * movementSpeed * Time.fixedDeltaTime);
     //    }
     //}
+    public void Movement()
+    {
+        Vector2 input = _moveAction.ReadValue<Vector2>();
+        direction = new Vector3(input.x, 0f, input.y).normalized;
+
+        if (direction.magnitude >= .1f)
+        {
+            _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
+        }
+    }
+
+    public void Rotate()
+    {
+        if (direction.magnitude >= .1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
+            if (PlayerSingleton.Instance.canRotate)
+            {
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+            
+            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        }
+        else
+            moveDirection = Vector3.zero;
+    }
 
     private void Jumping()
     {

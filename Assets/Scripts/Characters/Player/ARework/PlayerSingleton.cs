@@ -21,8 +21,13 @@ public class PlayerSingleton : MonoBehaviour
         _instance = this;
         stress = 0;
     }
+    private void Start()
+    {
+        canRotate = true;
+    }
     public bool isGrounded { get; set; }
     public bool isHiding { get; set; }
+    public bool canRotate { get; set; }
     public float stress { get; set; }
 }
 

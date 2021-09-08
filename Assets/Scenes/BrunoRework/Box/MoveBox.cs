@@ -11,6 +11,7 @@ public class MoveBox : MonoBehaviour
     private InputAction _interactAction;
 
     public bool grabingBox;
+    
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -30,6 +31,7 @@ public class MoveBox : MonoBehaviour
     void Update()
     {
         BoxMovement();
+       
     }
 
     public void Grab(InputAction.CallbackContext context)
@@ -37,23 +39,34 @@ public class MoveBox : MonoBehaviour
         if (box != null)
         {
             if (grabingBox)
+            {
                 grabingBox = false;
-            else
+                PlayerSingleton.Instance.canRotate = true;
+                
+            }else
+            {
                 grabingBox = true;
-        }              
+                box.GetComponent<ActualBox>().GetInitialDistanceToPlayer(transform);
+                PlayerSingleton.Instance.canRotate = false;
+            }
+                
+        }
+        
     }
 
     public void BoxMovement()
     {
-        if (grabingBox)
+        if (grabingBox&&box!=null)
         {
-            
-            box.transform.parent = transform;
+            box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
 
-        }else if (!grabingBox && box != null)
-        {
-            box.transform.parent = null;
         }
+        else
+        {
+            grabingBox = false;
+            PlayerSingleton.Instance.canRotate = true;
+        }
+            
     }
     private void OnTriggerEnter(Collider other)
     {
