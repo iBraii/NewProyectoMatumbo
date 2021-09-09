@@ -20,6 +20,8 @@ public class PlayerSingleton : MonoBehaviour
     {
         _instance = this;
         stress = 0;
+        maxEnergy = 3;
+        energy = maxEnergy;
     }
     private void Start()
     {
@@ -29,5 +31,8 @@ public class PlayerSingleton : MonoBehaviour
     public bool isHiding { get; set; }
     public bool canRotate { get; set; }
     public float stress { get; set; }
+    public float energy { get; set; }
+    public float maxEnergy { get; set; }
+    public bool usingWeap { get; set; }
 }
 
