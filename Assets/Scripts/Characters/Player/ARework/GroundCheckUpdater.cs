@@ -16,13 +16,11 @@ public class GroundCheckUpdater : MonoBehaviour
         if (Grounded() && PlayerSingleton.Instance.isGrounded == false)
         {
             PlayerSingleton.Instance.isGrounded = true;
-            Debug.Log(PlayerSingleton.Instance.isGrounded);
         }
             
         else if (!Grounded() && PlayerSingleton.Instance.isGrounded)
         {
             PlayerSingleton.Instance.isGrounded = false;
-            Debug.Log(PlayerSingleton.Instance.isGrounded);
         }
     }
     private void Update()

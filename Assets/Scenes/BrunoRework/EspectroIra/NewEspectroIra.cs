@@ -6,12 +6,10 @@ public class NewEspectroIra : MonoBehaviour
 {
     public string currentState;
     public float distanceToPlayer;
-    private GameObject player;
     private MeshRenderer activeMeshRenderer;
     public MeshRenderer fakeMeshRenderer;
     void Start()
     {
-        player = GameObject.Find("NewPlayer");
         activeMeshRenderer = GetComponent<MeshRenderer>();
         currentState = "Hiding";
     }
@@ -21,34 +19,30 @@ public class NewEspectroIra : MonoBehaviour
     {
         StateController();
     }
-    private void FixedUpdate()
-    {
-        CheckPlayerDistance();
-    }
     private void StateController()
     {
         switch (currentState)
         {
             case "Hiding":
                 HandleHiding();
-                if (distanceToPlayer <= 1)
+                if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject,1f))
                 {
                     currentState = "Attack";                   
                 }
                 break;
             case "Attack":
                 HandleAttack();
-                if (distanceToPlayer >= 1.5f)
+                if (DetectPlayer.detection.CheckIfMoreDistance(this.gameObject, 1.5f))
                 {
                     currentState = "Active"; 
                 }
                 break;
             case "Active":
                 HandleActive();
-                if (distanceToPlayer >= 2.5f)
+                if (DetectPlayer.detection.CheckIfMoreDistance(this.gameObject, 2.5f))
                 {
                     currentState = "Hiding";
-                }else if (distanceToPlayer <= 1)
+                }else if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1f))
                 {
                     currentState = "Attack";
                 }
@@ -73,17 +67,5 @@ public class NewEspectroIra : MonoBehaviour
     {
         activeMeshRenderer.enabled = true;
         fakeMeshRenderer.enabled = false;
-    }
-    private void CheckPlayerDistance()
-    {
-        if (player != null)
-        {
-            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        }
-        else
-        {
-            Debug.LogWarning("No hay ningun player GameObject!!!");
-        }
-        
     }
 }

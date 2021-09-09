@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour
+public class DenyEnemy : MonoBehaviour
 {
-    bool denied;
-    public bool inPlayerAtkRange;
-
+    public static bool denied;
+    private bool inPlayerAtkRange;
     private void Awake()
     {
         denied = false;
@@ -14,7 +13,11 @@ public class Enemy1 : MonoBehaviour
     {
         Dreams.onWeaponUsed -= Deny;
     }
-    public void Deny()
+    private void Update()
+    {
+        Debug.Log(denied);
+    }
+    void Deny()
     {
         if(inPlayerAtkRange)
             denied = true;

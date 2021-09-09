@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class LightMec : MonoBehaviour
@@ -16,10 +15,13 @@ public class LightMec : MonoBehaviour
     {
         energy = maxEnergy;
         lantern = GameObject.Find("Lantern");
-        if (lantern == null)
-            Debug.Log("No se encontró Lantern !!");
         playerInput = GetComponent<PlayerInput>();
         attackAction = playerInput.actions["Attack"];
+        if (lantern == null)
+        {
+            Debug.Log("No se encontró Lantern !!");
+            return;
+        }
     }
     private void Start()
     {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
@@ -22,7 +21,6 @@ public class Dreams : MonoBehaviour
     private void Update()
     {
         UseWeapon();
-        Debug.Log(ps.energy);
     }
 
     public static event Action onWeaponUsed;
@@ -48,8 +46,7 @@ public class Dreams : MonoBehaviour
 
         if (ps.energy <= ps.maxEnergy)
         {
-            ps.energy += 1 * Time.deltaTime;
+            ps.energy += .15f * Time.deltaTime;
         }
-        
     }
 }
