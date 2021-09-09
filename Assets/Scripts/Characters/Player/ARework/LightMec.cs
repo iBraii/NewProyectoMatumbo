@@ -16,6 +16,8 @@ public class LightMec : MonoBehaviour
     {
         energy = maxEnergy;
         lantern = GameObject.Find("Lantern");
+        if (lantern == null)
+            Debug.Log("No se encontró Lantern !!");
         playerInput = GetComponent<PlayerInput>();
         attackAction = playerInput.actions["Attack"];
     }
