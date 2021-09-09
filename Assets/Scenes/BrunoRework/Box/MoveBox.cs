@@ -28,7 +28,7 @@ public class MoveBox : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         BoxMovement();
        
@@ -46,14 +46,18 @@ public class MoveBox : MonoBehaviour
             }else
             {
                 grabingBox = true;
-                box.GetComponent<ActualBox>().GetInitialDistanceToPlayer(transform);
+                LookAtBox();
                 PlayerSingleton.Instance.canRotate = false;
             }
                 
         }
         
     }
-
+    private void LookAtBox()
+    {
+        Vector3 desiredRotation =(box.transform.position - transform.up).normalized;
+        Debug.Log(desiredRotation);
+    }
     public void BoxMovement()
     {
         if (grabingBox&&box!=null)
@@ -81,5 +85,11 @@ public class MoveBox : MonoBehaviour
         {
             box = null;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(box!=null)
+        Debug.DrawRay(transform.position, (box.transform.position - transform.position), Color.red);
     }
 }

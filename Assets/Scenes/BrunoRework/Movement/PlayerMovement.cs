@@ -43,28 +43,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Rotate();
-        Movement();
-        //OldMovement();
+        Movement();       
     }
-
     private void Update()
     {
         Jumping();
     }
-
-    //private void OldMovement()
-    //{
-    //    Vector2 input = _moveAction.ReadValue<Vector2>();
-    //    direction = new Vector3(input.x, 0f, input.y).normalized;
-    //    if (direction.magnitude >= 0.1f )
-    //    {
-    //        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-    //        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
-    //        transform.localRotation = Quaternion.Euler(0f, angle, 0f);
-    //        moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-    //        _characterController.Move(moveDirection * movementSpeed * Time.fixedDeltaTime);
-    //    }
-    //}
     public void Movement()
     {
         Vector2 input = _moveAction.ReadValue<Vector2>();
