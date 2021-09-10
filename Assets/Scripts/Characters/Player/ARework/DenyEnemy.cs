@@ -2,36 +2,38 @@ using UnityEngine;
 
 public class DenyEnemy : MonoBehaviour
 {
-    public static bool denied;
-    private bool inPlayerAtkRange;
+    public static bool inRange;
+    private bool detectAtkRange;
     private void Awake()
     {
-        denied = false;
+        inRange = false;
         Dreams.onWeaponUsed += Deny;
     }
     private void OnDisable()
     {
         Dreams.onWeaponUsed -= Deny;
     }
-    private void Update()
-    {
-        Debug.Log(denied);
-    }
     void Deny()
     {
-        if(inPlayerAtkRange)
-            denied = true;
+        if(detectAtkRange)
+        {
+            inRange = true;
+        }
+            
         else
-            denied = false;
+        {
+            inRange = false;
+        }
+            
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DreamCatcher"))
-            inPlayerAtkRange = true;      
+            detectAtkRange = true;      
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("DreamCatcher"))
-            inPlayerAtkRange = false;  
+            detectAtkRange = false;  
     }
 }

@@ -19,7 +19,7 @@ public class LightMec : MonoBehaviour
         attackAction = playerInput.actions["Attack"];
         if (lantern == null)
         {
-            Debug.Log("No se encontró Lantern !!");
+            Debug.LogWarning("No se encontró Lantern !!");
             return;
         }
     }
