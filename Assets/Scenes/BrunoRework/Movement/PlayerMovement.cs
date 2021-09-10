@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = _moveAction.ReadValue<Vector2>();
         direction = new Vector3(input.x, 0f, input.y).normalized;
 
-        if (direction.magnitude >= .1f)
+        if (direction.magnitude >= .1f&&!PlayerSingleton.Instance.isHiding)
         {
             _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
         }
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
-            if (PlayerSingleton.Instance.canRotate)
+            if (PlayerSingleton.Instance.canRotate&&!PlayerSingleton.Instance.isHiding)
             {
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jumping()
     {
         playerVelocity.y += gravity * Time.deltaTime;
+        _characterController.Move(playerVelocity * Time.deltaTime);
 
         if (PlayerSingleton.Instance.isGrounded && playerVelocity.y < 0)
             playerVelocity.y = 0f;
@@ -86,9 +87,9 @@ public class PlayerMovement : MonoBehaviour
         if (playerVelocity.y > 0)
             playerVelocity += Vector3.up * gravity * Time.deltaTime;
 
-        _characterController.Move(playerVelocity * Time.deltaTime);
+       
 
-        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded)
+        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
         }

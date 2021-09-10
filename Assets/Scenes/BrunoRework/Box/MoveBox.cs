@@ -55,8 +55,9 @@ public class MoveBox : MonoBehaviour
     }
     private void LookAtBox()
     {
-        Vector3 desiredRotation =(box.transform.position - transform.up).normalized;
-        Debug.Log(desiredRotation);
+        Vector3 lookAtBox = box.transform.position;
+        lookAtBox.y = transform.position.y;
+        transform.LookAt(lookAtBox);
     }
     public void BoxMovement()
     {
