@@ -28,11 +28,12 @@ public class MoveBox : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         BoxMovement();
        
     }
+     
 
     public void Grab(InputAction.CallbackContext context)
     {
