@@ -5,19 +5,31 @@ using UnityEngine;
 public class NewEspectroIra : MonoBehaviour
 {
     public string currentState;
-    public float distanceToPlayer;
+    private float distanceToPlayer;
     private MeshRenderer activeMeshRenderer;
     public MeshRenderer fakeMeshRenderer;
+    [HideInInspector]
+    public bool isDenied;
     void Start()
     {
         activeMeshRenderer = GetComponent<MeshRenderer>();
         currentState = "Hiding";
     }
+    private void Awake()
+    {
+        Dreams.onWeaponUsed += HandleDenied;
+    }
+    private void OnDisable()
+    {
+        Dreams.onWeaponUsed -= HandleDenied;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        StateController();
+        if(!DenyEnemy.inRange)
+            StateController();
+
     }
     private void StateController()
     {
@@ -67,5 +79,14 @@ public class NewEspectroIra : MonoBehaviour
     {
         activeMeshRenderer.enabled = true;
         fakeMeshRenderer.enabled = false;
+    }
+    private void HandleDenied()
+    {
+        if (DenyEnemy.inRange)
+        {
+            activeMeshRenderer.enabled = true;
+            fakeMeshRenderer.enabled = false;
+        }
+        
     }
 }

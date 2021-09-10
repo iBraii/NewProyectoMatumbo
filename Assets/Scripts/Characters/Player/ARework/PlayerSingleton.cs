@@ -22,6 +22,7 @@ public class PlayerSingleton : MonoBehaviour
         stress = 0;
         maxEnergy = 3;
         energy = maxEnergy;
+        isHiding = false;
     }
     private void Start()
     {

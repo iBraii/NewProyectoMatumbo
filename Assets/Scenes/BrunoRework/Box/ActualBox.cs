@@ -11,13 +11,7 @@ public class ActualBox : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-    }
+   
     public void Motion(Vector3 direction)
     {
         rb.velocity = direction * speed;

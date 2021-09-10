@@ -5,47 +5,49 @@ using UnityEngine.InputSystem;
 
 public class NewHideInBlanket : MonoBehaviour
 {
-    
-    //[SerializeField] bool blanketAtReach;
-    //private PlayerSingleton ps;
 
-    //private void Awake()
-    //{
-    //    ps=PlayerSingleton.Instance;
-    //    ps.interactAction.performed +=Hide;
+    [SerializeField] bool blanketAtReach;
+    private PlayerInput playerInput;
+    private InputAction interactAction;
 
-    //}
-    //private void OnDisable()
-    //{
-    //    ps.interactAction.performed -= Hide;
-    //}
-    //void Hide(InputAction.CallbackContext callback)
-    //{
-    //    if (blanketAtReach)
-    //    {
-    //        if (PlayerSingleton.Instance.isHiding)
-    //        {
-    //            PlayerSingleton.Instance.isHiding = false;
-    //        }
-    //        else
-    //        {
-    //            PlayerSingleton.Instance.isHiding = true;
-    //        }
-    //    }
-    //}
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        interactAction = playerInput.actions["Interact"];
+    }
+    private void Update()
+    {
+        Hide();
+    }
+    void Hide()
+    {
+        if (blanketAtReach&&interactAction.triggered)
+        {
+            if (PlayerSingleton.Instance.isHiding)
+            {
+                PlayerSingleton.Instance.isHiding = false;
+                Debug.Log("No hiding");
+            }
+            else
+            {
+                PlayerSingleton.Instance.isHiding = true;
+                Debug.Log("Is Hiding");
+            }
+        }
+    }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == "Blanket")
-    //    {
-    //        blanketAtReach = true;
-    //    }
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.tag == "Blanket")
-    //    {
-    //        blanketAtReach = false;
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Blanket")
+        {
+            blanketAtReach = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Blanket")
+        {
+            blanketAtReach = false;
+        }
+    }
 }
