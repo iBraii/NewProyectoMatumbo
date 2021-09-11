@@ -44,14 +44,14 @@ public class NewEspectroIra : MonoBehaviour
                 break;
             case "Attack":
                 HandleAttack();
-                if (DetectPlayer.detection.CheckIfMoreDistance(this.gameObject, 1.5f))
+                if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1.5f) == false)
                 {
                     currentState = "Active"; 
                 }
                 break;
             case "Active":
                 HandleActive();
-                if (DetectPlayer.detection.CheckIfMoreDistance(this.gameObject, 2.5f))
+                if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 2.5f) == false)
                 {
                     currentState = "Hiding";
                 }else if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1f))

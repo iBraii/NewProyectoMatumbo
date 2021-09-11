@@ -7,12 +7,17 @@ public class EnemyStateController : MonoBehaviour
     EnemyStates currentState;
     NavMeshAgent agent;
     [SerializeField] Transform[] waypoints;
+    [SerializeField] bool onVisionRange, isClose;
+    [SerializeField] float visionRange;
+    [SerializeField] float closeRange;
+    [SerializeField] float visionAngle;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.Warp(waypoints[0].position);
-        Dreams.onWeaponUsed += HandleDenied;
+        Dreams.onWeaponUsed += HandleDenied;;
+        
     }
     private void OnDisable()
     {
@@ -24,8 +29,11 @@ public class EnemyStateController : MonoBehaviour
     }
     private void Update()
     {
+        onVisionRange = DetectPlayer.detection.CheckIfVisionRange(this.gameObject,visionAngle, visionRange);
+        isClose = DetectPlayer.detection.CheckIfLessDistance(this.gameObject, closeRange);
         if (DenyEnemy.inRange == false)
             StartCoroutine(StateController());
+        Debug.Log(onVisionRange);
     }
 
     IEnumerator StateController()
@@ -34,22 +42,22 @@ public class EnemyStateController : MonoBehaviour
         {
             case EnemyStates.OnPath:
                 HandlePath();
-                if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1f))
+                if (isClose || onVisionRange)
                     currentState = EnemyStates.Following;
                 break;
             case EnemyStates.Following:
                 HandleFollow();
-                if (DetectPlayer.detection.CheckIfMoreDistance(this.gameObject, 1f))
+                if (isClose == false && onVisionRange == false)
                     currentState = EnemyStates.Confused;
                 break;
             case EnemyStates.Confused:
                 HandleConfused();
-                if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1f))
+                if (isClose || onVisionRange)
                     currentState = EnemyStates.Following;
                 else
                 {
                     yield return new WaitForSeconds(3);
-                    if (DetectPlayer.detection.CheckIfMoreDistance(this.gameObject, 1f))
+                    if (isClose == false && onVisionRange == false)
                         currentState = EnemyStates.OnPath;
                 }  
                 break;
