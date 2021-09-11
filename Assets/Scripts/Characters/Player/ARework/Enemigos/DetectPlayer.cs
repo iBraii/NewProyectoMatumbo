@@ -26,7 +26,7 @@ public class DetectPlayer : MonoBehaviour
 
     public bool CheckIfLessDistance(GameObject origin, float rangeDistance)
     {
-        if (Vector3.Distance(origin.transform.position, player.transform.position) <= rangeDistance)
+        if (Vector3.Distance(origin.transform.position, player.transform.position) < rangeDistance)
             return true;
         else
             return false;
@@ -34,7 +34,7 @@ public class DetectPlayer : MonoBehaviour
 
     public bool CheckIfMoreDistance(GameObject origin, float rangeDistance)
     {
-        if (Vector3.Distance(origin.transform.position, player.transform.position) >= rangeDistance)
+        if (Vector3.Distance(origin.transform.position, player.transform.position) > rangeDistance)
             return true;
         else
             return false;
