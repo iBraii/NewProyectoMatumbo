@@ -522,6 +522,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NEGACION
       objectReference: {fileID: 0}
+    - target: {fileID: 8940400647637121972, guid: 0268d96d1168a314aa5984c4e2ccf295, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8940400647637121973, guid: 0268d96d1168a314aa5984c4e2ccf295, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1616,7 +1620,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1808875997}
-  m_LocalRotation: {x: 0.15796159, y: 0.000000016990363, z: -0.000000002717948, w: 0.9874453}
+  m_LocalRotation: {x: 0.15796159, y: -0.000000016990356, z: 0.000000002717947, w: 0.9874453}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1995,6 +1999,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 725d9e98-970d-4433-89f2-e375c641dedc
     m_ActionName: Land/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20f0d76f-861a-4f4a-b106-4ae652c787bc
+    m_ActionName: Land/Light[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Land

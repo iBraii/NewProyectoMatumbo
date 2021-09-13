@@ -33,11 +33,13 @@ public class Dreams : MonoBehaviour
             ps.dreamEnergy -= 1 * Time.deltaTime;
             ps.weapUsedTime += Time.deltaTime;
             ps.usingWeap = true;
+            ps.canMove = false;
             timer = 0;
             onWeaponUsed?.Invoke();
         }
         else
         {
+            ps.canMove = true;
             ps.usingWeap = false;
             RegenWeapEnergy();
         }

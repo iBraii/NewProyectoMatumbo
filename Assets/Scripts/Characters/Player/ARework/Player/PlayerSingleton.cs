@@ -40,5 +40,6 @@ public class PlayerSingleton : MonoBehaviour
     public float maxDreamEnergy { get; set; }
     public bool usingWeap { get; set; }
     public float weapUsedTime { get; set; }
+    public bool canMove { get; set; }
 }
 
