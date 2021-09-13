@@ -10,6 +10,7 @@ public class Dreams : MonoBehaviour
     InputAction attackAction;
 
     PlayerSingleton ps;
+    float timer;
 
     private void Awake()
     {
@@ -17,36 +18,40 @@ public class Dreams : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         attackAction = playerInput.actions["Attack"];
     }
-
     private void Update()
     {
         UseWeapon();
+        Mathf.Clamp(ps.dreamEnergy, 0, ps.maxDreamEnergy);
     }
 
     public static event Action onWeaponUsed;
 
     void UseWeapon()
     {
-        if (ps.energy >= 0 && attackAction.ReadValue<float>() == 1)
+        if (ps.dreamEnergy > 0 && attackAction.ReadValue<float>() == 1)
         {
-            ps.energy -= 1 * Time.deltaTime;
+            ps.dreamEnergy -= 1 * Time.deltaTime;
+            ps.weapUsedTime += Time.deltaTime;
             ps.usingWeap = true;
+            timer = 0;
             onWeaponUsed?.Invoke();
         }
         else
         {
             ps.usingWeap = false;
-            StartCoroutine(RegenWeapEnergy());
+            RegenWeapEnergy();
         }
     }
 
-    IEnumerator RegenWeapEnergy()
+    void RegenWeapEnergy()
     {
-        yield return new WaitForSeconds(1);
-
-        if (ps.energy <= ps.maxEnergy)
+        timer += Time.deltaTime;
+        if(timer >= 3)
         {
-            ps.energy += .15f * Time.deltaTime;
-        }
+            if (ps.dreamEnergy <= ps.maxDreamEnergy)
+            {
+                ps.dreamEnergy += .15f * Time.deltaTime;
+            }
+        }  
     }
 }

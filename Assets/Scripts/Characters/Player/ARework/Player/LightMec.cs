@@ -10,13 +10,13 @@ public class LightMec : MonoBehaviour
     bool isON = false;
 
     private PlayerInput playerInput;
-    private InputAction attackAction;
+    private InputAction lightAction;
     private void Awake()
     {
         energy = maxEnergy;
         lantern = GameObject.Find("Lantern");
         playerInput = GetComponent<PlayerInput>();
-        attackAction = playerInput.actions["Attack"];
+        lightAction = playerInput.actions["Light"];
         if (lantern == null)
         {
             Debug.LogWarning("No se encontró Lantern !!");
@@ -34,23 +34,16 @@ public class LightMec : MonoBehaviour
     }
     void ChargeLimits()
     {
-        if (energy >= maxEnergy)
-            energy = maxEnergy;
-        if (energy <= 0)
-        {
-            energy = 0;
-            isON = false;
-            lantern.SetActive(false);
-        }    
+        Mathf.Clamp(PlayerSingleton.Instance.lightEnergy, 0, PlayerSingleton.Instance.maxLightEnergy);
     }
     void PerformLightAction()
     {
-        if(attackAction.triggered && isON == false)
+        if(lightAction.triggered && isON == false)
         {
             isON = true;
             lantern.SetActive(true);
         }
-        else if (attackAction.triggered && isON)
+        else if (lightAction.triggered && isON)
         {
             isON = false;
             lantern.SetActive(false);
@@ -59,9 +52,7 @@ public class LightMec : MonoBehaviour
     void OnPerformed()
     {
         if(isON)
-        {
             energy -= 1 * Time.deltaTime;
-        }
     }
     private void Update()
     {

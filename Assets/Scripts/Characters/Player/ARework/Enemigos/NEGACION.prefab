@@ -187,11 +187,10 @@ MonoBehaviour:
   - {fileID: 8940400646389076225}
   - {fileID: 8940400646760291152}
   - {fileID: 8940400646579397853}
-  onVisionRange: 0
-  isClose: 0
   visionRange: 2
   closeRange: 1
   visionAngle: 150
+  maxConfusedTime: 4
 --- !u!65 &8940400646712971840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -213,13 +212,13 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8940400646712971848}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -18,13 +18,11 @@ public class DenyEnemy : MonoBehaviour
         if(detectAtkRange)
         {
             inRange = true;
-        }
-            
+        }  
         else
         {
             inRange = false;
         }
-            
     }
     private void OnTriggerEnter(Collider other)
     {

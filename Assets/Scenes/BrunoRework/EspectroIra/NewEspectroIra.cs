@@ -27,9 +27,8 @@ public class NewEspectroIra : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!DenyEnemy.inRange)
+        if (!DenyEnemy.inRange)
             StateController();
-
     }
     private void StateController()
     {
@@ -82,11 +81,18 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleDenied()
     {
-        if (DenyEnemy.inRange)
+        if(DenyEnemy.inRange)
         {
             activeMeshRenderer.enabled = true;
             fakeMeshRenderer.enabled = false;
+            PlayerSingleton.Instance.stress += 0;
         }
-        
     }
+}
+public enum Enemy2States
+{
+    Hiding,
+    Active,
+    Attack,
+    Denied
 }

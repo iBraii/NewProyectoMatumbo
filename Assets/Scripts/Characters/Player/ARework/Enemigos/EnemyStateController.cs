@@ -7,21 +7,22 @@ public class EnemyStateController : MonoBehaviour
     EnemyStates currentState;
     NavMeshAgent agent;
     [SerializeField] Transform[] waypoints;
-    [SerializeField] bool onVisionRange, isClose;
+    bool onVisionRange, isClose;
     [SerializeField] float visionRange;
     [SerializeField] float closeRange;
     [SerializeField] float visionAngle;
+    int wpIndex;
+    float confusedTimer, deniedTime;
+    [SerializeField] float maxConfusedTime;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.Warp(waypoints[0].position);
-        Dreams.onWeaponUsed += HandleDenied;;
-        
+        Dreams.onWeaponUsed += CallDeny;
     }
     private void OnDisable()
     {
-        Dreams.onWeaponUsed -= HandleDenied;
+        Dreams.onWeaponUsed -= CallDeny;
     }
     void Start()
     {
@@ -31,60 +32,98 @@ public class EnemyStateController : MonoBehaviour
     {
         onVisionRange = DetectPlayer.detection.CheckIfVisionRange(this.gameObject,visionAngle, visionRange);
         isClose = DetectPlayer.detection.CheckIfLessDistance(this.gameObject, closeRange);
-        if (DenyEnemy.inRange == false)
-            StartCoroutine(StateController());
-        Debug.Log(onVisionRange);
+        StateController();
     }
 
-    IEnumerator StateController()
+    void StateController()
     {
         switch (currentState)
         {
             case EnemyStates.OnPath:
                 HandlePath();
-                if (isClose || onVisionRange)
-                    currentState = EnemyStates.Following;
                 break;
             case EnemyStates.Following:
                 HandleFollow();
-                if (isClose == false && onVisionRange == false)
-                    currentState = EnemyStates.Confused;
                 break;
             case EnemyStates.Confused:
-                HandleConfused();
-                if (isClose || onVisionRange)
-                    currentState = EnemyStates.Following;
-                else
-                {
-                    yield return new WaitForSeconds(3);
-                    if (isClose == false && onVisionRange == false)
-                        currentState = EnemyStates.OnPath;
-                }  
+                HandleConfused(); 
+                break;
+            case EnemyStates.Denied:
+                HandleDenied();
                 break;
         }
     }
 
     void HandlePath()
     {
+        agent.SetDestination(waypoints[wpIndex].transform.position);
+
+        float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
         
+        if (wpDistance <= agent.stoppingDistance)
+        {
+            wpIndex++;
+            if (wpIndex >= waypoints.Length)
+                wpIndex = 0;
+            agent.SetDestination(waypoints[wpIndex].transform.position);
+        }
+
+        //CHANGE CONDITIONS
+        if (isClose || onVisionRange)
+            currentState = EnemyStates.Following;
     }
     void HandleFollow()
     {
-        
+        agent.SetDestination(DetectPlayer.detection.player.transform.position);
+
+        //CHANGE CONDITIONS
+        if (isClose == false && onVisionRange == false || PlayerSingleton.Instance.isHiding)
+            currentState = EnemyStates.Confused;
     }
     void HandleConfused()
     {
-        
+        agent.isStopped = true;
+        confusedTimer += Time.deltaTime;
+
+        //CHANGE CONDITIONS
+        if (confusedTimer >= maxConfusedTime)
+        {
+            agent.isStopped = false;
+            confusedTimer = 0;
+            if (isClose || onVisionRange && PlayerSingleton.Instance.isHiding == false)
+                currentState = EnemyStates.Following;
+            else
+                currentState = EnemyStates.OnPath;
+        }     
+    }
+    void CallDeny()
+    {
+        if (DenyEnemy.inRange)
+            currentState = EnemyStates.Denied;     
     }
     void HandleDenied()
     {
-        if (DenyEnemy.inRange)
-            Debug.Log("DENIED");
+        agent.isStopped = true;
+        if (PlayerSingleton.Instance.usingWeap == false)
+                deniedTime += Time.deltaTime;
+
+        //CHANGE CONDITIONS
+        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime)
+        {
+            agent.isStopped = false;
+            deniedTime = 0;
+            PlayerSingleton.Instance.weapUsedTime = 0;
+            if (isClose || onVisionRange)
+                currentState = EnemyStates.Following;
+            else
+                currentState = EnemyStates.OnPath;
+        }
     }
 }
 public enum EnemyStates
 {
     OnPath,
     Confused,
-    Following
+    Following,
+    Denied
 }

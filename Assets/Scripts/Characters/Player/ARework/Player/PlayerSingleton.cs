@@ -20,8 +20,10 @@ public class PlayerSingleton : MonoBehaviour
     {
         _instance = this;
         stress = 0;
-        maxEnergy = 3;
-        energy = maxEnergy;
+        maxLightEnergy = 10;
+        lightEnergy = maxLightEnergy;
+        maxDreamEnergy = 3;
+        dreamEnergy = maxDreamEnergy;
         isHiding = false;
     }
     private void Start()
@@ -32,8 +34,11 @@ public class PlayerSingleton : MonoBehaviour
     public bool isHiding { get; set; }
     public bool canRotate { get; set; }
     public float stress { get; set; }
-    public float energy { get; set; }
-    public float maxEnergy { get; set; }
+    public float lightEnergy { get; set; }
+    public float maxLightEnergy { get; set; }
+    public float dreamEnergy { get; set; }
+    public float maxDreamEnergy { get; set; }
     public bool usingWeap { get; set; }
+    public float weapUsedTime { get; set; }
 }
 
