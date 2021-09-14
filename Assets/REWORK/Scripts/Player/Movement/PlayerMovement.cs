@@ -40,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Rotate();
-        Movement();       
+        Movement();
+        Gravity();
     }
     private void Update()
     {
@@ -73,8 +74,7 @@ public class PlayerMovement : MonoBehaviour
         else
             moveDirection = Vector3.zero;
     }
-
-    private void Jumping()
+    private void Gravity()
     {
         playerVelocity.y += gravity * Time.deltaTime;
         _characterController.Move(playerVelocity * Time.deltaTime);
@@ -84,9 +84,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerVelocity.y > 0)
             playerVelocity += Vector3.up * gravity * Time.deltaTime;
-
-       
-
+    }
+    private void Jumping()
+    {
         if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
