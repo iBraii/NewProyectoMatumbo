@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        
+    }
     public void UpdateGameState(GameState newState)
     {
         state = newState;

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     public Animator transition;
+    public float duration;
     // Start is called before the first frame update
     void Start()
     {
