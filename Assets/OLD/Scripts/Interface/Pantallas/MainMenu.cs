@@ -47,18 +47,18 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            PlayerPrefs.SetInt("TutorialCompleted",0);
-            PlayerPrefs.SetInt("Chapter2Completed",0);
-            Start();
-        }
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            PlayerPrefs.SetInt("TutorialCompleted", 1);
-            PlayerPrefs.SetInt("Chapter2Completed", 1);
-            Start();
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    PlayerPrefs.SetInt("TutorialCompleted",0);
+        //    PlayerPrefs.SetInt("Chapter2Completed",0);
+        //    Start();
+        //}
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
+        //    PlayerPrefs.SetInt("TutorialCompleted", 1);
+        //    PlayerPrefs.SetInt("Chapter2Completed", 1);
+        //    Start();
+        //}
     }
     public void LoadGame()
     {

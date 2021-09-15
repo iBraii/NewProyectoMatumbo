@@ -76,7 +76,7 @@ public class EnemyStateController : MonoBehaviour
         }
 
         //CHANGE CONDITIONS
-        if (isClose || onVisionRange)
+        if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding)
             currentState = EnemyStates.Following;
     }
     void HandleFollow()
