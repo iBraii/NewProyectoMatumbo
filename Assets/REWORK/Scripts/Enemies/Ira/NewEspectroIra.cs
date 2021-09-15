@@ -14,6 +14,8 @@ public class NewEspectroIra : MonoBehaviour
     public float detectRange;
     public float attackRange;
     public float activeRange;
+    float deniedTime;
+
     void Start()
     {
         de = GetComponent<DenyEnemy>();
@@ -95,9 +97,16 @@ public class NewEspectroIra : MonoBehaviour
         activeMeshRenderer.enabled = true;
         fakeMeshRenderer.enabled = false;
 
-        //CHANGE CONDITIONS
         if (PlayerSingleton.Instance.usingWeap == false)
+            deniedTime += Time.deltaTime;
+
+        //CHANGE CONDITIONS
+        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime)
+        {
+            deniedTime = 0;
+            PlayerSingleton.Instance.weapUsedTime = 0;
             currentState = Enemy2States.Active;
+        }
     }
     private void OnDrawGizmos()
     {
