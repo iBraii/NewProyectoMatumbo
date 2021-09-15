@@ -65,6 +65,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ResetLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""38f5f839-5c0a-4996-b2b8-a79af4a33db0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,6 +185,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""100c3c65-9101-454e-8bc1-755bad19fbd5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -191,6 +210,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Land_Interact = m_Land.FindAction("Interact", throwIfNotFound: true);
         m_Land_Attack = m_Land.FindAction("Attack", throwIfNotFound: true);
         m_Land_Light = m_Land.FindAction("Light", throwIfNotFound: true);
+        m_Land_ResetLevel = m_Land.FindAction("ResetLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,6 +266,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Interact;
     private readonly InputAction m_Land_Attack;
     private readonly InputAction m_Land_Light;
+    private readonly InputAction m_Land_ResetLevel;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -256,6 +277,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Interact => m_Wrapper.m_Land_Interact;
         public InputAction @Attack => m_Wrapper.m_Land_Attack;
         public InputAction @Light => m_Wrapper.m_Land_Light;
+        public InputAction @ResetLevel => m_Wrapper.m_Land_ResetLevel;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Light.started -= m_Wrapper.m_LandActionsCallbackInterface.OnLight;
                 @Light.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnLight;
                 @Light.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnLight;
+                @ResetLevel.started -= m_Wrapper.m_LandActionsCallbackInterface.OnResetLevel;
+                @ResetLevel.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnResetLevel;
+                @ResetLevel.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnResetLevel;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -305,6 +330,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Light.started += instance.OnLight;
                 @Light.performed += instance.OnLight;
                 @Light.canceled += instance.OnLight;
+                @ResetLevel.started += instance.OnResetLevel;
+                @ResetLevel.performed += instance.OnResetLevel;
+                @ResetLevel.canceled += instance.OnResetLevel;
             }
         }
     }
@@ -317,5 +345,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnLight(InputAction.CallbackContext context);
+        void OnResetLevel(InputAction.CallbackContext context);
     }
 }

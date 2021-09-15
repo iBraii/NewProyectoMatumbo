@@ -10,6 +10,10 @@ public class NewEspectroIra : MonoBehaviour
     public MeshRenderer fakeMeshRenderer;
     [HideInInspector]
     public bool isDenied;
+    [Header("Variables deteccion")]
+    public float detectRange;
+    public float attackRange;
+    public float activeRange;
     void Start()
     {
         de = GetComponent<DenyEnemy>();
@@ -58,7 +62,7 @@ public class NewEspectroIra : MonoBehaviour
         Debug.Log("Current Stress: " + PlayerSingleton.Instance.stress);
 
         //CHANGE CONDITIONS
-        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1.5f) == false)
+        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, detectRange) == false)
             currentState = Enemy2States.Active;
     }
     private void HandleHiding()
@@ -67,7 +71,7 @@ public class NewEspectroIra : MonoBehaviour
         fakeMeshRenderer.enabled = true;
 
         //CHANGE CONDITIONS
-        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1f))
+        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
             currentState = Enemy2States.Attack;
     }
     private void HandleActive()
@@ -76,9 +80,9 @@ public class NewEspectroIra : MonoBehaviour
         fakeMeshRenderer.enabled = false;
 
         //CHANGE CONDITIONS 
-        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 2.5f) == false)
+        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false)
             currentState = Enemy2States.Hiding;
-        else if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 1f))
+        else if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
             currentState = Enemy2States.Attack;
     }
     private void CallDeny()
@@ -94,6 +98,17 @@ public class NewEspectroIra : MonoBehaviour
         //CHANGE CONDITIONS
         if (PlayerSingleton.Instance.usingWeap == false)
             currentState = Enemy2States.Active;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;   
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+        
+        Gizmos.color = Color.blue;   
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        
+        Gizmos.color = Color.yellow;   
+        Gizmos.DrawWireSphere(transform.position, activeRange);
     }
 }
 public enum Enemy2States
