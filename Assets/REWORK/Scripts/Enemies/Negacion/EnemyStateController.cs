@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using System;
 
 public class EnemyStateController : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class EnemyStateController : MonoBehaviour
     int wpIndex;
     float confusedTimer, deniedTime;
     [SerializeField] float maxConfusedTime;
-
+    [SerializeField] float damage;
+    [SerializeField] float pathSpeed;
+    [SerializeField] float followSpeed;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -35,6 +38,7 @@ public class EnemyStateController : MonoBehaviour
         onVisionRange = DetectPlayer.detection.CheckIfVisionRange(this.gameObject,visionAngle, visionRange);
         isClose = DetectPlayer.detection.CheckIfLessDistance(this.gameObject, closeRange);
         StateController();
+        Debug.Log(currentState);
     }
 
     void StateController()
@@ -58,8 +62,9 @@ public class EnemyStateController : MonoBehaviour
 
     void HandlePath()
     {
+        agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
-
+        
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
         
         if (wpDistance <= agent.stoppingDistance)
@@ -76,11 +81,18 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleFollow()
     {
+        agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
+        
+        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 0.4f))
+            PlayerSingleton.Instance.stress += damage * Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (isClose == false && onVisionRange == false || PlayerSingleton.Instance.isHiding)
-            currentState = EnemyStates.Confused;
+        if(onVisionRange)
+        {
+            if (isClose == false && onVisionRange == false || PlayerSingleton.Instance.isHiding)
+                currentState = EnemyStates.Confused;
+        }
     }
     void HandleConfused()
     {
@@ -92,10 +104,7 @@ public class EnemyStateController : MonoBehaviour
         {
             agent.isStopped = false;
             confusedTimer = 0;
-            if (isClose || onVisionRange && PlayerSingleton.Instance.isHiding == false)
-                currentState = EnemyStates.Following;
-            else
-                currentState = EnemyStates.OnPath;
+            currentState = EnemyStates.OnPath;
         }     
     }
     void CallDeny()
@@ -107,7 +116,7 @@ public class EnemyStateController : MonoBehaviour
     {
         agent.isStopped = true;
         if (PlayerSingleton.Instance.usingWeap == false)
-                deniedTime += Time.deltaTime;
+            deniedTime += Time.deltaTime;
 
         //CHANGE CONDITIONS
         if (deniedTime >= PlayerSingleton.Instance.weapUsedTime)

@@ -67,8 +67,8 @@ public class EspectroCulpaNuevo : MonoBehaviour
         else if (distanceToPlayer > maxTreshhold)
             speed = fastSpeed;
 
-        Debug.Log("Speed: " + speed);
-        Debug.Log("Distance: " + distanceToPlayer);
+        //Debug.Log("Speed: " + speed);
+        //Debug.Log("Distance: " + distanceToPlayer);
     }
     private void Deactivate()
     {
