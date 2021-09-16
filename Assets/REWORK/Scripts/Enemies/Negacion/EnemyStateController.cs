@@ -19,6 +19,7 @@ public class EnemyStateController : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] float pathSpeed;
     [SerializeField] float followSpeed;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -60,6 +61,7 @@ public class EnemyStateController : MonoBehaviour
         }
     }
 
+    bool DetectObstacle() => Physics.Raycast(transform.position, DetectPlayer.detection.player.transform.position - transform.position);
     void HandlePath()
     {
         agent.speed = pathSpeed;
@@ -76,8 +78,16 @@ public class EnemyStateController : MonoBehaviour
         }
 
         //CHANGE CONDITIONS
-        if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding)
-            currentState = EnemyStates.Following;
+        if(DetectObstacle() == false)
+        {
+            if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding)
+                currentState = EnemyStates.Following;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
     void HandleFollow()
     {

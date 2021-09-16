@@ -31,8 +31,4 @@ public class ChangeScene : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
-    public void PlayMusic()
-    {
-        SoundManager.instance.Play("ButtonPressed");
-    }
 }
