@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class TimerText : MonoBehaviour
 {
     public Text myText;
-    private TransitionTrigger sc_TT;
+    private TransitionTrigg sc_TT;
     private string minutes, seconds, miliseconds;
     // Start is called before the first frame update
     void Start()
     {
         myText = GetComponent<Text>();
-        sc_TT = GameObject.Find("TransitionTrigger").GetComponent<TransitionTrigger>();
+        sc_TT = GameObject.Find("TransitionTrigger").GetComponent<TransitionTrigg>();
     }
 
     // Update is called once per frame

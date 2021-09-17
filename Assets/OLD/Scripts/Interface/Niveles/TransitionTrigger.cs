@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TransitionTrigger : MonoBehaviour
+public class TransitionTrigg : MonoBehaviour
 {
     private ChangeScene sc_scCh;
     public string levelCompleted;

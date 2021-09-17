@@ -19,7 +19,8 @@ public class EnemyStateController : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] float pathSpeed;
     [SerializeField] float followSpeed;
-
+    [SerializeField] bool detectObstacle;
+    public LayerMask lm;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -33,13 +34,20 @@ public class EnemyStateController : MonoBehaviour
     void Start()
     {
         currentState = EnemyStates.OnPath;
+        
     }
     private void Update()
     {
+        //RANGOS DE VISION
         onVisionRange = DetectPlayer.detection.CheckIfVisionRange(this.gameObject,visionAngle, visionRange);
         isClose = DetectPlayer.detection.CheckIfLessDistance(this.gameObject, closeRange);
+
+        //OBSTACLE RAYCAST
+        detectObstacle = Physics.Raycast(transform.position, DetectPlayer.detection.player.transform.position - transform.position, lm);
+        Debug.DrawRay(transform.position, DetectPlayer.detection.player.transform.position - transform.position,Color.red);
+
         StateController();
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     void StateController()
@@ -61,12 +69,12 @@ public class EnemyStateController : MonoBehaviour
         }
     }
 
-    bool DetectObstacle() => Physics.Raycast(transform.position, DetectPlayer.detection.player.transform.position - transform.position);
     void HandlePath()
     {
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
-        
+        transform.LookAt(new Vector3(waypoints[wpIndex].transform.position.x, 0, waypoints[wpIndex].transform.position.z));
+
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
         
         if (wpDistance <= agent.stoppingDistance)
@@ -78,22 +86,18 @@ public class EnemyStateController : MonoBehaviour
         }
 
         //CHANGE CONDITIONS
-        if(DetectObstacle() == false)
+        if(detectObstacle == false)
         {
             if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding)
                 currentState = EnemyStates.Following;
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        
-    }
     void HandleFollow()
     {
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
-        
+        transform.LookAt(new Vector3(DetectPlayer.detection.player.transform.position.x, 0, DetectPlayer.detection.player.transform.position.z));
+
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 0.4f))
             PlayerSingleton.Instance.stress += damage * Time.deltaTime;
 
@@ -138,6 +142,20 @@ public class EnemyStateController : MonoBehaviour
                 currentState = EnemyStates.Following;
             else
                 currentState = EnemyStates.OnPath;
+        }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        foreach(Transform wp in waypoints)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(wp.transform.position, 0.3f);
+        }
+        for (int i = 0; i < waypoints.Length - 1; i++)
+        {
+            Debug.DrawLine(waypoints[i].position, waypoints[i + 1].position, Color.green);
         }
     }
 }
