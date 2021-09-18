@@ -20,7 +20,6 @@ public class EnemyStateController : MonoBehaviour
     [SerializeField] float pathSpeed;
     [SerializeField] float followSpeed;
     [SerializeField] bool detectObstacle;
-    public LayerMask lm;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -43,8 +42,16 @@ public class EnemyStateController : MonoBehaviour
         isClose = DetectPlayer.detection.CheckIfLessDistance(this.gameObject, closeRange);
 
         //OBSTACLE RAYCAST
-        detectObstacle = Physics.Raycast(transform.position, DetectPlayer.detection.player.transform.position - transform.position, lm);
-        Debug.DrawRay(transform.position, DetectPlayer.detection.player.transform.position - transform.position,Color.red);
+        RaycastHit hit;
+        Vector3 detection = DetectPlayer.detection.player.transform.position - transform.position;
+        if(Physics.Raycast(transform.position, detection,out hit))
+        {
+            if (hit.collider.gameObject.tag=="Wall")
+                detectObstacle=true;
+            else
+                detectObstacle = false;
+        }
+        Debug.DrawRay(transform.position, detection,Color.red);
 
         StateController();
         //Debug.Log(currentState);
@@ -73,8 +80,6 @@ public class EnemyStateController : MonoBehaviour
     {
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
-        transform.LookAt(new Vector3(waypoints[wpIndex].transform.position.x, 0, waypoints[wpIndex].transform.position.z));
-
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
         
         if (wpDistance <= agent.stoppingDistance)
@@ -96,7 +101,10 @@ public class EnemyStateController : MonoBehaviour
     {
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
-        transform.LookAt(new Vector3(DetectPlayer.detection.player.transform.position.x, 0, DetectPlayer.detection.player.transform.position.z));
+        //ROTATION
+        Vector3 lookPos = DetectPlayer.detection.player.transform.position;
+        lookPos.y = transform.position.y;
+        transform.LookAt(lookPos);
 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 0.4f))
             PlayerSingleton.Instance.stress += damage * Time.deltaTime;
