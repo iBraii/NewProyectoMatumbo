@@ -7,12 +7,20 @@ public class DamageFunction : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             DamagePlayer(damage);
+            PlayerSingleton.Instance.beingAttacked = true;
+        }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
             DamagePlayer(damage);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            PlayerSingleton.Instance.beingAttacked = false;
     }
     void DamagePlayer(float damage)
     {

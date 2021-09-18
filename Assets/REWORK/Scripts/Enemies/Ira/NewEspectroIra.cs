@@ -57,6 +57,7 @@ public class NewEspectroIra : MonoBehaviour
 
     private void HandleAttack()
     {
+        PlayerSingleton.Instance.beingAttacked = true;
         activeMeshRenderer.enabled = true;
         fakeMeshRenderer.enabled = false;
 
@@ -96,6 +97,7 @@ public class NewEspectroIra : MonoBehaviour
     {
         activeMeshRenderer.enabled = true;
         fakeMeshRenderer.enabled = false;
+        PlayerSingleton.Instance.beingAttacked = false;
 
         if (PlayerSingleton.Instance.usingWeap == false)
             deniedTime += Time.deltaTime;

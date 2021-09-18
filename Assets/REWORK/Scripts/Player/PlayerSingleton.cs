@@ -32,6 +32,7 @@ public class PlayerSingleton : MonoBehaviour
     }
     public bool isGrounded { get; set; }
     public bool isHiding { get; set; }
+    public bool beingAttacked { get; set; }
     public bool canRotate { get; set; }
     public float stress { get; set; }
     public float lightEnergy { get; set; }

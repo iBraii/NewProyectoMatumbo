@@ -101,13 +101,20 @@ public class EnemyStateController : MonoBehaviour
     {
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
+
         //ROTATION
         Vector3 lookPos = DetectPlayer.detection.player.transform.position;
         lookPos.y = transform.position.y;
         transform.LookAt(lookPos);
 
+        //DAÑO 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 0.4f))
+        {
             PlayerSingleton.Instance.stress += damage * Time.deltaTime;
+            PlayerSingleton.Instance.beingAttacked = true;
+        }
+        else
+            PlayerSingleton.Instance.beingAttacked = false;
 
         //CHANGE CONDITIONS
         if(onVisionRange)
@@ -137,6 +144,7 @@ public class EnemyStateController : MonoBehaviour
     void HandleDenied()
     {
         agent.isStopped = true;
+        PlayerSingleton.Instance.beingAttacked = false;
         if (PlayerSingleton.Instance.usingWeap == false)
             deniedTime += Time.deltaTime;
 
