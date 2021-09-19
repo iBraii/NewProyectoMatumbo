@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        PlayerSingleton.Instance.canMove = true;
     }
 
     // Update is called once per frame
