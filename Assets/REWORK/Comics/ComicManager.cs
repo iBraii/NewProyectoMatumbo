@@ -4,7 +4,7 @@ public class ComicManager : MonoBehaviour
 {
     [SerializeField] float maxComicTime;
     ChangeScene cs;
-    [SerializeField] string sceneName;
+    string sceneName;
     [SerializeField] float appearBtnTime;
     [SerializeField] GameObject btn;
 
@@ -16,11 +16,12 @@ public class ComicManager : MonoBehaviour
             Debug.LogWarning("No se encontró Transition");
             return;
         }
+        SetComic(comicNumber);
     }
     private void Update()
     {
         ComicManagement();
-        AppearSkipButton();
+        AppearSkipButton(); 
     }
     void ComicManagement()
     {
@@ -33,5 +34,42 @@ public class ComicManager : MonoBehaviour
         appearBtnTime -= Time.deltaTime;
         if (appearBtnTime <= 0)
             btn.SetActive(true);
+    }
+    public void SkipBtn()
+    {
+        cs.Change(sceneName);
+    }
+
+    public GameObject[] comics;
+    public static int comicNumber;
+    void SetComic(int comicNumber)
+    {
+        switch (comicNumber)
+        {
+            case 1:
+                comics[0].SetActive(true);
+                sceneName = "NivelTutorial";
+                break;
+            case 2:
+                comics[1].SetActive(true);
+                sceneName = "Nivel1";
+                break;
+            case 3:
+                comics[2].SetActive(true);
+                sceneName = "Nivel2";
+                break;
+            case 4:
+                comics[3].SetActive(true);
+                sceneName = "Nivel3";
+                break;
+            case 5:
+                comics[4].SetActive(true);
+                sceneName = "Nivel4";
+                break;
+            case 6:
+                comics[5].SetActive(true);
+                sceneName = "Nivel5";
+                break;
+        }
     }
 }

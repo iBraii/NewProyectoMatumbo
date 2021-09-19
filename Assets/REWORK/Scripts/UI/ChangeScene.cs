@@ -31,4 +31,9 @@ public class ChangeScene : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
+
+    public void SelectComic(int comicNumber)
+    {
+        ComicManager.comicNumber = comicNumber;
+    }
 }

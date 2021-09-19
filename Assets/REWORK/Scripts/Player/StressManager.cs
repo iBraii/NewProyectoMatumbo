@@ -1,13 +1,21 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StressManager : MonoBehaviour
 {
     CanvasGroup stressPanel;
+    ChangeScene cs;
     [SerializeField] float stressCooldown;
     [SerializeField] float regenValue, delay;
 
     void Start()
     {
+        cs = GameObject.Find("TransitionScreen").GetComponent<ChangeScene>();
+        if (cs == null)
+        {
+            Debug.LogWarning("No hay Transition");
+            return;
+        }
         stressPanel = GameObject.Find("StressPanel").GetComponent<CanvasGroup>();
         if(stressPanel == null)
         {
@@ -21,7 +29,7 @@ public class StressManager : MonoBehaviour
         StressLimits();
         BlinkPanel();
         RegenStress(regenValue, delay);
-        Debug.Log(PlayerSingleton.Instance.beingAttacked);
+        ChangeToDeafeatScene();
     }
     void BlinkPanel()
     {
@@ -49,5 +57,15 @@ public class StressManager : MonoBehaviour
         }
         else if(PlayerSingleton.Instance.stress <= 0 || PlayerSingleton.Instance.beingAttacked)
             stressCooldown = 0;
+    }
+    private void ChangeToDeafeatScene()
+    { 
+        if(PlayerSingleton.Instance.stress >= 10)
+        {
+            PlayerSingleton.Instance.canMove = false;
+            Scene scene = SceneManager.GetActiveScene();
+            PlayerPrefs.SetString("prevLevel", scene.name);
+            cs.Change("DefeatScene");
+        }
     }
 }

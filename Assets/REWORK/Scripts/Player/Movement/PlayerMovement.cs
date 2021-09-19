@@ -39,13 +39,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Rotate();
-        Movement();
+        if(PlayerSingleton.Instance.canMove)
+        {
+            Rotate();
+            Movement();
+        }
         Gravity();
     }
     private void Update()
     {
-        Jumping();
+        if (PlayerSingleton.Instance.canMove)
+            Jumping();
     }
     public void Movement()
     {
