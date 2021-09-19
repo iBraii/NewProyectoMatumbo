@@ -4,6 +4,7 @@ public class TransitionScript : MonoBehaviour
 {
     private ChangeScene cs;
     public string sceneName;
+    public int comicNumber;
 
     private void Start()
     {
@@ -17,6 +18,9 @@ public class TransitionScript : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-            cs.Change(sceneName);  
+        {
+            cs.SelectComic(comicNumber);
+            cs.Change(sceneName);
+        } 
     }
 }
