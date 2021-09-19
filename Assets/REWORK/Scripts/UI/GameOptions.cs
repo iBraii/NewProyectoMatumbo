@@ -19,6 +19,7 @@ public class GameOptions : MonoBehaviour
     }
     void Start()
     {
+        SoundManager.instance.Play("MenuTheme");
         //OBTENER VALORES GRABADOS PARA LOS SLIDERS
         sens.value = PlayerPrefs.GetFloat(sensString);
         volume.value = PlayerPrefs.GetFloat(volumeString);
