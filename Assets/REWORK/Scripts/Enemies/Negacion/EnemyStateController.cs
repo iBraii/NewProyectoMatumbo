@@ -6,7 +6,7 @@ using System;
 public class EnemyStateController : MonoBehaviour
 {
     DenyEnemy de;
-    EnemyStates currentState;
+    public EnemyStates currentState;
     NavMeshAgent agent;
     [SerializeField] Transform[] waypoints;
     bool onVisionRange, isClose;
@@ -119,7 +119,7 @@ public class EnemyStateController : MonoBehaviour
         //CHANGE CONDITIONS
         if(onVisionRange)
         {
-            if (isClose == false && onVisionRange == false || PlayerSingleton.Instance.isHiding)
+            if (isClose == false && onVisionRange == false || detectObstacle || PlayerSingleton.Instance.isHiding)
                 currentState = EnemyStates.Confused;
         }
     }
