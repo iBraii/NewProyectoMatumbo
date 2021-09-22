@@ -16,10 +16,4 @@ public class ActualBox : MonoBehaviour
     {
         rb.velocity = direction * speed;
     }
-   
-    
-
-   
-
-    
 }

@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("volume", obj_volumeSlider.GetComponent<Slider>().value);
         obj_sensSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("Sens");
         obj_volumeSlider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("volume");
-        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
+
         SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
 
         SoundManager.instance.Stop("LowRumble");
@@ -131,7 +131,7 @@ public class MainMenu : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Sens", obj_sensSlider.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("volume", obj_volumeSlider.GetComponent<Slider>().value);
-        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat("volume");
+
         SoundManager.instance.SetVolume(obj_volumeSlider.GetComponent<Slider>().value);
     }
     public void PlayMusic()
