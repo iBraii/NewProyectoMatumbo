@@ -51,9 +51,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PlayerSingleton.Instance.canMove)
             Jumping();
-
-        if (PlayerSingleton.Instance.stress > 0)
-            PlayerSingleton.Instance.stress -= .2f * Time.deltaTime;
     }
     public void Movement()
     {

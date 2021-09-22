@@ -11,6 +11,7 @@ public class Dreams : MonoBehaviour
 
     PlayerSingleton ps;
     float timer;
+    bool dreamCatcherUse;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class Dreams : MonoBehaviour
     {
         if (ps.dreamEnergy > 0 && attackAction.ReadValue<float>() == 1)
         {
+            dreamCatcherUse = true;
             ps.dreamEnergy -= 1 * Time.deltaTime;
             ps.weapUsedTime += Time.deltaTime;
             ps.usingWeap = true;
@@ -37,8 +39,9 @@ public class Dreams : MonoBehaviour
             timer = 0;
             onWeaponUsed?.Invoke();
         }
-        else
+        else if((ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)&&dreamCatcherUse)
         {
+            dreamCatcherUse = false;
             ps.canMove = true;
             ps.usingWeap = false;
             RegenWeapEnergy();
