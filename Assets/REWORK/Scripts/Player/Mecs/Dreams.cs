@@ -22,7 +22,7 @@ public class Dreams : MonoBehaviour
     private void Update()
     {
         UseWeapon();
-        Mathf.Clamp(ps.dreamEnergy, 0, ps.maxDreamEnergy);
+        ps.dreamEnergy = Mathf.Clamp(ps.dreamEnergy, 0, ps.maxDreamEnergy);
     }
 
     public static event Action onWeaponUsed;
@@ -54,9 +54,7 @@ public class Dreams : MonoBehaviour
         if(timer >= 3)
         {
             if (ps.dreamEnergy <= ps.maxDreamEnergy)
-            {
                 ps.dreamEnergy += .15f * Time.deltaTime;
-            }
         }  
     }
 }

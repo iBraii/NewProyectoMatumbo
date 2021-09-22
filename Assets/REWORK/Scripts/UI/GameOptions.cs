@@ -25,7 +25,6 @@ public class GameOptions : MonoBehaviour
         volume.value = PlayerPrefs.GetFloat(volumeString);
 
         //ASIGNAR VALORES DE VOLUMEN 
-        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat(volumeString);
         SoundManager.instance.SetVolume(volume.value);
     }
 
@@ -36,15 +35,9 @@ public class GameOptions : MonoBehaviour
         PlayerPrefs.SetFloat(volumeString, volume.value);
 
         //ASIGNAR VALORES DE VOLUMEN 
-        SoundManager.instance.generalVolume = PlayerPrefs.GetFloat(volumeString);
         SoundManager.instance.SetVolume(volume.value);
     }
 
-    public void NoSavedSettings()
-    {
-        sens.value = PlayerPrefs.GetFloat(sensString);
-        volume.value = PlayerPrefs.GetFloat(volumeString);
-    }
 
     public void QuitGame()
     {

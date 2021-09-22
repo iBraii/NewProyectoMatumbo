@@ -5,7 +5,6 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     [Range(0.0001f,2f)]
-    public float generalVolume;
     public Sounds[] array_sounds;
     public static SoundManager instance;
     public AudioMixerGroup mixer;
@@ -28,12 +27,19 @@ public class SoundManager : MonoBehaviour
             sounds.audioSource = gameObject.AddComponent<AudioSource>();
             sounds.audioSource.loop = sounds.loop;
             sounds.audioSource.clip = sounds.audioClip;
-            sounds.audioSource.volume = sounds.volume * generalVolume;
+            sounds.audioSource.volume = sounds.volume * PlayerPrefs.GetFloat("Volume");
             sounds.audioSource.pitch = sounds.pitch;
             sounds.audioSource.outputAudioMixerGroup = mixer;
         }
     }
-    
+    private void Update()
+    {
+        foreach (Sounds sounds in array_sounds)
+        {
+            sounds.audioSource.volume = sounds.volume;
+        }
+    }
+
     public void Play(string name)
     {
         Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
