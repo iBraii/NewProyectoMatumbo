@@ -95,4 +95,8 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
         }
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

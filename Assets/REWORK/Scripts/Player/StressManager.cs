@@ -16,7 +16,7 @@ public class StressManager : MonoBehaviour
             Debug.LogWarning("No hay Transition");
             return;
         }
-        stressPanel = GameObject.Find("StressPanel").GetComponent<CanvasGroup>();
+        stressPanel = GetComponent<CanvasGroup>();
         if(stressPanel == null)
         {
             Debug.LogWarning("No hay stress panel");
