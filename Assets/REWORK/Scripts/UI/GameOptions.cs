@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameOptions : MonoBehaviour
@@ -16,16 +17,28 @@ public class GameOptions : MonoBehaviour
             Debug.LogWarning("No hay sliders asignados");
             return;
         }
+
+        //ASIGNAR VALOR DEFAULT SI ES 0
+        if (PlayerPrefs.GetFloat(sensString) == 0)       
+            PlayerPrefs.SetFloat(sensString, sens.value);
+        if(PlayerPrefs.GetFloat(volumeString)==0)
+            PlayerPrefs.SetFloat(volumeString, volume.value);
+
     }
     void Start()
     {
-        SoundManager.instance.Play("MenuTheme");
         //OBTENER VALORES GRABADOS PARA LOS SLIDERS
         sens.value = PlayerPrefs.GetFloat(sensString);
         volume.value = PlayerPrefs.GetFloat(volumeString);
 
         //ASIGNAR VALORES DE VOLUMEN 
         SoundManager.instance.SetVolume(volume.value);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
     }
 
     public void ApplySettings()

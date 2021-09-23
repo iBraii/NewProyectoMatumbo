@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Cinemachine;
 
-public class UIManager : MonoBehaviour
+public class NewUIManager : MonoBehaviour
 {
     public Image stressBar;
     public GameObject obj_player;

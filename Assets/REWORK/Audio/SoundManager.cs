@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
-    [Range(0.0001f,2f)]
+    
     public Sounds[] array_sounds;
     public static SoundManager instance;
     public AudioMixerGroup mixer;
