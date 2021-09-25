@@ -54,7 +54,6 @@ public class EnemyStateController : MonoBehaviour
         Debug.DrawRay(transform.position, detection,Color.red);
 
         StateController();
-        //Debug.Log(currentState);
     }
 
     void StateController()

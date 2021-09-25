@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0195067c3b26359468f403069777a6a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalVolume: 1
   array_sounds:
   - name: MenuTheme
     audioClip: {fileID: 8300000, guid: 9b713f789d8368e4785f04b338481d09, type: 3}
@@ -119,6 +118,12 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - name: HeartBeat
     audioClip: {fileID: 8300000, guid: 434c4fe64c90da24d91acfee8419623f, type: 3}
+    loop: 1
+    volume: 0.09
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: BG1
+    audioClip: {fileID: 8300000, guid: 3d36481303e4798439a3957bdb9e4482, type: 3}
     loop: 1
     volume: 0.09
     pitch: 1

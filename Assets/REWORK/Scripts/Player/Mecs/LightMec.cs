@@ -4,24 +4,25 @@ using UnityEngine.InputSystem;
 public class LightMec : MonoBehaviour
 {
     bool canCharge;
-    GameObject lantern;
+    public GameObject lantern;
     bool isON = false;
 
     private PlayerInput playerInput;
     private InputAction lightAction;
     private void Awake()
     {
-        lantern = GameObject.Find("Lantern");
         playerInput = GetComponent<PlayerInput>();
         lightAction = playerInput.actions["Light"];
+    }
+    private void Start()
+    {
+        #region nulls
         if (lantern == null)
         {
             Debug.LogWarning("No se encontró Lantern !!");
             return;
         }
-    }
-    private void Start()
-    {
+        #endregion
         lantern.SetActive(false);
     }
     void ChargeLight()
@@ -35,7 +36,14 @@ public class LightMec : MonoBehaviour
     }
     void PerformLightAction()
     {
-        if(lightAction.triggered && isON == false)
+        #region nulls
+        if (lantern == null)
+        {
+            Debug.LogWarning("No se encontró Lantern !!");
+            return;
+        }
+        #endregion
+        if (lightAction.triggered && isON == false)
         {
             isON = true;
             lantern.SetActive(true);

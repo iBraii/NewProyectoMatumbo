@@ -14,7 +14,6 @@ public class TutorialManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Invoke("ResetCamera", 15);
-            player.GetComponent<Dreams>().enabled = true;
             PlayerSingleton.Instance.canMove = false;
             GetComponent<BoxCollider>().enabled = false;
             Camera.main.GetComponent<Animator>().SetBool("enemy", true);
@@ -24,6 +23,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ResetCamera()
     {
+        player.GetComponent<Dreams>().enabled = true;
         PlayerSingleton.Instance.canMove = true;
         Camera.main.GetComponent<Animator>().SetBool("enemy", false);
     }

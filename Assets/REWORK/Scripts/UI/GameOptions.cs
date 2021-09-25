@@ -12,11 +12,14 @@ public class GameOptions : MonoBehaviour
     {
         sensString = "Sensitivity";
         volumeString = "Volume";
+
+        #region nulls
         if (sens == null || volume == null)
         {
             Debug.LogWarning("No hay sliders asignados");
             return;
         }
+        #endregion
 
         //ASIGNAR VALOR DEFAULT SI ES 0
         if (PlayerPrefs.GetFloat(sensString) == 0)       
@@ -27,6 +30,13 @@ public class GameOptions : MonoBehaviour
     }
     void Start()
     {
+        #region nulls
+        if (sens == null || volume == null)
+        {
+            Debug.LogWarning("No hay sliders asignados");
+            return;
+        }
+        #endregion
         //OBTENER VALORES GRABADOS PARA LOS SLIDERS
         sens.value = PlayerPrefs.GetFloat(sensString);
         volume.value = PlayerPrefs.GetFloat(volumeString);
@@ -43,6 +53,13 @@ public class GameOptions : MonoBehaviour
 
     public void ApplySettings()
     {
+        #region nulls
+        if (sens == null || volume == null)
+        {
+            Debug.LogWarning("No hay sliders asignados");
+            return;
+        }
+        #endregion
         //ASIGNAR VALORES DE LOS SLIDER
         PlayerPrefs.SetFloat(sensString, sens.value);
         PlayerPrefs.SetFloat(volumeString, volume.value);

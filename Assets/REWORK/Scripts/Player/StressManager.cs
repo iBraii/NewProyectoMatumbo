@@ -4,24 +4,20 @@ using UnityEngine.SceneManagement;
 public class StressManager : MonoBehaviour
 {
     CanvasGroup stressPanel;
-    ChangeScene cs;
-    [SerializeField] float stressCooldown;
+    public ChangeScene cs;
+    float stressCooldown;
     [SerializeField] float regenValue, delay;
 
     void Start()
     {
-        cs = GameObject.Find("TransitionScreen").GetComponent<ChangeScene>();
+        #region nulls
         if (cs == null)
         {
-            Debug.LogWarning("No hay Transition");
+            Debug.LogWarning("No hay cs Script");
             return;
         }
+        #endregion
         stressPanel = GetComponent<CanvasGroup>();
-        if(stressPanel == null)
-        {
-            Debug.LogWarning("No hay stress panel");
-            return;
-        }
     }
 
     void Update()

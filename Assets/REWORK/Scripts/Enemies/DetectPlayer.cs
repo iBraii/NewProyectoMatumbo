@@ -16,10 +16,9 @@ public class DetectPlayer : MonoBehaviour
     private void Awake()
     {
         _detection = this;
-        player = GameObject.Find("NewPlayer");
         if (player == null)
         {
-            Debug.LogError("No se encontró al player");
+            Debug.LogWarning("No se encontró al player");
             return;
         }
     }

@@ -39,10 +39,11 @@ public class Dreams : MonoBehaviour
             timer = 0;
             onWeaponUsed?.Invoke();
         }
-        else if((ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)&&dreamCatcherUse)
+        else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
         {
+            if(dreamCatcherUse)
+                ps.canMove = true;
             dreamCatcherUse = false;
-            ps.canMove = true;
             ps.usingWeap = false;
             RegenWeapEnergy();
         }

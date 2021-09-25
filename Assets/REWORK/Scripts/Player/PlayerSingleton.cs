@@ -42,5 +42,6 @@ public class PlayerSingleton : MonoBehaviour
     public bool usingWeap { get; set; }
     public float weapUsedTime { get; set; }
     public bool canMove { get; set; }
+    public bool isMoving { get; set; }
 }
 

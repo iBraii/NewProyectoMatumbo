@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     private InputAction _moveAction;
     private InputAction jumpAction;
 
+    private Vector2 currentInputVector;
+    private Vector2 smoothInputVel;
+    [SerializeField] float smoothInputSpd;
+
 
     //Movement vars
     [SerializeField] float movementSpeed;
@@ -55,12 +59,16 @@ public class PlayerMovement : MonoBehaviour
     public void Movement()
     {
         Vector2 input = _moveAction.ReadValue<Vector2>();
-        direction = new Vector3(input.x, 0f, input.y).normalized;
+        currentInputVector = Vector2.SmoothDamp(currentInputVector, input, ref smoothInputVel, smoothInputSpd);
+        direction = new Vector3(currentInputVector.x, 0f, currentInputVector.y).normalized;
 
-        if (direction.magnitude >= .1f&&!PlayerSingleton.Instance.isHiding)
+        if (direction.magnitude >= .1f && !PlayerSingleton.Instance.isHiding)
         {
+            PlayerSingleton.Instance.isMoving = true;
             _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
         }
+        else
+            PlayerSingleton.Instance.isMoving = false;
     }
 
     public void Rotate()
