@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public Sounds[] array_sounds;
     public static SoundManager instance;
     public AudioMixerGroup mixer;
+    private float smoothSound;
 
     private void Awake()
     {
@@ -38,6 +39,17 @@ public class SoundManager : MonoBehaviour
         {
             sounds.audioSource.volume = sounds.volume;
         }
+    }
+
+    public void ChangeIndividualVolume(string name, float maxVolume, float smoothTime)
+    {
+        Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
+        if (sounds == null)
+        {
+            Debug.Log("El sonido " + name + " no se encontró");
+            return;
+        }
+        sounds.volume = Mathf.SmoothDamp(sounds.volume, maxVolume, ref smoothSound, smoothTime);
     }
 
     public void Play(string name)

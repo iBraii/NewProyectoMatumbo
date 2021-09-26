@@ -38,11 +38,8 @@ public class GameManager : MonoBehaviour
         {
             case GameState.OnMenu:
                 break;
-            case GameState.OnLvlSelection:
-                break;
-            case GameState.OnOptions:
-                break;
-            case GameState.OnRanking:
+            case GameState.OnLvls:
+                SoundManager.instance.Play("BG1");
                 break;
             case GameState.OnAnimatic:
                 break;
@@ -55,16 +52,12 @@ public class GameManager : MonoBehaviour
             case GameState.Paused:
                 break;
         }
-
-        OnGameStateChanged?.Invoke(newState);
     }
 }
 public enum GameState
 {
     OnMenu,
-    OnLvlSelection,
-    OnOptions,
-    OnRanking,
+    OnLvls,
     OnAnimatic,
     IsPlaying,
     Victory,
