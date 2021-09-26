@@ -78,13 +78,9 @@ public class MoveBox : MonoBehaviour
     }
     public void BoxMovement()
     {
-        if (grabingBox&&box!=null)
+        if (grabingBox && box != null)
         {
-            if (GetComponent<PlayerMovement>().currentInputVectorRaw.x != 0 || GetComponent<PlayerMovement>().currentInputVectorRaw.y != 0)
-                box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
-            else
-                box.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            
+            box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
         }
         else
         {

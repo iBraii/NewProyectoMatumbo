@@ -20,7 +20,7 @@ public class ActualBox : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider)
+        if (collision.collider.CompareTag("Wall"))
         {
             rb.velocity = Vector3.zero;
         }
