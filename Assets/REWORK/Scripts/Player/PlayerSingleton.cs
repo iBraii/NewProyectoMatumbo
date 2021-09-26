@@ -24,6 +24,8 @@ public class PlayerSingleton : MonoBehaviour
         lightEnergy = maxLightEnergy;
         maxDreamEnergy = 3;
         dreamEnergy = maxDreamEnergy;
+        canUseDreamCatcher = false;
+        canJump = true;
         isHiding = false;
     }
     private void Start()
@@ -42,6 +44,8 @@ public class PlayerSingleton : MonoBehaviour
     public bool usingWeap { get; set; }
     public float weapUsedTime { get; set; }
     public bool canMove { get; set; }
+    public bool canJump { get; set; }
+    public bool canUseDreamCatcher { get; set; }
     public bool isMoving { get; set; }
 }
 
