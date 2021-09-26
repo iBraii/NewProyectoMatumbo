@@ -81,6 +81,38 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""NoClip"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2957799-8904-4337-985e-3d7b474eec42"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""MultiTap""
+                },
+                {
+                    ""name"": ""Inmortality"",
+                    ""type"": ""Button"",
+                    ""id"": ""459220c3-a21e-4f6a-840c-140dcfb8f135"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""MultiTap""
+                },
+                {
+                    ""name"": ""InfiniteDC"",
+                    ""type"": ""Button"",
+                    ""id"": ""a537bdaa-fc0c-4594-ab34-0540bd9dca36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""MultiTap""
+                },
+                {
+                    ""name"": ""Speed"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3c69f1f-51d2-4dc9-91aa-e77d3d11f961"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""MultiTap""
                 }
             ],
             ""bindings"": [
@@ -215,6 +247,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""861eb1ff-edbd-49a7-8647-da5662dd103b"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NoClip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ff16fd1-eb14-4aa7-af1d-e291f30a1949"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inmortality"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0556679c-2a88-4297-b415-1f8e3e171f04"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InfiniteDC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94ce9b0d-0424-45ce-91f0-c0a8bb51ebb1"",
+                    ""path"": ""<Keyboard>/f4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Speed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -231,6 +307,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Land_Light = m_Land.FindAction("Light", throwIfNotFound: true);
         m_Land_ResetLevel = m_Land.FindAction("ResetLevel", throwIfNotFound: true);
         m_Land_Escape = m_Land.FindAction("Escape", throwIfNotFound: true);
+        m_Land_NoClip = m_Land.FindAction("NoClip", throwIfNotFound: true);
+        m_Land_Inmortality = m_Land.FindAction("Inmortality", throwIfNotFound: true);
+        m_Land_InfiniteDC = m_Land.FindAction("InfiniteDC", throwIfNotFound: true);
+        m_Land_Speed = m_Land.FindAction("Speed", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,6 +368,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Land_Light;
     private readonly InputAction m_Land_ResetLevel;
     private readonly InputAction m_Land_Escape;
+    private readonly InputAction m_Land_NoClip;
+    private readonly InputAction m_Land_Inmortality;
+    private readonly InputAction m_Land_InfiniteDC;
+    private readonly InputAction m_Land_Speed;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
@@ -300,6 +384,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Light => m_Wrapper.m_Land_Light;
         public InputAction @ResetLevel => m_Wrapper.m_Land_ResetLevel;
         public InputAction @Escape => m_Wrapper.m_Land_Escape;
+        public InputAction @NoClip => m_Wrapper.m_Land_NoClip;
+        public InputAction @Inmortality => m_Wrapper.m_Land_Inmortality;
+        public InputAction @InfiniteDC => m_Wrapper.m_Land_InfiniteDC;
+        public InputAction @Speed => m_Wrapper.m_Land_Speed;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -333,6 +421,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Escape.started -= m_Wrapper.m_LandActionsCallbackInterface.OnEscape;
                 @Escape.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnEscape;
                 @Escape.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnEscape;
+                @NoClip.started -= m_Wrapper.m_LandActionsCallbackInterface.OnNoClip;
+                @NoClip.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnNoClip;
+                @NoClip.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnNoClip;
+                @Inmortality.started -= m_Wrapper.m_LandActionsCallbackInterface.OnInmortality;
+                @Inmortality.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnInmortality;
+                @Inmortality.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnInmortality;
+                @InfiniteDC.started -= m_Wrapper.m_LandActionsCallbackInterface.OnInfiniteDC;
+                @InfiniteDC.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnInfiniteDC;
+                @InfiniteDC.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnInfiniteDC;
+                @Speed.started -= m_Wrapper.m_LandActionsCallbackInterface.OnSpeed;
+                @Speed.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnSpeed;
+                @Speed.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnSpeed;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -361,6 +461,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
+                @NoClip.started += instance.OnNoClip;
+                @NoClip.performed += instance.OnNoClip;
+                @NoClip.canceled += instance.OnNoClip;
+                @Inmortality.started += instance.OnInmortality;
+                @Inmortality.performed += instance.OnInmortality;
+                @Inmortality.canceled += instance.OnInmortality;
+                @InfiniteDC.started += instance.OnInfiniteDC;
+                @InfiniteDC.performed += instance.OnInfiniteDC;
+                @InfiniteDC.canceled += instance.OnInfiniteDC;
+                @Speed.started += instance.OnSpeed;
+                @Speed.performed += instance.OnSpeed;
+                @Speed.canceled += instance.OnSpeed;
             }
         }
     }
@@ -375,5 +487,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnLight(InputAction.CallbackContext context);
         void OnResetLevel(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
+        void OnNoClip(InputAction.CallbackContext context);
+        void OnInmortality(InputAction.CallbackContext context);
+        void OnInfiniteDC(InputAction.CallbackContext context);
+        void OnSpeed(InputAction.CallbackContext context);
     }
 }
