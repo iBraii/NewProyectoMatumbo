@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //Movement vars
-    [SerializeField] float movementSpeed;
+    public float movementSpeed;
     [SerializeField] Vector3 direction;
     /*[HideInInspector]*/ public Vector3 moveDirection; //Direction of camera
     float turnSmoothTime = .1f;
