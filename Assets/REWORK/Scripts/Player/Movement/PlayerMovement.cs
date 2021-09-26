@@ -12,21 +12,22 @@ public class PlayerMovement : MonoBehaviour
     private InputAction jumpAction;
 
     private Vector2 currentInputVector;
+    public Vector2 currentInputVectorRaw;
     private Vector2 smoothInputVel;
     [SerializeField] float smoothInputSpd;
 
 
     //Movement vars
     [SerializeField] float movementSpeed;
-    Vector3 direction;
-    [HideInInspector] public Vector3 moveDirection; //Direction of camera
+    [SerializeField] Vector3 direction;
+    /*[HideInInspector]*/ public Vector3 moveDirection; //Direction of camera
     float turnSmoothTime = .1f;
     float turnSmoothvelocity;
 
     //jump vars
     float gravity = -4.5f;
     [SerializeField] float jumpForce;
-    Vector3 playerVelocity;
+     Vector3 playerVelocity;
 
 
     private void Awake()
@@ -59,9 +60,11 @@ public class PlayerMovement : MonoBehaviour
     public void Movement()
     {
         Vector2 input = _moveAction.ReadValue<Vector2>();
+        currentInputVectorRaw = _moveAction.ReadValue<Vector2>();
         currentInputVector = Vector2.SmoothDamp(currentInputVector, input, ref smoothInputVel, smoothInputSpd);
-        direction = new Vector3(currentInputVector.x, 0f, currentInputVector.y).normalized;
+       
 
+        direction = new Vector3(currentInputVector.x, 0f, currentInputVector.y).normalized;           
         if (direction.magnitude >= .1f && !PlayerSingleton.Instance.isHiding)
         {
             PlayerSingleton.Instance.isMoving = true;
@@ -98,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Jumping()
     {
-        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding)
+        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding&&PlayerSingleton.Instance.canJump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
         }

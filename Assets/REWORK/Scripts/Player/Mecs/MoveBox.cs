@@ -10,7 +10,7 @@ public class MoveBox : MonoBehaviour
     private PlayerInput _playerInput;
     private InputAction _interactAction;
 
-    bool grabingBox;
+    public bool grabingBox;
     
     private void Awake()
     {
@@ -26,7 +26,10 @@ public class MoveBox : MonoBehaviour
     {
         
     }
-
+    private void Update()
+    {
+        BlockJumpingAndDC();
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -34,7 +37,20 @@ public class MoveBox : MonoBehaviour
        
     }
      
-
+    private void BlockJumpingAndDC()
+    {
+        if (grabingBox)
+        {
+            PlayerSingleton.Instance.canJump = false;
+            PlayerSingleton.Instance.canUseDreamCatcher = false;
+        }
+        else
+        {
+            PlayerSingleton.Instance.canJump = true;
+            PlayerSingleton.Instance.canUseDreamCatcher = true;
+        }
+            
+    }
     public void Grab(InputAction.CallbackContext context)
     {
         if (box != null)
@@ -64,8 +80,11 @@ public class MoveBox : MonoBehaviour
     {
         if (grabingBox&&box!=null)
         {
-            box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
-
+            if (GetComponent<PlayerMovement>().currentInputVectorRaw.x != 0 || GetComponent<PlayerMovement>().currentInputVectorRaw.y != 0)
+                box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
+            else
+                box.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            
         }
         else
         {
