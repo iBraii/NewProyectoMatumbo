@@ -102,9 +102,10 @@ public class EnemyStateController : MonoBehaviour
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
 
         //ROTATION
-        Vector3 lookPos = DetectPlayer.detection.player.transform.position;
-        lookPos.y = transform.position.y;
-        transform.LookAt(lookPos);
+        Vector3 lookPos = DetectPlayer.detection.player.transform.position - transform.position;
+        lookPos.y = transform.position.y;  
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 2 * Time.deltaTime);
 
         //DAÑO 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 0.4f))
@@ -116,11 +117,8 @@ public class EnemyStateController : MonoBehaviour
             PlayerSingleton.Instance.beingAttacked = false;
 
         //CHANGE CONDITIONS
-        if(onVisionRange)
-        {
-            if (isClose == false && onVisionRange == false || detectObstacle || PlayerSingleton.Instance.isHiding)
-                currentState = EnemyStates.Confused;
-        }
+        if ((isClose == false && onVisionRange == false) || detectObstacle || PlayerSingleton.Instance.isHiding)
+            currentState = EnemyStates.Confused;
     }
     void HandleConfused()
     {

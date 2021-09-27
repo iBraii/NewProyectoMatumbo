@@ -6,18 +6,17 @@ public class EmissionChange : MonoBehaviour
 {
     public Material mat1;
     public Color color;
-    public float intensity;
-    // Start is called before the first frame update
-    void Start()
-    {
-        mat1 = GetComponent<MeshRenderer>().material;
-        
-    }
+    private float intensity;
+    public float vel;
 
-    // Update is called once per frame
     void Update()
     {
-        intensity = Mathf.PingPong(Time.time / 1f, .5f);
+        if(mat1 == null)
+        {
+            Debug.LogWarning("Asignale material putito");
+            return;
+        }
+        intensity = Mathf.PingPong(Time.time / vel, .5f);
         mat1.SetColor("_EmissionColor", color * intensity);
     }
 }
