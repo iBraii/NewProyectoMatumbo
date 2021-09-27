@@ -14,17 +14,21 @@ public class BackgroundMusicPlayer : MonoBehaviour
             case "Main Menu":
                 SoundManager.instance.Play("MenuTheme");
                 SoundManager.instance.Stop("BG1");
+                SoundManager.instance.Stop("LowRumble");
+                SoundManager.instance.Stop("HeartBeat");
                 break;
             case "Comics":
                 SoundManager.instance.UpdatePlay("MenuTheme");
                 SoundManager.instance.Stop("BG1");
                 break;
-            case "Nivel Tutorial":
+            case "NivelTutorial":
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break;
             case "DefeatScene":
                 SoundManager.instance.Stop("BG1");
+                SoundManager.instance.Stop("LowRumble");
+                SoundManager.instance.Stop("HeartBeat");
                 break;
         }
     }

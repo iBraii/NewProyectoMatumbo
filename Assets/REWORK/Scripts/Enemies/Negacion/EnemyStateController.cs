@@ -5,6 +5,10 @@ using System;
 
 public class EnemyStateController : MonoBehaviour
 {
+    //AUDIOS
+    public AudioClip followingSound;
+    public AudioClip pathSound;
+
     DenyEnemy de;
     public EnemyStates currentState;
     NavMeshAgent agent;
@@ -34,6 +38,10 @@ public class EnemyStateController : MonoBehaviour
     {
         currentState = EnemyStates.OnPath;
         
+    }
+    void ChangeSound(AudioClip audioClip)
+    {
+        gameObject.GetComponent<AudioSource>().clip = audioClip;
     }
     private void Update()
     {
@@ -77,6 +85,7 @@ public class EnemyStateController : MonoBehaviour
 
     void HandlePath()
     {
+        //ChangeSound(pathSound);
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
@@ -98,6 +107,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleFollow()
     {
+        //ChangeSound(followingSound);
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
 
@@ -126,7 +136,7 @@ public class EnemyStateController : MonoBehaviour
         confusedTimer += Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (confusedTimer >= maxConfusedTime)
+        if (confusedTimer >= maxConfusedTime || (PlayerSingleton.Instance.isHiding == false && (isClose && onVisionRange)))
         {
             agent.isStopped = false;
             confusedTimer = 0;
