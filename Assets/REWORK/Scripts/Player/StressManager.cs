@@ -1,13 +1,15 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class StressManager : MonoBehaviour
 {
-    CanvasGroup stressPanel;
     public ChangeScene cs;
     float stressCooldown;
     [SerializeField] float regenValue, delay;
-
+    public GameObject generalVolume;
+    private Vignette vig;
     void Start()
     {
         #region nulls
@@ -17,30 +19,33 @@ public class StressManager : MonoBehaviour
             return;
         }
         #endregion
-        stressPanel = GetComponent<CanvasGroup>();
+
+        SoundManager.instance.Play("LowRumble");
+        SoundManager.instance.Play("HeartBeat");
     }
 
     void Update()
     {
         StressLimits();
-        BlinkPanel();
         RegenStress(regenValue, delay);
         ChangeToDeafeatScene();
+        SetStressFeedback();
     }
-    void BlinkPanel()
-    {
-        #region PanelAlpha
-        if (PlayerSingleton.Instance.stress >= 7f)
-            stressPanel.alpha = Mathf.PingPong(Time.time * .3f, .4f);
-        else if (PlayerSingleton.Instance.stress >= 8f)
-            stressPanel.alpha = Mathf.PingPong(Time.time * .3f, .6f);
-        else if (PlayerSingleton.Instance.stress >= 9f)
-            stressPanel.alpha = Mathf.PingPong(Time.time * .3f, .8f);
-        #endregion
-    }
-
     float StressLimits() => PlayerSingleton.Instance.stress = Mathf.Clamp(PlayerSingleton.Instance.stress, 0f, 10f);
 
+    private void SetStressFeedback()
+    {
+        SoundManager.instance.ChangeIndividualVolume("LowRumble", PlayerSingleton.Instance.stress / 10);
+        SoundManager.instance.ChangeIndividualVolume("HeartBeat", PlayerSingleton.Instance.stress / 10);
+        Volume volume = generalVolume.GetComponent<Volume>();
+        if (volume.profile.TryGet<Vignette>(out vig) && volume != null)
+        {
+            vig.intensity.value = Mathf.Lerp(.35f, .65f, PlayerSingleton.Instance.stress / 10);
+        }
+        else
+            Debug.Log("Asignar GeneralVolume post al stress manager");
+        
+    }
     void RegenStress(float regenValue, float delay)
     {
         if (PlayerSingleton.Instance.stress > 0 && PlayerSingleton.Instance.beingAttacked == false)

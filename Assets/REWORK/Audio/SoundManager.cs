@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void ChangeIndividualVolume(string name, float maxVolume, float smoothTime)
+    public void ChangeIndividualVolume(string name, float maxVolume/*, float smoothTime*/)
     {
         Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
         if (sounds == null)
@@ -49,7 +49,8 @@ public class SoundManager : MonoBehaviour
             Debug.Log("El sonido " + name + " no se encontró");
             return;
         }
-        sounds.volume = Mathf.SmoothDamp(sounds.volume, maxVolume, ref smoothSound, smoothTime);
+        //sounds.volume = Mathf.SmoothDamp(sounds.volume, maxVolume, ref smoothSound, smoothTime);
+        sounds.volume = Mathf.Lerp(0.0001f, 1, maxVolume);
     }
 
     public void Play(string name)
