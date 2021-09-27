@@ -110,4 +110,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Application.Quit();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DeathBox"))
+        {
+            PlayerSingleton.Instance.stress = 10;
+        }
+    }
 }

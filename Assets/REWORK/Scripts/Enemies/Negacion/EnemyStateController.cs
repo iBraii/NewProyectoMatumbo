@@ -162,7 +162,7 @@ public class EnemyStateController : MonoBehaviour
             agent.isStopped = false;
             deniedTime = 0;
             PlayerSingleton.Instance.weapUsedTime = 0;
-            if ((isClose || onVisionRange) && !detectObstacle)
+            if ((isClose || onVisionRange) && !detectObstacle && !PlayerSingleton.Instance.isHiding)
                 currentState = EnemyStates.Following;
             else
                 currentState = EnemyStates.OnPath;

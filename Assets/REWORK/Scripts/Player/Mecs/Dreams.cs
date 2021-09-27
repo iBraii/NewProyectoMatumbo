@@ -29,7 +29,7 @@ public class Dreams : MonoBehaviour
 
     void UseWeapon()
     {
-        if (ps.dreamEnergy > 0 && attackAction.ReadValue<float>() == 1&&PlayerSingleton.Instance.canUseDreamCatcher)
+        if (ps.dreamEnergy > 0 && attackAction.ReadValue<float>() == 1 && PlayerSingleton.Instance.canUseDreamCatcher && !PlayerSingleton.Instance.isHiding)
         {
             dreamCatcherUse = true;
             ps.dreamEnergy -= 1 * Time.deltaTime;
