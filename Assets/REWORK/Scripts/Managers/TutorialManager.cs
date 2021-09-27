@@ -9,10 +9,6 @@ public class TutorialManager : MonoBehaviour
 
     public TextMeshPro[] indication;
 
-    private void Start()
-    {
-        GameManager.Instance.UpdateGameState(GameState.OnLvls);
-    }
 
     private void OnTriggerEnter(Collider other)
     {

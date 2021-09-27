@@ -26,12 +26,12 @@ public class NewHideInBlanket : MonoBehaviour
             if (PlayerSingleton.Instance.isHiding)
             {
                 PlayerSingleton.Instance.isHiding = false;
-                Debug.Log("No hiding");
+                //Debug.Log("No hiding");
             }
             else
             {
                 PlayerSingleton.Instance.isHiding = true;
-                Debug.Log("Is Hiding");
+                //Debug.Log("Is Hiding");
             }
         }
     }

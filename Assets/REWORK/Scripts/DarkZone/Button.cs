@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Button : MonoBehaviour
 {
     public GameObject[] darkZone;
+    public bool buttonToggle;
+    public static event Action onButtonChanged;
     
-
-
     private void ButtonState(bool state)
     {
         foreach (GameObject go in darkZone)
@@ -20,7 +21,18 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(false);
+            buttonToggle = true;
+            onButtonChanged?.Invoke();
         }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Box") || other.CompareTag("Player"))
+        {
+            ButtonState(false);
+            buttonToggle = true;
+            onButtonChanged?.Invoke();
+        }   
     }
 
     private void OnTriggerExit(Collider other)
@@ -28,6 +40,8 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(true);
+            buttonToggle = false;
+            onButtonChanged?.Invoke();
         }
     }
 }
