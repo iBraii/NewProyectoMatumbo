@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.9728835, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!64 &144951681
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1175,7 +1175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.96355355, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!23 &147896354
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1768,7 +1768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.96355355, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!64 &188727524
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2122,6 +2122,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &200514917 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6770424929134860451, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
+  m_PrefabInstance: {fileID: 2107118513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272c1da79485eed48823ffc6725e3fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &205803670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,19 +2216,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Comics
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 200514917}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SelectComic
         m_Mode: 3
@@ -2226,7 +2225,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Comics
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200514917}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Change
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: Comics
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &205803673
@@ -3346,7 +3357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 0.9652157, g: 1, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!23 &333772804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5075,19 +5086,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Comics
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 200514917}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SelectComic
         m_Mode: 3
@@ -5096,7 +5095,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 6
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Comics
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200514917}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Change
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: Comics
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &533157675
@@ -5724,7 +5735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 0.9652157, g: 1, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!23 &698810016
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6608,7 +6619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.9728835, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!64 &759828468
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8363,7 +8374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.9728835, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!23 &1010893451
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10446,19 +10457,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Comics
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 200514917}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SelectComic
         m_Mode: 3
@@ -10467,7 +10466,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Comics
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200514917}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Change
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: Comics
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1234146845
@@ -10706,19 +10717,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Comics
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 200514917}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SelectComic
         m_Mode: 3
@@ -10727,7 +10726,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Comics
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200514917}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Change
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: Comics
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1256259946
@@ -13576,6 +13587,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544643550}
   m_CullTransparentMesh: 1
+--- !u!1001 &1550567480
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810112, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253896883450810118, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
+      propertyPath: m_Name
+      value: AudioPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e6abee186230a748bce9f1dea7e9033, type: 3}
 --- !u!1 &1557085387
 GameObject:
   m_ObjectHideFlags: 0
@@ -15369,19 +15437,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Comics
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 200514917}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SelectComic
         m_Mode: 3
@@ -15390,7 +15446,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Comics
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200514917}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Change
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: Comics
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1756933827
@@ -17034,7 +17102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.9728835, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!23 &1978404016
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17718,19 +17786,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
-        m_MethodName: Change
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Comics
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 200514917}
         m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
         m_MethodName: SelectComic
         m_Mode: 3
@@ -17739,7 +17795,19 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Comics
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 200514917}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: Change
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: Comics
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2037250599
@@ -18496,7 +18564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mat1: {fileID: 0}
   color: {r: 1, g: 0.96355355, b: 0, a: 0}
-  intensity: 0
+  vel: 0
 --- !u!23 &2106442268
 MeshRenderer:
   m_ObjectHideFlags: 0

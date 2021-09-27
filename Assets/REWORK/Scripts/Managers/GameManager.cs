@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
             case GameState.OnMenu:
                 break;
             case GameState.OnLvls:
-                SoundManager.instance.Play("BG1");
                 break;
             case GameState.OnAnimatic:
                 break;

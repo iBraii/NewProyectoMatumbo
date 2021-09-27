@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void ChangeIndividualVolume(string name, float maxVolume/*, float smoothTime*/)
+    public void ChangeIndividualVolume(string name, float volumeValue/*, float smoothTime*/)
     {
         Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
         if (sounds == null)
@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour
             return;
         }
         //sounds.volume = Mathf.SmoothDamp(sounds.volume, maxVolume, ref smoothSound, smoothTime);
-        sounds.volume = Mathf.Lerp(0.0001f, 1, maxVolume);
+        sounds.volume = Mathf.Lerp(0.0001f, 1, volumeValue);
     }
 
     public void Play(string name)

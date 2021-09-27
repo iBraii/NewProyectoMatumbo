@@ -1,23 +1,29 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TransitionScript : MonoBehaviour
 {
     public ChangeScene cs;
     public string sceneName;
     public int comicNumber;
+    public bool selectScreenColorToWhite;
 
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
         if (cs == null)
         {
-            Debug.LogWarning("No hay changeScene script");
+            Debug.LogWarning("No hay changescene script");
             return;
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.gameObject.GetComponent<PlayerMovement>().movementSpeed = 0;
+
+            if (selectScreenColorToWhite)
+                ChangeScene.white = true;
+            else
+                ChangeScene.white = false;
+
             cs.SelectComic(comicNumber);
             cs.Change(sceneName);
         } 
