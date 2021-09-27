@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4935567479168351367}
   - component: {fileID: 7206840343379655899}
   - component: {fileID: 7860314380097864681}
-  - component: {fileID: 784041854441845642}
   m_Layer: 0
   m_Name: DarkAura
   m_TagString: Untagged
@@ -96,23 +95,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &784041854441845642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3306868597151306482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGlobal: 0
-  priority: 0
-  blendDistance: 0.3
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 9ed63970f0aa1364d9422c5b7a5b0069, type: 2}
 --- !u!1 &5690971397547997582
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
+  pp: {fileID: 0}
+  profile: {fileID: 0}
 --- !u!1 &5690971397900497956
 GameObject:
   m_ObjectHideFlags: 0

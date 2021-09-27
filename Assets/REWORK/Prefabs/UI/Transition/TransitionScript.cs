@@ -20,9 +20,9 @@ public class TransitionScript : MonoBehaviour
             other.gameObject.GetComponent<PlayerMovement>().movementSpeed = 0;
 
             if (selectScreenColorToWhite)
-                ChangeScene.white = true;
+                cs.white = true;
             else
-                ChangeScene.white = false;
+                cs.white = false;
 
             cs.SelectComic(comicNumber);
             cs.Change(sceneName);

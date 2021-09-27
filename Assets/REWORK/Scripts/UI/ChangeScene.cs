@@ -8,7 +8,7 @@ public class ChangeScene : MonoBehaviour
 {
     public Animator transition;
     public float duration;
-    public static bool white;
+    public bool white;
     // Start is called before the first frame update
     void Start()
     {

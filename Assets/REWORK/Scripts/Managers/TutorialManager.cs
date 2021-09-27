@@ -8,8 +8,12 @@ public class TutorialManager : MonoBehaviour
     public GameObject firstEnemy;
 
     public TextMeshPro[] indication;
+    public GameObject atrapa;
 
-
+    private void Start()
+    {
+        atrapa = GameObject.Find("DREAMCATCHER");
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -19,6 +23,7 @@ public class TutorialManager : MonoBehaviour
             GetComponent<BoxCollider>().enabled = false;
             Camera.main.GetComponent<Animator>().SetBool("enemy", true);
             firstEnemy.SetActive(true);
+            atrapa.SetActive(false);
         }
     }
 

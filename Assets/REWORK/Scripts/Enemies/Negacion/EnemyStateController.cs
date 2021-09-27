@@ -37,11 +37,12 @@ public class EnemyStateController : MonoBehaviour
     void Start()
     {
         currentState = EnemyStates.OnPath;
-        
     }
-    void ChangeSound(AudioClip audioClip)
+    void ChangeSound(AudioClip newClip)
     {
-        gameObject.GetComponent<AudioSource>().clip = audioClip;
+        gameObject.GetComponent<AudioSource>().clip = newClip;
+        if(gameObject.GetComponent<AudioSource>().isPlaying == false)
+            gameObject.GetComponent<AudioSource>().Play();
     }
     private void Update()
     {
@@ -85,7 +86,7 @@ public class EnemyStateController : MonoBehaviour
 
     void HandlePath()
     {
-        //ChangeSound(pathSound);
+        ChangeSound(pathSound);
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
@@ -107,7 +108,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleFollow()
     {
-        //ChangeSound(followingSound);
+        ChangeSound(followingSound);
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
 
@@ -161,7 +162,7 @@ public class EnemyStateController : MonoBehaviour
             agent.isStopped = false;
             deniedTime = 0;
             PlayerSingleton.Instance.weapUsedTime = 0;
-            if (isClose || onVisionRange)
+            if ((isClose || onVisionRange) && !detectObstacle)
                 currentState = EnemyStates.Following;
             else
                 currentState = EnemyStates.OnPath;
