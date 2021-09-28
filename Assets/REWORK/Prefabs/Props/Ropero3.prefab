@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8363651453922738405}
   - component: {fileID: 4881465739433840448}
   - component: {fileID: 7231237785382910858}
-  m_Layer: 0
+  - component: {fileID: 95033780884285287}
+  m_Layer: 6
   m_Name: Ropero3
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &95033780884285287
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176779148399401567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4196116943206874044, guid: a69d41132c39e404589e90ff2af3b7ca, type: 3}
