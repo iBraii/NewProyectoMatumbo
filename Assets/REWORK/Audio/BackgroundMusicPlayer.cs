@@ -28,6 +28,10 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break;
+            case "Nivel 1":
+                SoundManager.instance.Stop("MenuTheme");
+                SoundManager.instance.Play("BG1");
+                break;
             case "DefeatScene":
                 SoundManager.instance.Stop("BG1");
                 SoundManager.instance.Stop("LowRumble");
