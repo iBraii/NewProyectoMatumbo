@@ -10,6 +10,9 @@ public class StressManager : MonoBehaviour
     [SerializeField] float regenValue, delay;
     public GameObject generalVolume;
     private Vignette vig;
+    private ColorAdjustments cad;
+    private ChromaticAberration cab;
+    private FilmGrain fg;
     void Start()
     {
         #region nulls
@@ -37,10 +40,15 @@ public class StressManager : MonoBehaviour
     {
         SoundManager.instance.ChangeIndividualVolume("LowRumble", PlayerSingleton.Instance.stress / 10);
         SoundManager.instance.ChangeIndividualVolume("HeartBeat", PlayerSingleton.Instance.stress / 10);
+
         Volume volume = generalVolume.GetComponent<Volume>();
-        if (volume.profile.TryGet<Vignette>(out vig) && volume != null)
+        if (volume.profile.TryGet<Vignette>(out vig)&& volume.profile.TryGet<ColorAdjustments>(out cad) && volume.profile.TryGet<ChromaticAberration>(out cab)
+            && volume.profile.TryGet<FilmGrain>(out fg)&& volume != null)
         {
             vig.intensity.value = Mathf.Lerp(.35f, .65f, PlayerSingleton.Instance.stress / 10);
+            cad.saturation.value = Mathf.Lerp(0, -100, PlayerSingleton.Instance.stress / 10);
+            cab.intensity.value = Mathf.Lerp(0, 1, PlayerSingleton.Instance.stress / 10);
+            fg.intensity.value = Mathf.Lerp(0, 1, PlayerSingleton.Instance.stress / 10);
         }
         else
             Debug.Log("Asignar GeneralVolume post al stress manager");

@@ -6,11 +6,8 @@ public class ActualBox : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed;
-
-    private float initialSpeed;
     void Start()
     {
-        initialSpeed = speed;
         rb = GetComponent<Rigidbody>();
     }
    
@@ -18,13 +15,7 @@ public class ActualBox : MonoBehaviour
     {
         rb.velocity = direction * speed;
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Wall"))
-        {
-            rb.velocity = Vector3.zero;
-        }
-    }
+  
 
 
 }
