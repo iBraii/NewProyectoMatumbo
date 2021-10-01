@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject firstEnemy;
+    public GameObject grabText;
 
     public TextMeshPro[] indication;
     public GameObject atrapa;
@@ -17,12 +18,14 @@ public class TutorialManager : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction grabAction;
 
+    public Material desvanecer;
+    public GameObject actualDreamCatcher;
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         grabAction = playerInput.actions["Interact"];
         atrapa = GameObject.Find("DREAMCATCHER");
-        
+        grabText.SetActive(false);
     }
     private void Update()
     {
@@ -32,19 +35,26 @@ public class TutorialManager : MonoBehaviour
     {
         if (playerClose&&grabAction.triggered)
         {
-            Invoke("ResetCamera", 15);
-            PlayerSingleton.Instance.canMove = false;
-            GetComponent<BoxCollider>().enabled = false;
-            Camera.main.GetComponent<Animator>().SetBool("enemy", true);
-            firstEnemy.SetActive(true);
-            atrapa.SetActive(false);
-        }
+            Invoke("CameraAnim", 1.5f);
+            actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;         
+        }    
+    }
+    private void CameraAnim()
+    {
+        Invoke("ResetCamera", 15);
+        PlayerSingleton.Instance.canMove = false;
+        GetComponent<BoxCollider>().enabled = false;
+        Camera.main.GetComponent<Animator>().SetBool("enemy", true);
+        firstEnemy.SetActive(true);
+        atrapa.SetActive(false);
+        grabText.GetComponent<TextMeshProUGUI>().text = "";
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerClose = true;
+            grabText.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -52,6 +62,7 @@ public class TutorialManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerClose = false;
+            grabText.SetActive(false);
         }
     }
 

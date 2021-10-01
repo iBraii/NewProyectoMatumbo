@@ -18,7 +18,7 @@ public class TransitionScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<PlayerMovement>().movementSpeed = 0;
-
+            PlayerSingleton.Instance.stress = 0;
             if (selectScreenColorToWhite)
                 cs.white = true;
             else

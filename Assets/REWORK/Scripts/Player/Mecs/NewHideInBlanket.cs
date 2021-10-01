@@ -26,11 +26,13 @@ public class NewHideInBlanket : MonoBehaviour
             if (PlayerSingleton.Instance.isHiding)
             {
                 PlayerSingleton.Instance.isHiding = false;
+                SoundManager.instance.Play("BlanketOff");
                 //Debug.Log("No hiding");
             }
             else
             {
                 PlayerSingleton.Instance.isHiding = true;
+                SoundManager.instance.Play("BlanketOn");
                 //Debug.Log("Is Hiding");
             }
         }

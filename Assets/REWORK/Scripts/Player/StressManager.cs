@@ -8,6 +8,7 @@ public class StressManager : MonoBehaviour
     public ChangeScene cs;
     float stressCooldown;
     [SerializeField] float regenValue, delay;
+    //StressFeedback
     public GameObject generalVolume;
     private Vignette vig;
     private ColorAdjustments cad;

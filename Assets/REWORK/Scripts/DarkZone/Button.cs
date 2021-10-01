@@ -21,6 +21,7 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(false);
+            SoundManager.instance.Play("PlacaOn");
             buttonToggle = true;
             onButtonChanged?.Invoke();
         }
@@ -40,6 +41,7 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(true);
+            SoundManager.instance.Play("PlacaOff");
             buttonToggle = false;
             onButtonChanged?.Invoke();
         }
