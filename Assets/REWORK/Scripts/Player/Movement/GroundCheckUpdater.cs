@@ -4,20 +4,20 @@ public class GroundCheckUpdater : MonoBehaviour
 {
     [SerializeField] LayerMask GroundLayer;
     [SerializeField] float floorDistance;
-    bool Grounded() => Physics.Raycast(transform.position, Vector3.down, floorDistance, GroundLayer);
+    public bool grounded;
     private void Awake()
     {
-        PlayerSingleton.Instance.isGrounded = Grounded();
+        PlayerSingleton.Instance.isGrounded = grounded;
     }
 
     void SetSingletonData()
     {
-        if (Grounded() && PlayerSingleton.Instance.isGrounded == false)
+        if (grounded && PlayerSingleton.Instance.isGrounded == false)
         {
             PlayerSingleton.Instance.isGrounded = true;
         }
             
-        else if (!Grounded() && PlayerSingleton.Instance.isGrounded)
+        else if (!grounded && PlayerSingleton.Instance.isGrounded)
         {
             PlayerSingleton.Instance.isGrounded = false;
         }
@@ -25,5 +25,21 @@ public class GroundCheckUpdater : MonoBehaviour
     private void Update()
     {
         SetSingletonData();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+            grounded = true;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+            grounded = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 6)
+            grounded = false;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -106,15 +106,12 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
         }
     }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DeathBox"))
         {
-            PlayerSingleton.Instance.stress = 10;
+            Scene sc = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(sc.name);
         }
     }
 }

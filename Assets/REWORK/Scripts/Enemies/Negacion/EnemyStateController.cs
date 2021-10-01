@@ -24,6 +24,8 @@ public class EnemyStateController : MonoBehaviour
     [SerializeField] float pathSpeed;
     [SerializeField] float followSpeed;
     [SerializeField] bool detectObstacle;
+    public LayerMask lm;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -51,16 +53,12 @@ public class EnemyStateController : MonoBehaviour
         isClose = DetectPlayer.detection.CheckIfLessDistance(this.gameObject, closeRange);
 
         //OBSTACLE RAYCAST
-        RaycastHit hit;
-        Vector3 detection = DetectPlayer.detection.player.transform.position - transform.position;
-        if(Physics.Raycast(transform.position, detection,out hit))
-        {
-            if (hit.collider.gameObject.tag=="Wall")
-                detectObstacle=true;
-            else
-                detectObstacle = false;
-        }
-        Debug.DrawRay(transform.position, detection,Color.red);
+        Vector3 direction = DetectPlayer.detection.player.transform.position - transform.position;
+        direction.y = 0;
+        float distance = Vector3.Distance(DetectPlayer.detection.player.transform.position, transform.position);
+        detectObstacle = Physics.Raycast(transform.position, direction, distance, lm);
+
+        Debug.DrawRay(transform.position, direction , Color.red);
 
         StateController();
     }
@@ -100,11 +98,8 @@ public class EnemyStateController : MonoBehaviour
         }
 
         //CHANGE CONDITIONS
-        if(detectObstacle == false)
-        {
-            if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding)
-                currentState = EnemyStates.Following;
-        }
+        if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding && !detectObstacle)
+            currentState = EnemyStates.Following;
     }
     void HandleFollow()
     {
@@ -128,7 +123,7 @@ public class EnemyStateController : MonoBehaviour
             PlayerSingleton.Instance.beingAttacked = false;
 
         //CHANGE CONDITIONS
-        if ((isClose == false && onVisionRange == false) || detectObstacle || PlayerSingleton.Instance.isHiding)
+        if ((isClose == false && onVisionRange == false) || PlayerSingleton.Instance.isHiding)
             currentState = EnemyStates.Confused;
     }
     void HandleConfused()
@@ -157,7 +152,7 @@ public class EnemyStateController : MonoBehaviour
             deniedTime += Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime)
+        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime * 1.5f)
         {
             agent.isStopped = false;
             deniedTime = 0;
