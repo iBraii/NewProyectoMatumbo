@@ -21,9 +21,10 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(false);
-            SoundManager.instance.Play("PlacaOn");
-            buttonToggle = true;
             onButtonChanged?.Invoke();
+            if (buttonToggle == false)
+                SoundManager.instance.Play("PlacaOn");
+            buttonToggle = true;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -41,7 +42,8 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(true);
-            SoundManager.instance.Play("PlacaOff");
+            if (buttonToggle == true)
+                SoundManager.instance.Play("PlacaOff");
             buttonToggle = false;
             onButtonChanged?.Invoke();
         }
