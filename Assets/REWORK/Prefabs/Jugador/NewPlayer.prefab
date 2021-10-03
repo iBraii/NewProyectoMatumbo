@@ -142,8 +142,8 @@ GameObject:
   - component: {fileID: 8053439894469272538}
   - component: {fileID: 8053439894469272537}
   - component: {fileID: 8053439894469272536}
-  - component: {fileID: 1274243450876753601}
-  - component: {fileID: 515187787464259101}
+  - component: {fileID: 3180525301492581870}
+  - component: {fileID: 9020952172913361159}
   m_Layer: 2
   m_Name: NewPlayer
   m_TagString: Player
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8e4e7bce88bae4b8102a41da8c7acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1274243450876753601
+--- !u!54 &3180525301492581870
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,13 +332,13 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 0.0000001
   m_Drag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &515187787464259101
+--- !u!65 &9020952172913361159
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -349,8 +349,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6854851, y: 0.045721132, z: 1.2768031}
-  m_Center: {x: 0.035511177, y: -0.49498844, z: -0.0014878312}
+  m_Size: {x: 0.40881574, y: 0.04178067, z: 0.68155986}
+  m_Center: {x: 0.020258578, y: -0.5033317, z: 0.0052691866}
 --- !u!1 &8053439894985343192
 GameObject:
   m_ObjectHideFlags: 0

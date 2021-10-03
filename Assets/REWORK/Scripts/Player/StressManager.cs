@@ -51,8 +51,8 @@ public class StressManager : MonoBehaviour
             cab.intensity.value = Mathf.Lerp(0, 1, PlayerSingleton.Instance.stress / 10);
             fg.intensity.value = Mathf.Lerp(0, 1, PlayerSingleton.Instance.stress / 10);
         }
-        else
-            Debug.Log("Asignar GeneralVolume post al stress manager");
+        /*else
+            Debug.Log("Asignar GeneralVolume post al stress manager");*/
         
     }
     void RegenStress(float regenValue, float delay)

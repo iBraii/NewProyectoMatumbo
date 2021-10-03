@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5040261978608564230}
   - component: {fileID: 7067956345605852364}
   - component: {fileID: 1162822769054849578}
+  - component: {fileID: 2974922029593784698}
+  - component: {fileID: 2038477298141789171}
   m_Layer: 6
   m_Name: "Sof\xE1"
   m_TagString: Wall
@@ -100,3 +102,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 263381950765016615, guid: edb644e5184c6444e98920dce99b17f6, type: 3}
+--- !u!65 &2974922029593784698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725320385570123033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9819084, y: 0.34932882, z: 0.8113985}
+  m_Center: {x: -0.0000009536743, y: 0.17466441, z: -0.020658702}
+--- !u!65 &2038477298141789171
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725320385570123033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8093045, y: 0.8352653, z: 0.35483348}
+  m_Center: {x: 0.034903646, y: 0.41763264, z: 0.22190513}

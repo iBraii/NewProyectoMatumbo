@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class MoveBox : MonoBehaviour
 {
-    GameObject box;
+    public GameObject box;
     private PlayerInput _playerInput;
     private InputAction _interactAction;
 
@@ -29,12 +29,13 @@ public class MoveBox : MonoBehaviour
     private void Update()
     {
         BlockJumpingAndDC();
+        DetectBox();
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         BoxMovement();
-       
+        
     }
      
     private void BlockJumpingAndDC()
@@ -89,24 +90,25 @@ public class MoveBox : MonoBehaviour
         }
             
     }
-    private void OnTriggerEnter(Collider other)
+
+    void DetectBox()
     {
-        if (other.tag == "Box")
+        Debug.DrawRay(transform.position, transform.forward, Color.yellow);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, .1f))
         {
-            box = other.gameObject;
+            if (hit.collider.CompareTag("Box"))
+                box = hit.collider.gameObject;
+            else
+                box = null;
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Box"&&box!=null)
-        {
+        else
             box = null;
-        }
     }
 
-    private void OnDrawGizmos()
-    {
-        if(box!=null)
-        Debug.DrawRay(transform.position, (box.transform.position - transform.position), Color.red);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    if(box!=null)
+    //    Debug.DrawRay(transform.position, (box.transform.position - transform.position), Color.red);
+    //}
 }

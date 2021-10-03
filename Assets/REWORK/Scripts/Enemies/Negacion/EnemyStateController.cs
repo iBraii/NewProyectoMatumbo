@@ -25,6 +25,7 @@ public class EnemyStateController : MonoBehaviour
     [SerializeField] float followSpeed;
     [SerializeField] bool detectObstacle;
     public LayerMask lm;
+    float initialCloseRange;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class EnemyStateController : MonoBehaviour
     void Start()
     {
         currentState = EnemyStates.OnPath;
+        initialCloseRange = closeRange;
     }
     void ChangeSound(AudioClip newClip)
     {
@@ -61,6 +63,7 @@ public class EnemyStateController : MonoBehaviour
         Debug.DrawRay(transform.position, direction , Color.red);
 
         StateController();
+        Debug.Log(currentState);
     }
 
     void StateController()
@@ -85,6 +88,7 @@ public class EnemyStateController : MonoBehaviour
     void HandlePath()
     {
         ChangeSound(pathSound);
+        closeRange = initialCloseRange;
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
@@ -104,6 +108,7 @@ public class EnemyStateController : MonoBehaviour
     void HandleFollow()
     {
         ChangeSound(followingSound);
+        closeRange = initialCloseRange * 2;
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
 
@@ -123,11 +128,12 @@ public class EnemyStateController : MonoBehaviour
             PlayerSingleton.Instance.beingAttacked = false;
 
         //CHANGE CONDITIONS
-        if ((isClose == false && onVisionRange == false) || PlayerSingleton.Instance.isHiding)
+        if (isClose == false || PlayerSingleton.Instance.isHiding)
             currentState = EnemyStates.Confused;
     }
     void HandleConfused()
     {
+        ChangeSound(pathSound);
         agent.isStopped = true;
         confusedTimer += Time.deltaTime;
 
@@ -146,6 +152,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleDenied()
     {
+        ChangeSound(pathSound);
         agent.isStopped = true;
         PlayerSingleton.Instance.beingAttacked = false;
         if (PlayerSingleton.Instance.usingWeap == false)
