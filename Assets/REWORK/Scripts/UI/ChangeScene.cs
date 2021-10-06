@@ -24,10 +24,6 @@ public class ChangeScene : MonoBehaviour
     }
     public void Change(string sceneName)
     {
-        if (white)
-            gameObject.GetComponent<Image>().color = Color.white;
-        else
-            gameObject.GetComponent<Image>().color = Color.black;
 
         StartCoroutine(TransitionLoadScene(sceneName));
     }
@@ -41,7 +37,7 @@ public class ChangeScene : MonoBehaviour
     {
         transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(duration);
 
         SceneManager.LoadScene(sceneName);
     }
@@ -50,4 +46,7 @@ public class ChangeScene : MonoBehaviour
     {
         ComicManager.comicNumber = comicNumber;
     }
+
+    public void SetWhite()=> gameObject.GetComponent<Image>().color = Color.white;
+    public void SetBlack()=> gameObject.GetComponent<Image>().color = Color.black;
 }
