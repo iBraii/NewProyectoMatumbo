@@ -31,15 +31,24 @@ public class GroundCheckUpdater : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
             grounded = true;
+
+        if (other.CompareTag("Box"))
+            GetComponent<GrabBox>().enabled = false;
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == 6)
             grounded = true;
+
+        if (other.CompareTag("Box"))
+            GetComponent<GrabBox>().enabled = false;
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == 6)
             grounded = false;
+
+        if (other.CompareTag("Box"))
+            GetComponent<GrabBox>().enabled = true;
     }
 }

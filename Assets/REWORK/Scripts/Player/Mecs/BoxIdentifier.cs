@@ -11,7 +11,9 @@ public class BoxIdentifier : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = new Vector3(0, centerMassY, 0);
+
     }
+   
   
     
 }

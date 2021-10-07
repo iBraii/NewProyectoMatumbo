@@ -14,6 +14,7 @@ public class GrabBox : MonoBehaviour
     CharacterController cc;
     PlayerMovement pm;
     float initialSpeed;
+    float initialRotationSpeed;
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -21,6 +22,7 @@ public class GrabBox : MonoBehaviour
         cc = GetComponent<CharacterController>();
         pm = GetComponent<PlayerMovement>();
         initialSpeed = pm.movementSpeed;
+        initialRotationSpeed = pm.turnSmoothTime;
     }
 
     // Update is called once per frame
@@ -33,7 +35,7 @@ public class GrabBox : MonoBehaviour
     }
     private void MyInput()
     { 
-        if (interactAction.triggered)
+        if (interactAction.triggered&&PlayerSingleton.Instance.isGrounded)
         {
             if (boxGrabbed != null)
                 LetBox();
@@ -69,19 +71,21 @@ public class GrabBox : MonoBehaviour
                 cc.radius = 1.47f;
                 cc.height = 1.28f;
                 pm.movementSpeed = .7f;
+                pm.turnSmoothTime = .25f;
                 break; 
             case 1:
                 cc.center = new Vector3(0, .56f, 1.34f);
                 cc.radius = 1.55f;
                 cc.height = 2.1f;
                 pm.movementSpeed = .65f;
+                pm.turnSmoothTime = .3f;
                 break; 
             case 2:
                 cc.center = new Vector3(0, .84f, 1.35f);
                 cc.radius = 1.55f;
                 cc.height = 2.7f;
                 pm.movementSpeed = .6f;
-
+                pm.turnSmoothTime = .35f;
                 break;
         }
     }
@@ -90,6 +94,7 @@ public class GrabBox : MonoBehaviour
         cc.center = Vector3.zero;
         cc.radius = .5f;
         cc.height = 1;
+        pm.turnSmoothTime = initialRotationSpeed;
         pm.movementSpeed = initialSpeed;
         grabingBox = false;
         boxGrabbed.GetComponent<Rigidbody>().useGravity = true;
