@@ -47,5 +47,6 @@ public class PlayerSingleton : MonoBehaviour
     public bool canJump { get; set; }
     public bool canUseDreamCatcher { get; set; }
     public bool isMoving { get; set; }
+    public bool grabingBox { get; set; }
 }
 

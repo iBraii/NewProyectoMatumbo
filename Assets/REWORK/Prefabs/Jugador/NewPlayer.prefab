@@ -297,6 +297,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 15c5e7a9-2cb7-44c0-b460-7cf59cc13019
     m_ActionName: Land/Escape[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d2957799-8904-4337-985e-3d7b474eec42
+    m_ActionName: Land/NoClip[/Keyboard/f1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 459220c3-a21e-4f6a-840c-140dcfb8f135
+    m_ActionName: Land/Inmortality[/Keyboard/f2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a537bdaa-fc0c-4594-ab34-0540bd9dca36
+    m_ActionName: Land/InfiniteDC[/Keyboard/f3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f3c69f1f-51d2-4dc9-91aa-e77d3d11f961
+    m_ActionName: Land/Speed[/Keyboard/f4]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Land
@@ -406,7 +422,11 @@ MonoBehaviour:
   boxDetected: {fileID: 0}
   boxGrabbed: {fileID: 0}
   grabPos: {fileID: 144929917978430208}
-  grabingBox: 0
+  distance: 0
+  barriers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2070167138864304501
 MonoBehaviour:
   m_ObjectHideFlags: 0
