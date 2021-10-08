@@ -10,16 +10,18 @@ public class GrabBox : MonoBehaviour
     public GameObject boxDetected;
     public GameObject boxGrabbed;
     public Transform grabPos;
-    public bool grabingBox;
-    CharacterController cc;
     PlayerMovement pm;
     float initialSpeed;
     float initialRotationSpeed;
+
+    public GameObject barrierPref;
+    public Transform barrierPos;
+    public float distance;
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         interactAction = playerInput.actions["Interact"];
-        cc = GetComponent<CharacterController>();
         pm = GetComponent<PlayerMovement>();
         initialSpeed = pm.movementSpeed;
         initialRotationSpeed = pm.turnSmoothTime;
@@ -32,6 +34,7 @@ public class GrabBox : MonoBehaviour
         BlockJumpingAndDC();
         MyInput();
         BoxController();
+        Debug.DrawRay(boxGrabbed.transform.position, transform.forward * distance);
     }
     private void MyInput()
     { 
@@ -45,14 +48,14 @@ public class GrabBox : MonoBehaviour
     }
     private void BoxController()
     {
-        if (grabingBox && boxDetected != null)
+        if (PlayerSingleton.Instance.grabingBox && boxDetected != null)
         {
             boxDetected.transform.position = grabPos.position;
         }
     }
     private void Grab()
     {
-        grabingBox = true;
+        PlayerSingleton.Instance.grabingBox = true;
         boxGrabbed = boxDetected;
         BoxIdentifier(boxGrabbed.GetComponent<BoxIdentifier>().boxType);
         Vector3 rotation = new Vector3(0, 0, 0);
@@ -60,43 +63,17 @@ public class GrabBox : MonoBehaviour
         boxGrabbed.transform.position = grabPos.position;
         boxGrabbed.transform.parent = grabPos;
         boxGrabbed.transform.localEulerAngles = rotation;
-        
     }
     private void BoxIdentifier(int box)
     {
-        switch (box)
-        {
-            case 0:
-                cc.center = new Vector3(0, .14f, 1.51f);
-                cc.radius = 1.47f;
-                cc.height = 1.28f;
-                pm.movementSpeed = .7f;
-                pm.turnSmoothTime = .25f;
-                break; 
-            case 1:
-                cc.center = new Vector3(0, .56f, 1.34f);
-                cc.radius = 1.55f;
-                cc.height = 2.1f;
-                pm.movementSpeed = .65f;
-                pm.turnSmoothTime = .3f;
-                break; 
-            case 2:
-                cc.center = new Vector3(0, .84f, 1.35f);
-                cc.radius = 1.55f;
-                cc.height = 2.7f;
-                pm.movementSpeed = .6f;
-                pm.turnSmoothTime = .35f;
-                break;
-        }
+
     }
+
     private void LetBox()
     {
-        cc.center = Vector3.zero;
-        cc.radius = .5f;
-        cc.height = 1;
         pm.turnSmoothTime = initialRotationSpeed;
         pm.movementSpeed = initialSpeed;
-        grabingBox = false;
+        PlayerSingleton.Instance.grabingBox = false;
         boxGrabbed.GetComponent<Rigidbody>().useGravity = true;
         boxGrabbed.GetComponent<Rigidbody>().isKinematic = false;
         boxGrabbed.transform.parent = null;
@@ -105,7 +82,7 @@ public class GrabBox : MonoBehaviour
     }
     private void BlockJumpingAndDC()
     {
-        if (grabingBox)
+        if (PlayerSingleton.Instance.grabingBox)
         {
             PlayerSingleton.Instance.canJump = false;
             PlayerSingleton.Instance.canUseDreamCatcher = false;

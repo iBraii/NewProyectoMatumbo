@@ -14,9 +14,8 @@ public class PlayerAnimations : MonoBehaviour
     private void Update()
     {
         anim.SetBool("isMoving", ps.isMoving);
-        anim.SetBool("isHiding", ps.isHiding);
+        anim.SetBool("Hiding", ps.isHiding);
         anim.SetBool("Dying", ps.stress >= 10);
-        anim.SetBool("Grabbing", GetComponent<GrabBox>().grabingBox);
+        anim.SetBool("Grabbing", ps.grabingBox);
     }
-
 }
