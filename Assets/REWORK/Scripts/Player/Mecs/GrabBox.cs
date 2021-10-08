@@ -34,7 +34,7 @@ public class GrabBox : MonoBehaviour
         BlockJumpingAndDC();
         MyInput();
         BoxController();
-        Debug.DrawRay(boxGrabbed.transform.position, transform.forward * distance);
+        //Debug.DrawRay(boxGrabbed.transform.position, transform.forward * distance);
     }
     private void MyInput()
     { 

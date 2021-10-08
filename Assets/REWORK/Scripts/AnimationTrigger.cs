@@ -15,6 +15,7 @@ public class AnimationTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             anim.Play(animationString);
+            SoundManager.instance.Play("Door");
             Destroy(this.gameObject);
         }   
     }

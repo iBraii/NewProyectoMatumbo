@@ -52,7 +52,16 @@ public class SoundManager : MonoBehaviour
         //sounds.volume = Mathf.SmoothDamp(sounds.volume, maxVolume, ref smoothSound, smoothTime);
         sounds.volume = Mathf.Lerp(0.0001f, 1, volumeValue);
     }
-
+    public void ChangeClipPitch(string name,float pitch)
+    {
+        Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);
+        if (sounds == null)
+        {
+            Debug.Log("El sonido " + name + " no se encontró");
+            return;
+        }
+        sounds.pitch = pitch;
+    }
     public void Play(string name)
     {
         Sounds sounds = System.Array.Find(array_sounds, sound => sound.name == name);

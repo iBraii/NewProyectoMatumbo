@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     float gravity = -4.5f;
     [SerializeField] float jumpForce;
      Vector3 playerVelocity;
+    private AudioSource jumpSource;
 
 
     private void Awake()
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         PlayerSingleton.Instance.canMove = true;
+        jumpSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -104,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
         if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding&&PlayerSingleton.Instance.canJump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
+            jumpSource.pitch = Random.Range(.95f, 1f);
+            jumpSource.Play();
         }
     }
     private void OnTriggerEnter(Collider other)
