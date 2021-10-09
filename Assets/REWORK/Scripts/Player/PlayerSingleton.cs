@@ -28,10 +28,7 @@ public class PlayerSingleton : MonoBehaviour
         canJump = true;
         isHiding = false;
     }
-    private void Start()
-    {
-        canRotate = true;
-    }
+    private void Start() { canRotate = true; }
     public bool isGrounded { get; set; }
     public bool isHiding { get; set; }
     public bool beingAttacked { get; set; }

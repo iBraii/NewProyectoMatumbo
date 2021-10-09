@@ -11,15 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private InputAction _moveAction;
     private InputAction jumpAction;
 
-    private Vector2 currentInputVector;
-    public Vector2 currentInputVectorRaw;
-    private Vector2 smoothInputVel;
-    [SerializeField] float smoothInputSpd;
-
+    //SmoothInputVars
+    public Vector2 currentInputVec;
+    [SerializeField] float inputSmoothTime;
+    Vector2 inputSmoothVel;
 
     //Movement vars
     public float movementSpeed;
-    [SerializeField] Vector3 direction;
     /*[HideInInspector]*/ public Vector3 moveDirection; //Direction of camera
     public float turnSmoothTime = .1f;
     float turnSmoothvelocity;
@@ -27,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     //jump vars
     float gravity = -4.5f;
     [SerializeField] float jumpForce;
-     Vector3 playerVelocity;
+    Vector3 playerVelocity;
     private AudioSource jumpSource;
 
 
@@ -47,49 +45,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(PlayerSingleton.Instance.canMove)
-        {
-            Rotate();
-            Movement();
-        }
+        if(PlayerSingleton.Instance.canMove) MoveAndRotate();
         Gravity();
     }
-    private void Update()
-    {
-        if (PlayerSingleton.Instance.canMove)
-            Jumping();
-    }
-    public void Movement()
+    private void Update() { if (PlayerSingleton.Instance.canMove) Jumping(); }
+
+    public void MoveAndRotate()
     {
         Vector2 input = _moveAction.ReadValue<Vector2>();
-        currentInputVectorRaw = _moveAction.ReadValue<Vector2>();
-        currentInputVector = Vector2.SmoothDamp(currentInputVector, input, ref smoothInputVel, smoothInputSpd);
-       
+        currentInputVec = Vector2.SmoothDamp(currentInputVec, input, ref inputSmoothVel, inputSmoothTime);
+        Vector3 move = new Vector3(currentInputVec.x, 0f, currentInputVec.y);
+        move = move.x * Camera.main.transform.right.normalized + move.z * Camera.main.transform.forward.normalized;
+        move.y = 0;
+        _characterController.Move(move * movementSpeed * Time.deltaTime);
 
-        direction = new Vector3(currentInputVector.x, 0f, currentInputVector.y).normalized;           
-        if (direction.magnitude >= .1f && !PlayerSingleton.Instance.isHiding)
+        if (input != Vector2.zero && !PlayerSingleton.Instance.isHiding)
         {
             PlayerSingleton.Instance.isMoving = true;
-            _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
+            float targetAngle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
+
+            if (PlayerSingleton.Instance.canRotate) transform.rotation = Quaternion.Euler(0f, angle, 0f);
         }
-        else
-            PlayerSingleton.Instance.isMoving = false;
+        else PlayerSingleton.Instance.isMoving = false;
     }
 
-    public void Rotate()
-    {
-        if (direction.magnitude >= .1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
-            if (PlayerSingleton.Instance.canRotate&&!PlayerSingleton.Instance.isHiding)
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
-            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        }
-        else
-            moveDirection = Vector3.zero;
-    }
     private void Gravity()
     {
         playerVelocity.y += gravity * Time.deltaTime;

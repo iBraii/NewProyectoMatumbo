@@ -347,10 +347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c96d0c9712fec6448c7c300f0956550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentInputVectorRaw: {x: 0, y: 0}
-  smoothInputSpd: 0.015
+  currentInputVec: {x: 0, y: 0}
+  inputSmoothTime: 0.1
   movementSpeed: 0.75
-  direction: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
   turnSmoothTime: 0.1
   jumpForce: 0.35
@@ -422,11 +421,9 @@ MonoBehaviour:
   boxDetected: {fileID: 0}
   boxGrabbed: {fileID: 0}
   grabPos: {fileID: 144929917978430208}
+  barrierPref: {fileID: 0}
+  barrierPos: {fileID: 0}
   distance: 0
-  barriers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &2070167138864304501
 MonoBehaviour:
   m_ObjectHideFlags: 0
