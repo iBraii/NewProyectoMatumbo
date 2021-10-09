@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     //Movement vars
     public float movementSpeed;
     [SerializeField] Vector3 direction;
-    /*[HideInInspector]*/ public Vector3 moveDirection; //Direction of camera
+    public Vector3 moveDirection; //Direction of camera
     public float turnSmoothTime = .1f;
     float turnSmoothvelocity;
 
@@ -30,7 +30,12 @@ public class PlayerMovement : MonoBehaviour
      Vector3 playerVelocity;
     private AudioSource jumpSource;
 
-
+    //WhenGrabbingBox
+    public float boxDistance;
+    public bool obstacleDetected;
+    private Vector3 desiredMovement;
+    public GameObject boxGrabbed;
+    private RaycastHit hit;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -58,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PlayerSingleton.Instance.canMove)
             Jumping();
+
+        //ObstacleDetection();
     }
     public void Movement()
     {
@@ -67,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
        
 
         direction = new Vector3(currentInputVector.x, 0f, currentInputVector.y).normalized;           
-        if (direction.magnitude >= .1f && !PlayerSingleton.Instance.isHiding)
+        if (direction.magnitude >= .1f && !PlayerSingleton.Instance.isHiding&&obstacleDetected==false)
         {
             PlayerSingleton.Instance.isMoving = true;
             _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
@@ -75,14 +82,37 @@ public class PlayerMovement : MonoBehaviour
         else
             PlayerSingleton.Instance.isMoving = false;
     }
+    private void ObstacleDetection()
+    {
+        boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
 
+        if (PlayerSingleton.Instance.isMoving)
+        {
+            desiredMovement =moveDirection;
+        }
+        if (PlayerSingleton.Instance.grabingBox&&moveDirection==Vector3.zero)
+        {
+            obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, desiredMovement, out hit, boxDistance) ||
+                Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance) ||
+                Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance);
+        }
+        else if(PlayerSingleton.Instance.grabingBox && moveDirection != Vector3.zero)
+        {
+            obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, moveDirection, out hit, boxDistance) ||
+                Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance) ||
+                Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance);
+        }
+
+        if (PlayerSingleton.Instance.grabingBox == false)
+            obstacleDetected = false;
+    }
     public void Rotate()
     {
         if (direction.magnitude >= .1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
-            if (PlayerSingleton.Instance.canRotate&&!PlayerSingleton.Instance.isHiding)
+            if (PlayerSingleton.Instance.canRotate&&!PlayerSingleton.Instance.isHiding&&obstacleDetected==false)
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
@@ -106,8 +136,12 @@ public class PlayerMovement : MonoBehaviour
         if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding&&PlayerSingleton.Instance.canJump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
-            jumpSource.pitch = Random.Range(.95f, 1f);
-            jumpSource.Play();
+            if (jumpSource != null)
+            {
+                jumpSource.pitch = Random.Range(.95f, 1f);
+                jumpSource.Play();
+            }
+           
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -117,5 +151,15 @@ public class PlayerMovement : MonoBehaviour
             Scene sc = SceneManager.GetActiveScene();
             SceneManager.LoadScene(sc.name);
         }
+    }
+    private void OnDrawGizmos()
+    {
+        if (boxGrabbed!=null)
+        {
+            Debug.DrawRay(boxGrabbed.transform.position, desiredMovement * boxDistance, Color.red);
+            Debug.DrawRay(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), desiredMovement * boxDistance, Color.red);
+            Debug.DrawRay(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), desiredMovement * boxDistance, Color.red);
+        }
+        
     }
 }

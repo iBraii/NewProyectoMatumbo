@@ -14,10 +14,6 @@ public class GrabBox : MonoBehaviour
     float initialSpeed;
     float initialRotationSpeed;
 
-    public GameObject barrierPref;
-    public Transform barrierPos;
-    public float distance;
-
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -63,6 +59,7 @@ public class GrabBox : MonoBehaviour
         boxGrabbed.transform.position = grabPos.position;
         boxGrabbed.transform.parent = grabPos;
         boxGrabbed.transform.localEulerAngles = rotation;
+        boxGrabbed.layer = 2;
     }
     private void BoxIdentifier(int box)
     {
@@ -77,6 +74,7 @@ public class GrabBox : MonoBehaviour
         boxGrabbed.GetComponent<Rigidbody>().useGravity = true;
         boxGrabbed.GetComponent<Rigidbody>().isKinematic = false;
         boxGrabbed.transform.parent = null;
+        boxGrabbed.layer = 6;
         boxGrabbed = null;
 
     }
