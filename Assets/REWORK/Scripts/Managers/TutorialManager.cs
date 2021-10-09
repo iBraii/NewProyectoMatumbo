@@ -20,6 +20,8 @@ public class TutorialManager : MonoBehaviour
 
     public Material desvanecer;
     public GameObject actualDreamCatcher;
+
+    public GameObject particles;
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -71,5 +73,6 @@ public class TutorialManager : MonoBehaviour
         player.GetComponent<Dreams>().enabled = true;
         PlayerSingleton.Instance.canMove = true;
         Camera.main.GetComponent<Animator>().SetBool("enemy", false);
+        particles.GetComponent<SphereCollider>().enabled = true;
     }
 }

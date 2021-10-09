@@ -20,7 +20,7 @@ public class FadingTextTutorial : MonoBehaviour
         {
             foreach(GameObject go in textMesh)
             {
-                go.SetActive(true);
+                go.GetComponent<Animator>().Play("FadeIn");
             }
         }
     }
@@ -41,7 +41,7 @@ public class FadingTextTutorial : MonoBehaviour
         {
             foreach (GameObject go in textMesh)
             {
-                go.SetActive(false);
+                go.GetComponent<Animator>().Play("FadeOut");
             }
         }
     }
