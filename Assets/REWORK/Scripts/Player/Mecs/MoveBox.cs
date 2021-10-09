@@ -34,7 +34,7 @@ public class MoveBox : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        BoxMovement();
+        //BoxMovement();
         
     }
      
@@ -77,19 +77,19 @@ public class MoveBox : MonoBehaviour
         lookAtBox.y = transform.position.y;
         transform.LookAt(lookAtBox);
     }
-    public void BoxMovement()
-    {
-        if (grabingBox && box != null)
-        {
-            box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
-        }
-        else
-        {
-            grabingBox = false;
-            PlayerSingleton.Instance.canRotate = true;
-        }
-            
-    }
+    //public void BoxMovement()
+    //{
+    //    if (grabingBox && box != null)
+    //    {
+    //        box.GetComponent<ActualBox>().Motion(GetComponent<PlayerMovement>().moveDirection);
+    //    }
+    //    else
+    //    {
+    //        grabingBox = false;
+    //        PlayerSingleton.Instance.canRotate = true;
+    //    }
+
+    //}
 
     void DetectBox()
     {

@@ -11,23 +11,21 @@ public class PlayerMovement : MonoBehaviour
     private InputAction _moveAction;
     private InputAction jumpAction;
 
-    private Vector2 currentInputVector;
-    public Vector2 currentInputVectorRaw;
-    private Vector2 smoothInputVel;
-    [SerializeField] float smoothInputSpd;
-
+    //SmoothInputVars
+    Vector2 currentInputVec;
+    [SerializeField] float inputSmoothTime;
+    Vector2 inputSmoothVel;
 
     //Movement vars
     public float movementSpeed;
-    [SerializeField] Vector3 direction;
-    public Vector3 moveDirection; //Direction of camera
     public float turnSmoothTime = .1f;
     float turnSmoothvelocity;
+    Vector3 moveDirection;
 
     //jump vars
     float gravity = -4.5f;
     [SerializeField] float jumpForce;
-     Vector3 playerVelocity;
+    Vector3 playerVelocity;
     private AudioSource jumpSource;
 
     //WhenGrabbingBox
@@ -36,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 desiredMovement;
     public GameObject boxGrabbed;
     private RaycastHit hit;
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -52,43 +51,55 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(PlayerSingleton.Instance.canMove)
-        {
-            Rotate();
-            Movement();
-        }
+        if(PlayerSingleton.Instance.canMove) MovementAndRotate();
         Gravity();
     }
     private void Update()
     {
-        if (PlayerSingleton.Instance.canMove)
-            Jumping();
-
-        //ObstacleDetection();
+        if (PlayerSingleton.Instance.canMove) Jumping();
+        ObstacleDetection();
     }
-    public void Movement()
-    {
-        Vector2 input = _moveAction.ReadValue<Vector2>();
-        currentInputVectorRaw = _moveAction.ReadValue<Vector2>();
-        currentInputVector = Vector2.SmoothDamp(currentInputVector, input, ref smoothInputVel, smoothInputSpd);
-       
 
-        direction = new Vector3(currentInputVector.x, 0f, currentInputVector.y).normalized;           
-        if (direction.magnitude >= .1f && !PlayerSingleton.Instance.isHiding&&obstacleDetected==false)
+    public void MovementAndRotate()
+    {
+        
+        Vector2 input = _moveAction.ReadValue<Vector2>();
+        currentInputVec = Vector2.SmoothDamp(currentInputVec, input, ref inputSmoothVel, inputSmoothTime);
+
+        if (input != Vector2.zero)
         {
-            PlayerSingleton.Instance.isMoving = true;
-            _characterController.Move(moveDirection.normalized * movementSpeed * Time.deltaTime);
+            //ROTATE========================================================
+
+            float targetAngle = Mathf.Atan2(currentInputVec.x, currentInputVec.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
+
+            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding && obstacleDetected == false) transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
+            //MOVE==========================================================
+
+            if (!PlayerSingleton.Instance.isHiding && obstacleDetected == false)
+            {
+                PlayerSingleton.Instance.isMoving = true;
+                _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+            }
         }
         else
+        {
             PlayerSingleton.Instance.isMoving = false;
+            moveDirection = Vector3.zero;
+            currentInputVec = Vector2.zero;
+        }
     }
+
     private void ObstacleDetection()
     {
         boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
 
         if (PlayerSingleton.Instance.isMoving)
         {
-            desiredMovement =moveDirection;
+            desiredMovement = moveDirection;
         }
         if (PlayerSingleton.Instance.grabingBox&&moveDirection==Vector3.zero)
         {
@@ -106,20 +117,7 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerSingleton.Instance.grabingBox == false)
             obstacleDetected = false;
     }
-    public void Rotate()
-    {
-        if (direction.magnitude >= .1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
-            if (PlayerSingleton.Instance.canRotate&&!PlayerSingleton.Instance.isHiding&&obstacleDetected==false)
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
-            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-        }
-        else
-            moveDirection = Vector3.zero;
-    }
+
     private void Gravity()
     {
         playerVelocity.y += gravity * Time.deltaTime;
