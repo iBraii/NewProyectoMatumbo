@@ -38,7 +38,8 @@ public class TutorialManager : MonoBehaviour
         if (playerClose&&grabAction.triggered)
         {
             Invoke("CameraAnim", 1.5f);
-            actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;         
+            actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;
+            SoundManager.instance.Play("Confirmation");
         }    
     }
     private void CameraAnim()
