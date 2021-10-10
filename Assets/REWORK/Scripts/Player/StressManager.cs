@@ -75,6 +75,7 @@ public class StressManager : MonoBehaviour
             PlayerSingleton.Instance.canMove = false;
             Scene scene = SceneManager.GetActiveScene();
             PlayerPrefs.SetString("prevLevel", scene.name);
+            cs.SetBlack();
             cs.Change("DefeatScene");
         }
     }

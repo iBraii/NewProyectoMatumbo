@@ -41,8 +41,7 @@ public class Dreams : MonoBehaviour
         }
         else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
         {
-            if(dreamCatcherUse)
-                ps.canMove = true;
+            if(dreamCatcherUse) ps.canMove = true;
             dreamCatcherUse = false;
             ps.usingWeap = false;
             RegenWeapEnergy();
@@ -52,10 +51,6 @@ public class Dreams : MonoBehaviour
     void RegenWeapEnergy()
     {
         timer += Time.deltaTime;
-        if(timer >= 3)
-        {
-            if (ps.dreamEnergy <= ps.maxDreamEnergy)
-                ps.dreamEnergy += .15f * Time.deltaTime;
-        }  
+        if(timer >= 3) if (ps.dreamEnergy <= ps.maxDreamEnergy) ps.dreamEnergy += .15f * Time.deltaTime;
     }
 }
