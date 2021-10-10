@@ -17,5 +17,8 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("Hiding", ps.isHiding);
         anim.SetBool("Dying", ps.stress >= 10);
         anim.SetBool("Grabbing", ps.grabingBox);
+        anim.SetBool("grounded", ps.isGrounded);
+        anim.SetFloat("Yvelocity", GetComponent<PlayerMovement>().playerVelocity.y);
+        anim.SetBool("isAttacking", ps.usingWeap);
     }
 }

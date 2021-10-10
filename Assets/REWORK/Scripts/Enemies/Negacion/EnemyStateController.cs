@@ -5,6 +5,9 @@ using System;
 
 public class EnemyStateController : MonoBehaviour
 {
+    //ANIM
+    private Animator anim;
+
     //AUDIOS
     public AudioClip followingSound;
     public AudioClip pathSound;
@@ -31,6 +34,7 @@ public class EnemyStateController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         de = GetComponent<DenyEnemy>();
+        anim = GetComponentInChildren<Animator>();
         Dreams.onWeaponUsed += CallDeny;
     }
     private void OnDisable()
@@ -71,16 +75,20 @@ public class EnemyStateController : MonoBehaviour
         switch (currentState)
         {
             case EnemyStates.OnPath:
+                anim.Play("Searching");
                 HandlePath();
                 break;
             case EnemyStates.Following:
+                anim.Play("Chasing&&Attacking");
                 HandleFollow();
                 break;
             case EnemyStates.Confused:
+                anim.Play("Searching");
                 HandleConfused(); 
                 break;
             case EnemyStates.Denied:
                 HandleDenied();
+                anim.Play("Asustado");
                 break;
         }
     }
