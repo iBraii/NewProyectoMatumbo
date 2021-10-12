@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7160623642317060556}
   - component: {fileID: 6120531354885912169}
   - component: {fileID: 8292404130803974819}
-  m_Layer: 0
+  - component: {fileID: 5954510672555930457}
+  m_Layer: 6
   m_Name: 3D_Escoba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &5954510672555930457
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7499748948838589302}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4181652062932033219, guid: f5d5064b189dbc9489d8b8c4bac1af7f, type: 3}

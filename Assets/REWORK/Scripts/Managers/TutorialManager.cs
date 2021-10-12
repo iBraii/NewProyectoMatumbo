@@ -22,6 +22,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject actualDreamCatcher;
 
     public GameObject particles;
+    private bool canPlaySound=true;
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -39,12 +40,14 @@ public class TutorialManager : MonoBehaviour
         {
             Invoke("CameraAnim", 1.5f);
             actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;
-            SoundManager.instance.Play("Confirmation");
+            if(canPlaySound)
+                SoundManager.instance.Play("Confirmation");
+            canPlaySound = false;
         }    
     }
     private void CameraAnim()
     {
-        Invoke("ResetCamera", 15);
+        Invoke("ResetCamera", 13);
         PlayerSingleton.Instance.canMove = false;
         GetComponent<BoxCollider>().enabled = false;
         Camera.main.GetComponent<Animator>().SetBool("enemy", true);
@@ -75,5 +78,6 @@ public class TutorialManager : MonoBehaviour
         PlayerSingleton.Instance.canMove = true;
         Camera.main.GetComponent<Animator>().SetBool("enemy", false);
         particles.GetComponent<SphereCollider>().enabled = true;
+        gameObject.SetActive(false);
     }
 }
