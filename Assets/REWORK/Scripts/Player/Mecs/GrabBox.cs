@@ -63,7 +63,21 @@ public class GrabBox : MonoBehaviour
     }
     private void BoxIdentifier(int box)
     {
-
+        switch (box)
+        {
+            case 0:
+                pm.movementSpeed = .6f;
+                pm.turnSmoothTime = .35f;
+                break;  
+            case 1:
+                pm.movementSpeed = .55f;
+                pm.turnSmoothTime = .35f;
+                break; 
+            case 2:
+                pm.movementSpeed = .5f;
+                pm.turnSmoothTime = .35f;
+                break;
+        }
     }
 
     private void LetBox()
