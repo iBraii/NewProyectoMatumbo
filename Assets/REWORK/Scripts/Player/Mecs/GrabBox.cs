@@ -11,6 +11,7 @@ public class GrabBox : MonoBehaviour
     public GameObject boxGrabbed;
     public Transform grabPos;
     PlayerMovement pm;
+    CharacterController cc;
     float initialSpeed;
     float initialRotationSpeed;
 
@@ -21,6 +22,7 @@ public class GrabBox : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         initialSpeed = pm.movementSpeed;
         initialRotationSpeed = pm.turnSmoothTime;
+        cc = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class GrabBox : MonoBehaviour
         BlockJumpingAndDC();
         MyInput();
         BoxController();
+        Falling();
         //Debug.DrawRay(boxGrabbed.transform.position, transform.forward * distance);
     }
     private void MyInput()
@@ -60,6 +63,8 @@ public class GrabBox : MonoBehaviour
         boxGrabbed.transform.parent = grabPos;
         boxGrabbed.transform.localEulerAngles = rotation;
         boxGrabbed.layer = 2;
+        pm.useGravity = false;
+
     }
     private void BoxIdentifier(int box)
     {
@@ -68,29 +73,55 @@ public class GrabBox : MonoBehaviour
             case 0:
                 pm.movementSpeed = .6f;
                 pm.turnSmoothTime = .35f;
+
+                cc.center = new Vector3(0, 0.1f, 2.3f);
+                cc.radius = 1;
+                cc.height = 1.15f;
                 break;  
             case 1:
                 pm.movementSpeed = .55f;
                 pm.turnSmoothTime = .35f;
+
+                cc.center = new Vector3(0, 0.5f, 2.3f);
+                cc.radius = 1;
+                cc.height = 2;
+                
                 break; 
             case 2:
                 pm.movementSpeed = .5f;
                 pm.turnSmoothTime = .35f;
+
+                cc.center = new Vector3(0, 0.87f, 2.3f);
+                cc.radius = 1f;
+                cc.height = 2.7f;
                 break;
         }
     }
 
     private void LetBox()
     {
+        cc.center = Vector3.zero;
+        cc.radius = .5f;
+        cc.height = 1;
         pm.turnSmoothTime = initialRotationSpeed;
         pm.movementSpeed = initialSpeed;
-        PlayerSingleton.Instance.grabingBox = false;
-        boxGrabbed.GetComponent<Rigidbody>().useGravity = true;
-        boxGrabbed.GetComponent<Rigidbody>().isKinematic = false;
+        pm.useGravity = true;
+
         boxGrabbed.transform.parent = null;
+        boxGrabbed.GetComponent<Rigidbody>().useGravity = true;       
+        boxGrabbed.GetComponent<Rigidbody>().isKinematic = false;
+        
         boxGrabbed.layer = 6;
         boxGrabbed = null;
-
+        PlayerSingleton.Instance.grabingBox = false;
+    }
+    private void Falling()
+    {
+        if (PlayerSingleton.Instance.isGrounded == false&&PlayerSingleton.Instance.grabingBox)
+        {
+            LetBox();
+            pm.useGravity = true;
+        }
     }
     private void BlockJumpingAndDC()
     {

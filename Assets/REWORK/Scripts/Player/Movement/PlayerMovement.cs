@@ -29,12 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource jumpSource;
 
     //WhenGrabbingBox
-    public float boxDistance;
-    public bool obstacleDetected;
-    private Vector3 desiredMovement;
-    public GameObject boxGrabbed;
-    private RaycastHit hit;
-
+    public bool useGravity;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -57,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         if (PlayerSingleton.Instance.canMove) Jumping();
-        ObstacleDetection();
+       
     }
 
     public void MovementAndRotate()
@@ -73,13 +68,13 @@ public class PlayerMovement : MonoBehaviour
             float targetAngle = Mathf.Atan2(currentInputVec.x, currentInputVec.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
 
-            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding && obstacleDetected == false) transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding ) transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             //MOVE==========================================================
 
-            if (!PlayerSingleton.Instance.isHiding && obstacleDetected == false)
+            if (!PlayerSingleton.Instance.isHiding)
             {
                 PlayerSingleton.Instance.isMoving = true;
                 _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
@@ -93,33 +88,43 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ObstacleDetection()
-    {
-        boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
+    //private void ObstacleDetection()
+    //{
+    //    boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
 
-        if (PlayerSingleton.Instance.isMoving)
-        {
-            desiredMovement = moveDirection;
-        }
-        if (PlayerSingleton.Instance.grabingBox&&moveDirection==Vector3.zero)
-        {
-            obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, desiredMovement, out hit, boxDistance) ||
-                Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance) ||
-                Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance);
-        }
-        else if(PlayerSingleton.Instance.grabingBox && moveDirection != Vector3.zero)
-        {
-            obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, moveDirection, out hit, boxDistance) ||
-                Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance) ||
-                Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance);
-        }
+    //    if (PlayerSingleton.Instance.isMoving)
+    //    {
+    //        desiredMovement = moveDirection;
+    //    }
+    //    if (PlayerSingleton.Instance.grabingBox&&moveDirection==Vector3.zero)
+    //    {
+    //        obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, desiredMovement, out hit, boxDistance) ||
+    //            Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance) ||
+    //            Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance);
+    //    }
+    //    else if(PlayerSingleton.Instance.grabingBox && moveDirection != Vector3.zero)
+    //    {
+    //        obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, moveDirection, out hit, boxDistance) ||
+    //            Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance) ||
+    //            Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance);
+    //    }
 
-        if (PlayerSingleton.Instance.grabingBox == false)
-            obstacleDetected = false;
-    }
-
+    //    if (PlayerSingleton.Instance.grabingBox == false)
+    //        obstacleDetected = false;
+    //}
+    //private void ObstacleDetectionV2()
+    //{
+    //    if (PlayerSingleton.Instance.isMoving)
+    //    {
+    //        desiredMovement = moveDirection;
+    //    }
+    //    boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
+    //    collisionDetected = Physics.BoxCast(boxGrabbed.transform.position+new Vector3(0,.1125f,0), boxGrabbed.transform.localScale / 2, desiredMovement, out hit, boxGrabbed.transform.rotation, boxDistance);
+        
+    //}
     private void Gravity()
     {
+        if (useGravity == false) return;
         playerVelocity.y += gravity * Time.deltaTime;
         _characterController.Move(playerVelocity * Time.deltaTime);
 
@@ -149,15 +154,5 @@ public class PlayerMovement : MonoBehaviour
             Scene sc = SceneManager.GetActiveScene();
             SceneManager.LoadScene(sc.name);
         }
-    }
-    private void OnDrawGizmos()
-    {
-        if (boxGrabbed!=null)
-        {
-            Debug.DrawRay(boxGrabbed.transform.position, desiredMovement * boxDistance, Color.red);
-            Debug.DrawRay(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), desiredMovement * boxDistance, Color.red);
-            Debug.DrawRay(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), desiredMovement * boxDistance, Color.red);
-        }
-        
     }
 }
