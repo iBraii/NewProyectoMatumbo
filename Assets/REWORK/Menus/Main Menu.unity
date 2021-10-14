@@ -1628,6 +1628,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4457088d2d610884fa9e51d5ce6a8b70, type: 3}
+--- !u!114 &508704223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7591030986272639596, guid: 1b60b883e1d5f9949892c7014174ffb3, type: 3}
+  m_PrefabInstance: {fileID: 285267065}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0195067c3b26359468f403069777a6a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &531143222 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6770424929134860450, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
@@ -2976,7 +2987,19 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 508704223}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: SetVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &910306050
 GameObject:
   m_ObjectHideFlags: 0
@@ -11475,6 +11498,63 @@ Transform:
   m_Father: {fileID: 5518814528023680265}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6277295544487376902
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503313, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6277295545171503315, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
+      propertyPath: m_Name
+      value: Data
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a3082d6da7208774ab33c5aebde1c26b, type: 3}
 --- !u!4 &6312407187890766065
 Transform:
   m_ObjectHideFlags: 0
