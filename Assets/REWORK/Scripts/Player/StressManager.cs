@@ -25,7 +25,7 @@ public class StressManager : MonoBehaviour
         #endregion
 
         SoundManager.instance.Play("LowRumble");
-        SoundManager.instance.Play("HeartBeat");
+        SoundManager.instance.Play("TensionLoop");
     }
 
     void Update()
@@ -40,7 +40,7 @@ public class StressManager : MonoBehaviour
     private void SetStressFeedback()
     {
         SoundManager.instance.ChangeIndividualVolume("LowRumble", PlayerSingleton.Instance.stress / 10);
-        SoundManager.instance.ChangeIndividualVolume("HeartBeat", PlayerSingleton.Instance.stress / 10);
+        SoundManager.instance.ChangeIndividualVolume("TensionLoop", PlayerSingleton.Instance.stress / 10);
 
         Volume volume = generalVolume.GetComponent<Volume>();
         if (volume.profile.TryGet<Vignette>(out vig)&& volume.profile.TryGet<ColorAdjustments>(out cad) && volume.profile.TryGet<ChromaticAberration>(out cab)
