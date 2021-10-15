@@ -21,7 +21,7 @@ public class TutorialManager : MonoBehaviour
     private bool canPlaySound=true;
     private void Start()
     {
-        atrapa = GameObject.Find("DREAMCATCHER");
+        
     }
     private void Update()
     {

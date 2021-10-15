@@ -36,6 +36,6 @@ public class GameOptions : MonoBehaviour
 
     public void QuitGame()
     {
-        LoadScene.CloseGame();
+        Application.Quit();
     }
 }
