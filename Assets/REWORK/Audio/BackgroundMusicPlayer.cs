@@ -24,7 +24,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 break;
-            case "NivelTutorial":
+            case "NivelTuto":
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break;
