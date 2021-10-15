@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AnimationTrigger : MonoBehaviour
 {
+    //Commit
     public Animator anim;
     public string animationString;
 
