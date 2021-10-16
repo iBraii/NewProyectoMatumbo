@@ -19,14 +19,26 @@ public class TutorialManager : MonoBehaviour
 
     public GameObject particles;
     private bool canPlaySound=true;
-    private void Start()
+
+    System.Action missionCompleted;
+
+    private void Awake() => missionCompleted += OnDreamCatcherGrabbed;
+
+    void OnDisable() => missionCompleted -= OnDreamCatcherGrabbed;
+
+    void OnDreamCatcherGrabbed()
     {
-        
+        GameObject go = GameObject.Find("Cuadro Colgante");
+        if (go == null) return;
+        go.GetComponent<Rigidbody>().useGravity = true;
+
+        AudioSource[] sources = go.GetComponents<AudioSource>();
+        for(int i = 0; i < sources.Length; i++)
+        {
+            sources[i].Play();
+        }
     }
-    private void Update()
-    {
-        
-    }
+
     private void GrabDreamCatcher()
     {
             Invoke("CameraAnim", 1.5f);
@@ -54,6 +66,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ResetCamera()
     {
+        SecondaryMissionCall.CallEvent(missionCompleted);
         player.GetComponent<Dreams>().enabled = true;
         PlayerSingleton.Instance.canMove = true;
         Camera.main.GetComponent<Animator>().SetBool("enemy", false);

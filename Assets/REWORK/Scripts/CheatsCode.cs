@@ -13,6 +13,8 @@ public class CheatsCode : MonoBehaviour
     public GameObject cheatCodeTxt;
     float timer;
 
+    private float initialSpd, initialForce;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -20,6 +22,9 @@ public class CheatsCode : MonoBehaviour
         inmortality = playerInput.actions["Inmortality"];
         infiniteDC = playerInput.actions["InfiniteDC"];
         speed = playerInput.actions["Speed"];
+
+        initialSpd = GetComponent<PlayerMovement>().movementSpeed;
+        initialForce = GetComponent<PlayerMovement>().jumpForce;
 
         noClip.performed += PerformNoClip;
         inmortality.performed += PerformInmortality;
@@ -74,6 +79,7 @@ public class CheatsCode : MonoBehaviour
                 return;
             }
             col.GetComponent<Collider>().enabled = !col.GetComponent<Collider>().enabled;
+            GetComponent<PlayerMovement>().useGravity = !GetComponent<PlayerMovement>().useGravity;
         }
     }
     void PerformInmortality(InputAction.CallbackContext ctx)
@@ -112,8 +118,14 @@ public class CheatsCode : MonoBehaviour
         cheatCodeTxt.SetActive(true);
         spd = !spd;
         if (spd)
+        {
             gameObject.GetComponent<PlayerMovement>().movementSpeed *= 3;
-        else
-            gameObject.GetComponent<PlayerMovement>().movementSpeed = 0.75f;     
+            gameObject.GetComponent<PlayerMovement>().jumpForce *= 3;
+        }
+        else 
+        {
+            gameObject.GetComponent<PlayerMovement>().movementSpeed = initialSpd;
+            gameObject.GetComponent<PlayerMovement>().jumpForce = initialForce;
+        }
     }
 }
