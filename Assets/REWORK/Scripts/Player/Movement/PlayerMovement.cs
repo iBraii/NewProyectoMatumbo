@@ -24,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     //jump vars
     float gravity = -4.5f;
-    [SerializeField] float jumpForce;
-    [HideInInspector] public Vector3 playerVelocity;
+    public float jumpForce;
+    public Vector3 playerVelocity;
     private AudioSource jumpSource;
 
     //WhenGrabbingBox
