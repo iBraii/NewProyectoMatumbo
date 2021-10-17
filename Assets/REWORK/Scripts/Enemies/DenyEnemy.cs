@@ -4,25 +4,17 @@ public class DenyEnemy : MonoBehaviour
 {
     public bool inRange;
     private bool detectAtkRange;
+
     private void Awake()
     {
         inRange = false;
         Dreams.onWeaponUsed += Deny;
     }
-    private void OnDisable()
-    {
-        Dreams.onWeaponUsed -= Deny;
-    }
+    private void OnDisable() => Dreams.onWeaponUsed -= Deny;
     void Deny()
     {
-        if(detectAtkRange)
-        {
-            inRange = true;
-        }  
-        else
-        {
-            inRange = false;
-        }
+        if(detectAtkRange) inRange = true;
+        else inRange = false;
     }
     private void OnTriggerEnter(Collider other)
     {

@@ -1,20 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class Button : MonoBehaviour
 {
-    public GameObject[] darkZone;
-    public bool buttonToggle;
+    [SerializeField] private GameObject[] darkZone;
+    [HideInInspector] public bool buttonToggle;
     public static event Action onButtonChanged;
     
-    private void ButtonState(bool state)
+    private void ButtonState(bool state) 
     {
-        foreach (GameObject go in darkZone)
-        {
-            go.SetActive(state);
-        }
+        foreach (GameObject go in darkZone) go.SetActive(state);
     }
     private void OnTriggerEnter(Collider other)
     {

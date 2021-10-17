@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TvTrigger : MonoBehaviour
 {
-    public AudioSource source;
-    public GameObject tv;
-    public Material onMat;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private GameObject tv;
+    [SerializeField] private Material onMat;
+
     private Material[] mats;
     private bool tvStatus=false;
+
     void Start()
     {
         mats = tv.GetComponent<Renderer>().materials;

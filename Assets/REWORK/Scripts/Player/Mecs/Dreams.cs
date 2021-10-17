@@ -1,7 +1,7 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using Utilities;
 
 public class Dreams : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class Dreams : MonoBehaviour
     }
     private void Update()
     {
-        UseWeapon();
+        if(PlayerSingleton.Instance.isGrounded) UseWeapon();
         ps.dreamEnergy = Mathf.Clamp(ps.dreamEnergy, 0, ps.maxDreamEnergy);
     }
 
@@ -29,7 +29,11 @@ public class Dreams : MonoBehaviour
 
     void UseWeapon()
     {
-        if (ps.dreamEnergy > 0 && attackAction.ReadValue<float>() == 1 && PlayerSingleton.Instance.canUseDreamCatcher && !PlayerSingleton.Instance.isHiding)
+        if (ps.dreamEnergy > 0 && 
+            attackAction.ReadValue<float>() == 1 && 
+            PlayerSingleton.Instance.canUseDreamCatcher &&
+            !PlayerSingleton.Instance.isHiding&&
+            OurTimer.TimerCount(.1f))
         {
             dreamCatcherUse = true;
             ps.dreamEnergy -= 1 * Time.deltaTime;

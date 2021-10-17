@@ -1,34 +1,53 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.AI;
-using System;
 
 public class EnemyStateController : MonoBehaviour
 {
     //ANIM
     private Animator anim;
 
-    //AUDIOS
-    public AudioClip followingSound;
-    public AudioClip pathSound;
+    //AUDIO
+    [Header("Sonidos de enemigo")]
+    [SerializeField] private AudioClip followingSound;
+    [SerializeField] private AudioClip pathSound;
 
-    DenyEnemy de;
-    public EnemyStates currentState;
-    NavMeshAgent agent;
-    [SerializeField] Transform[] waypoints;
-    bool onVisionRange, isClose;
-    [SerializeField] float visionRange;
-    [SerializeField] float closeRange;
-    [SerializeField] float visionAngle;
-    int wpIndex;
-    float confusedTimer, deniedTime;
-    [SerializeField] float maxConfusedTime;
-    [SerializeField] float damage;
-    [SerializeField] float pathSpeed;
-    [SerializeField] float followSpeed;
-    [SerializeField] bool detectObstacle;
-    public LayerMask lm;
-    float initialCloseRange;
+    //Denegación de enemigo
+    private DenyEnemy de;
+
+    //Movimiento
+    private NavMeshAgent agent;
+    private int wpIndex;
+    [Space] [SerializeField] private Transform[] waypoints;
+
+    //Estados
+    private EnemyStates currentState;
+
+    //Rangos de vision
+    private bool onVisionRange, isClose;
+    [Header("Rangos de vision")]
+    [SerializeField] [Tooltip("Angulo de vision de cono")] [Range(10,180)] private float visionAngle;
+    [SerializeField] [Tooltip("Rango de vision de cono")] private float visionRange;
+    [SerializeField] [Tooltip("Rango de vision cercana")] private float closeRange;
+
+    //Timers a cambiar
+    private float confusedTimer, deniedTime;
+    [Header("Confundido")]
+    [SerializeField] [Tooltip("Maximo tiempo de confusion")] private float maxConfusedTime;
+
+    [Header("Daño")]
+    [SerializeField] private float damage;
+
+    //Velocidades de estados
+    [Header("Velocidades de estados")]
+    [SerializeField] private float pathSpeed;
+    [SerializeField] private float followSpeed;
+    private float initialCloseRange;
+
+    //Deteccion player
+    private bool detectObstacle;
+    [Header("Deteccion player")]
+    [SerializeField] private LayerMask lm;
+
 
     private void Awake()
     {
@@ -37,10 +56,7 @@ public class EnemyStateController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         Dreams.onWeaponUsed += CallDeny;
     }
-    private void OnDisable()
-    {
-        Dreams.onWeaponUsed -= CallDeny;
-    }
+    private void OnDisable() => Dreams.onWeaponUsed -= CallDeny;
     void Start()
     {
         currentState = EnemyStates.OnPath;
@@ -67,7 +83,7 @@ public class EnemyStateController : MonoBehaviour
         Debug.DrawRay(transform.position, direction , Color.red);
 
         StateController();
-        //Debug.Log(currentState);
+        AnimationController();
     }
 
     void StateController()
@@ -75,22 +91,25 @@ public class EnemyStateController : MonoBehaviour
         switch (currentState)
         {
             case EnemyStates.OnPath:
-                anim.Play("Searching");
                 HandlePath();
                 break;
             case EnemyStates.Following:
-                anim.Play("Chasing&&Attacking");
                 HandleFollow();
                 break;
             case EnemyStates.Confused:
-                anim.Play("Searching");
                 HandleConfused(); 
                 break;
             case EnemyStates.Denied:
                 HandleDenied();
-                anim.Play("Asustado");
                 break;
         }
+    }
+
+    void AnimationController()
+    {
+        anim.SetBool("Chasing", currentState == EnemyStates.Following);
+        anim.SetBool("isDenied", currentState == EnemyStates.Denied);
+        anim.SetBool("Confused", currentState == EnemyStates.Confused);
     }
 
     void HandlePath()
@@ -155,8 +174,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void CallDeny()
     {
-        if (de.inRange)
-            currentState = EnemyStates.Denied;     
+        if (de.inRange) currentState = EnemyStates.Denied;     
     }
     void HandleDenied()
     {
@@ -188,9 +206,7 @@ public class EnemyStateController : MonoBehaviour
             Gizmos.DrawWireSphere(wp.transform.position, 0.3f);
         }
         for (int i = 0; i < waypoints.Length - 1; i++)
-        {
             Debug.DrawLine(waypoints[i].position, waypoints[i + 1].position, Color.green);
-        }
     }
 }
 public enum EnemyStates

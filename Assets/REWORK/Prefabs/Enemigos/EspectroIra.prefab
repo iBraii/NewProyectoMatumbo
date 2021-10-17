@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &8682880353196661799
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009574184198495610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!65 &7762363107872298418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39,6 +25,7 @@ GameObject:
   - component: {fileID: 7877688605237466886}
   - component: {fileID: 7877688605237466893}
   - component: {fileID: 7877688605237466892}
+  - component: {fileID: 2027391325585906562}
   m_Layer: 0
   m_Name: EspectroIra
   m_TagString: Untagged
@@ -76,7 +63,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeMeshRenderer: {fileID: 7009574184198495610}
   fakeMeshRenderer: {fileID: 7157043661494635763}
-  isDenied: 0
   detectRange: 0.7
   attackRange: 0.5
   activeRange: 1
@@ -106,6 +92,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inRange: 0
+--- !u!65 &2027391325585906562
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7877688605237466887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7892113340840501291
 PrefabInstance:
   m_ObjectHideFlags: 0

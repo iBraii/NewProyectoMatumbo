@@ -6,16 +6,16 @@ public class NewEspectroIra : MonoBehaviour
     private DenyEnemy de;
     private Enemy2States currentState;
     private Animator anim;
-    public GameObject activeMeshRenderer;
-    public GameObject fakeMeshRenderer;
 
-    [HideInInspector]
-    public bool isDenied;
+    [Space]
+    [SerializeField] private GameObject activeMeshRenderer;
+    [SerializeField] private GameObject fakeMeshRenderer;
 
     [Header("Variables deteccion")]
-    public float detectRange;
-    public float attackRange;
-    public float activeRange;
+    [SerializeField] private float detectRange;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float activeRange;
+
     private float deniedTime;
 
     void Start() => currentState = Enemy2States.Hiding;
@@ -26,11 +26,7 @@ public class NewEspectroIra : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         Dreams.onWeaponUsed += CallDeny;
     }
-    private void OnDisable()
-    {
-        Dreams.onWeaponUsed -= CallDeny;
-    }
-
+    private void OnDisable() => Dreams.onWeaponUsed -= CallDeny;
     void Update()
     {
         StateController();
@@ -107,7 +103,7 @@ public class NewEspectroIra : MonoBehaviour
             deniedTime += Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime)
+        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime * 1.5f)
         {
             deniedTime = 0;
             PlayerSingleton.Instance.weapUsedTime = 0;

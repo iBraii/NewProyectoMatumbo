@@ -5,13 +5,7 @@ public class DetectPlayer : MonoBehaviour
     public GameObject player;
 
     private static DetectPlayer _detection;
-    public static DetectPlayer detection
-    {
-        get
-        {
-            return _detection;
-        }
-    }
+    public static DetectPlayer detection{ get{ return _detection;} }
 
     private void Awake()
     {
@@ -25,10 +19,8 @@ public class DetectPlayer : MonoBehaviour
 
     public bool CheckIfLessDistance(GameObject origin, float rangeDistance)
     {
-        if (Vector3.Distance(origin.transform.position, player.transform.position) <= rangeDistance)
-            return true;
-        else
-            return false;
+        if (Vector3.Distance(origin.transform.position, player.transform.position) <= rangeDistance) return true;
+        else return false;
     }
 
     public bool CheckIfVisionRange(GameObject origin, float angle,float rangeDistance)
@@ -39,9 +31,7 @@ public class DetectPlayer : MonoBehaviour
 
         float myRange = Vector3.Angle(forward, target);
 
-        if (myRange < angle/2 && CheckIfLessDistance(origin, rangeDistance))
-            return true;
-        else
-            return false;
+        if (myRange < angle/2 && CheckIfLessDistance(origin, rangeDistance)) return true;
+        else return false;
     }
 }

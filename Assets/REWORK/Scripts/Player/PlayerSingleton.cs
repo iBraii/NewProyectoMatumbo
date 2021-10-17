@@ -19,16 +19,23 @@ public class PlayerSingleton : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        #region ...
+        //Default Values
+
         stress = 0;
+
         maxLightEnergy = 10;
         lightEnergy = maxLightEnergy;
+
         maxDreamEnergy = 3;
         dreamEnergy = maxDreamEnergy;
+
         canUseDreamCatcher = false;
         canJump = true;
         isHiding = false;
+        canRotate = true;
+        #endregion
     }
-    private void Start() { canRotate = true; }
     public bool isGrounded { get; set; }
     public bool isHiding { get; set; }
     public bool beingAttacked { get; set; }

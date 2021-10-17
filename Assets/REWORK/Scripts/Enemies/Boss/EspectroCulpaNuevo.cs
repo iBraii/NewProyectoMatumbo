@@ -1,25 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EspectroCulpaNuevo : MonoBehaviour
 {
-    [Header("Waypoints")]
-    public Transform[] waypoint;
+    [Header("Vars")]
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float fastSpeed;
+    [SerializeField] private float slowSpeed;
+    [SerializeField] private float rotationSpeed;
 
-    [Header("Variables")]
     private float speed;
-    public float normalSpeed;
-    public float fastSpeed;
-    public float slowSpeed;
-    public float rotationSpeed;
     private int currentIndex;
     private float rotationTime;
-    
+
+    [Space]
+    [SerializeField] private Transform[] waypoint;
 
     [Header("Dificultad Dinamica")]
-    public float minTreshhold;
-    public float maxTreshhold;
+    [SerializeField] private float minTreshhold;
+    [SerializeField] private float maxTreshhold; 
+
     private void Start()
     {
         currentIndex = 0;
@@ -35,22 +34,18 @@ public class EspectroCulpaNuevo : MonoBehaviour
         rotationTime += Time.deltaTime*rotationSpeed;
         Quaternion lookRotation = Quaternion.LookRotation(waypoint[currentIndex].position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationTime);
+
         transform.position = Vector3.MoveTowards(transform.position,waypoint[currentIndex].position , speed*Time.deltaTime);    
-        Mathf.Clamp(rotationTime, 0, 1);
 
         if (transform.position == waypoint[currentIndex].position)
         {
             rotationTime = 0;
-            CheckIfCompleted();
-                      
+            CheckIfCompleted();       
         }
     }
     private void CheckIfCompleted()
     {
-        if (currentIndex == waypoint.Length - 1)
-        {
-            Deactivate();
-        }
+        if (currentIndex == waypoint.Length - 1) Deactivate();
         else
         {
             SpeedController();
@@ -66,14 +61,8 @@ public class EspectroCulpaNuevo : MonoBehaviour
             speed = normalSpeed;
         else if (distanceToPlayer > maxTreshhold)
             speed = fastSpeed;
-
-        //Debug.Log("Speed: " + speed);
-        //Debug.Log("Distance: " + distanceToPlayer);
     }
-    private void Deactivate()
-    {
-        currentIndex = 0;
-    }
+    private void Deactivate() => currentIndex = 0;
     private void OnDrawGizmos()
     {
         foreach(Transform waypoint in waypoint)
@@ -82,10 +71,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
             Gizmos.DrawWireSphere(waypoint.position, .3f);
         }
 
-        for(int i = 0; i < waypoint.Length - 1; i++)
-        {
-            Debug.DrawLine(waypoint[i].position, waypoint[i + 1].position, Color.red);
-        }       
+        for(int i = 0; i < waypoint.Length - 1; i++) 
+            Debug.DrawLine(waypoint[i].position, waypoint[i + 1].position, Color.red);   
     }
-
 }

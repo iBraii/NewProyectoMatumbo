@@ -7,20 +7,29 @@ using UnityEngine.InputSystem;
 using TMPro;
 public class TutorialManager : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject firstEnemy;
+    [Header("Player reference")]
+    [SerializeField] private GameObject player;
 
-    public TextMeshPro[] indication;
-    public GameObject atrapa;
+    [Header("Enemy Encounter")]
+    [SerializeField] private GameObject firstEnemy;
 
+    [Space] [SerializeField] private TextMeshPro[] indication;
 
-    public Material desvanecer;
-    public GameObject actualDreamCatcher;
+    [Header("Atrapasueños objeto padre")]
+    [SerializeField] private GameObject atrapa;
 
-    public GameObject particles;
+    [Header("Shader")]
+    [SerializeField] private Material desvanecer;
+
+    [Header("Atrapasueños mesh")]
+    [SerializeField] private GameObject actualDreamCatcher;
+
+    [Header("Particula guia")]
+    [SerializeField] private GameObject particles;
+
     private bool canPlaySound=true;
 
-    System.Action missionCompleted;
+    private System.Action missionCompleted;
 
     private void Awake() => missionCompleted += OnDreamCatcherGrabbed;
 
@@ -33,19 +42,17 @@ public class TutorialManager : MonoBehaviour
         go.GetComponent<Rigidbody>().useGravity = true;
 
         AudioSource[] sources = go.GetComponents<AudioSource>();
-        for(int i = 0; i < sources.Length; i++)
-        {
-            sources[i].Play();
-        }
+
+        for(int i = 0; i < sources.Length; i++) sources[i].Play();
     }
 
     private void GrabDreamCatcher()
     {
-            Invoke("CameraAnim", 1.5f);
-            actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;
-            if(canPlaySound)
-                SoundManager.instance.Play("Confirmation");
-            canPlaySound = false;          
+        Invoke("CameraAnim", 1.5f);
+        actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;
+        if(canPlaySound)
+            SoundManager.instance.Play("Confirmation");
+        canPlaySound = false;          
     }
     private void CameraAnim()
     {
@@ -58,10 +65,7 @@ public class TutorialManager : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            GrabDreamCatcher();
-        }
+        if (other.CompareTag("Player")) GrabDreamCatcher();
     }
 
     private void ResetCamera()
