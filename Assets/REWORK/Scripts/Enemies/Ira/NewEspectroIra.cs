@@ -1,29 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class NewEspectroIra : MonoBehaviour
 {
-    DenyEnemy de;
-    Enemy2States currentState;
-    private MeshRenderer activeMeshRenderer;
-    public MeshRenderer fakeMeshRenderer;
+    private DenyEnemy de;
+    private Enemy2States currentState;
+    private Animator anim;
+    public GameObject activeMeshRenderer;
+    public GameObject fakeMeshRenderer;
+
     [HideInInspector]
     public bool isDenied;
+
     [Header("Variables deteccion")]
     public float detectRange;
     public float attackRange;
     public float activeRange;
-    float deniedTime;
+    private float deniedTime;
 
-    void Start()
-    {
-        de = GetComponent<DenyEnemy>();
-        activeMeshRenderer = GetComponent<MeshRenderer>();
-        currentState = Enemy2States.Hiding;
-    }
+    void Start() => currentState = Enemy2States.Hiding;
+
     private void Awake()
     {
+        de = GetComponent<DenyEnemy>();
+        anim = GetComponentInChildren<Animator>();
         Dreams.onWeaponUsed += CallDeny;
     }
     private void OnDisable()
@@ -31,10 +31,10 @@ public class NewEspectroIra : MonoBehaviour
         Dreams.onWeaponUsed -= CallDeny;
     }
 
-    // Update is called once per frame
     void Update()
     {
         StateController();
+        AnimatorController();
     }
     private void StateController()
     {
@@ -54,15 +54,19 @@ public class NewEspectroIra : MonoBehaviour
                 break;
         }
     }
+    void AnimatorController()
+    {
+        anim.SetBool("isScreaming", currentState == Enemy2States.Attack);
+        anim.SetBool("isDenied", currentState == Enemy2States.Denied);
+    }
 
     private void HandleAttack()
     {
         PlayerSingleton.Instance.beingAttacked = true;
-        activeMeshRenderer.enabled = true;
-        fakeMeshRenderer.enabled = false;
+        activeMeshRenderer.SetActive(true);
+        fakeMeshRenderer.SetActive(false);
 
         PlayerSingleton.Instance.stress += 1.5f * Time.deltaTime;
-        Debug.Log("Current Stress: " + PlayerSingleton.Instance.stress);
 
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, detectRange) == false)
@@ -70,8 +74,8 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleHiding()
     {
-        activeMeshRenderer.enabled = false;
-        fakeMeshRenderer.enabled = true;
+        activeMeshRenderer.SetActive(false);
+        fakeMeshRenderer.SetActive(true);
 
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
@@ -79,12 +83,12 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleActive()
     {
-        activeMeshRenderer.enabled = true;
-        fakeMeshRenderer.enabled = false;
+        activeMeshRenderer.SetActive(true);
+        fakeMeshRenderer.SetActive(false);
 
         //CHANGE CONDITIONS 
-        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false)
-            currentState = Enemy2States.Hiding;
+        if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false && OurTimer.TimerCount(1.3f))
+            currentState = Enemy2States.Hiding; 
         else if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
             currentState = Enemy2States.Attack;
     }
@@ -95,8 +99,8 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleDenied()
     {
-        activeMeshRenderer.enabled = true;
-        fakeMeshRenderer.enabled = false;
+        activeMeshRenderer.SetActive(true);
+        fakeMeshRenderer.SetActive(false);
         PlayerSingleton.Instance.beingAttacked = false;
 
         if (PlayerSingleton.Instance.usingWeap == false)
