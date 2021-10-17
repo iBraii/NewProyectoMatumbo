@@ -340,8 +340,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2594731159765747643}
-  - component: {fileID: 2594731159765747644}
   - component: {fileID: 2594731159765747645}
+  - component: {fileID: 2594731159765747644}
   - component: {fileID: 2594731159765747646}
   - component: {fileID: 7806233462021961882}
   m_Layer: 0
@@ -365,25 +365,6 @@ Transform:
   m_Father: {fileID: 7557756885411327231}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2594731159765747644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2594731159765747642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17772082f107ccb469f61ffbc7d91fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DC_anim: {fileID: 6005272632207457387}
-  maxUIDC: 2
-  DCBar: {fileID: 5160460988371463084}
-  gameIsPaused: 0
-  pausePanel: {fileID: 2594731160840556408}
-  optionPanel: {fileID: 2594731161426129617}
-  cm: {fileID: 0}
 --- !u!114 &2594731159765747645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +395,24 @@ MonoBehaviour:
   m_DefaultActionMap: Land
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2594731159765747644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2594731159765747642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17772082f107ccb469f61ffbc7d91fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DC_anim: {fileID: 6005272632207457387}
+  maxUIDC: 2
+  DCBar: {fileID: 5160460988371463084}
+  pausePanel: {fileID: 2594731160840556408}
+  optionPanel: {fileID: 2594731161426129617}
+  cm: {fileID: 0}
 --- !u!114 &2594731159765747646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,7 +1483,7 @@ Animator:
   m_GameObject: {fileID: 2594731160558254444}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b96106073b962754b8b53a53920115b4, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3211,7 +3210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6770424929134860451, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
       propertyPath: duration
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6770424929134860453, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
       propertyPath: m_Name
@@ -3220,6 +3219,10 @@ PrefabInstance:
     - target: {fileID: 6770424929134860453, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770424929134860455, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}

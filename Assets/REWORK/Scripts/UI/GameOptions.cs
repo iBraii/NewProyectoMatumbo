@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class GameOptions : MonoBehaviour
 {
-    public Slider sens;
-    public Slider volume;
+    [Header("Sliders")]
+    [SerializeField] private Slider sens;
+    [SerializeField] private Slider volume;
 
     private void Awake()
     {
@@ -33,9 +34,5 @@ public class GameOptions : MonoBehaviour
         Data.Instance.SaveSettings();
     }
 
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+    public void QuitGame() => Application.Quit();
 }

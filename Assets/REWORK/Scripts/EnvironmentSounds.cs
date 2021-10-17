@@ -1,10 +1,9 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class EnvironmentSounds : MonoBehaviour
 {
     //AUDIOCOMPONENT===========
-    public AudioClip[] clips;
+    [SerializeField] private AudioClip[] clips;
     private AudioSource source;
 
     //RANDOMVARS===============
@@ -12,8 +11,8 @@ public class EnvironmentSounds : MonoBehaviour
     private float value;
     private float stereoPan;
 
-    //FUNCTIONVARS
-    public float randomMin, randomLimit;
+    //FUNCTIONVARS=============
+    [SerializeField] private float randomMin, randomLimit;
     private float timer;
 
     private void Awake()
@@ -42,8 +41,5 @@ public class EnvironmentSounds : MonoBehaviour
             if (!source.isPlaying) source.Play(); 
         }
     }
-    private void Update()
-    {
-        ReproduceSoundRandomizerTime();
-    }
+    private void Update() => ReproduceSoundRandomizerTime();
 }

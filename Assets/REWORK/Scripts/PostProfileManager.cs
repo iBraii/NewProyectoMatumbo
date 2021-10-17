@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class PostProfileManager : MonoBehaviour
 {
     public static PostProfileManager Instance;
+
     private Volume vol;
-    public VolumeProfile[] profile;
+    [SerializeField] private VolumeProfile[] profile;
     
     void Awake()
     { 

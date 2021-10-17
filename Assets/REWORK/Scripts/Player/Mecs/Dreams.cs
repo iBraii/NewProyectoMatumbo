@@ -32,8 +32,7 @@ public class Dreams : MonoBehaviour
         if (ps.dreamEnergy > 0 && 
             attackAction.ReadValue<float>() == 1 && 
             PlayerSingleton.Instance.canUseDreamCatcher &&
-            !PlayerSingleton.Instance.isHiding&&
-            OurTimer.TimerCount(.1f))
+            !PlayerSingleton.Instance.isHiding)
         {
             dreamCatcherUse = true;
             ps.dreamEnergy -= 1 * Time.deltaTime;

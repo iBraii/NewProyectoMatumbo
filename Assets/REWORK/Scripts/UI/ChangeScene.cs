@@ -1,15 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public Animator transition;
-    public float duration;
+    [Header("Transition animation")]
+    [SerializeField] private Animator transition;
+
+    [Header("Time before changing scene")]
+    [Tooltip("Recommended that this value is more or equal to the transition animation duration")]
+    [SerializeField] private float duration;
+
+    [Header("Select this transition default color at start of the scene")]
     public bool white;
-    // Start is called before the first frame update
+
     void Start()
     {
         if (white)
@@ -17,21 +22,9 @@ public class ChangeScene : MonoBehaviour
         else
             gameObject.GetComponent<Image>().color = Color.black;
     }
+    public void Change(string sceneName) => StartCoroutine(TransitionLoadScene(sceneName));
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-    public void Change(string sceneName)
-    {
-
-        StartCoroutine(TransitionLoadScene(sceneName));
-    }
-
-    public void ChangeToWhite(bool SelectWhite)
-    {
-        white = SelectWhite;
-    }
+    public void ChangeToWhite(bool SelectWhite) => white = SelectWhite;
 
     IEnumerator TransitionLoadScene(string sceneName)
     {
@@ -42,11 +35,7 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void SelectComic(int comicNumber)
-    {
-        ComicManager.comicNumber = comicNumber;
-    }
-
+    public void SelectComic(int comicNumber) => ComicManager.comicNumber = comicNumber;
     public void SetWhite()=> gameObject.GetComponent<Image>().color = Color.white;
     public void SetBlack()=> gameObject.GetComponent<Image>().color = Color.black;
 }

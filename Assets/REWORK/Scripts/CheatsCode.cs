@@ -3,16 +3,16 @@ using UnityEngine.InputSystem;
 
 public class CheatsCode : MonoBehaviour
 {
-    PlayerInput playerInput;
-    InputAction noClip, inmortality, infiniteDC, speed;
+    private PlayerInput playerInput;
+    private InputAction noClip, inmortality, infiniteDC, speed;
 
-    [HideInInspector]
-    public bool nc, inmo, infi, spd;
-    public Collider[] noClipCols;
+    [HideInInspector] public bool nc, inmo, infi, spd;
 
-    public GameObject cheatCodeTxt;
-    float timer;
+    [SerializeField] private Collider[] noClipCols;
 
+    [SerializeField] private GameObject cheatCodeTxt;
+
+    private float timer;
     private float initialSpd, initialForce;
 
     private void Awake()

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Controller
     private CharacterController _characterController;
 
     //Input vars
@@ -12,24 +13,27 @@ public class PlayerMovement : MonoBehaviour
     private InputAction jumpAction;
 
     //SmoothInputVars
-    Vector2 currentInputVec;
-    [SerializeField] float inputSmoothTime;
-    Vector2 inputSmoothVel;
+    private Vector2 currentInputVec;
+    private Vector2 inputSmoothVel;
+    [Header("Smoothed input")]
+    [SerializeField] private float inputSmoothTime;
 
     //Movement vars
+    [Header("Movement variables")]
     public float movementSpeed;
     public float turnSmoothTime = .1f;
-    float turnSmoothvelocity;
-    Vector3 moveDirection;
+    private float turnSmoothvelocity;
+    private Vector3 moveDirection;
 
     //jump vars
-    float gravity = -4.5f;
-    public float jumpForce;
-    public Vector3 playerVelocity;
+    private float gravity = -4.5f;
+    [Header("Jump Force")] public float jumpForce;
+    [HideInInspector] public Vector3 playerVelocity;
     private AudioSource jumpSource;
 
     //WhenGrabbingBox
-    public bool useGravity;
+    [HideInInspector] public bool useGravity;
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -88,40 +92,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //private void ObstacleDetection()
-    //{
-    //    boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
-
-    //    if (PlayerSingleton.Instance.isMoving)
-    //    {
-    //        desiredMovement = moveDirection;
-    //    }
-    //    if (PlayerSingleton.Instance.grabingBox&&moveDirection==Vector3.zero)
-    //    {
-    //        obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, desiredMovement, out hit, boxDistance) ||
-    //            Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance) ||
-    //            Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), desiredMovement, out hit, boxDistance);
-    //    }
-    //    else if(PlayerSingleton.Instance.grabingBox && moveDirection != Vector3.zero)
-    //    {
-    //        obstacleDetected = Physics.Raycast(boxGrabbed.transform.position, moveDirection, out hit, boxDistance) ||
-    //            Physics.Raycast(boxGrabbed.transform.position - (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance) ||
-    //            Physics.Raycast(boxGrabbed.transform.position + (boxGrabbed.transform.right * .120f), moveDirection, out hit, boxDistance);
-    //    }
-
-    //    if (PlayerSingleton.Instance.grabingBox == false)
-    //        obstacleDetected = false;
-    //}
-    //private void ObstacleDetectionV2()
-    //{
-    //    if (PlayerSingleton.Instance.isMoving)
-    //    {
-    //        desiredMovement = moveDirection;
-    //    }
-    //    boxGrabbed = GetComponent<GrabBox>().boxGrabbed;
-    //    collisionDetected = Physics.BoxCast(boxGrabbed.transform.position+new Vector3(0,.1125f,0), boxGrabbed.transform.localScale / 2, desiredMovement, out hit, boxGrabbed.transform.rotation, boxDistance);
-        
-    //}
     private void Gravity()
     {
         if (useGravity == false) return;
@@ -134,9 +104,12 @@ public class PlayerMovement : MonoBehaviour
         if (playerVelocity.y > 0)
             playerVelocity += Vector3.up * gravity * Time.deltaTime;
     }
+
     private void Jumping()
     {
-        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.isHiding&&PlayerSingleton.Instance.canJump)
+        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded &&
+            !PlayerSingleton.Instance.isHiding && 
+            PlayerSingleton.Instance.canJump)
         {
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
             if (jumpSource != null)

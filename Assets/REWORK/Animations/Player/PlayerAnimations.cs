@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
-    PlayerSingleton ps;
+    private Animator anim;
+    private PlayerSingleton ps;
 
     private void Awake()
     {

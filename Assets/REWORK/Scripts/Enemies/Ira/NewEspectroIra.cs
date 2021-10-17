@@ -6,6 +6,7 @@ public class NewEspectroIra : MonoBehaviour
     private DenyEnemy de;
     private Enemy2States currentState;
     private Animator anim;
+    private AudioSource source;
 
     [Space]
     [SerializeField] private GameObject activeMeshRenderer;
@@ -24,6 +25,7 @@ public class NewEspectroIra : MonoBehaviour
     {
         de = GetComponent<DenyEnemy>();
         anim = GetComponentInChildren<Animator>();
+        source = GetComponent<AudioSource>();
         Dreams.onWeaponUsed += CallDeny;
     }
     private void OnDisable() => Dreams.onWeaponUsed -= CallDeny;
@@ -58,6 +60,8 @@ public class NewEspectroIra : MonoBehaviour
 
     private void HandleAttack()
     {
+        if (source.isPlaying == false) source.Play();
+
         PlayerSingleton.Instance.beingAttacked = true;
         activeMeshRenderer.SetActive(true);
         fakeMeshRenderer.SetActive(false);

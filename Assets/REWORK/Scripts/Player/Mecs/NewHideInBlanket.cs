@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class NewHideInBlanket : MonoBehaviour
 {
 
-    bool blanketAtReach;
+    private bool blanketAtReach;
     private PlayerInput playerInput;
     private InputAction interactAction;
 
@@ -40,16 +40,10 @@ public class NewHideInBlanket : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Blanket")
-        {
-            blanketAtReach = true;
-        }
+        if (other.tag == "Blanket") blanketAtReach = true;
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Blanket")
-        {
-            blanketAtReach = false;
-        }
+        if (other.tag == "Blanket") blanketAtReach = false;
     }
 }

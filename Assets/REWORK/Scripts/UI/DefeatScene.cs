@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DefeatScene : MonoBehaviour
 {
-    ChangeScene cs;
-    public Text hintsText;
-    public string[] hints;
+    private ChangeScene cs;
+    [SerializeField] private Text hintsText;
+    [SerializeField] private string[] hints;
+
     void Start()
     {
         cs = GameObject.Find("TransitionScreen").GetComponent<ChangeScene>();
@@ -28,6 +26,7 @@ public class DefeatScene : MonoBehaviour
 
     public void LoadPrevLevel()
     {
+        if (cs == null) return;
         cs.Change(PlayerPrefs.GetString("prevLevel"));
     }
 }

@@ -135,21 +135,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cdfc50fd730cc24eb23caf5aab78e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followingSound: {fileID: 8300000, guid: 20c3219f993d28345b359f5b1c1b2ea9, type: 3}
-  pathSound: {fileID: 8300000, guid: c47dd967576283a4f9ea1c2ae945ddd0, type: 3}
-  currentState: 0
+  sounds:
+  - {fileID: 8300000, guid: c47dd967576283a4f9ea1c2ae945ddd0, type: 3}
+  - {fileID: 8300000, guid: 20c3219f993d28345b359f5b1c1b2ea9, type: 3}
+  - {fileID: 8300000, guid: 8cdf535619cd75540b2db93f8580c3ae, type: 3}
   waypoints:
   - {fileID: 8940400646389076225}
   - {fileID: 8940400646760291152}
   - {fileID: 8940400646579397853}
+  visionAngle: 150
   visionRange: 2
   closeRange: 1
-  visionAngle: 150
   maxConfusedTime: 4
   damage: 2
   pathSpeed: 0.5
   followSpeed: 0.8
-  detectObstacle: 0
   lm:
     serializedVersion: 2
     m_Bits: 1088

@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
-    
-    public Sounds[] array_sounds;
+
+    [SerializeField] private Sounds[] array_sounds;
     public static SoundManager instance;
-    public AudioMixerGroup mixer;
-    private float smoothSound;
+    [SerializeField] private AudioMixerGroup mixer;
 
     private void Awake()
     {

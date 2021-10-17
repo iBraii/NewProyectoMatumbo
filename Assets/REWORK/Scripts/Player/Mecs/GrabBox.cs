@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,13 +5,15 @@ public class GrabBox : MonoBehaviour
 {
     private PlayerInput playerInput;
     private InputAction interactAction;
-    public GameObject boxDetected;
-    public GameObject boxGrabbed;
-    public Transform grabPos;
-    PlayerMovement pm;
-    CharacterController cc;
-    float initialSpeed;
-    float initialRotationSpeed;
+    private GameObject boxDetected;
+    private GameObject boxGrabbed;
+    private PlayerMovement pm;
+    private CharacterController cc;
+    private float initialSpeed;
+    private float initialRotationSpeed;
+
+    [SerializeField] [Tooltip("Box new position")] private Transform grabPos;
+    
 
     void Start()
     {
@@ -33,38 +33,45 @@ public class GrabBox : MonoBehaviour
         MyInput();
         BoxController();
         Falling();
-        //Debug.DrawRay(boxGrabbed.transform.position, transform.forward * distance);
     }
     private void MyInput()
     { 
-        if (interactAction.triggered&&PlayerSingleton.Instance.isGrounded)
+        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded)
         {
             if (boxGrabbed != null)
                 LetBox();
-            else if(boxDetected!=null)
-                Grab();
+            else if (boxDetected != null)
+                StartCoroutine(Grab());
         }
     }
     private void BoxController()
     {
         if (PlayerSingleton.Instance.grabingBox && boxDetected != null)
-        {
             boxDetected.transform.position = grabPos.position;
-        }
     }
-    private void Grab()
+    System.Collections.IEnumerator Grab()
     {
         PlayerSingleton.Instance.grabingBox = true;
+        PlayerSingleton.Instance.canMove = false;
+        SoundManager.instance.Play("BoxLift");
+
         boxGrabbed = boxDetected;
+
         BoxIdentifier(boxGrabbed.GetComponent<BoxIdentifier>().boxType);
+
         Vector3 rotation = new Vector3(0, 0, 0);
+
         boxGrabbed.GetComponent<Rigidbody>().isKinematic = true;
         boxGrabbed.transform.position = grabPos.position;
         boxGrabbed.transform.parent = grabPos;
         boxGrabbed.transform.localEulerAngles = rotation;
         boxGrabbed.layer = 2;
+
         pm.useGravity = false;
 
+        yield return new WaitForSeconds(.8f);
+
+        PlayerSingleton.Instance.canMove = true;
     }
     private void BoxIdentifier(int box)
     {
@@ -139,17 +146,13 @@ public class GrabBox : MonoBehaviour
     }
     void DetectBox()
     {
-        Debug.DrawRay(transform.position, transform.forward, Color.yellow);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, .1f))
         {
-            if (hit.collider.CompareTag("Box"))
-                boxDetected = hit.collider.gameObject;
-            else
-                boxDetected = null;
+            if (hit.collider.CompareTag("Box")) boxDetected = hit.collider.gameObject;
+            else boxDetected = null;
         }
-        else
-            boxDetected = null;
+        else boxDetected = null;
     }
 
     private void OnDrawGizmos()

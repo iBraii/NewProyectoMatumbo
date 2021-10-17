@@ -9,20 +9,23 @@ using UnityEngine.UI;
 public class ImprovedUIManager : MonoBehaviour
 {
     //ATRAPASUEÑOS
-    public Animator DC_anim;
-    float timer;
-    public float maxUIDC;
-    public Image DCBar;
+    [Header("UI atrapasueños")]
+    [SerializeField] private Animator DC_anim;
+    [SerializeField][Tooltip("Max time on the UI")] private float maxUIDC;
+    [SerializeField] [Tooltip("Image filled")] private Image DCBar;
+    private float timer;   
 
-    [HideInInspector]
-    public bool gameIsPaused=false;
+    private bool gameIsPaused = false;
     private PlayerInput playerInput;
     private InputAction escapeAction;
 
-    public GameObject pausePanel;
-    public GameObject optionPanel;
+    [Header("Panels")]
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject optionPanel;
 
-    public CinemachineFreeLook cm;
+    [Header("Camara Freelook")]
+    [SerializeField] private CinemachineFreeLook cm;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();

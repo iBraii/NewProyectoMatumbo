@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class AnimationTrigger : MonoBehaviour
 {
-    //Commit
-    public Animator anim;
-    public string animationString;
+    [Header("Animation to play")]
+    [SerializeField] private Animator anim;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(anim == null || animationString == null)
+        if(anim == null)
         {
-            Debug.LogWarning("No hay animController o animString");
+            Debug.LogWarning("AnimationTrigger/ No hay animController");
             return;
         }
         if (other.gameObject.CompareTag("Player"))

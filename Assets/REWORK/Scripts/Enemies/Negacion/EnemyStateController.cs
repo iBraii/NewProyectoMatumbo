@@ -8,8 +8,7 @@ public class EnemyStateController : MonoBehaviour
 
     //AUDIO
     [Header("Sonidos de enemigo")]
-    [SerializeField] private AudioClip followingSound;
-    [SerializeField] private AudioClip pathSound;
+    [SerializeField] private AudioClip[] sounds;
 
     //Denegación de enemigo
     private DenyEnemy de;
@@ -114,7 +113,7 @@ public class EnemyStateController : MonoBehaviour
 
     void HandlePath()
     {
-        ChangeSound(pathSound);
+        ChangeSound(sounds[0]);
         closeRange = initialCloseRange;
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
@@ -134,7 +133,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleFollow()
     {
-        ChangeSound(followingSound);
+        ChangeSound(sounds[1]);
         closeRange = initialCloseRange * 2;
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
@@ -160,7 +159,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleConfused()
     {
-        ChangeSound(pathSound);
+        ChangeSound(sounds[0]);
         agent.isStopped = true;
         confusedTimer += Time.deltaTime;
 
@@ -178,7 +177,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void HandleDenied()
     {
-        ChangeSound(pathSound);
+        ChangeSound(sounds[2]);
         agent.isStopped = true;
         PlayerSingleton.Instance.beingAttacked = false;
         if (PlayerSingleton.Instance.usingWeap == false)

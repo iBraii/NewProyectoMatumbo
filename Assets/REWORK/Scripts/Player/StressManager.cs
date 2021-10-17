@@ -5,15 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class StressManager : MonoBehaviour
 {
-    public ChangeScene cs;
-    float stressCooldown;
-    [SerializeField] float regenValue, delay;
+    [Header("Transition screen script")]
+    [SerializeField] private ChangeScene cs;
+
+    [Header("Stress values")]
+    [SerializeField] [Tooltip("Valor de regeneracion")] private float regenValue;
+    [SerializeField] [Tooltip("Tiempo antes de empezar a regenerar")] private float delay;
+    private float stressCooldown;
+    
     //StressFeedback
-    public GameObject generalVolume;
+    [Header("Volume profile for stress feedback")]
+    [SerializeField] private GameObject generalVolume;
+
     private Vignette vig;
     private ColorAdjustments cad;
     private ChromaticAberration cab;
     private FilmGrain fg;
+
+    private bool deadSound;
+
     void Start()
     {
         #region nulls
