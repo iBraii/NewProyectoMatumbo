@@ -12,12 +12,15 @@ public class GameOptions : MonoBehaviour
     {
         if (sens == null || volume == null) { Debug.LogWarning("Algun slider no está asignado"); return; }
 
-        //ASIGNAR VALOR
-        sens.value = Data.Instance.setting.sensitivity;
-        volume.value = Data.Instance.setting.volume;
+        
     }
     void Start()
     {
+        
+        //ASIGNAR VALOR
+        sens.value = Data.Instance.setting.sensitivity;
+        volume.value = Data.Instance.setting.volume;
+
         SoundManager.instance.SetVolume(volume.value);
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {

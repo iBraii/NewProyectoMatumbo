@@ -57,7 +57,7 @@ public class ComicManager : MonoBehaviour
                 comics[0].SetActive(true);
                 break;
             case 2:
-                sceneName = "Nivel 1";
+                sceneName = "Nivel1";
                 comics[1].SetActive(true);
                 break;
             case 3:
