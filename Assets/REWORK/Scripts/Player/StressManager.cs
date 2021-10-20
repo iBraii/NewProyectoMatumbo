@@ -34,9 +34,9 @@ public class StressManager : MonoBehaviour
         }
         #endregion
 
-        SoundManager.instance.Play("LowRumble");
-        SoundManager.instance.ChangeIndividualVolume("TensionLoop", 0.0001f);
+        SoundManager.instance.Play("LowRumble");      
         SoundManager.instance.Play("TensionLoop");
+        SoundManager.instance.ChangeIndividualVolume("TensionLoop", 0.0001f);
     }
 
     void Update()

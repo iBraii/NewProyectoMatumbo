@@ -108,8 +108,8 @@ public class GrabBox : MonoBehaviour
     private void LetBox()
     {
         cc.center = Vector3.zero;
-        cc.radius = .5f;
-        cc.height = 1;
+        cc.radius = .35f;
+        cc.height = .97f;
         pm.turnSmoothTime = initialRotationSpeed;
         pm.movementSpeed = initialSpeed;
         pm.useGravity = true;

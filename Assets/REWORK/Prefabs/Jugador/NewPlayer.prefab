@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db41e56361e271419fbad8f55189d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dcFX: {fileID: 0}
 --- !u!95 &1249037088763491544
 Animator:
   serializedVersion: 3
@@ -250,8 +249,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.56600946, y: 0.04178067, z: 0.85772604}
-  m_Center: {x: 0.003449929, y: -0.5033317, z: -0.026485683}
+  m_Size: {x: 0.3486449, y: 0.04178067, z: 0.69543207}
+  m_Center: {x: -0.0037957917, y: -0.5033317, z: -0.06126406}
 --- !u!143 &8053439894469272513
 CharacterController:
   m_ObjectHideFlags: 0
@@ -264,7 +263,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 0.97
-  m_Radius: 0.5
+  m_Radius: 0.35
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.003
@@ -360,11 +359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48a862d83a93044395cfc4592732feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 2112
-  floorDistance: 0.1635
-  grounded: 0
 --- !u!114 &8053439894469272517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +374,8 @@ MonoBehaviour:
   inputSmoothTime: 0.1
   movementSpeed: 0.75
   turnSmoothTime: 0.1
-  jumpForce: 0.35
+  gravity: -2
+  jumpForce: 1.5
   playerVelocity: {x: 0, y: 0, z: 0}
   useGravity: 1
 --- !u!114 &8053439894469272537
@@ -419,8 +414,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 957cdb7ca1c37164f9a25cbf20a26ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxDetected: {fileID: 0}
-  boxGrabbed: {fileID: 0}
   grabPos: {fileID: 144929917978430208}
 --- !u!114 &2070167138864304501
 MonoBehaviour:
@@ -434,7 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c3b089094ee494d8ec48a165f0f2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!114 &6090794001373151275
 MonoBehaviour:
   m_ObjectHideFlags: 0

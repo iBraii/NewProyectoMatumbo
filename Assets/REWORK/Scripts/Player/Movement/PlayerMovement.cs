@@ -22,18 +22,19 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement variables")]
     public float movementSpeed;
     public float turnSmoothTime = .1f;
+    private float initialTurnTime;
     private float turnSmoothvelocity;
     private Vector3 moveDirection;
 
     //jump vars
-    private float gravity = -4.5f;
+    [SerializeField] private float gravity = -4.5f;
     [Header("Jump Force")] public float jumpForce;
     [HideInInspector] public Vector3 playerVelocity;
     private AudioSource jumpSource;
-
+    private int jumps=1;
+    public Vector3 lastMovement;
     //WhenGrabbingBox
     [HideInInspector] public bool useGravity;
-
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         PlayerSingleton.Instance.canMove = true;
         jumpSource = GetComponent<AudioSource>();
+        initialTurnTime = turnSmoothTime;
     }
 
     // Update is called once per frame
@@ -65,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = _moveAction.ReadValue<Vector2>();
         currentInputVec = Vector2.SmoothDamp(currentInputVec, input, ref inputSmoothVel, inputSmoothTime);
 
+        if (PlayerSingleton.Instance.isGrounded)
+        {
+            lastMovement = moveDirection;
+        }
         if (input != Vector2.zero)
         {
             //ROTATE========================================================
@@ -81,7 +87,20 @@ public class PlayerMovement : MonoBehaviour
             if (!PlayerSingleton.Instance.isHiding)
             {
                 PlayerSingleton.Instance.isMoving = true;
-                _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+                if(PlayerSingleton.Instance.isGrounded)
+                    _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+
+                else if(PlayerSingleton.Instance.isGrounded==false&&lastMovement==Vector3.zero)
+                    _characterController.Move(moveDirection * movementSpeed/2 * Time.deltaTime);
+
+                else if(PlayerSingleton.Instance.isGrounded == false && lastMovement != Vector3.zero)
+                {
+                    Vector3 temporal;
+                    temporal = moveDirection - lastMovement;
+                    temporal /= 2;
+                    _characterController.Move((lastMovement+temporal) * movementSpeed * Time.deltaTime);
+                    turnSmoothTime = .5f;
+                }
             }
         }
         else
@@ -89,13 +108,23 @@ public class PlayerMovement : MonoBehaviour
             PlayerSingleton.Instance.isMoving = false;
             moveDirection = Vector3.zero;
             currentInputVec = Vector2.zero;
+            if (PlayerSingleton.Instance.isGrounded == false)
+            {               
+                _characterController.Move(lastMovement * movementSpeed * Time.deltaTime);
+                turnSmoothTime = .5f;
+            }
         }
+        if (PlayerSingleton.Instance.isGrounded)
+        {
+            turnSmoothTime = initialTurnTime;
+        }
+            
     }
 
     private void Gravity()
     {
         if (useGravity == false) return;
-        playerVelocity.y += gravity * Time.deltaTime;
+        playerVelocity.y += gravity*3f * Time.deltaTime;
         _characterController.Move(playerVelocity * Time.deltaTime);
 
         if (PlayerSingleton.Instance.isGrounded && playerVelocity.y < 0)
@@ -109,16 +138,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded &&
             !PlayerSingleton.Instance.isHiding && 
-            PlayerSingleton.Instance.canJump)
+            PlayerSingleton.Instance.canJump&&jumps>0)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpForce * -3f * gravity);
-            if (jumpSource != null)
-            {
-                jumpSource.pitch = Random.Range(.95f, 1f);
-                jumpSource.Play();
-            }
+            jumps--;
+            Invoke("Jump", .27f);
+            GetComponentInChildren<Animator>().SetBool("JumpTrigger",true);
            
         }
+    }
+    private void Jump()
+    {
+        playerVelocity.y += Mathf.Sqrt(jumpForce * 3f);
+        if (jumpSource != null)
+        {
+            jumpSource.pitch = Random.Range(.95f, 1f);
+            jumpSource.Play();
+        }
+        Invoke("ResetJump", 0.2f);
+    }
+    private void ResetJump()
+    {
+        jumps++;            
+        GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
     }
     private void OnTriggerEnter(Collider other)
     {
