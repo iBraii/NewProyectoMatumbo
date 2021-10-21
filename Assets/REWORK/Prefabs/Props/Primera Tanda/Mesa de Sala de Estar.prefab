@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1816891188837591654}
   - component: {fileID: 3357784806308750787}
   - component: {fileID: 683922845674000649}
-  - component: {fileID: 2214748015408033354}
+  - component: {fileID: 6797960812818860867}
   m_Layer: 6
   m_Name: Mesa de Sala de Estar
   m_TagString: Wall
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2214748015408033354
-MeshCollider:
+--- !u!65 &6797960812818860867
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,7 +97,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3821885278705167835, guid: 2753a4875b4d89b44bfbd101b2bfcbac, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.5002348, y: 0.40083525, z: 0.4}
+  m_Center: {x: 0, y: 0.20041762, z: 0.03}

@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
                 turnSmoothTime = .5f;
             }
         }
-        if (PlayerSingleton.Instance.isGrounded)
+        if (PlayerSingleton.Instance.isGrounded&&PlayerSingleton.Instance.grabingBox==false)
         {
             turnSmoothTime = initialTurnTime;
         }
@@ -141,7 +141,8 @@ public class PlayerMovement : MonoBehaviour
             PlayerSingleton.Instance.canJump&&jumps>0)
         {
             jumps--;
-            Invoke("Jump", .27f);
+            //Invoke("Jump", .27f);
+            Jump();
             GetComponentInChildren<Animator>().SetBool("JumpTrigger",true);
            
         }

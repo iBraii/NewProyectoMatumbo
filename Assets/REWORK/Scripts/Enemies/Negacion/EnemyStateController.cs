@@ -173,7 +173,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void CallDeny()
     {
-        if (de.inRange) currentState = EnemyStates.Denied;     
+        if (de.inRange&&detectObstacle==false) currentState = EnemyStates.Denied;     
     }
     void HandleDenied()
     {
