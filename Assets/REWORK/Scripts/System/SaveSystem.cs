@@ -7,11 +7,7 @@ public enum DataType
 }
 public static class SaveSystem
 {
-    #if UNITY_EDITOR
-    private static readonly string SavePath = Application.dataPath + "/Saves/";
-    #else
-    private static readonly string SavePath = Application.persistentDataPath + "/Saves/";
-    #endif
+    private static /*readonly */string SavePath = Application.persistentDataPath + "/Saves/";
 
     public static void Init()
     {
@@ -24,6 +20,7 @@ public static class SaveSystem
     private static string PathType(DataType type)
     {
         string path = "";
+
         switch (type)
         {
             case DataType.Settings: 
@@ -34,8 +31,7 @@ public static class SaveSystem
                 break;
             case DataType.Achievements:
                 path = "achievements.txt";
-                break;
-            
+                break; 
         }
         return path;
     }

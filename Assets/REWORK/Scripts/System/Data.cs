@@ -27,9 +27,8 @@ public class Data : MonoBehaviour
     private void Awake()
     {
         SaveSystem.Init();
-        LoadCurrentData(ref setting, DataType.Settings);
-        LoadCurrentData(ref lvlInfo, DataType.LevelInformation);
-        LoadCurrentData(ref achieve, DataType.Achievements);
+
+        LoadAllData();
 
         if (Instance == null) Instance = this;
         else Destroy(this.gameObject);
@@ -49,6 +48,17 @@ public class Data : MonoBehaviour
         string json = JsonConvert.SerializeObject(data);
         SaveSystem.SaveData(json, type);
     }
+
+    public void LoadAllData()
+    {
+        LoadCurrentData(ref setting, DataType.Settings);
+        LoadCurrentData(ref lvlInfo, DataType.LevelInformation);
+        LoadCurrentData(ref achieve, DataType.Achievements);
+    }
+
+    public void LoadSettings() => LoadCurrentData(ref setting, DataType.Settings);
+    public void LoadLevelInfo() => LoadCurrentData(ref lvlInfo, DataType.LevelInformation);
+    public void LoadAchievements() => LoadCurrentData(ref achieve, DataType.Achievements);
 
     public void SaveAllData()
     {

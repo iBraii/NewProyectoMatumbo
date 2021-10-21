@@ -10,13 +10,10 @@ public class GameOptions : MonoBehaviour
 
     private void Awake()
     {
-        if (sens == null || volume == null) { Debug.LogWarning("Algun slider no está asignado"); return; }
-
-        
+        if (sens == null || volume == null) { Debug.LogWarning("Algun slider no está asignado"); return; } 
     }
     void Start()
     {
-        
         //ASIGNAR VALOR
         sens.value = Data.Instance.setting.sensitivity;
         volume.value = Data.Instance.setting.volume;
