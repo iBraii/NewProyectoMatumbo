@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using DG.Tweening;
 using UnityEngine.InputSystem;
 
 public class Level1Mision : MonoBehaviour
 {
     public Transform[] childPosition;
-    private Vector3[] position;
+    public Vector3[] position;
     public int currentIndex;
     public int maxIndex;
 
@@ -15,6 +17,7 @@ public class Level1Mision : MonoBehaviour
 
     public bool misionCompleted;
     public GameObject emisionSphere;
+    private AudioSource humming;
     void Start()
     {
         emisionSphere.SetActive(false);
@@ -25,6 +28,7 @@ public class Level1Mision : MonoBehaviour
             position[i] = childPosition[i].position;
         }
         maxIndex = position.Length-1;
+        humming = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -40,13 +44,14 @@ public class Level1Mision : MonoBehaviour
         {
             if (currentIndex < maxIndex)
             {
-                currentIndex++;
-                SoundManager.instance.Play("Confirmation");
+                currentIndex++;               
+                SoundManager.instance.Play("Confirmation2");
             }
             else
             {
                 misionCompleted = true;
                 emisionSphere.SetActive(true);
+                humming.DOFade(0, 2);
                 Invoke("DeactivateTeddy", 2);
                 
             }

@@ -47,7 +47,8 @@ public class EnemyStateController : MonoBehaviour
     [Header("Deteccion player")]
     [SerializeField] private LayerMask lm;
 
-
+    public Transform derecha;
+    public Transform izquierda;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -206,6 +207,10 @@ public class EnemyStateController : MonoBehaviour
         }
         for (int i = 0; i < waypoints.Length - 1; i++)
             Debug.DrawLine(waypoints[i].position, waypoints[i + 1].position, Color.green);
+
+       
+        
+        
     }
 }
 public enum EnemyStates
