@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17772082f107ccb469f61ffbc7d91fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DC_anim: {fileID: 6005272632207457387}
+  DC_canvasGroup: {fileID: 6656415975233942121}
   maxUIDC: 2
   DCBar: {fileID: 5160460988371463084}
   pausePanel: {fileID: 2594731160840556408}
@@ -2971,7 +2971,6 @@ GameObject:
   m_Component:
   - component: {fileID: 158833601555002306}
   - component: {fileID: 6656415975233942121}
-  - component: {fileID: 6005272632207457387}
   m_Layer: 5
   m_Name: "Atrapasue\xF1os"
   m_TagString: Untagged
@@ -3008,29 +3007,10 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3823976003865662730}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!95 &6005272632207457387
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3823976003865662730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 99b6b1976506e924eb9cad69b97fdab2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6249519600243016147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,10 +3199,6 @@ PrefabInstance:
     - target: {fileID: 6770424929134860453, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6770424929134860455, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
-      propertyPath: m_Alpha
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}

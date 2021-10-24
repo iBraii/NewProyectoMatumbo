@@ -1,16 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ImprovedUIManager : MonoBehaviour
 {
     //ATRAPASUEÑOS
     [Header("UI atrapasueños")]
-    [SerializeField] private Animator DC_anim;
+    [SerializeField] private CanvasGroup DC_canvasGroup;
     [SerializeField][Tooltip("Max time on the UI")] private float maxUIDC;
     [SerializeField] [Tooltip("Image filled")] private Image DCBar;
     private float timer;   
@@ -114,11 +112,6 @@ public class ImprovedUIManager : MonoBehaviour
     void AtrapasueñosUI()
     {
         #region nulls
-        if (DC_anim == null)
-        {
-            Debug.LogWarning("No hay animator");
-            return;
-        }
         if (DCBar == null)
         {
             Debug.LogWarning("No hay DCBar");
@@ -128,18 +121,18 @@ public class ImprovedUIManager : MonoBehaviour
 
         DCBar.fillAmount = PlayerSingleton.Instance.dreamEnergy / PlayerSingleton.Instance.maxDreamEnergy;
 
-        if (PlayerSingleton.Instance.usingWeap == false && PlayerSingleton.Instance.dreamEnergy >= PlayerSingleton.Instance.maxDreamEnergy && DC_anim.GetBool("Active"))
+        if (PlayerSingleton.Instance.usingWeap == false && PlayerSingleton.Instance.dreamEnergy >= PlayerSingleton.Instance.maxDreamEnergy && DC_canvasGroup.alpha==1)
         {
             timer += Time.deltaTime;
             if (timer >= maxUIDC)
             {
-                DC_anim.SetBool("Active", false);
+                DC_canvasGroup.DOFade(0, 1).SetEase(Ease.InOutSine);
                 timer = 0;
             }
         }
-        else if(PlayerSingleton.Instance.usingWeap)
+        else if(PlayerSingleton.Instance.usingWeap&&DC_canvasGroup.alpha==0)
         {
-            DC_anim.SetBool("Active", true);
+            DC_canvasGroup.DOFade(1, 1);
         } 
     }   
 }
