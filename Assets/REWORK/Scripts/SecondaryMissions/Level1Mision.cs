@@ -45,10 +45,11 @@ public class Level1Mision : MonoBehaviour
             if (currentIndex < maxIndex)
             {
                 currentIndex++;               
-                SoundManager.instance.Play("Confirmation2");
+                SoundManager.instance.Play("Confirmation");
             }
             else
             {
+                AchievementPop.onMisionCompleted?.Invoke("YOU HAVE FOUND THE TEDDY BEAR");
                 misionCompleted = true;
                 emisionSphere.SetActive(true);
                 humming.DOFade(0, 2);
