@@ -2,10 +2,10 @@ using UnityEngine;
 
 [System.Serializable] public class Data
 {
-    public float sensitivity;
-    public float volume;
+    public float sensitivity = 275;
+    public float volume = .5f;
     public bool[] levelCompleted = new bool[6];
-    public bool[] achievementCompleted=new bool[6];
+    public bool[] achievementCompleted = new bool[6];
 }
 
 public class DataManager : MonoBehaviour
@@ -13,17 +13,12 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+
         SaveSystem.Load();
         Debug.Log("Data Loaded");
-        DontDestroyOnLoad(gameObject);
     }
 
 

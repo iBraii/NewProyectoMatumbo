@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grabPos: {fileID: 144929917978430208}
+  distanceFromBox: 0
 --- !u!114 &2070167138864304501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c3b089094ee494d8ec48a165f0f2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxJumpTimer: 0.1
+  jumpBool: 0
 --- !u!82 &8600457160114406155
 AudioSource:
   m_ObjectHideFlags: 0

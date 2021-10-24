@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Vector3 temporal;
                     temporal = moveDirection - lastMovement;
-                    temporal /= 2;
+                    temporal /= 1.5f;
                     _characterController.Move((lastMovement+temporal) * movementSpeed * Time.deltaTime);
                     turnSmoothTime = .5f;
                 }
