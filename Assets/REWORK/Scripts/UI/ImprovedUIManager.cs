@@ -105,8 +105,8 @@ public class ImprovedUIManager : MonoBehaviour
 
     public void SetCameraSensitivity()
     {
-        cm.m_XAxis.m_MaxSpeed= Data.Instance.setting.sensitivity;
-        cm.m_YAxis.m_MaxSpeed = Data.Instance.setting.sensitivity / 250;
+        cm.m_XAxis.m_MaxSpeed= SaveSystem.data.sensitivity;
+        cm.m_YAxis.m_MaxSpeed = SaveSystem.data.sensitivity / 250;
     }
     
     void AtrapasueñosUI()

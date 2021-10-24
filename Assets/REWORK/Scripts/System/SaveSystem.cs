@@ -1,51 +1,34 @@
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public enum DataType
-{
-    Settings, LevelInformation, Achievements
-}
 public static class SaveSystem
 {
-    private static /*readonly */string SavePath = Application.persistentDataPath + "/Saves/";
+    public static Data data = new Data();
 
-    public static void Init()
+    public static void Save()
     {
-        Debug.Log(SavePath);
+        BinaryFormatter formatter = new BinaryFormatter();
 
-        if (!Directory.Exists(SavePath))
-            Directory.CreateDirectory(SavePath);
+        string path = $"{Application.persistentDataPath}/saves.file";
+        FileStream file = File.Create(path);
+
+        formatter.Serialize(file, data);
+
+        file.Close();
     }
 
-    private static string PathType(DataType type)
+    public static void Load()
     {
-        string path = "";
+        string path = $"{Application.persistentDataPath}/saves.file";
+        if (!File.Exists(path)) return;
 
-        switch (type)
-        {
-            case DataType.Settings: 
-                path = "settings.txt"; 
-                break;
-            case DataType.LevelInformation: 
-                path = "levelInformation.txt"; 
-                break;
-            case DataType.Achievements:
-                path = "achievements.txt";
-                break; 
-        }
-        return path;
-    }
-    public static void SaveData(string json, DataType type) { File.WriteAllText(SavePath + PathType(type), json); }
+        BinaryFormatter formatter = new BinaryFormatter();
 
-    public static string LoadData(DataType type)
-    {
-        string finalPath = PathType(type);
-        if (File.Exists(SavePath + finalPath))
-        {
-            string json = File.ReadAllText(SavePath + finalPath);
-            return json;
-        }
-        else
-            return null;
+        FileStream file = File.Open(path, FileMode.Open);
+
+        data = (Data)formatter.Deserialize(file);
+
+        file.Close();
     }
 }

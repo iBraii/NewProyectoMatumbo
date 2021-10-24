@@ -15,8 +15,9 @@ public class GameOptions : MonoBehaviour
     void Start()
     {
         //ASIGNAR VALOR
-        sens.value = Data.Instance.setting.sensitivity;
-        volume.value = Data.Instance.setting.volume;
+        SaveSystem.Load();
+        sens.value = SaveSystem.data.sensitivity;
+        volume.value = SaveSystem.data.volume;
 
         SoundManager.instance.SetVolume(volume.value);
         if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -26,12 +27,12 @@ public class GameOptions : MonoBehaviour
         }
     }
 
+    [ContextMenu("Save")]
     public void ApplySettings()
     {
-        Data.Instance.setting.sensitivity = sens.value;
-        Data.Instance.setting.volume = volume.value;
-
-        Data.Instance.SaveSettings();
+        SaveSystem.data.sensitivity = sens.value;
+        SaveSystem.data.volume = volume.value;
+        SaveSystem.Save();
     }
 
     public void QuitGame() => Application.Quit();
