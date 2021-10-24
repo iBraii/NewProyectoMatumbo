@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4935567479168351367}
   - component: {fileID: 7206840343379655899}
   - component: {fileID: 7860314380097864681}
+  - component: {fileID: 7732732005671571537}
   m_Layer: 0
   m_Name: DarkAura
   m_TagString: Untagged
@@ -95,6 +96,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!225 &7732732005671571537
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306868597151306482}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5690971397547997582
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,8 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  pp: {fileID: 0}
-  profile: {fileID: 0}
 --- !u!1 &5690971397900497956
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +227,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5690971397900498014}
-  - component: {fileID: 5690971397900497955}
   - component: {fileID: 5690971397900497954}
   - component: {fileID: 5690971397900497957}
   m_Layer: 0
@@ -242,19 +252,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5690971397900497955
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5690971397900497956}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &5690971397900497954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -267,7 +264,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7, y: 5, z: 0.7}
-  m_Center: {x: 0, y: 3, z: 0}
+  m_Center: {x: 0, y: 1.53, z: 0}
 --- !u!114 &5690971397900497957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b06149017488fa4a86129115aeb22d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  darkAura:
+  - {fileID: 3306868597151306482}
   darkZone:
   - {fileID: 5690971397547997582}
   buttonToggle: 0
