@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class TriggerTexts : MonoBehaviour
 {
-    [SerializeField] private string[] interactableTags;
-    [SerializeField] private GameObject textObj;
+    [SerializeField] private Text textObj;
 
     //Interact 
     private PlayerInput playerInput;
@@ -14,48 +14,46 @@ public class TriggerTexts : MonoBehaviour
 
     private void Awake()
     {
-        playerInput = GameObject.Find("NewPlayer").GetComponent<PlayerInput>();
+        playerInput = GetComponent<PlayerInput>();
         interactAction = playerInput.actions["Interact"];
     }
 
-    private void Update() => Interact();
-
+    private void Update()
+    {
+        if (SaveSystem.data.achievementCompleted[0]) return;
+        Interact();
+    }
     void Interact()
     {
         if(interactAction.triggered && onRange)
-            Debug.Log("Call achievement action");
+        {
+            SoundManager.instance.Play("Confirmation2");
+            AchievementPop.onMisionCompleted("FAMILY PHOTO ACQUIRED");
+            textObj.DOFade(0, 1);
+            SaveSystem.data.achievementCompleted[0] = true;
+            SaveSystem.Save();
+            this.enabled = false;
+        }
+            
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (textObj == null) return;
-        for(int i = 0; i < interactableTags.Length; i++)
+        if (SaveSystem.data.achievementCompleted[0]) return;
+        if (other.CompareTag("Cuadro"))
         {
-            if (other.gameObject.tag == interactableTags[i])
-            {
-                textObj.SetActive(true);
-                onRange = true;
-
-                switch (interactableTags[i])
-                {
-                    case "Cuadro":
-                        textObj.GetComponent<Text>().text = "Press E to pick up family photo";
-                        break;
-                    case "Osito":
-                        textObj.GetComponent<Text>().text = "Press E to pick up TeddyBear";
-                        break;
-                }
-            }
+            onRange = true;
+            textObj.DOFade(1, 1);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (textObj == null) return;
-        for (int i = 0; i < interactableTags.Length; i++)
+        if (SaveSystem.data.achievementCompleted[0]) return;
+        if (other.CompareTag("Cuadro"))
         {
-            if (other.gameObject.tag == interactableTags[i]) textObj.SetActive(false);
             onRange = false;
+            textObj.DOFade(0, 1);
         }
     }
 }

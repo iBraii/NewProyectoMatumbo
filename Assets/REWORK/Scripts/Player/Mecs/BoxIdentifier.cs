@@ -8,7 +8,6 @@ public class BoxIdentifier : MonoBehaviour
 
     public GameObject collisionDetector;
     public bool collision;
-
     private void Start()
     {
         rb = GetComponent<Rigidbody>();

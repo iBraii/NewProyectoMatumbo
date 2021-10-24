@@ -18,7 +18,8 @@ public class ChangeScene : MonoBehaviour
 
     void Start()
     {
-       
+        GetComponent<CanvasGroup>().alpha = 1;
+
         if (white)
             gameObject.GetComponent<Image>().color = Color.white;
         else

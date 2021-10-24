@@ -49,6 +49,8 @@ public class Level1Mision : MonoBehaviour
             }
             else
             {
+                SaveSystem.data.achievementCompleted[1] = true;
+                SaveSystem.Save();
                 AchievementPop.onMisionCompleted?.Invoke("YOU HAVE FOUND THE TEDDY BEAR");
                 misionCompleted = true;
                 emisionSphere.SetActive(true);

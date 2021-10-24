@@ -13,8 +13,9 @@ public class GrabBox : MonoBehaviour
     private float initialRotationSpeed;
 
     [SerializeField] [Tooltip("Box new position")] private Transform grabPos;
-    
 
+    [SerializeField]private float distanceFromBox;
+    private bool boxAvailable;
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -33,6 +34,7 @@ public class GrabBox : MonoBehaviour
         MyInput();
         BoxController();
         Falling();
+        BoxAvailable();
     }
     private void MyInput()
     { 
@@ -40,7 +42,7 @@ public class GrabBox : MonoBehaviour
         {
             if (boxGrabbed != null)
                 LetBox();
-            else if (boxDetected != null)
+            else if (boxDetected != null&&boxAvailable)
                 StartCoroutine(Grab());
         }
     }
@@ -104,7 +106,17 @@ public class GrabBox : MonoBehaviour
                 break;
         }
     }
+    private void BoxAvailable()
+    {
+        if (boxDetected == false) return;
 
+        distanceFromBox = transform.position.y - boxDetected.transform.position.y;
+        if (distanceFromBox > .037f)
+            boxAvailable = false;
+        else
+            boxAvailable = true;
+
+    }
     private void LetBox()
     {
         cc.center = Vector3.zero;

@@ -28,13 +28,6 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject particles;
 
     private bool canPlaySound=true;
-
-    private System.Action missionCompleted;
-
-    private void Awake() => missionCompleted += OnDreamCatcherGrabbed;
-
-    void OnDisable() => missionCompleted -= OnDreamCatcherGrabbed;
-
     void OnDreamCatcherGrabbed()
     {
         GameObject go = GameObject.Find("Cuadro Colgante");
@@ -70,7 +63,7 @@ public class TutorialManager : MonoBehaviour
 
     private void ResetCamera()
     {
-        SecondaryMissionCall.CallEvent(missionCompleted);
+        OnDreamCatcherGrabbed();
         player.GetComponent<Dreams>().enabled = true;
         PlayerSingleton.Instance.canMove = true;
         Camera.main.GetComponent<Animator>().SetBool("enemy", false);

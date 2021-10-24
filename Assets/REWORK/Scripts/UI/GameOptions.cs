@@ -15,10 +15,8 @@ public class GameOptions : MonoBehaviour
     void Start()
     {
         //ASIGNAR VALOR
-        SaveSystem.Load();
         sens.value = SaveSystem.data.sensitivity;
         volume.value = SaveSystem.data.volume;
-
         SoundManager.instance.SetVolume(volume.value);
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -34,6 +32,5 @@ public class GameOptions : MonoBehaviour
         SaveSystem.data.volume = volume.value;
         SaveSystem.Save();
     }
-
     public void QuitGame() => Application.Quit();
 }

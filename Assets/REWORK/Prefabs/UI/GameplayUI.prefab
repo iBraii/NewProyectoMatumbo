@@ -1338,7 +1338,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 2
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3007,9 +3007,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2594731159765747644}
-        m_TargetAssemblyTypeName: ImprovedUIManager, Assembly-CSharp
-        m_MethodName: SetCameraSensitivity
+      - m_Target: {fileID: 2594731159765747646}
+        m_TargetAssemblyTypeName: GameOptions, Assembly-CSharp
+        m_MethodName: ApplySettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3019,9 +3019,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 2594731159765747646}
-        m_TargetAssemblyTypeName: GameOptions, Assembly-CSharp
-        m_MethodName: ApplySettings
+      - m_Target: {fileID: 2594731159765747644}
+        m_TargetAssemblyTypeName: ImprovedUIManager, Assembly-CSharp
+        m_MethodName: SetCameraSensitivity
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3099,7 +3099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -105.00012, y: 105.00003}
+  m_AnchoredPosition: {x: -105, y: 105}
   m_SizeDelta: {x: 155, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &6656415975233942121
@@ -3417,6 +3417,10 @@ PrefabInstance:
     - target: {fileID: 6770424929134860453, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770424929134860455, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
+      propertyPath: m_Alpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
