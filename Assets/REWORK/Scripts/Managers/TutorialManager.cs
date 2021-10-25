@@ -27,14 +27,17 @@ public class TutorialManager : MonoBehaviour
     [Header("Particula guia")]
     [SerializeField] private GameObject particles;
 
+    [Header("Cuadro que se cae")]
+    [SerializeField] private GameObject cuadro;
+
     private bool canPlaySound=true;
     void OnDreamCatcherGrabbed()
     {
-        GameObject go = GameObject.Find("Cuadro Colgante");
-        if (go == null) return;
-        go.GetComponent<Rigidbody>().useGravity = true;
-
-        AudioSource[] sources = go.GetComponents<AudioSource>();
+       
+        if (cuadro == null) return;
+        cuadro.GetComponent<Rigidbody>().useGravity = true;
+        cuadro.GetComponent<Rigidbody>().centerOfMass = new Vector3(-.2f, 0, 0);
+        AudioSource[] sources = cuadro.GetComponents<AudioSource>();
 
         for(int i = 0; i < sources.Length; i++) sources[i].Play();
     }
