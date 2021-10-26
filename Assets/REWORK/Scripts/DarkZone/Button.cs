@@ -13,8 +13,7 @@ public class Button : MonoBehaviour
     {
         foreach (GameObject go in darkAura)
         {
-            go.GetComponent<BoxCollider>().enabled=state;
-            go.GetComponent<MeshRenderer>().enabled=state;
+            go.SetActive(state);
             
         }
     }
@@ -31,6 +30,8 @@ public class Button : MonoBehaviour
             foreach (GameObject go in darkZone)
             {
                 go.GetComponent<Renderer>().material.DOFade(0, 2);
+                go.GetComponent<BoxCollider>().enabled = false;
+                
             }
         }
     }
@@ -57,6 +58,8 @@ public class Button : MonoBehaviour
             foreach (GameObject go in darkZone)
             {
                 go.GetComponent<Renderer>().material.DOFade(.74f, 2);
+                go.GetComponent<BoxCollider>().enabled = true;
+                
             }
         }
     }
