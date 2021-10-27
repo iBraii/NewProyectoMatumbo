@@ -31,10 +31,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump Force")] public float jumpForce;
     [HideInInspector] public Vector3 playerVelocity;
     private AudioSource jumpSource;
-    private int jumps=1;
-    public Vector3 lastMovement;
+
     //WhenGrabbingBox
+
     [HideInInspector] public bool useGravity;
+
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -67,10 +68,6 @@ public class PlayerMovement : MonoBehaviour
         Vector2 input = _moveAction.ReadValue<Vector2>();
         currentInputVec = Vector2.SmoothDamp(currentInputVec, input, ref inputSmoothVel, inputSmoothTime);
 
-        if (PlayerSingleton.Instance.isGrounded)
-        {
-            lastMovement = moveDirection;
-        }
         if (input != Vector2.zero)
         {
             //ROTATE========================================================
@@ -87,38 +84,13 @@ public class PlayerMovement : MonoBehaviour
             if (!PlayerSingleton.Instance.isHiding)
             {
                 PlayerSingleton.Instance.isMoving = true;
-                if(PlayerSingleton.Instance.isGrounded)
-                    _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
-
-                else if(PlayerSingleton.Instance.isGrounded==false&&lastMovement==Vector3.zero)
-                    _characterController.Move(moveDirection * movementSpeed/2 * Time.deltaTime);
-
-                else if(PlayerSingleton.Instance.isGrounded == false && lastMovement != Vector3.zero)
-                {
-                    Vector3 temporal;
-                    temporal = moveDirection - lastMovement;
-                    temporal /= 1.5f;
-                    _characterController.Move((lastMovement+temporal) * movementSpeed * Time.deltaTime);
-                    turnSmoothTime = .5f;
-                }
+                _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
             }
         }
-        else
-        {
-            PlayerSingleton.Instance.isMoving = false;
-            moveDirection = Vector3.zero;
-            currentInputVec = Vector2.zero;
-            if (PlayerSingleton.Instance.isGrounded == false)
-            {               
-                _characterController.Move(lastMovement * movementSpeed * Time.deltaTime);
-                turnSmoothTime = .5f;
-            }
-        }
-        if (PlayerSingleton.Instance.isGrounded&&PlayerSingleton.Instance.grabingBox==false)
-        {
-            turnSmoothTime = initialTurnTime;
-        }
-            
+        else PlayerSingleton.Instance.isMoving = false;
+
+        if (PlayerSingleton.Instance.isGrounded && PlayerSingleton.Instance.grabingBox==false)
+            turnSmoothTime = initialTurnTime;        
     }
 
     private void Gravity()
@@ -137,14 +109,10 @@ public class PlayerMovement : MonoBehaviour
     private void Jumping()
     {
         if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded &&
-            !PlayerSingleton.Instance.isHiding && 
-            PlayerSingleton.Instance.canJump&&jumps>0)
+            !PlayerSingleton.Instance.isHiding)
         {
-            jumps--;
-            //Invoke("Jump", .27f);
             Jump();
             GetComponentInChildren<Animator>().SetBool("JumpTrigger",true);
-           
         }
     }
     private void Jump()
@@ -157,11 +125,8 @@ public class PlayerMovement : MonoBehaviour
         }
         Invoke("ResetJump", 0.2f);
     }
-    private void ResetJump()
-    {
-        jumps++;            
-        GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
-    }
+    private void ResetJump() => GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DeathBox"))
