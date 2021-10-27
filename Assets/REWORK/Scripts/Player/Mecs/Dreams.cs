@@ -21,29 +21,34 @@ public class Dreams : MonoBehaviour
     }
     private void Update()
     {
-        if(PlayerSingleton.Instance.isGrounded) UseWeapon();
+        UseWeapon();
         ps.dreamEnergy = Mathf.Clamp(ps.dreamEnergy, 0, ps.maxDreamEnergy);
     }
 
     public static event Action onWeaponUsed;
+    private float weapDelay;
 
     void UseWeapon()
     {
-        if (ps.dreamEnergy > 0 && 
-            attackAction.ReadValue<float>() == 1 && 
-            PlayerSingleton.Instance.canUseDreamCatcher &&
-            !PlayerSingleton.Instance.isHiding)
+        if (ps.dreamEnergy > 0 && attackAction.ReadValue<float>() == 1 && 
+            PlayerSingleton.Instance.canUseDreamCatcher && !PlayerSingleton.Instance.isHiding &&
+            PlayerSingleton.Instance.isGrounded)
         {
-            dreamCatcherUse = true;
-            ps.dreamEnergy -= 1 * Time.deltaTime;
-            ps.weapUsedTime += Time.deltaTime;
-            ps.usingWeap = true;
-            ps.canMove = false;
-            timer = 0;
-            onWeaponUsed?.Invoke();
+            weapDelay += Time.deltaTime;
+            if(weapDelay >= .5f)
+            {
+                dreamCatcherUse = true;
+                ps.dreamEnergy -= Time.deltaTime;
+                ps.weapUsedTime += Time.deltaTime;
+                ps.usingWeap = true;
+                ps.canMove = false;
+                timer = 0;
+                onWeaponUsed?.Invoke();
+            }
         }
         else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
         {
+            weapDelay = 0;
             if(dreamCatcherUse) ps.canMove = true;
             dreamCatcherUse = false;
             ps.usingWeap = false;
@@ -54,6 +59,7 @@ public class Dreams : MonoBehaviour
     void RegenWeapEnergy()
     {
         timer += Time.deltaTime;
-        if(timer >= 3) if (ps.dreamEnergy <= ps.maxDreamEnergy) ps.dreamEnergy += .15f * Time.deltaTime;
+        if(timer >= 3 && ps.dreamEnergy <= ps.maxDreamEnergy) 
+            ps.dreamEnergy += .15f * Time.deltaTime;
     }
 }
