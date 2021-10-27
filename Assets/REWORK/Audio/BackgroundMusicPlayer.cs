@@ -19,7 +19,6 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 break;
             case "Comics":
                 SoundManager.instance.UpdatePlay("MenuTheme");
-                SoundManager.instance.Stop("LowRumble");
                 SoundManager.instance.Stop("BG1");
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
