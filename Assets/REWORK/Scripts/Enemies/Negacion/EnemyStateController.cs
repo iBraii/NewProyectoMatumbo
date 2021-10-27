@@ -165,12 +165,18 @@ public class EnemyStateController : MonoBehaviour
         confusedTimer += Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (confusedTimer >= maxConfusedTime || (PlayerSingleton.Instance.isHiding == false && (isClose && onVisionRange)))
+        if (confusedTimer >= maxConfusedTime)
         {
             agent.isStopped = false;
             confusedTimer = 0;
             currentState = EnemyStates.OnPath;
-        }     
+        }
+        else if(isClose)
+        {
+            agent.isStopped = false;
+            confusedTimer = 0;
+            currentState = EnemyStates.Following;
+        }
     }
     void CallDeny()
     {
