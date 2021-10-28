@@ -171,7 +171,7 @@ public class EnemyStateController : MonoBehaviour
             confusedTimer = 0;
             currentState = EnemyStates.OnPath;
         }
-        else if(isClose)
+        else if(isClose && !PlayerSingleton.Instance.isHiding)
         {
             agent.isStopped = false;
             confusedTimer = 0;

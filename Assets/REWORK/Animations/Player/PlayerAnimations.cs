@@ -8,12 +8,14 @@ public class PlayerAnimations : MonoBehaviour
     private float jumpTimer;
     [SerializeField] private float maxJumpTimer;
     private bool jumpBool;
+    private NewHideInBlanket hib;
 
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         pm = GetComponent<PlayerMovement>();
         ps = PlayerSingleton.Instance;
+        hib = GetComponent<NewHideInBlanket>();
     }
 
     private void Update()
@@ -30,7 +32,12 @@ public class PlayerAnimations : MonoBehaviour
         else if (ps.isGrounded) { jumpTimer = 0; jumpBool = false; }
 
         anim.SetBool("isMoving", ps.isMoving);
-        anim.SetBool("Hiding", ps.isHiding);
+
+        if(ps.isHiding)
+            anim.SetBool("Hiding", true);
+        if(hib.unhide)
+            anim.SetBool("Hiding", false);
+
         anim.SetBool("Dying", ps.stress >= 10);
         anim.SetBool("Grabbing", ps.grabingBox);
         anim.SetBool("grounded", ps.isGrounded);
