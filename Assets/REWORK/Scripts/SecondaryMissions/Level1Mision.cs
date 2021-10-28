@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Level1Mision : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Level1Mision : MonoBehaviour
     public bool misionCompleted;
     public GameObject emisionSphere;
     private AudioSource humming;
+
+    public GameObject teddyNumber;
     void Start()
     {
         emisionSphere.SetActive(false);
@@ -44,8 +47,12 @@ public class Level1Mision : MonoBehaviour
         {
             if (currentIndex < maxIndex)
             {
+                GameObject obj = Instantiate(teddyNumber);
+                obj.transform.position = transform.position + Vector3.up * .1f;
+                obj.GetComponentInChildren<TextMeshPro>().text = "" + (maxIndex+ - currentIndex);
                 currentIndex++;               
                 SoundManager.instance.Play("Confirmation");
+                
             }
             else
             {
