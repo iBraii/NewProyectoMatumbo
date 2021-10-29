@@ -13,7 +13,7 @@ public class ImprovedUIManager : MonoBehaviour
     [SerializeField] [Tooltip("Image filled")] private Image DCBar;
     private float timer;   
 
-    private bool gameIsPaused = false;
+    public bool gameIsPaused = false;
     private PlayerInput playerInput;
     private InputAction escapeAction;
 
@@ -24,10 +24,13 @@ public class ImprovedUIManager : MonoBehaviour
     [Header("Camara Freelook")]
     [SerializeField] private CinemachineFreeLook cm;
 
+    public static ImprovedUIManager Instance;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         escapeAction = playerInput.actions["Escape"];
+        Instance = this;
     }
     private void Start()
     {

@@ -58,8 +58,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayerSingleton.Instance.canMove) Jumping();
-       
+        Jumping();  
     }
 
     public void MovementAndRotate()
@@ -108,8 +107,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jumping()
     {
-        if (jumpAction.triggered && PlayerSingleton.Instance.isGrounded &&
-            !PlayerSingleton.Instance.isHiding)
+        if (PlayerSingleton.Instance.grabingBox || !PlayerSingleton.Instance.isGrounded || !PlayerSingleton.Instance.canMove || ImprovedUIManager.Instance.gameIsPaused||PlayerSingleton.Instance.isHiding)
+            PlayerSingleton.Instance.canJump = false;
+        else
+            PlayerSingleton.Instance.canJump = true;
+
+        if (jumpAction.triggered &&PlayerSingleton.Instance.canJump)
         {
             Jump();
             GetComponentInChildren<Animator>().SetBool("JumpTrigger",true);
