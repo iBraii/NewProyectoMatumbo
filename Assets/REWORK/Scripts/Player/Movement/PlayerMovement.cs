@@ -142,17 +142,14 @@ public class PlayerMovement : MonoBehaviour
         GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
         Invoke("ResetJump", .56f);
     }
-    private void ResetJump()
-    {
-        onJumpAnim = false;
-    }
+    private void ResetJump()=> onJumpAnim = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("DeathBox"))
+        if (other.CompareTag("DeathBox"))
         {
             Scene sc = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(sc.name);
+            FindObjectOfType<ChangeScene>().Change(sc.name);
         }
     }
 }
