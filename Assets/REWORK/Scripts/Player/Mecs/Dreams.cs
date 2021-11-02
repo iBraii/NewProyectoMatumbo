@@ -13,6 +13,8 @@ public class Dreams : MonoBehaviour
     float timer;
     bool dreamCatcherUse;
 
+    public GameObject atrapaMano;
+    public GameObject atrapaCuerpo;
     private void Awake()
     {
         ps = PlayerSingleton.Instance;
@@ -22,13 +24,15 @@ public class Dreams : MonoBehaviour
     private void Update()
     {
         UseWeapon();
+        AtrapaMeshController();
         ps.dreamEnergy = Mathf.Clamp(ps.dreamEnergy, 0, ps.maxDreamEnergy);
     }
 
     public static event Action onWeaponUsed;
     private float weapDelay;
     [HideInInspector] public bool atrapAnim;
-    [SerializeField] private float saveDelay;
+    private float saveDelay;
+    private float otroDelay;
 
     void UseWeapon()
     {
@@ -36,22 +40,27 @@ public class Dreams : MonoBehaviour
             PlayerSingleton.Instance.canUseDreamCatcher && !PlayerSingleton.Instance.isHiding &&
             PlayerSingleton.Instance.isGrounded)
         {
-            saveDelay = 0;
-            weapDelay += Time.deltaTime;
-            atrapAnim = true;
-            ps.canMove = false;
-            if (weapDelay >= .54f)
+            otroDelay += Time.deltaTime;
+            if (otroDelay >= .1f)
             {
-                ps.usingWeap = true;
-                dreamCatcherUse = true;
-                ps.dreamEnergy -= Time.deltaTime;
-                ps.weapUsedTime += Time.deltaTime;
-                timer = 0;
-                onWeaponUsed?.Invoke();
-            }
+                saveDelay = 0;
+                weapDelay += Time.deltaTime;
+                atrapAnim = true;
+                ps.canMove = false;
+                if (weapDelay >= .54f)
+                {
+                    ps.usingWeap = true;
+                    dreamCatcherUse = true;
+                    ps.dreamEnergy -= Time.deltaTime;
+                    ps.weapUsedTime += Time.deltaTime;
+                    timer = 0;
+                    onWeaponUsed?.Invoke();
+                }
+            }            
         }
         else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
         {
+            otroDelay = 0;
             saveDelay += Time.deltaTime;
             atrapAnim = false;
             weapDelay = 0;
@@ -65,7 +74,21 @@ public class Dreams : MonoBehaviour
             RegenWeapEnergy();
         }
     }
+    private void AtrapaMeshController()
+    {
+        if (ps.usingWeap)
+        {
+            atrapaMano.SetActive(true);
+            atrapaCuerpo.SetActive(false);
+        }
+        else
+        {
+            atrapaMano.SetActive(false);
+            atrapaCuerpo.SetActive(true);
+        }
 
+            
+    }
     void RegenWeapEnergy()
     {
         timer += Time.deltaTime;

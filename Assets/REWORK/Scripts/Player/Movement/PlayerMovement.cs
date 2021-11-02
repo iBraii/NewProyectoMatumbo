@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         else PlayerSingleton.Instance.isMoving = false;
 
         if (PlayerSingleton.Instance.isGrounded && PlayerSingleton.Instance.grabingBox==false)
-            turnSmoothTime = initialTurnTime;        
+            turnSmoothTime = initialTurnTime;
     }
 
     private void Gravity()
