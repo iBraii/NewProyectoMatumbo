@@ -54,7 +54,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
     }
     private void SpeedController()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, GameObject.Find("NewPlayer").transform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, GameObject.Find("Player").transform.position);
         if (distanceToPlayer < minTreshhold)
             speed = slowSpeed;
         else if (distanceToPlayer > minTreshhold && distanceToPlayer < maxTreshhold)

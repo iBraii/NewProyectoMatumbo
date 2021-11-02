@@ -40,7 +40,7 @@ public class NewHideInBlanket : MonoBehaviour
     private void Unhide()
     {
         unhideTimer += Time.deltaTime;
-        if(unhideTimer >= .8f)
+        if(unhideTimer >= 3.23f)
         {
             unhideTimer = 0;
             PlayerSingleton.Instance.isHiding = false;

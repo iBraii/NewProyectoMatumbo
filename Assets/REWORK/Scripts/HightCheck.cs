@@ -10,7 +10,7 @@ public class HightCheck : MonoBehaviour
     public float result;
     void Start()
     {
-        player = GameObject.Find("NewPlayer");
+        player = GameObject.Find("Player");
         start = player.transform.position.y;
     }
 

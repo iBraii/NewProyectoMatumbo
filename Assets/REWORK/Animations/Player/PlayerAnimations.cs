@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] private float maxJumpTimer;
     private bool jumpBool;
     private NewHideInBlanket hib;
+    private Dreams dc;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerAnimations : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         ps = PlayerSingleton.Instance;
         hib = GetComponent<NewHideInBlanket>();
+        dc = GetComponent<Dreams>();
     }
 
     private void Update()
@@ -42,6 +44,6 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("Grabbing", ps.grabingBox);
         anim.SetBool("grounded", ps.isGrounded);
         anim.SetBool("Falling", jumpBool);
-        anim.SetBool("isAttacking", ps.usingWeap);
+        anim.SetBool("isAttacking", dc.atrapAnim);
     }
 }

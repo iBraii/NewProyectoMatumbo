@@ -5,8 +5,8 @@ public class GrabBox : MonoBehaviour
 {
     private PlayerInput playerInput;
     private InputAction interactAction;
-    private GameObject boxDetected;
-    private GameObject boxGrabbed;
+    [SerializeField] private GameObject boxDetected;
+    [SerializeField] private GameObject boxGrabbed;
     private PlayerMovement pm;
     private CharacterController cc;
     private float initialSpeed;
@@ -14,7 +14,7 @@ public class GrabBox : MonoBehaviour
 
     [SerializeField] [Tooltip("Box new position")] private Transform grabPos;
 
-    [SerializeField]private float distanceFromBox;
+    [SerializeField] private float distanceFromBox;
     private bool boxAvailable;
     void Start()
     {
@@ -34,7 +34,7 @@ public class GrabBox : MonoBehaviour
         MyInput();
         BoxController();
         Falling();
-        BoxAvailable();
+        //BoxAvailable();
     }
     private void MyInput()
     { 
@@ -42,7 +42,7 @@ public class GrabBox : MonoBehaviour
         {
             if (boxGrabbed != null)
                 LetBox();
-            else if (boxDetected != null&&boxAvailable)
+            else if (boxDetected != null/*&& boxAvailable*/)
                 StartCoroutine(Grab());
         }
     }
@@ -119,9 +119,9 @@ public class GrabBox : MonoBehaviour
     }
     private void LetBox()
     {
-        cc.center = Vector3.zero;
-        cc.radius = .35f;
-        cc.height = .97f;
+        cc.center = Vector3.forward * .01f;
+        cc.radius = .04f;
+        cc.height = .3f;
         pm.turnSmoothTime = initialRotationSpeed;
         pm.movementSpeed = initialSpeed;
         pm.useGravity = true;
@@ -171,6 +171,7 @@ public class GrabBox : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(grabPos.position, .02f);
+        Gizmos.DrawRay(transform.position, transform.forward * .1f);
     }
 
 }

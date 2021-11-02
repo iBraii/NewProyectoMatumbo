@@ -27,6 +27,8 @@ public class Dreams : MonoBehaviour
 
     public static event Action onWeaponUsed;
     private float weapDelay;
+    [HideInInspector] public bool atrapAnim;
+    [SerializeField] private float saveDelay;
 
     void UseWeapon()
     {
@@ -34,24 +36,32 @@ public class Dreams : MonoBehaviour
             PlayerSingleton.Instance.canUseDreamCatcher && !PlayerSingleton.Instance.isHiding &&
             PlayerSingleton.Instance.isGrounded)
         {
+            saveDelay = 0;
             weapDelay += Time.deltaTime;
-            if(weapDelay >= .5f)
+            atrapAnim = true;
+            ps.canMove = false;
+            if (weapDelay >= .54f)
             {
+                ps.usingWeap = true;
                 dreamCatcherUse = true;
                 ps.dreamEnergy -= Time.deltaTime;
                 ps.weapUsedTime += Time.deltaTime;
-                ps.usingWeap = true;
-                ps.canMove = false;
                 timer = 0;
                 onWeaponUsed?.Invoke();
             }
         }
         else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
         {
+            saveDelay += Time.deltaTime;
+            atrapAnim = false;
             weapDelay = 0;
-            if(dreamCatcherUse) ps.canMove = true;
+            if(saveDelay >= 1.1f)
+            {
+                saveDelay = 0;
+                ps.canMove = true;
+                ps.usingWeap = false;
+            }
             dreamCatcherUse = false;
-            ps.usingWeap = false;
             RegenWeapEnergy();
         }
     }

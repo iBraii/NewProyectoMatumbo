@@ -58,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        Jumping();  
+        Jumping();
+        Debug.Log(PlayerSingleton.Instance.canJump);
     }
 
     public void MovementAndRotate()
@@ -105,17 +106,29 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity += Vector3.up * gravity * Time.deltaTime;
     }
 
+    private bool onJumpAnim;
     private void Jumping()
     {
-        if (PlayerSingleton.Instance.grabingBox || !PlayerSingleton.Instance.isGrounded || !PlayerSingleton.Instance.canMove || ImprovedUIManager.Instance.gameIsPaused||PlayerSingleton.Instance.isHiding)
-            PlayerSingleton.Instance.canJump = false;
-        else
-            PlayerSingleton.Instance.canJump = true;
-
-        if (jumpAction.triggered &&PlayerSingleton.Instance.canJump)
+        if (PlayerSingleton.Instance.isGrounded)
         {
-            Jump();
-            GetComponentInChildren<Animator>().SetBool("JumpTrigger",true);
+            if (PlayerSingleton.Instance.grabingBox || !PlayerSingleton.Instance.canMove || ImprovedUIManager.Instance.gameIsPaused || PlayerSingleton.Instance.isHiding)
+                PlayerSingleton.Instance.canJump = false;
+            else
+                PlayerSingleton.Instance.canJump = true;
+        }
+        else PlayerSingleton.Instance.canJump = false;
+
+        if (jumpAction.triggered && PlayerSingleton.Instance.canJump && PlayerSingleton.Instance.isMoving)
+        {
+            onJumpAnim = true;
+            Invoke("Jump", .1f);
+            GetComponentInChildren<Animator>().SetBool("JumpTrigger", true);
+        }
+        else if(jumpAction.triggered && PlayerSingleton.Instance.canJump && !PlayerSingleton.Instance.isMoving && !onJumpAnim)
+        {
+            onJumpAnim = true;
+            Invoke("Jump", .28f);
+            GetComponentInChildren<Animator>().SetBool("JumpTrigger", true);    
         }
     }
     private void Jump()
@@ -126,9 +139,13 @@ public class PlayerMovement : MonoBehaviour
             jumpSource.pitch = Random.Range(.95f, 1f);
             jumpSource.Play();
         }
-        Invoke("ResetJump", 0.2f);
+        GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
+        Invoke("ResetJump", .56f);
     }
-    private void ResetJump() => GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
+    private void ResetJump()
+    {
+        onJumpAnim = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

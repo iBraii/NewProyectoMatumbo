@@ -6,8 +6,6 @@ public class BoxIdentifier : MonoBehaviour
     private Rigidbody rb;
     public float centerMassY;
 
-    public GameObject collisionDetector;
-    public bool collision;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
