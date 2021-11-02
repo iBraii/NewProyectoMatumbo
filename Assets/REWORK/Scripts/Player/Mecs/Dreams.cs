@@ -33,6 +33,7 @@ public class Dreams : MonoBehaviour
     [HideInInspector] public bool atrapAnim;
     private float saveDelay;
     private float otroDelay;
+    private bool canMoveBool;
 
     void UseWeapon()
     {
@@ -43,6 +44,7 @@ public class Dreams : MonoBehaviour
             otroDelay += Time.deltaTime;
             if (otroDelay >= .1f)
             {
+                canMoveBool = false;
                 saveDelay = 0;
                 weapDelay += Time.deltaTime;
                 atrapAnim = true;
@@ -64,9 +66,9 @@ public class Dreams : MonoBehaviour
             saveDelay += Time.deltaTime;
             atrapAnim = false;
             weapDelay = 0;
-            if(saveDelay >= 1.1f)
+            if(canMoveBool == false && saveDelay >= 1.1f)
             {
-                saveDelay = 0;
+                canMoveBool = true;
                 ps.canMove = true;
                 ps.usingWeap = false;
             }
