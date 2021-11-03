@@ -44,6 +44,8 @@ public class TutorialManager : MonoBehaviour
 
     private void GrabDreamCatcher()
     {
+        PlayerSingleton.Instance.canMove = false;
+        PlayerSingleton.Instance.isMoving = false;
         Invoke("CameraAnim", 1.5f);
         actualDreamCatcher.GetComponent<Renderer>().material = desvanecer;
         if(canPlaySound)
@@ -53,7 +55,6 @@ public class TutorialManager : MonoBehaviour
     private void CameraAnim()
     {
         Invoke("ResetCamera", 13);
-        PlayerSingleton.Instance.canMove = false;
         GetComponent<BoxCollider>().enabled = false;
         Camera.main.GetComponent<Animator>().SetBool("enemy", true);
         firstEnemy.SetActive(true);

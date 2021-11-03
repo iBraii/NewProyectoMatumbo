@@ -16,7 +16,7 @@ public class GrabBox : MonoBehaviour
     [SerializeField] [Tooltip("Box new position")] private Transform grabPos;
 
     [SerializeField] private float distanceFromBox;
-    private bool boxAvailable;
+    private bool onAnim;
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -33,35 +33,28 @@ public class GrabBox : MonoBehaviour
         DetectBox();
         BlockJumpingAndDC();
         MyInput();
-        //BoxController();
         Falling();
-        BoxAvailable();
     }
     private void MyInput()
     { 
-        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded)
+        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded&&!onAnim)
         {
             if (boxGrabbed != null)
                 StartCoroutine(LetBox(.35f));
-            else if (boxDetected != null/* && boxAvailable*/)
+            else if (boxDetected != null)
                 StartCoroutine(Grab());
         }
     }
-    private void BoxController()
-    {
-        if (PlayerSingleton.Instance.grabingBox && boxDetected != null)
-            boxDetected.transform.position = grabPos.position;
-    }
     System.Collections.IEnumerator Grab()
     {
-        
+        onAnim = true;
         PlayerSingleton.Instance.grabingBox = true;
         PlayerSingleton.Instance.canMove = false;
         SoundManager.instance.Play("BoxLift");
 
         boxGrabbed = boxDetected;
-        boxGrabbed.GetComponent<Rigidbody>().isKinematic = true;       
-       
+        boxGrabbed.GetComponent<Rigidbody>().isKinematic = true;
+        StartCoroutine(ResetMovement(1.5f));
 
         Vector3 rotation = new Vector3(0,boxGrabbed.transform.localEulerAngles.y,0);
         yield return new WaitForSeconds(1f);
@@ -75,7 +68,12 @@ public class GrabBox : MonoBehaviour
         pm.useGravity = false;
         //.27
         BoxIdentifier(boxGrabbed.GetComponent<BoxIdentifier>().boxType);
+    }
+    private System.Collections.IEnumerator ResetMovement(float time)
+    {
+        yield return new WaitForSeconds(time);
         PlayerSingleton.Instance.canMove = true;
+        onAnim = false;
     }
     private void BoxIdentifier(int box)
     {
@@ -108,20 +106,10 @@ public class GrabBox : MonoBehaviour
                 break;
         }
     }
-    private void BoxAvailable()
-    {
-        if (boxDetected == false) return;
-
-        distanceFromBox = transform.position.y - boxDetected.transform.position.y;
-        if (distanceFromBox < .5f)
-            boxAvailable = false;
-        else
-            boxAvailable = true;
-
-    }
     private System.Collections.IEnumerator LetBox(float time)
     {
         //.22
+        onAnim = true;
         PlayerSingleton.Instance.grabingBox = false;
         PlayerSingleton.Instance.canMove = false;
         StartCoroutine(ResetMovement());
@@ -145,6 +133,7 @@ public class GrabBox : MonoBehaviour
     {
         yield return new WaitForSeconds(1.9f);
         PlayerSingleton.Instance.canMove = true;
+        onAnim = false;
     }
     private void Falling()
     {

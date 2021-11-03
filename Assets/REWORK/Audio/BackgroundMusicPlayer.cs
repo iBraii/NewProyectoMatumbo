@@ -9,7 +9,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
     private void Start()
     {
         scene = SceneManager.GetActiveScene();
-        switch(scene.name)
+        switch (scene.name)
         {
             case "Main Menu":
                 SoundManager.instance.Play("MenuTheme");
@@ -28,6 +28,14 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 SoundManager.instance.Play("BG1");
                 break;
             case "Nivel1":
+                SoundManager.instance.Stop("MenuTheme");
+                SoundManager.instance.Play("BG1");
+                break;
+            case "Nivel2":
+                SoundManager.instance.Stop("MenuTheme");
+                SoundManager.instance.Play("BG1");
+                break; 
+            case "Nivel3":
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break;

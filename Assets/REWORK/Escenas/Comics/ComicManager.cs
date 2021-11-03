@@ -1,13 +1,21 @@
 using UnityEngine;
+using UnityEngine.Video;
 
 public class ComicManager : MonoBehaviour
 {
-    [SerializeField] float maxComicTime;
+    private VideoPlayer video;
     public ChangeScene cs;
-    string sceneName;
-    [SerializeField] float appearBtnTime;
-    [SerializeField] GameObject btn;
+    private string sceneName;
+    public VideoClip[] comics;
+    public static int comicNumber;
 
+    [SerializeField] private float appearBtnTime;
+    [SerializeField] private GameObject btn;
+
+    private void Awake()
+    {
+        video = GetComponent<VideoPlayer>();
+    }
     private void Start()
     {
         SetComic(comicNumber);
@@ -15,19 +23,14 @@ public class ComicManager : MonoBehaviour
     private void Update()
     {
         ComicManagement();
-        AppearSkipButton(); 
+        AppearSkipButton();
     }
     void ComicManagement()
     {
-        maxComicTime -= Time.deltaTime;
-        if(maxComicTime <= 0)
+        if (video.frame > 0 && video.isPlaying == false)
         {
-            if (cs == null)
-            {
-                Debug.LogWarning("No se encontró Transition");
-                return;
-            }
-            cs.Change(sceneName);
+            FindObjectOfType<ChangeScene>().Change(sceneName);
+            enabled = false;
         }
     }
     void AppearSkipButton()
@@ -46,35 +49,34 @@ public class ComicManager : MonoBehaviour
         cs.Change(sceneName);
     }
 
-    public GameObject[] comics;
-    public static int comicNumber;
+
     void SetComic(int comicNumber)
     {
         switch (comicNumber)
         {
+            case 0:
+                sceneName = "NivelTuto";
+                video.clip = comics[0];
+                break;
             case 1:
-                sceneName = "NivelTutorial";
-                comics[0].SetActive(true);
+                sceneName = "Nivel1";
+                video.clip = comics[1];
                 break;
             case 2:
-                sceneName = "Nivel1";
-                comics[1].SetActive(true);
+                sceneName = "Nivel2";
+                video.clip = comics[2];
                 break;
             case 3:
-                sceneName = "Nivel2";
-                comics[2].SetActive(true);
+                sceneName = "Nivel3";
+                video.clip = comics[3];
                 break;
             case 4:
-                sceneName = "Nivel3";
-                comics[3].SetActive(true);
+                sceneName = "Nivel4";
+                video.clip = comics[4];
                 break;
             case 5:
-                sceneName = "Nivel4";
-                comics[4].SetActive(true);
-                break;
-            case 6:
                 sceneName = "Nivel5";
-                comics[5].SetActive(true);
+                video.clip = comics[5];
                 break;
         }
     }
