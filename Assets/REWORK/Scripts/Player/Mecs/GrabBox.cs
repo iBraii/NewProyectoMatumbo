@@ -36,6 +36,8 @@ public class GrabBox : MonoBehaviour
         BlockJumpingAndDC();
         MyInput();
         Falling();
+        if (PlayerSingleton.Instance.grabingBox == false)
+            boxGrabbed = null;
     }
     private void MyInput()
     { 
@@ -84,14 +86,14 @@ public class GrabBox : MonoBehaviour
             case 0:
                 PlayerSingleton.Instance.maxSpeed = .6f;
                 pm.turnSmoothTime = .35f;
-                pm.acceleration = initialAcceleration /= 1.5f;
+                pm.acceleration = initialAcceleration / 1.5f;
                 cc.center = new Vector3(0, 0.1f, .16f);
                 cc.radius = .11f;
                 cc.height = .2f;
                 break;  
             case 1:
                 PlayerSingleton.Instance.maxSpeed = .55f;
-                pm.acceleration = initialAcceleration /= 2f;
+                pm.acceleration = initialAcceleration / 2f;
                 pm.turnSmoothTime = .35f;
 
                 cc.center = new Vector3(0, 0.21f, .16f);
@@ -100,7 +102,7 @@ public class GrabBox : MonoBehaviour
                 
                 break; 
             case 2:
-                pm.acceleration = initialAcceleration /= 2.5f;
+                pm.acceleration = initialAcceleration / 2.5f;
                 PlayerSingleton.Instance.maxSpeed = .5f;
                 pm.turnSmoothTime = .35f;
 

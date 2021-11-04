@@ -10,7 +10,7 @@ public class GroundCheckUpdater : MonoBehaviour
     void SetSingletonData()
     {
         if (grounded && PlayerSingleton.Instance.isGrounded == false)
-            PlayerSingleton.Instance.isGrounded = true;
+            PlayerSingleton.Instance.isGrounded = true;     
         else if (!grounded && PlayerSingleton.Instance.isGrounded)
             PlayerSingleton.Instance.isGrounded = false;
     }

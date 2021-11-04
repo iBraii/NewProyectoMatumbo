@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 playerVelocity;
     [SerializeField]private AudioSource jumpSource;
     [SerializeField]private AudioSource stepSource;
+    private Animator anim;
 
     //WhenGrabbingBox
 
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _moveAction = _playerInput.actions["Move"];
         jumpAction = _playerInput.actions["Jump"];
+        anim = GetComponentInChildren<Animator>();
     }
     void Start()
     {
@@ -64,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(PlayerSingleton.Instance.canJump);
 
         Acceleration();
+        anim.SetBool("JumpTrigger", jumpAction.triggered);
     }
 
     public void MovementAndRotate()
@@ -119,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             speed += Time.deltaTime* acceleration;
         }else if(input == Vector2.zero && speed > 0)
         {
-            speed -= Time.deltaTime * acceleration;
+            speed = 0;
         }
 
         if (speed > 1)
@@ -155,17 +158,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else PlayerSingleton.Instance.canJump = false;
 
-        if (jumpAction.triggered && PlayerSingleton.Instance.canJump && PlayerSingleton.Instance.isMoving)
+        if (jumpAction.triggered && PlayerSingleton.Instance.canJump && PlayerSingleton.Instance.isMoving && !onJumpAnim)
         {
             onJumpAnim = true;
             Invoke("Jump", .1f);
-            GetComponentInChildren<Animator>().SetBool("JumpTrigger", true);
         }
         else if(jumpAction.triggered && PlayerSingleton.Instance.canJump && !PlayerSingleton.Instance.isMoving && !onJumpAnim)
         {
             onJumpAnim = true;
             //Invoke("Jump", .28f);
-            GetComponentInChildren<Animator>().SetBool("JumpTrigger", true);    
         }
     }
     public void Jump()
@@ -176,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
             jumpSource.pitch = Random.Range(.95f, 1f);
             jumpSource.Play();
         }
-        GetComponentInChildren<Animator>().SetBool("JumpTrigger", false);
         Invoke("ResetJump", .56f);
     }
     private void ResetJump()=> onJumpAnim = false;
