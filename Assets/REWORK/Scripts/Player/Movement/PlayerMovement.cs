@@ -185,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("DeathBox"))
         {
+            PlayerSingleton.Instance.canMove = false;
             Scene sc = SceneManager.GetActiveScene();
             FindObjectOfType<ChangeScene>().Change(sc.name);
         }

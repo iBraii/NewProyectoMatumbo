@@ -8,7 +8,7 @@ public class PlayerAnimations : MonoBehaviour
     private bool jumpBool;
     //Referencias de clases
     private GrabBox gb;
-    private Dreams dc;
+    [SerializeField] private Dreams dc;
     private PlayerSingleton ps;
     private PlayerMovement pm;
     private NewHideInBlanket hib;
@@ -23,7 +23,7 @@ public class PlayerAnimations : MonoBehaviour
         pm = GetComponentInParent<PlayerMovement>();
         ps = PlayerSingleton.Instance;
         hib = GetComponentInParent<NewHideInBlanket>();
-        dc = GetComponentInParent<Dreams>();
+        //dc = GetComponentInParent<Dreams>();
 
         //Referencias de clases
         gb = GetComponentInParent<GrabBox>();
@@ -94,7 +94,9 @@ public class PlayerAnimations : MonoBehaviour
                 dc.DCOnHand();
                 break;
             case "DCOnBack":
-                dc.DCOnBack();
+                if (dc.enabled)
+                    dc.DCOnBack();
+                else return;
                 break;
             case "Step":
                 pm.StepSFX(false);

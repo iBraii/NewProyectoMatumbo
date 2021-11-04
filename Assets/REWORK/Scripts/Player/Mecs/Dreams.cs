@@ -87,7 +87,12 @@ public class Dreams : MonoBehaviour
         }
 
         if (PlayerSingleton.Instance.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
+        {
             PlayerSingleton.Instance.usingWeap = false;
+            animationFinished = false;
+        }
+           
+            
     }
     private void UseWeapon()
     {
