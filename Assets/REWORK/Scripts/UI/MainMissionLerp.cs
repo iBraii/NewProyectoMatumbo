@@ -58,11 +58,30 @@ public class MainMissionLerp : MonoBehaviour
                 
         }
     }
-    private void OnDrawGizmos()
+    [ContextMenu("Add Position")]
+    private void AddPosition()
     {
+        GameObject go = new GameObject("Pos" + position.Length + 1);
+        go.transform.position = childPos[childPos.Length - 1].position;
+        go.transform.parent = transform;
+
+        Transform[] temporal = new Transform[childPos.Length + 1];
+        for(int i = 0; i < childPos.Length; i++)
+        {
+            temporal[i] = childPos[i];
+        }
+        temporal[childPos.Length] = go.transform;
+        childPos = temporal;
+    }
+    private void OnDrawGizmos()
+    {        
         foreach(Transform t in childPos)
         {
             Gizmos.DrawWireSphere(t.position, .2f);
+        }
+        for(int i = 0; i < childPos.Length - 1; i++)
+        {
+            Debug.DrawLine(childPos[i].position, childPos[i + 1].position);
         }
     }
 }

@@ -23,7 +23,6 @@ public class StressManager : MonoBehaviour
     private FilmGrain fg;
 
     private bool deadSound;
-
     void Start()
     {
         #region nulls
@@ -45,6 +44,9 @@ public class StressManager : MonoBehaviour
         RegenStress(regenValue, delay);
         ChangeToDeafeatScene();
         SetStressFeedback();
+        //Temporal
+        Debug.Log("StressActual: " + PlayerSingleton.Instance.stress);
+        Debug.Log("Atacado?: " + PlayerSingleton.Instance.beingAttacked);
     }
     float StressLimits() => PlayerSingleton.Instance.stress = Mathf.Clamp(PlayerSingleton.Instance.stress, 0f, 10f);
 

@@ -30,12 +30,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float gravity = -4.5f;
     [Header("Jump Force")] public float jumpForce;
     [HideInInspector] public Vector3 playerVelocity;
-    private AudioSource jumpSource;
+    [SerializeField]private AudioSource jumpSource;
+    [SerializeField]private AudioSource stepSource;
 
     //WhenGrabbingBox
 
     [HideInInspector] public bool useGravity;
-
+    public float speed;
+    public float acceleration;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -46,20 +48,22 @@ public class PlayerMovement : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         PlayerSingleton.Instance.canMove = true;
-        jumpSource = GetComponent<AudioSource>();
         initialTurnTime = turnSmoothTime;
+        PlayerSingleton.Instance.maxSpeed = .75f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(PlayerSingleton.Instance.canMove) MovementAndRotate();
+        if(PlayerSingleton.Instance.canMove&&!PlayerSingleton.Instance.onAnimation) MovementAndRotate();
         Gravity();
     }
     private void Update()
     {
-        Jumping();
-        Debug.Log(PlayerSingleton.Instance.canJump);
+        if(!PlayerSingleton.Instance.onAnimation!) Jumping();
+        //Debug.Log(PlayerSingleton.Instance.canJump);
+
+        Acceleration();
     }
 
     public void MovementAndRotate()
@@ -92,7 +96,40 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerSingleton.Instance.isGrounded && PlayerSingleton.Instance.grabingBox==false)
             turnSmoothTime = initialTurnTime;
     }
+    public void StepSFX(bool box)
+    {
+        if (!box)
+        {
+            float pitch = Random.Range(.65f, .75f);
+            stepSource.pitch = pitch;
+            stepSource.Play();
+        }
+        else
+        {
+            stepSource.pitch = .7f;
+            stepSource.Play();
+        }    
+        
+    }
+    private void Acceleration()
+    {
+        Vector2 input = _moveAction.ReadValue<Vector2>();
+        if (input!=Vector2.zero && speed < 1)
+        {
+            speed += Time.deltaTime* acceleration;
+        }else if(input == Vector2.zero && speed > 0)
+        {
+            speed -= Time.deltaTime * acceleration;
+        }
 
+        if (speed > 1)
+            speed = 1;
+        else if (speed < 0)
+            speed = 0;
+
+        movementSpeed = Mathf.Lerp(0, PlayerSingleton.Instance.maxSpeed, speed);
+
+    }
     private void Gravity()
     {
         if (useGravity == false) return;
@@ -127,11 +164,11 @@ public class PlayerMovement : MonoBehaviour
         else if(jumpAction.triggered && PlayerSingleton.Instance.canJump && !PlayerSingleton.Instance.isMoving && !onJumpAnim)
         {
             onJumpAnim = true;
-            Invoke("Jump", .28f);
+            //Invoke("Jump", .28f);
             GetComponentInChildren<Animator>().SetBool("JumpTrigger", true);    
         }
     }
-    private void Jump()
+    public void Jump()
     {
         playerVelocity.y += Mathf.Sqrt(jumpForce * 3f);
         if (jumpSource != null)

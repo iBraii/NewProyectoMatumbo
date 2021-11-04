@@ -13,10 +13,13 @@ public class NewHideInBlanket : MonoBehaviour
     [HideInInspector] public bool unhide;
     private float unhideTimer;
 
+    //Referencia a clase
+    private GrabBox gb;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         interactAction = playerInput.actions["Interact"];
+        gb = GetComponent<GrabBox>();
     }
     private void Update()
     {
@@ -25,6 +28,7 @@ public class NewHideInBlanket : MonoBehaviour
     }
     private void Hide()
     {
+        if (PlayerSingleton.Instance.onAnimation||gb.boxDetected!=null) return;
         if (blanketAtReach&&interactAction.triggered)
         {
             if (PlayerSingleton.Instance.isHiding)
@@ -40,7 +44,7 @@ public class NewHideInBlanket : MonoBehaviour
     private void Unhide()
     {
         unhideTimer += Time.deltaTime;
-        if(unhideTimer >= 3.23f)
+        if(unhideTimer >= 3.23f/2)
         {
             unhideTimer = 0;
             PlayerSingleton.Instance.isHiding = false;

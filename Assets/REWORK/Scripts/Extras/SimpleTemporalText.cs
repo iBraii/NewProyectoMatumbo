@@ -9,7 +9,7 @@ public class SimpleTemporalText : MonoBehaviour
     private GameObject parent;
     void Start()
     {
-        player = GameObject.Find("NewPlayer");
+        player = GameObject.Find("Player");
         parent = transform.parent.gameObject;
         parent.transform.DOLookAt(player.transform.position, 2, AxisConstraint.Y, Vector3.up);
 

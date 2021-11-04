@@ -18,7 +18,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 SoundManager.instance.Stop("HeartBeat");
                 break;
             case "Comics":
-                SoundManager.instance.UpdatePlay("MenuTheme");
+                SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Stop("BG1");
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;

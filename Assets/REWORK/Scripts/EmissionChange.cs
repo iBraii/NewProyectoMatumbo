@@ -9,11 +9,11 @@ public class EmissionChange : MonoBehaviour
 
     void Update()
     {
-        if(mat1 == null)
-        {
-            Debug.LogWarning("Asignale material");
-            return;
-        }
+        //if(mat1 == null)
+        //{
+        //    Debug.LogWarning("Asignale material");
+        //    return;
+        //}
         intensity = Mathf.PingPong(Time.time / vel, .5f);
         mat1.SetColor("_EmissionColor", color * intensity * 1.5f);
     }

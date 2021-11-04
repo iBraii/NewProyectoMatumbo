@@ -3,25 +3,38 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     private Animator anim;
-    private PlayerSingleton ps;
-    private PlayerMovement pm;
     private float jumpTimer;
     [SerializeField] private float maxJumpTimer;
     private bool jumpBool;
-    private NewHideInBlanket hib;
+    //Referencias de clases
+    private GrabBox gb;
     private Dreams dc;
-
+    private PlayerSingleton ps;
+    private PlayerMovement pm;
+    private NewHideInBlanket hib;
+    //Temporal
+    public bool onAnim;
+    public bool canMove;
+    public bool usingWeap;
+    public bool isMoving;
     private void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        pm = GetComponent<PlayerMovement>();
+        anim = GetComponent<Animator>();
+        pm = GetComponentInParent<PlayerMovement>();
         ps = PlayerSingleton.Instance;
-        hib = GetComponent<NewHideInBlanket>();
-        dc = GetComponent<Dreams>();
+        hib = GetComponentInParent<NewHideInBlanket>();
+        dc = GetComponentInParent<Dreams>();
+
+        //Referencias de clases
+        gb = GetComponentInParent<GrabBox>();
     }
 
     private void Update()
     {
+        onAnim = PlayerSingleton.Instance.onAnimation;
+        canMove = PlayerSingleton.Instance.canMove;
+        usingWeap = PlayerSingleton.Instance.usingWeap;
+        isMoving = PlayerSingleton.Instance.isMoving;
         if (pm.playerVelocity.y < 0)
         {
             jumpTimer += Time.deltaTime;
@@ -45,5 +58,51 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("grounded", ps.isGrounded);
         anim.SetBool("Falling", jumpBool);
         anim.SetBool("isAttacking", dc.atrapAnim);
+    }
+
+    public void AnimationStart()
+    {
+        PlayerSingleton.Instance.onAnimation = true;
+    }
+    public void AnimationEnd()
+    {
+        PlayerSingleton.Instance.onAnimation = false;
+    }
+    public void Custom(string i)
+    {
+        switch (i)
+        {
+            case "Levantar":
+                gb.MoveBox();
+                break;
+            case "ResetMovement":
+                gb.ResetMovement();
+                break;
+            case "SoltarCaja":
+                gb.LetBoxEvent();
+                break;
+            case "DCStateOn":
+                dc.DCStateOn();
+                break;
+            case "DCStateOff":
+                dc.DCStateOff();
+                break;
+            case "StaticJump":
+                pm.Jump();
+                break;
+            case "DCOnHand":
+                dc.DCOnHand();
+                break;
+            case "DCOnBack":
+                dc.DCOnBack();
+                break;
+            case "Step":
+                pm.StepSFX(false);
+                break;
+            case "StepBox":
+                pm.StepSFX(true);
+                break;
+
+        }
     }
 }

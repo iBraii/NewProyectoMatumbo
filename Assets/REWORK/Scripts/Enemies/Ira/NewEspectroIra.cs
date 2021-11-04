@@ -76,7 +76,7 @@ public class NewEspectroIra : MonoBehaviour
     {
         activeMeshRenderer.SetActive(false);
         fakeMeshRenderer.SetActive(true);
-
+        PlayerSingleton.Instance.beingAttacked = false;
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
             currentState = Enemy2States.Attack;
@@ -85,7 +85,7 @@ public class NewEspectroIra : MonoBehaviour
     {
         activeMeshRenderer.SetActive(true);
         fakeMeshRenderer.SetActive(false);
-
+        PlayerSingleton.Instance.beingAttacked = false;
         //CHANGE CONDITIONS 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false && OurTimer.TimerCount(1.3f))
             currentState = Enemy2States.Hiding; 

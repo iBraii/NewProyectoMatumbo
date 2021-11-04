@@ -24,7 +24,7 @@ public class Level1Mision : MonoBehaviour
     void Start()
     {
         emisionSphere.SetActive(false);
-        player = GameObject.Find("NewPlayer");
+        player = GameObject.Find("Player");
         position = new Vector3[childPosition.Length];
         for (int i = 0; i < childPosition.Length; i++)
         {
