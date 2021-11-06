@@ -36,8 +36,6 @@ public class GrabBox : MonoBehaviour
         BlockJumpingAndDC();
         MyInput();
         Falling();
-        if (PlayerSingleton.Instance.grabingBox == false)
-            boxGrabbed = null;
     }
     private void MyInput()
     { 
