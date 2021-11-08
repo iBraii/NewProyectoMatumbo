@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7092347300663549841}
   - component: {fileID: 6179730192199536692}
   - component: {fileID: 8225323993513567486}
-  - component: {fileID: 7576959922155291946}
+  - component: {fileID: 4546559165363792328}
   m_Layer: 6
   m_Name: 3D_Balde_Pintura
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7576959922155291946
-MeshCollider:
+--- !u!65 &4546559165363792328
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,7 +94,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6326534544983106347, guid: b835a2a8d8929dc47bcb1381faf0d34a, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.23822269, y: 0.23635799, z: 0.23172432}
+  m_Center: {x: 0, y: 0.11817899, z: -0.000000018626451}

@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     //jump vars
     [SerializeField] private float gravity = -4.5f;
     [Header("Jump Force")] public float jumpForce;
-    [HideInInspector] public Vector3 playerVelocity;
+    /*[HideInInspector]*/ public Vector3 playerVelocity;
     [SerializeField]private AudioSource jumpSource;
     [SerializeField]private AudioSource stepSource;
     private Animator anim;
@@ -177,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
             jumpSource.pitch = Random.Range(.95f, 1f);
             jumpSource.Play();
         }
-        Invoke("ResetJump", .56f);
+        Invoke("ResetJump", .0f);
     }
     private void ResetJump()=> onJumpAnim = false;
 

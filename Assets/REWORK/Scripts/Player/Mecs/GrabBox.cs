@@ -85,28 +85,28 @@ public class GrabBox : MonoBehaviour
                 PlayerSingleton.Instance.maxSpeed = .6f;
                 pm.turnSmoothTime = .35f;
                 pm.acceleration = initialAcceleration / 1.5f;
-                cc.center = new Vector3(0, 0.1f, .16f);
-                cc.radius = .11f;
-                cc.height = .2f;
+                cc.center = new Vector3(0, 0.047f, .1f);
+                cc.radius = .2f;
+                cc.height = .4f;
                 break;  
             case 1:
                 PlayerSingleton.Instance.maxSpeed = .55f;
                 pm.acceleration = initialAcceleration / 2f;
-                pm.turnSmoothTime = .35f;
+                pm.turnSmoothTime = .4f;
 
-                cc.center = new Vector3(0, 0.21f, .16f);
-                cc.radius = .11f;
-                cc.height = .44f;
+                cc.center = new Vector3(0, 0.15f, .1f);
+                cc.radius = .2f;
+                cc.height = .6f;
                 
                 break; 
             case 2:
                 pm.acceleration = initialAcceleration / 2.5f;
                 PlayerSingleton.Instance.maxSpeed = .5f;
-                pm.turnSmoothTime = .35f;
+                pm.turnSmoothTime = .5f;
 
-                cc.center = new Vector3(0, 0.33f, .16f);
-                cc.radius = .11f;
-                cc.height = .68f;
+                cc.center = new Vector3(0, 0.247f, .1f);
+                cc.radius = .2f;
+                cc.height = .8f;
                 break;
         }
     }
@@ -143,9 +143,12 @@ public class GrabBox : MonoBehaviour
     //}
     private void Falling()
     {
-        if (PlayerSingleton.Instance.isGrounded == false&&PlayerSingleton.Instance.grabingBox)
+        if (PlayerSingleton.Instance.isGrounded==false && PlayerSingleton.Instance.grabingBox)
         {
-            LetBox();
+            if (pm.playerVelocity.y < -2)
+            {
+                LetBox();
+            }
             pm.useGravity = true;
         }
     }
