@@ -18,9 +18,7 @@ public class MainMissionLerp : MonoBehaviour
     {
         position = new Vector3[childPos.Length];
         for(int i = 0; i < childPos.Length; i++)
-        {
             position[i] = childPos[i].position;
-        }
     }
 
     void Update()
@@ -51,11 +49,7 @@ public class MainMissionLerp : MonoBehaviour
                 active = true;
                 onPath = true;
             }
-            else
-            {
-                GetComponent<VisualEffect>().Stop();
-            }
-                
+            else GetComponent<VisualEffect>().Stop();
         }
     }
     [ContextMenu("Add Position")]
@@ -67,21 +61,15 @@ public class MainMissionLerp : MonoBehaviour
 
         Transform[] temporal = new Transform[childPos.Length + 1];
         for(int i = 0; i < childPos.Length; i++)
-        {
             temporal[i] = childPos[i];
-        }
         temporal[childPos.Length] = go.transform;
         childPos = temporal;
     }
     private void OnDrawGizmos()
     {        
         foreach(Transform t in childPos)
-        {
             Gizmos.DrawWireSphere(t.position, .2f);
-        }
         for(int i = 0; i < childPos.Length - 1; i++)
-        {
             Debug.DrawLine(childPos[i].position, childPos[i + 1].position);
-        }
     }
 }
