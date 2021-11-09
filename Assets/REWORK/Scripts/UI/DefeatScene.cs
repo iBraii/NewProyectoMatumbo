@@ -10,11 +10,7 @@ public class DefeatScene : MonoBehaviour
     void Start()
     {
         cs = GameObject.Find("TransitionScreen").GetComponent<ChangeScene>();
-        hints = new string[2];
-        hints[0] = "You can hide in some places";
-        hints[1] = "Use the dreamcatcher to protect yourself";
-
-        hintsText.text = hints[Random.Range(0,2)];
+        hintsText.text = hints[Random.Range(0, hints.Length)];
     }
 
     // Update is called once per frame
