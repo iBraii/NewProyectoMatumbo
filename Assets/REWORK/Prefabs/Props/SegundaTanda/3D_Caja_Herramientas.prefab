@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2965190316578388682}
   - component: {fileID: 2200469614530016623}
   - component: {fileID: 4138056255120523685}
-  m_Layer: 0
+  - component: {fileID: 3170516632216576653}
+  m_Layer: 6
   m_Name: 3D_Caja_Herramientas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,3 +83,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3170516632216576653
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2480824020256514160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.47884098, y: 0.16, z: 0.18766336}
+  m_Center: {x: 0, y: 0.08, z: 0}

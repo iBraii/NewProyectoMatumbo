@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpTimer: 0
   dc: {fileID: 8745534843480449392}
+  sm: {fileID: 0}
   onAnim: 0
   canMove: 0
   usingWeap: 0
@@ -107,7 +108,7 @@ CharacterController:
   m_Height: 0.3
   m_Radius: 0.04
   m_SlopeLimit: 45
-  m_StepOffset: 0
+  m_StepOffset: 0.1
   m_SkinWidth: 0.003
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0.01}

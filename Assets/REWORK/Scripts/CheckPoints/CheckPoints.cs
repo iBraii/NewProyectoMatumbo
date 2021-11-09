@@ -35,7 +35,7 @@ public class CheckPoints : MonoBehaviour
         //}
     }
 
-    private IEnumerator LoadPositions()
+    public  IEnumerator LoadPositions()
     {
         if (currentCheckpoint[0] == Vector3.zero) yield break;
         player.gameObject.GetComponent<CharacterController>().enabled = false;
