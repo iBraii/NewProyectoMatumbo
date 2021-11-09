@@ -385,7 +385,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hintsText: {fileID: 1772399325}
-  hints: []
+  hints:
+  - You can hide in some places
+  - Use the dreamcatcher to protect yourself
+  - Be aware of the environment
 --- !u!114 &186479606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,6 +1140,10 @@ PrefabInstance:
     - target: {fileID: 6770424929134860453, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
       propertyPath: m_Name
       value: TransitionScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6770424929134860455, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
+      propertyPath: m_Alpha
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}

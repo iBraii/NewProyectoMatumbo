@@ -13,17 +13,16 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
     private void Awake()
     {
-        
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
         SaveSystem.Load();
-        Debug.Log("Data Loaded");
+        //Debug.Log("Data Loaded");
     }
 
 
-    [ContextMenu("RESET ALL BITCH")]
+    [ContextMenu("Reset all")]
     public void ResetDefault()
     {
         SaveSystem.data.sensitivity = 275;
@@ -38,7 +37,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    [ContextMenu("RESET PREFERENCES")]
+    [ContextMenu("Reset preferences")]
     public void ResetPreferences()
     {
         SaveSystem.data.sensitivity = 275;
@@ -48,7 +47,7 @@ public class DataManager : MonoBehaviour
     }
 
 
-    [ContextMenu("RESET ACHIEVEMENTS")]
+    [ContextMenu("Reset achievements")]
     public void ResetAchivement()
     {
         for (int i = 0; i < SaveSystem.data.levelCompleted.Length; i++)

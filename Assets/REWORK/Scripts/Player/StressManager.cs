@@ -2,11 +2,13 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class StressManager : MonoBehaviour
 {
     [Header("Transition screen script")]
     [SerializeField] private ChangeScene cs;
+    private bool isOnDefeat;
 
     [Header("Stress values")]
     [SerializeField] [Tooltip("Valor de regeneracion")] private float regenValue;
@@ -45,8 +47,8 @@ public class StressManager : MonoBehaviour
         ChangeToDeafeatScene();
         SetStressFeedback();
         //Temporal
-        Debug.Log("StressActual: " + PlayerSingleton.Instance.stress);
-        Debug.Log("Atacado?: " + PlayerSingleton.Instance.beingAttacked);
+        //Debug.Log("StressActual: " + PlayerSingleton.Instance.stress);
+        //Debug.Log("Atacado?: " + PlayerSingleton.Instance.beingAttacked);
     }
     float StressLimits() => PlayerSingleton.Instance.stress = Mathf.Clamp(PlayerSingleton.Instance.stress, 0f, 10f);
 
@@ -86,10 +88,14 @@ public class StressManager : MonoBehaviour
         if(PlayerSingleton.Instance.stress >= 10)
         {
             PlayerSingleton.Instance.canMove = false;
-            Scene scene = SceneManager.GetActiveScene();
-            PlayerPrefs.SetString("prevLevel", scene.name);
-            cs.SetBlack();
-            cs.Change("DefeatScene");
+            if(isOnDefeat == false)
+            {
+                isOnDefeat = true;
+                Scene scene = SceneManager.GetActiveScene();
+                PlayerPrefs.SetString("prevLevel", scene.name);
+                cs.SetBlack();
+                cs.Change("DefeatScene");
+            }    
         }
     }
 }

@@ -10,6 +10,8 @@ public class TransitionScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //CheckPoints.ResetStatics();
+
         if (cs == null)
         {
             Debug.LogWarning("No hay changescene script");
