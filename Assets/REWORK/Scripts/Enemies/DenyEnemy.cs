@@ -19,10 +19,7 @@ public class DenyEnemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DreamCatcher"))
-        {
             detectAtkRange = true;
-            PlayerSingleton.Instance.weapUsedTime = 0;
-        }
     }
     private void OnTriggerExit(Collider other)
     {

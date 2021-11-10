@@ -19,9 +19,7 @@ public class PlayerSingleton : MonoBehaviour
     private void Awake()
     {
         _instance = this;
-        #region ...
-        //Default Values
-
+        #region Default Values
         stress = 0;
 
         maxLightEnergy = 10;
@@ -47,7 +45,6 @@ public class PlayerSingleton : MonoBehaviour
     public float maxDreamEnergy { get; set; }
     public float maxSpeed { get; set; }
     public bool usingWeap { get; set; }
-    public float weapUsedTime { get; set; }
     public bool canMove { get; set; }
     public bool canJump { get; set; }
     public bool canUseDreamCatcher { get; set; }
@@ -55,4 +52,3 @@ public class PlayerSingleton : MonoBehaviour
     public bool grabingBox { get; set; }
     public bool onAnimation { get; set; }
 }
-

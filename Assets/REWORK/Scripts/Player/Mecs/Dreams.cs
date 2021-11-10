@@ -10,14 +10,14 @@ public class Dreams : MonoBehaviour
     InputAction attackAction;
 
     PlayerSingleton ps;
-    float timer;
-    bool dreamCatcherUse;
+    private float timer;
 
     public GameObject atrapaMano;
     public GameObject atrapaCuerpo;
 
     //Usado para indicar cuando la animacion de sacar el atrapasueños ha terminado
     public bool animationFinished;
+
     private void Awake()
     {
         ps = PlayerSingleton.Instance;
@@ -32,10 +32,7 @@ public class Dreams : MonoBehaviour
     }
 
     public static event Action onWeaponUsed;
-    private float weapDelay;
     [HideInInspector] public bool atrapAnim;
-    private float saveDelay;
-    private float otroDelay;
     private bool canMoveBool;
 
     void UseWeaponAnim()
@@ -44,41 +41,13 @@ public class Dreams : MonoBehaviour
             PlayerSingleton.Instance.canUseDreamCatcher && !PlayerSingleton.Instance.isHiding &&
             PlayerSingleton.Instance.isGrounded)
         {
-            //otroDelay += Time.deltaTime;
-            //if (otroDelay >= .1f)
-            //{
-            //    canMoveBool = false;
-            //    saveDelay = 0;
-            //    weapDelay += Time.deltaTime;
-            //    atrapAnim = true;
-            //    ps.canMove = false;
-            //    if (weapDelay >= .54f)
-            //    {
-            //        ps.usingWeap = true;
-            //        dreamCatcherUse = true;
-            //        ps.dreamEnergy -= Time.deltaTime;
-            //        ps.weapUsedTime += Time.deltaTime;
-            //        timer = 0;
-            //        onWeaponUsed?.Invoke();
-            //    }
-            //}    
             atrapAnim = true;
             canMoveBool = false;
             ps.canMove = false;
         }
         else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
         {
-            //otroDelay = 0;
-            //saveDelay += Time.deltaTime;
             atrapAnim = false;
-            //weapDelay = 0;
-            //if (canMoveBool == false && saveDelay >= 1.1f)
-            //{
-            //    canMoveBool = true;
-            //    ps.canMove = true;
-            //    ps.usingWeap = false;
-            //}
-            dreamCatcherUse = false;
             RegenWeapEnergy();
 
             canMoveBool = true;
@@ -99,9 +68,7 @@ public class Dreams : MonoBehaviour
         if (animationFinished == false) return;
 
         ps.usingWeap = true;
-        dreamCatcherUse = true;
         ps.dreamEnergy -= Time.deltaTime;
-        ps.weapUsedTime += Time.deltaTime;
         timer = 0;
         onWeaponUsed?.Invoke();
     }

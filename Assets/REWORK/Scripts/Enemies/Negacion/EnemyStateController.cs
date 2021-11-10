@@ -84,6 +84,8 @@ public class EnemyStateController : MonoBehaviour
 
         StateController();
         AnimationController();
+
+        if (deniedTime < 0) deniedTime = 0;
     }
 
     void StateController()
@@ -187,20 +189,23 @@ public class EnemyStateController : MonoBehaviour
         ChangeSound(sounds[2]);
         agent.isStopped = true;
         PlayerSingleton.Instance.beingAttacked = false;
-        if (PlayerSingleton.Instance.usingWeap == false)
+
+        if (PlayerSingleton.Instance.usingWeap == true)
             deniedTime += Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime * 1.5f)
+        if (deniedTime >= 0 && PlayerSingleton.Instance.usingWeap == false)
         {
-            agent.isStopped = false;
-            deniedTime = 0;
-            PlayerSingleton.Instance.weapUsedTime = 0;
+            deniedTime -= Time.deltaTime / 1.5f;
+            agent.isStopped = false;          
+        }
+        if(deniedTime <= 0)
+        {
             if ((isClose || onVisionRange) && !detectObstacle && !PlayerSingleton.Instance.isHiding)
                 currentState = EnemyStates.Following;
             else
                 currentState = EnemyStates.OnPath;
-        }
+        }    
     }
 
 

@@ -33,6 +33,7 @@ public class NewEspectroIra : MonoBehaviour
     {
         StateController();
         AnimatorController();
+        if (deniedTime < 0) deniedTime = 0;
     }
     private void StateController()
     {
@@ -103,16 +104,15 @@ public class NewEspectroIra : MonoBehaviour
         fakeMeshRenderer.SetActive(false);
         PlayerSingleton.Instance.beingAttacked = false;
 
-        if (PlayerSingleton.Instance.usingWeap == false)
+        if (PlayerSingleton.Instance.usingWeap == true)
             deniedTime += Time.deltaTime;
 
         //CHANGE CONDITIONS
-        if (deniedTime >= PlayerSingleton.Instance.weapUsedTime * 1.5f)
-        {
-            deniedTime = 0;
-            PlayerSingleton.Instance.weapUsedTime = 0;
+        if (deniedTime >= 0 && PlayerSingleton.Instance.usingWeap == false)
+            deniedTime -= Time.deltaTime / 1.5f;
+
+        if (deniedTime <= 0)
             currentState = Enemy2States.Active;
-        }
     }
     private void OnDrawGizmos()
     {

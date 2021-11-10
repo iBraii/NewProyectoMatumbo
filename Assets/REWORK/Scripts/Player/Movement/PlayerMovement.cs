@@ -54,7 +54,6 @@ public class PlayerMovement : MonoBehaviour
         PlayerSingleton.Instance.maxSpeed = .75f;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if(PlayerSingleton.Instance.canMove&&!PlayerSingleton.Instance.onAnimation) MovementAndRotate();
@@ -62,8 +61,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if(!PlayerSingleton.Instance.onAnimation!) Jumping();
-        //Debug.Log(PlayerSingleton.Instance.canJump);
+        if(!PlayerSingleton.Instance.onAnimation) Jumping();
 
         Acceleration();
         anim.SetBool("JumpTrigger", jumpAction.triggered);
@@ -118,12 +116,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 input = _moveAction.ReadValue<Vector2>();
         if (input!=Vector2.zero && speed < 1)
-        {
             speed += Time.deltaTime* acceleration;
-        }else if(input == Vector2.zero && speed > 0)
-        {
+        else if(input == Vector2.zero && speed > 0)
             speed = 0;
-        }
 
         if (speed > 1)
             speed = 1;
@@ -146,7 +141,6 @@ public class PlayerMovement : MonoBehaviour
             playerVelocity += Vector3.up * gravity * Time.deltaTime;
     }
 
-    private bool onJumpAnim;
     private void Jumping()
     {
         if (PlayerSingleton.Instance.isGrounded)
@@ -158,16 +152,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else PlayerSingleton.Instance.canJump = false;
 
-        if (jumpAction.triggered && PlayerSingleton.Instance.canJump && PlayerSingleton.Instance.isMoving && !onJumpAnim)
-        {
-            onJumpAnim = true;
+        if (jumpAction.triggered && PlayerSingleton.Instance.canJump && PlayerSingleton.Instance.isMoving)
             Invoke("Jump", .1f);
-        }
-        else if(jumpAction.triggered && PlayerSingleton.Instance.canJump && !PlayerSingleton.Instance.isMoving && !onJumpAnim)
-        {
-            onJumpAnim = true;
-            //Invoke("Jump", .28f);
-        }
     }
     public void Jump()
     {
@@ -177,9 +163,7 @@ public class PlayerMovement : MonoBehaviour
             jumpSource.pitch = Random.Range(.95f, 1f);
             jumpSource.Play();
         }
-        Invoke("ResetJump", .0f);
     }
-    private void ResetJump()=> onJumpAnim = false;
 
     private void OnTriggerEnter(Collider other)
     {
