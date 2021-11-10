@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3896903982342841954}
   - component: {fileID: 124779259021928903}
   - component: {fileID: 2765132496105790733}
-  - component: {fileID: 7110004112133033544}
+  - component: {fileID: 2421920971730558937}
   m_Layer: 0
   m_Name: FLORERO
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7110004112133033544
-MeshCollider:
+--- !u!65 &2421920971730558937
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7469812013713553671, guid: 3edb8ef1f0a8e8b4fbff9a510f7cfaab, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.15051052, y: 0.27118382, z: 0.1516316}
+  m_Center: {x: 0.000000018626451, y: 0.13430013, z: 0.000000011175871}

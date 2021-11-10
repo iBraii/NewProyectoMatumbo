@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5562619692792786602}
   - component: {fileID: 8835427733930418447}
   - component: {fileID: 6735496080858699205}
-  - component: {fileID: 5906141320322412855}
+  - component: {fileID: 3635448489409374902}
   m_Layer: 6
   m_Name: Caja de mudanza
   m_TagString: Wall
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5906141320322412855
-MeshCollider:
+--- !u!65 &3635448489409374902
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,7 +92,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4068373912626513877, guid: 80537be4e11921f4f9b33f78b06846f6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.0765502, y: 1.0953321, z: 1.5861204}
+  m_Center: {x: 0, y: 0.5476661, z: 0}
