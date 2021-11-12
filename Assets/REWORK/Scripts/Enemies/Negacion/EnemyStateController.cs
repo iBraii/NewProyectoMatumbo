@@ -169,7 +169,7 @@ public class EnemyStateController : MonoBehaviour
         ChangeSound(sounds[0]);
         agent.isStopped = true;
         confusedTimer += Time.deltaTime;
-
+        PlayerSingleton.Instance.beingAttacked = false;
         //CHANGE CONDITIONS
         if (confusedTimer >= maxConfusedTime)
         {
