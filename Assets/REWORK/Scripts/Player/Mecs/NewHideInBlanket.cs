@@ -15,6 +15,10 @@ public class NewHideInBlanket : MonoBehaviour
 
     //Referencia a clase
     private GrabBox gb;
+
+    //Debug 
+    public bool attacked;
+    public float stress;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -25,6 +29,8 @@ public class NewHideInBlanket : MonoBehaviour
     {
         Hide();
         if(unhide) Unhide();
+        attacked = PlayerSingleton.Instance.beingAttacked;
+        stress = PlayerSingleton.Instance.stress;
     }
     private void Hide()
     {
@@ -36,6 +42,7 @@ public class NewHideInBlanket : MonoBehaviour
             else
             {
                 PlayerSingleton.Instance.isHiding = true;
+                PlayerSingleton.Instance.beingAttacked = false;
                 SoundManager.instance.Play("BlanketOn");
             }
         }

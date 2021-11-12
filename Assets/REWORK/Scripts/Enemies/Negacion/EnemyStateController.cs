@@ -49,6 +49,9 @@ public class EnemyStateController : MonoBehaviour
 
     public Transform derecha;
     public Transform izquierda;
+
+    //Stress manager para que el enemigo no pueda detectar al jugador si esta en la pantalla de derrota;
+    private StressManager sm;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -59,6 +62,7 @@ public class EnemyStateController : MonoBehaviour
     private void OnDisable() => Dreams.onWeaponUsed -= CallDeny;
     void Start()
     {
+        sm = ImprovedUIManager.Instance.GetComponent<StressManager>();
         currentState = EnemyStates.OnPath;
         initialCloseRange = closeRange;
     }
@@ -131,7 +135,7 @@ public class EnemyStateController : MonoBehaviour
         }
 
         //CHANGE CONDITIONS
-        if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding && !detectObstacle)
+        if ((isClose || onVisionRange) && !PlayerSingleton.Instance.isHiding && !detectObstacle&&sm.isOnDefeat==false)
             currentState = EnemyStates.Following;
     }
     void HandleFollow()

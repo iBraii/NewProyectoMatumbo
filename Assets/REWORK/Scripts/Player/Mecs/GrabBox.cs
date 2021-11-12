@@ -35,7 +35,8 @@ public class GrabBox : MonoBehaviour
         DetectBox();
         BlockJumpingAndDC();
         MyInput();
-        Falling();
+        //Falling();
+        
     }
     private void MyInput()
     { 
@@ -67,7 +68,7 @@ public class GrabBox : MonoBehaviour
             boxGrabbed.transform.DORotate(rotation, .27f, RotateMode.Fast);
         boxGrabbed.layer = 2;
 
-        pm.useGravity = false;
+        //pm.useGravity = false;
         //.27
         BoxIdentifier(boxGrabbed.GetComponent<BoxIdentifier>().boxType);
     }
@@ -86,7 +87,7 @@ public class GrabBox : MonoBehaviour
                 pm.turnSmoothTime = .35f;
                 pm.acceleration = initialAcceleration / 1.5f;
                 cc.center = new Vector3(0, 0.047f, .1f);
-                cc.radius = .2f;
+                cc.radius = 0.170808f;
                 cc.height = .4f;
                 break;  
             case 1:
@@ -124,7 +125,7 @@ public class GrabBox : MonoBehaviour
         cc.height = .3f;
         pm.turnSmoothTime = initialRotationSpeed;
         pm.movementSpeed = initialSpeed;
-        pm.useGravity = true;
+        //pm.useGravity = true;
        
     }
     public void LetBoxEvent()
@@ -145,11 +146,11 @@ public class GrabBox : MonoBehaviour
     {
         if (PlayerSingleton.Instance.isGrounded==false && PlayerSingleton.Instance.grabingBox)
         {
-            if (pm.playerVelocity.y < -2)
+            if (pm.playerVelocity.y < -3)
             {
                 LetBox();
             }
-            pm.useGravity = true;
+            //pm.useGravity = true;
         }
     }
     private void BlockJumpingAndDC()

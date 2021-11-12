@@ -24,9 +24,6 @@ public class TutorialManager : MonoBehaviour
     [Header("Atrapasueños mesh")]
     [SerializeField] private GameObject actualDreamCatcher;
 
-    [Header("Particula guia")]
-    [SerializeField] private GameObject particles;
-
     [Header("Cuadro que se cae")]
     [SerializeField] private GameObject cuadro;
 
@@ -71,7 +68,6 @@ public class TutorialManager : MonoBehaviour
         player.GetComponent<Dreams>().enabled = true;
         PlayerSingleton.Instance.canMove = true;
         Camera.main.GetComponent<Animator>().SetBool("enemy", false);
-        particles.GetComponent<SphereCollider>().enabled = true;
         gameObject.SetActive(false);
     }
 }
