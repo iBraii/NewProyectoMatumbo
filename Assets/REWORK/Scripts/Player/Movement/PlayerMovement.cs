@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("JumpTrigger", jumpAction.triggered);
     }
 
+    public Vector3 lastMove;
     public void MovementAndRotate()
     {
         
@@ -80,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             float targetAngle = Mathf.Atan2(currentInputVec.x, currentInputVec.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
 
-            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding ) transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding) transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
@@ -90,13 +91,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 PlayerSingleton.Instance.isMoving = true;
                 _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
+                lastMove = moveDirection;
             }
         }
-        else PlayerSingleton.Instance.isMoving = false;
+        else
+        {
+            _characterController.Move(lastMove * movementSpeed * Time.deltaTime);
+            if(movementSpeed <= 0)
+                PlayerSingleton.Instance.isMoving = false;
+        }
 
         if (PlayerSingleton.Instance.isGrounded && PlayerSingleton.Instance.grabingBox==false)
             turnSmoothTime = initialTurnTime;
     }
+
     public void StepSFX(bool box)
     {
         if (!box)
@@ -118,12 +126,14 @@ public class PlayerMovement : MonoBehaviour
         if (input!=Vector2.zero && speed < 1)
             speed += Time.deltaTime* acceleration;
         else if(input == Vector2.zero && speed > 0)
-            speed = 0;
+            speed -= Time.deltaTime * acceleration; // speed = 0;
 
-        if (speed > 1)
+        /*if (speed > 1)
             speed = 1;
         else if (speed < 0)
-            speed = 0;
+            speed = 0;*/
+
+        speed = Mathf.Clamp(speed, 0, 1);
 
         movementSpeed = Mathf.Lerp(0, PlayerSingleton.Instance.maxSpeed, speed);
 

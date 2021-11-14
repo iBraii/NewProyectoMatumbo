@@ -60,6 +60,7 @@ public class PlayerAnimations : MonoBehaviour
         anim.SetBool("Falling", jumpBool);
         anim.SetBool("isAttacking", dc.atrapAnim);
         anim.SetBool("IsOnDefeat", sm.isOnDefeat);
+        anim.SetFloat("MovSpeed", pm.speed);
     }
 
     public void AnimationStart()
