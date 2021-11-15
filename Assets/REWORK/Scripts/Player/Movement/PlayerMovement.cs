@@ -68,18 +68,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public Vector3 lastMove;
+
     public void MovementAndRotate()
     {
         
         Vector2 input = _moveAction.ReadValue<Vector2>();
         currentInputVec = Vector2.SmoothDamp(currentInputVec, input, ref inputSmoothVel, inputSmoothTime);
 
+        float targetAngle = Mathf.Atan2(currentInputVec.x, currentInputVec.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
+
+
         if (input != Vector2.zero)
         {
             //ROTATE========================================================
-
-            float targetAngle = Mathf.Atan2(currentInputVec.x, currentInputVec.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothvelocity, turnSmoothTime);
 
             if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding) transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
@@ -96,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding && movementSpeed > 0.5f) 
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
             if (!PlayerSingleton.Instance.isHiding)
                  _characterController.Move(lastMove * movementSpeed * Time.deltaTime);
             if(movementSpeed <= 0)

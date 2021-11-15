@@ -108,7 +108,7 @@ CharacterController:
   m_Height: 0.3
   m_Radius: 0.04
   m_SlopeLimit: 45
-  m_StepOffset: 0.1
+  m_StepOffset: 0.03
   m_SkinWidth: 0.003
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0.01}
@@ -224,7 +224,8 @@ MonoBehaviour:
   stepSource: {fileID: 3477202230105229977}
   useGravity: 1
   speed: 0
-  acceleration: 2.5
+  acceleration: 0.69
+  lastMove: {x: 0, y: 0, z: 0}
 --- !u!114 &8745534843480449399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unhide: 0
+  attacked: 0
+  stress: 0
 --- !u!114 &8745534843480449392
 MonoBehaviour:
   m_ObjectHideFlags: 0
