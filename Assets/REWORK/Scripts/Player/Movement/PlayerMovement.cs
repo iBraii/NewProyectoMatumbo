@@ -96,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            _characterController.Move(lastMove * movementSpeed * Time.deltaTime);
+            if (!PlayerSingleton.Instance.isHiding)
+                 _characterController.Move(lastMove * movementSpeed * Time.deltaTime);
             if(movementSpeed <= 0)
                 PlayerSingleton.Instance.isMoving = false;
         }
