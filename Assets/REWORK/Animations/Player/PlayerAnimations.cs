@@ -49,10 +49,11 @@ public class PlayerAnimations : MonoBehaviour
 
         anim.SetBool("isMoving", ps.isMoving);
 
-        if(ps.isHiding)
-            anim.SetBool("Hiding", true);
-        if(hib.unhide)
-            anim.SetBool("Hiding", false);
+        //if(ps.isHiding)
+        //    anim.SetBool("Hiding", true);
+        //if(hib.unhide)
+        //    anim.SetBool("Hiding", false);
+        anim.SetBool("Hiding", ps.isHiding);
 
         anim.SetBool("Dying", ps.stress >= 10);
         anim.SetBool("Grabbing", ps.grabingBox);

@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool useGravity;
     public float speed;
     public float acceleration;
+    public float decelTime;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -83,24 +84,24 @@ public class PlayerMovement : MonoBehaviour
         {
             //ROTATE========================================================
 
-            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding) transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (PlayerSingleton.Instance.canRotate /*&& !PlayerSingleton.Instance.isHiding*/) transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             //MOVE==========================================================
 
-            if (!PlayerSingleton.Instance.isHiding)
-            {
+           // if (!PlayerSingleton.Instance.isHiding)
+            //{
                 PlayerSingleton.Instance.isMoving = true;
                 _characterController.Move(moveDirection * movementSpeed * Time.deltaTime);
                 lastMove = moveDirection;
-            }
+            //}
         }
         else
         {
             //if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding && movementSpeed > 0f) 
             //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            if (!PlayerSingleton.Instance.isHiding)
+           // if (!PlayerSingleton.Instance.isHiding)
                  _characterController.Move(lastMove * movementSpeed * Time.deltaTime);
             if(movementSpeed <= 0)
                 PlayerSingleton.Instance.isMoving = false;
@@ -131,12 +132,7 @@ public class PlayerMovement : MonoBehaviour
         if (input!=Vector2.zero && speed < 1)
             speed += Time.deltaTime* acceleration;
         else if(input == Vector2.zero && speed > 0)
-            speed -= Time.deltaTime * (acceleration * 2); // speed = 0;
-
-        /*if (speed > 1)
-            speed = 1;
-        else if (speed < 0)
-            speed = 0;*/
+            speed -= Time.deltaTime * decelTime; // speed = 0;
 
         speed = Mathf.Clamp(speed, 0, 1);
 

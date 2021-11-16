@@ -108,7 +108,7 @@ CharacterController:
   m_Height: 0.3
   m_Radius: 0.04
   m_SlopeLimit: 45
-  m_StepOffset: 0.03
+  m_StepOffset: 0
   m_SkinWidth: 0.003
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0.01}
@@ -225,6 +225,7 @@ MonoBehaviour:
   useGravity: 1
   speed: 0
   acceleration: 0.69
+  decelTime: 3
   lastMove: {x: 0, y: 0, z: 0}
 --- !u!114 &8745534843480449399
 MonoBehaviour:
