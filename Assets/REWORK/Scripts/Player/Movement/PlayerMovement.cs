@@ -98,8 +98,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding && movementSpeed > 0.5f) 
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            //if (PlayerSingleton.Instance.canRotate && !PlayerSingleton.Instance.isHiding && movementSpeed > 0f) 
+            //    transform.rotation = Quaternion.Euler(0f, angle, 0f);
             if (!PlayerSingleton.Instance.isHiding)
                  _characterController.Move(lastMove * movementSpeed * Time.deltaTime);
             if(movementSpeed <= 0)
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         if (input!=Vector2.zero && speed < 1)
             speed += Time.deltaTime* acceleration;
         else if(input == Vector2.zero && speed > 0)
-            speed -= Time.deltaTime * acceleration; // speed = 0;
+            speed -= Time.deltaTime * (acceleration * 2); // speed = 0;
 
         /*if (speed > 1)
             speed = 1;
