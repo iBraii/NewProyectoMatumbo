@@ -8,10 +8,6 @@ public class NewEspectroIra : MonoBehaviour
     private Animator anim;
     private AudioSource source;
 
-    [Space]
-    [SerializeField] private GameObject activeMeshRenderer;
-    [SerializeField] private GameObject fakeMeshRenderer;
-
     [Header("Variables deteccion")]
     [SerializeField] private float detectRange;
     [SerializeField] private float attackRange;
@@ -32,7 +28,6 @@ public class NewEspectroIra : MonoBehaviour
     void Update()
     {
         StateController();
-        AnimatorController();
         if (deniedTime < 0) deniedTime = 0;
     }
     private void StateController()
@@ -40,23 +35,27 @@ public class NewEspectroIra : MonoBehaviour
         switch (currentState)
         {
             case Enemy2States.Hiding:
+                source.Stop();
+                anim.SetBool("Attacking", false);
+                anim.SetBool("Stunned", false);
                 HandleHiding();
                 break;
             case Enemy2States.Attack:
+                if (source.isPlaying == false) source.Play();
                 HandleAttack();
+                anim.SetBool("Attacking", true);
+                anim.SetBool("Stunned", false);
                 break;
             case Enemy2States.Active:
+                anim.SetBool("Attacking", false);
+                anim.SetBool("Stunned", false);
                 HandleActive();
                 break;
             case Enemy2States.Denied:
+                anim.SetBool("Stunned", true);
                 HandleDenied();
                 break;
         }
-    }
-    void AnimatorController()
-    {
-        anim.SetBool("isScreaming", currentState == Enemy2States.Attack);
-        anim.SetBool("isDenied", currentState == Enemy2States.Denied);
     }
 
     private void HandleAttack()
@@ -64,19 +63,21 @@ public class NewEspectroIra : MonoBehaviour
         if (source.isPlaying == false) source.Play();
 
         PlayerSingleton.Instance.beingAttacked = true;
-        activeMeshRenderer.SetActive(true);
-        fakeMeshRenderer.SetActive(false);
-
+       
         PlayerSingleton.Instance.stress += 1.5f * Time.deltaTime;
 
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, detectRange) == false)
             currentState = Enemy2States.Active;
+
+        //Rotation
+        //Vector3 lookPos = DetectPlayer.detection.player.transform.position;
+        //lookPos.y = transform.position.y;
+        //transform.LookAt(lookPos);
     }
     private void HandleHiding()
     {
-        activeMeshRenderer.SetActive(false);
-        fakeMeshRenderer.SetActive(true);
+
         PlayerSingleton.Instance.beingAttacked = false;
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
@@ -84,8 +85,7 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleActive()
     {
-        activeMeshRenderer.SetActive(true);
-        fakeMeshRenderer.SetActive(false);
+      
         PlayerSingleton.Instance.beingAttacked = false;
         //CHANGE CONDITIONS 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false && OurTimer.TimerCount(1.3f))
@@ -100,8 +100,6 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleDenied()
     {
-        activeMeshRenderer.SetActive(true);
-        fakeMeshRenderer.SetActive(false);
         PlayerSingleton.Instance.beingAttacked = false;
 
         if (PlayerSingleton.Instance.usingWeap == true)
