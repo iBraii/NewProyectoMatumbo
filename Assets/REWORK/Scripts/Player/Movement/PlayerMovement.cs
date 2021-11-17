@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool useGravity;
     public float speed;
     public float acceleration;
+    private float initialAccel;
     public float decelTime;
     private void Awake()
     {
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        initialAccel = acceleration;
         _characterController = GetComponent<CharacterController>();
         PlayerSingleton.Instance.canMove = true;
         initialTurnTime = turnSmoothTime;
@@ -130,9 +132,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 input = _moveAction.ReadValue<Vector2>();
         if (input!=Vector2.zero && speed < 1)
-            speed += Time.deltaTime* acceleration;
+            speed += Time.deltaTime * acceleration;
         else if(input == Vector2.zero && speed > 0)
             speed -= Time.deltaTime * decelTime; // speed = 0;
+
+        if (PlayerSingleton.Instance.isGrounded == false)
+            acceleration *= 2.5f;
+        else acceleration = initialAccel;
 
         speed = Mathf.Clamp(speed, 0, 1);
 
