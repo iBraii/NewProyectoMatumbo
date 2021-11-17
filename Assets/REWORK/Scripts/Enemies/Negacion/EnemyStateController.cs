@@ -200,7 +200,7 @@ public class EnemyStateController : MonoBehaviour
         //CHANGE CONDITIONS
         if (deniedTime >= 0 && PlayerSingleton.Instance.usingWeap == false)
         {
-            deniedTime -= Time.deltaTime / 1.5f;
+            deniedTime -= Time.deltaTime / 2.3f;
             agent.isStopped = false;          
         }
         if(deniedTime <= 0)
@@ -222,10 +222,6 @@ public class EnemyStateController : MonoBehaviour
         }
         for (int i = 0; i < waypoints.Length - 1; i++)
             Debug.DrawLine(waypoints[i].position, waypoints[i + 1].position, Color.green);
-
-       
-        
-        
     }
 }
 public enum EnemyStates

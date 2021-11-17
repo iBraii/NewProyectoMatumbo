@@ -107,7 +107,7 @@ public class NewEspectroIra : MonoBehaviour
 
         //CHANGE CONDITIONS
         if (deniedTime >= 0 && PlayerSingleton.Instance.usingWeap == false)
-            deniedTime -= Time.deltaTime / 1.5f;
+            deniedTime -= Time.deltaTime / 2.3f;
 
         if (deniedTime <= 0)
             currentState = Enemy2States.Active;
