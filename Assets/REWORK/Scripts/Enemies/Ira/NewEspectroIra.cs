@@ -15,6 +15,8 @@ public class NewEspectroIra : MonoBehaviour
 
     private float deniedTime;
 
+    [SerializeField] private Collider atkCollider;
+
     void Start() => currentState = Enemy2States.Hiding;
 
     private void Awake()
@@ -62,7 +64,7 @@ public class NewEspectroIra : MonoBehaviour
     {
         if (source.isPlaying == false) source.Play();
 
-        PlayerSingleton.Instance.beingAttacked = true;
+        atkCollider.enabled = true;
        
         PlayerSingleton.Instance.stress += 1.5f * Time.deltaTime;
 
@@ -77,16 +79,14 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleHiding()
     {
-
-        PlayerSingleton.Instance.beingAttacked = false;
+        atkCollider.enabled = false;
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
             currentState = Enemy2States.Attack;
     }
     private void HandleActive()
     {
-      
-        PlayerSingleton.Instance.beingAttacked = false;
+        atkCollider.enabled = false;
         //CHANGE CONDITIONS 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false && OurTimer.TimerCount(1.3f))
             currentState = Enemy2States.Hiding; 
@@ -100,7 +100,7 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleDenied()
     {
-        PlayerSingleton.Instance.beingAttacked = false;
+        atkCollider.enabled = false;
 
         if (PlayerSingleton.Instance.usingWeap == true)
             deniedTime += Time.deltaTime;

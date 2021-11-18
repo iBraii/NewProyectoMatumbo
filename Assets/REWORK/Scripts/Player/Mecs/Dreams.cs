@@ -33,7 +33,6 @@ public class Dreams : MonoBehaviour
 
     public static event Action onWeaponUsed;
     [HideInInspector] public bool atrapAnim;
-    private bool canMoveBool;
 
     void UseWeaponAnim()
     {
@@ -42,7 +41,6 @@ public class Dreams : MonoBehaviour
             PlayerSingleton.Instance.isGrounded)
         {
             atrapAnim = true;
-            canMoveBool = false;
             ps.canMove = false;
         }
         else if(ps.dreamEnergy <= 0 || attackAction.ReadValue<float>() == 0)
@@ -50,7 +48,6 @@ public class Dreams : MonoBehaviour
             atrapAnim = false;
             RegenWeapEnergy();
 
-            canMoveBool = true;
             ps.canMove = true;
             ps.usingWeap = false;
         }
@@ -74,7 +71,6 @@ public class Dreams : MonoBehaviour
     }
     public void StopWeapon()
     {
-        canMoveBool = true;
         ps.canMove = true;
         ps.usingWeap = false;
     }

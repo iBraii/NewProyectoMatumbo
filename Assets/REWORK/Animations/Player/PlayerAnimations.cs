@@ -12,7 +12,7 @@ public class PlayerAnimations : MonoBehaviour
     private PlayerSingleton ps;
     private PlayerMovement pm;
     private NewHideInBlanket hib;
-    [SerializeField]private StressManager sm;
+    [SerializeField] private StressManager sm;
     //Temporal
     public bool onAnim;
     public bool canMove;

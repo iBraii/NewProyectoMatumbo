@@ -47,11 +47,11 @@ public class EnemyStateController : MonoBehaviour
     [Header("Deteccion player")]
     [SerializeField] private LayerMask lm;
 
-    public Transform derecha;
-    public Transform izquierda;
-
     //Stress manager para que el enemigo no pueda detectar al jugador si esta en la pantalla de derrota;
     private StressManager sm;
+
+    [SerializeField] private Collider atkCollider;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -62,7 +62,7 @@ public class EnemyStateController : MonoBehaviour
     private void OnDisable() => Dreams.onWeaponUsed -= CallDeny;
     void Start()
     {
-        sm = ImprovedUIManager.Instance.GetComponent<StressManager>();
+        sm = DetectPlayer.detection.player.GetComponent<StressManager>();
         currentState = EnemyStates.OnPath;
         initialCloseRange = closeRange;
     }
@@ -155,10 +155,9 @@ public class EnemyStateController : MonoBehaviour
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, 0.4f))
         {
             PlayerSingleton.Instance.stress += damage * Time.deltaTime;
-            PlayerSingleton.Instance.beingAttacked = true;
+            atkCollider.enabled = true;
         }
-        else
-            PlayerSingleton.Instance.beingAttacked = false;
+        else atkCollider.enabled = false;
 
         //CHANGE CONDITIONS
         if (isClose == false || PlayerSingleton.Instance.isHiding)
@@ -169,7 +168,6 @@ public class EnemyStateController : MonoBehaviour
         ChangeSound(sounds[0]);
         agent.isStopped = true;
         confusedTimer += Time.deltaTime;
-        PlayerSingleton.Instance.beingAttacked = false;
         //CHANGE CONDITIONS
         if (confusedTimer >= maxConfusedTime)
         {
@@ -192,7 +190,6 @@ public class EnemyStateController : MonoBehaviour
     {
         ChangeSound(sounds[2]);
         agent.isStopped = true;
-        PlayerSingleton.Instance.beingAttacked = false;
 
         if (PlayerSingleton.Instance.usingWeap == true)
             deniedTime += Time.deltaTime;

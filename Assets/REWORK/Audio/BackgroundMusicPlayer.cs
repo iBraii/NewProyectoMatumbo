@@ -35,7 +35,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break; 
-            case "Nivel3":
+            case "NIVEL3":
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break;

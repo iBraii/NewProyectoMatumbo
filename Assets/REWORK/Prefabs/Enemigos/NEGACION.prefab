@@ -92,11 +92,12 @@ GameObject:
   - component: {fileID: 8940400646712971843}
   - component: {fileID: 8940400646712971842}
   - component: {fileID: 8940400646712971840}
+  - component: {fileID: 6873231623845514527}
   - component: {fileID: 8940400646712971854}
   - component: {fileID: 6718698564267364259}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,8 +173,7 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 1088
-  derecha: {fileID: 0}
-  izquierda: {fileID: 0}
+  atkCollider: {fileID: 6873231623845514527}
 --- !u!65 &8940400646712971840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -187,6 +187,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &6873231623845514527
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940400646712971848}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0, z: 0.18}
 --- !u!195 &8940400646712971854
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -104,13 +104,6 @@ public class StressManager : MonoBehaviour
                 ShowDefeat();
             }
         }
-
-        //if (PlayerSingleton.Instance.stress >= 10 && isOnDefeat == false)
-        //{
-        //    isOnDefeat = true;
-        //    ShowDefeat();
-        //}
-
     }
     private void ShowDefeat()
     {
@@ -121,7 +114,6 @@ public class StressManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        
     }
 
     public void ReloadScene()
@@ -142,4 +134,19 @@ public class StressManager : MonoBehaviour
         defeatPanel.SetActive(false);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Damage"))
+            PlayerSingleton.Instance.beingAttacked = true;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Damage"))
+            PlayerSingleton.Instance.beingAttacked = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Damage"))
+            PlayerSingleton.Instance.beingAttacked = false;
+    }
 }

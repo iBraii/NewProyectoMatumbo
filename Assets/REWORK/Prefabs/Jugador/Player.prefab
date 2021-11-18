@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpTimer: 0
   dc: {fileID: 8745534843480449392}
-  sm: {fileID: 0}
+  sm: {fileID: 3311718987667771825}
   onAnim: 0
   canMove: 0
   usingWeap: 0
@@ -34,12 +34,12 @@ GameObject:
   - component: {fileID: 8745534843480449396}
   - component: {fileID: 8745534843480449397}
   - component: {fileID: 8745534843480449398}
-  - component: {fileID: 8745534843480449399}
   - component: {fileID: 8745534843480449392}
   - component: {fileID: 8745534843480449393}
+  - component: {fileID: 3311718987667771825}
+  - component: {fileID: 2061612018469239699}
   - component: {fileID: 8745534843480449395}
   - component: {fileID: 3477202230105229977}
-  - component: {fileID: 2061612018469239699}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -228,21 +228,6 @@ MonoBehaviour:
   acceleration: 1
   decelTime: 4.5
   lastMove: {x: 0, y: 0, z: 0}
---- !u!114 &8745534843480449399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745534843480449293}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89d8268573808745ad67355236fcfbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unhide: 0
-  attacked: 0
-  stress: 0
 --- !u!114 &8745534843480449392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +260,39 @@ MonoBehaviour:
   boxGrabbed: {fileID: 0}
   grabPos: {fileID: 8745534844268438727}
   distanceFromBox: 0
+--- !u!114 &3311718987667771825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745534843480449293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1a83c4a13bd914480166e602576a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cs: {fileID: 0}
+  isOnDefeat: 0
+  regenValue: 0.5
+  delay: 4
+  generalVolume: {fileID: 0}
+  defeatPanel: {fileID: 0}
+  resetPanel: {fileID: 0}
+  checkPoints: {fileID: 0}
+--- !u!114 &2061612018469239699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745534843480449293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250eabeccbc6d38438e4de68bf80cdef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHiding: 0
 --- !u!82 &8745534843480449395
 AudioSource:
   m_ObjectHideFlags: 0
@@ -467,19 +485,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2061612018469239699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745534843480449293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250eabeccbc6d38438e4de68bf80cdef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isHiding: 0
 --- !u!1 &8745534843511049783
 GameObject:
   m_ObjectHideFlags: 0

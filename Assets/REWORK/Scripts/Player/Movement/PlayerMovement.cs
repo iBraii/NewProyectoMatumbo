@@ -109,6 +109,9 @@ public class PlayerMovement : MonoBehaviour
                 PlayerSingleton.Instance.isMoving = false;
         }
 
+        if (movementSpeed <= 0f)
+            PlayerSingleton.Instance.isMoving = false;
+
         if (PlayerSingleton.Instance.isGrounded && PlayerSingleton.Instance.grabingBox==false)
             turnSmoothTime = initialTurnTime;
     }
@@ -140,7 +143,8 @@ public class PlayerMovement : MonoBehaviour
             acceleration *= 2.5f;
         else acceleration = initialAccel;
 
-        speed = Mathf.Clamp(speed, 0, 1);
+        if (speed > 1) speed = 1;
+        else if (speed < 0) speed = 0;
 
         movementSpeed = Mathf.Lerp(0, PlayerSingleton.Instance.maxSpeed, speed);
 
@@ -148,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
     private void Gravity()
     {
         if (useGravity == false) return;
-        playerVelocity.y += gravity*3f * Time.deltaTime;
+        playerVelocity.y += gravity * 3f * Time.deltaTime;
         _characterController.Move(playerVelocity * Time.deltaTime);
 
         if (PlayerSingleton.Instance.isGrounded && playerVelocity.y < 0)

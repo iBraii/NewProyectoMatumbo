@@ -24,6 +24,9 @@ public class ImprovedUIManager : MonoBehaviour
     [Header("Camara Freelook")]
     [SerializeField] private CinemachineFreeLook cm;
 
+    [Header("Player")]
+    [SerializeField] private StressManager playersm;
+
     public static ImprovedUIManager Instance;
 
     private void Awake()
@@ -63,7 +66,7 @@ public class ImprovedUIManager : MonoBehaviour
     }
     private void InputCheck()
     {
-        if (escapeAction.triggered)
+        if (escapeAction.triggered && playersm.isOnDefeat == false)
             PauseGame();
     }
     public void PauseGame()

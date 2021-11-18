@@ -136,9 +136,10 @@ GameObject:
   - component: {fileID: 2728248137278272130}
   - component: {fileID: 2728248137278272131}
   - component: {fileID: 2728248137278272132}
+  - component: {fileID: 3407733481152520297}
   m_Layer: 6
   m_Name: EspectroIra
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   detectRange: 0.7
   attackRange: 0.5
   activeRange: 1
+  atkCollider: {fileID: 3407733481152520297}
 --- !u!65 &2728248137278272128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -328,6 +330,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inRange: 0
+--- !u!135 &3407733481152520297
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2728248137278272143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.69
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3966869494513925093
 GameObject:
   m_ObjectHideFlags: 0
