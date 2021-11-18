@@ -19,6 +19,7 @@ MonoBehaviour:
   canMove: 0
   usingWeap: 0
   isMoving: 0
+  grounded: 0
 --- !u!1 &8745534843480449293
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +281,8 @@ MonoBehaviour:
   defeatPanel: {fileID: 0}
   resetPanel: {fileID: 0}
   checkPoints: {fileID: 0}
+  beingAttacked: 0
+  currentStress: 0
 --- !u!114 &2061612018469239699
 MonoBehaviour:
   m_ObjectHideFlags: 0

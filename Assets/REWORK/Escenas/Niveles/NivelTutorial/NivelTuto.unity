@@ -2483,14 +2483,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203409795}
-  m_LocalRotation: {x: 0.006606352, y: -0.7635447, z: 0.015064062, w: 0.6455454}
-  m_LocalPosition: {x: 1.076, y: 0.642, z: 3.924}
+  m_LocalRotation: {x: 0.005044859, y: -0.8250654, z: 0.015656285, w: 0.5647978}
+  m_LocalPosition: {x: 1.076, y: 0.765, z: 4.059}
   m_LocalScale: {x: 0.056640353, y: 0.056640353, z: 0.056640353}
   m_Children:
   - {fileID: 1622633240}
   m_Father: {fileID: 0}
   m_RootOrder: 49
-  m_LocalEulerAnglesHint: {x: 1.807, y: -99.565, z: 0.537}
+  m_LocalEulerAnglesHint: {x: 1.807, y: -111.204, z: 0.537}
 --- !u!95 &203409798
 Animator:
   serializedVersion: 3
@@ -2620,6 +2620,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8745534843480449292, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
   m_PrefabInstance: {fileID: 251236484}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &224755797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3311718987667771825, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
+  m_PrefabInstance: {fileID: 251236484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224755791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1a83c4a13bd914480166e602576a95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &224755804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3820,10 +3831,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3362566925602481353, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
-      propertyPath: sm
+    - target: {fileID: 3311718987667771825, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
+      propertyPath: cs
       value: 
-      objectReference: {fileID: 7806233460607072002}
+      objectReference: {fileID: 1856030309}
+    - target: {fileID: 3311718987667771825, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
+      propertyPath: resetPanel
+      value: 
+      objectReference: {fileID: 881581177}
+    - target: {fileID: 3311718987667771825, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
+      propertyPath: checkPoints
+      value: 
+      objectReference: {fileID: 1763526015}
+    - target: {fileID: 3311718987667771825, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
+      propertyPath: defeatPanel
+      value: 
+      objectReference: {fileID: 316705194}
+    - target: {fileID: 3311718987667771825, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
+      propertyPath: generalVolume
+      value: 
+      objectReference: {fileID: 507934210}
     - target: {fileID: 6757012537299668289, guid: 92e38672a94fbd7439d0f670871df4b4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4274,7 +4301,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7806233460607072002}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: StressManager, Assembly-CSharp
         m_MethodName: ReloadScene
         m_Mode: 1
@@ -24486,7 +24513,6 @@ GameObject:
   - component: {fileID: 2594731161044322341}
   - component: {fileID: 2594731161044322340}
   - component: {fileID: 2594731161044322342}
-  - component: {fileID: 7806233460607072002}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -24527,6 +24553,7 @@ MonoBehaviour:
   pausePanel: {fileID: 2594731159965352160}
   optionPanel: {fileID: 2594731160423005513}
   cm: {fileID: 1902656351}
+  playersm: {fileID: 224755797}
 --- !u!114 &2594731161044322341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26896,26 +26923,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7806233460607072002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2594731161044322338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1a83c4a13bd914480166e602576a95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cs: {fileID: 1856030309}
-  isOnDefeat: 0
-  regenValue: 0.5
-  delay: 4
-  generalVolume: {fileID: 507934210}
-  defeatPanel: {fileID: 316705194}
-  resetPanel: {fileID: 881581177}
-  checkPoints: {fileID: 1763526015}
 --- !u!114 &7931568231780449278
 MonoBehaviour:
   m_ObjectHideFlags: 0

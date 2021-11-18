@@ -46,26 +46,33 @@ public class EnemyStateController : MonoBehaviour
     private bool detectObstacle;
     [Header("Deteccion player")]
     [SerializeField] private LayerMask lm;
-
+    [SerializeField]private Collider atkCollider;
     //Stress manager para que el enemigo no pueda detectar al jugador si esta en la pantalla de derrota;
     private StressManager sm;
 
-    [SerializeField] private Collider atkCollider;
+    private Vector3 initialPos;
 
+    private void OnDisable()
+    {
+        DetectPlayer.detection.player.GetComponent<StressManager>().onPlayerDead -= Restart;
+        Dreams.onWeaponUsed -= CallDeny;
+    }
     private void Awake()
     {
+        DetectPlayer.detection.player.GetComponent<StressManager>().onPlayerDead += Restart;
+        initialPos = transform.position;
         agent = GetComponent<NavMeshAgent>();
         de = GetComponent<DenyEnemy>();
         anim = GetComponentInChildren<Animator>();
         Dreams.onWeaponUsed += CallDeny;
     }
-    private void OnDisable() => Dreams.onWeaponUsed -= CallDeny;
     void Start()
     {
         sm = DetectPlayer.detection.player.GetComponent<StressManager>();
         currentState = EnemyStates.OnPath;
         initialCloseRange = closeRange;
     }
+   
     void ChangeSound(AudioClip newClip)
     {
         gameObject.GetComponent<AudioSource>().clip = newClip;
@@ -124,6 +131,7 @@ public class EnemyStateController : MonoBehaviour
         closeRange = initialCloseRange;
         agent.speed = pathSpeed;
         agent.SetDestination(waypoints[wpIndex].transform.position);
+        StartCoroutine(WaitToCollider());
         float wpDistance = Vector3.Distance(transform.position, waypoints[wpIndex].transform.position);
         
         if (wpDistance <= agent.stoppingDistance)
@@ -144,7 +152,6 @@ public class EnemyStateController : MonoBehaviour
         closeRange = initialCloseRange * 2;
         agent.speed = followSpeed;
         agent.SetDestination(DetectPlayer.detection.player.transform.position);
-
         //ROTATION
         Vector3 lookPos = DetectPlayer.detection.player.transform.position - transform.position;
         lookPos.y = transform.position.y;  
@@ -156,8 +163,7 @@ public class EnemyStateController : MonoBehaviour
         {
             PlayerSingleton.Instance.stress += damage * Time.deltaTime;
             atkCollider.enabled = true;
-        }
-        else atkCollider.enabled = false;
+        }     
 
         //CHANGE CONDITIONS
         if (isClose == false || PlayerSingleton.Instance.isHiding)
@@ -168,6 +174,7 @@ public class EnemyStateController : MonoBehaviour
         ChangeSound(sounds[0]);
         agent.isStopped = true;
         confusedTimer += Time.deltaTime;
+        StartCoroutine(WaitToCollider());
         //CHANGE CONDITIONS
         if (confusedTimer >= maxConfusedTime)
         {
@@ -190,7 +197,7 @@ public class EnemyStateController : MonoBehaviour
     {
         ChangeSound(sounds[2]);
         agent.isStopped = true;
-
+        StartCoroutine(WaitToCollider());
         if (PlayerSingleton.Instance.usingWeap == true)
             deniedTime += Time.deltaTime;
 
@@ -208,7 +215,17 @@ public class EnemyStateController : MonoBehaviour
                 currentState = EnemyStates.OnPath;
         }    
     }
-
+    private void Restart()
+    {
+        currentState = EnemyStates.OnPath;
+        transform.position = initialPos;
+        wpIndex =0;
+    }
+    private System.Collections.IEnumerator WaitToCollider()
+    {
+        yield return new WaitUntil(() => PlayerSingleton.Instance.beingAttacked == false);
+        atkCollider.enabled = false;
+    }
 
     private void OnDrawGizmos()
     {

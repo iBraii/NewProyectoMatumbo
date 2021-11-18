@@ -18,6 +18,7 @@ public class PlayerAnimations : MonoBehaviour
     public bool canMove;
     public bool usingWeap;
     public bool isMoving;
+    public bool grounded;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -36,6 +37,7 @@ public class PlayerAnimations : MonoBehaviour
         canMove = PlayerSingleton.Instance.canMove;
         usingWeap = PlayerSingleton.Instance.usingWeap;
         isMoving = PlayerSingleton.Instance.isMoving;
+        grounded = ps.isGrounded;
         if (pm.playerVelocity.y < 0)
         {
             jumpTimer += Time.deltaTime;

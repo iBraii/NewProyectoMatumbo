@@ -15,7 +15,7 @@ public class NewEspectroIra : MonoBehaviour
 
     private float deniedTime;
 
-    [SerializeField] private Collider atkCollider;
+    [SerializeField] private SphereCollider atkCollider;
 
     void Start() => currentState = Enemy2States.Hiding;
 
@@ -79,14 +79,14 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleHiding()
     {
-        atkCollider.enabled = false;
+        StartCoroutine(WaitToCollider());
         //CHANGE CONDITIONS
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, attackRange))
             currentState = Enemy2States.Attack;
     }
     private void HandleActive()
     {
-        atkCollider.enabled = false;
+        StartCoroutine(WaitToCollider());
         //CHANGE CONDITIONS 
         if (DetectPlayer.detection.CheckIfLessDistance(this.gameObject, activeRange) == false && OurTimer.TimerCount(1.3f))
             currentState = Enemy2States.Hiding; 
@@ -100,7 +100,7 @@ public class NewEspectroIra : MonoBehaviour
     }
     private void HandleDenied()
     {
-        atkCollider.enabled = false;
+        StartCoroutine(WaitToCollider());
 
         if (PlayerSingleton.Instance.usingWeap == true)
             deniedTime += Time.deltaTime;
@@ -111,6 +111,11 @@ public class NewEspectroIra : MonoBehaviour
 
         if (deniedTime <= 0)
             currentState = Enemy2States.Active;
+    }
+    private System.Collections.IEnumerator WaitToCollider()
+    {
+        yield return new WaitUntil(() => PlayerSingleton.Instance.beingAttacked == false);
+        atkCollider.enabled = false;
     }
     private void OnDrawGizmos()
     {

@@ -15,7 +15,7 @@ public class StressManager : MonoBehaviour
     [SerializeField] [Tooltip("Valor de regeneracion")] private float regenValue;
     [SerializeField] [Tooltip("Tiempo antes de empezar a regenerar")] private float delay;
     private float stressCooldown;
-    
+
     //StressFeedback
     [Header("Volume profile for stress feedback")]
     [SerializeField] private GameObject generalVolume;
@@ -30,6 +30,13 @@ public class StressManager : MonoBehaviour
     [SerializeField] private GameObject resetPanel;
     private CanvasGroup defeatCanvasGroup;
     [SerializeField] private CheckPoints checkPoints;
+
+    [SerializeField] private bool attacked;
+    //Temporal
+    public bool beingAttacked;
+    public float currentStress;
+
+    public System.Action onPlayerDead;
     void Start()
     {
         #region nulls
@@ -55,6 +62,8 @@ public class StressManager : MonoBehaviour
         RegenStress(regenValue, delay);
         ChangeToDeafeatScene();
         SetStressFeedback();
+        beingAttacked = PlayerSingleton.Instance.beingAttacked;
+        currentStress = PlayerSingleton.Instance.stress;
         //Temporal
         //Debug.Log("StressActual: " + PlayerSingleton.Instance.stress);
         //Debug.Log("Atacado?: " + PlayerSingleton.Instance.beingAttacked);
@@ -118,6 +127,7 @@ public class StressManager : MonoBehaviour
 
     public void ReloadScene()
     {
+        onPlayerDead?.Invoke();
         StartCoroutine(checkPoints.LoadPositions());
         resetPanel.GetComponent<Image>().raycastTarget = true;      
         resetPanel.GetComponent<CanvasGroup>().DOFade(1, 2).OnComplete(HideEverything);
