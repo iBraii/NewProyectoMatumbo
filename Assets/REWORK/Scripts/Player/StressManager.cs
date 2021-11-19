@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class StressManager : MonoBehaviour
@@ -117,6 +116,7 @@ public class StressManager : MonoBehaviour
     private void ShowDefeat()
     {
         defeatPanel.SetActive(true);
+        FindObjectOfType<DefeatScene>().AsignText();
         defeatCanvasGroup.DOFade(1, 2).OnComplete(ResetScene);
     }
     private void ResetScene()

@@ -4160,6 +4160,7 @@ GameObject:
   - component: {fileID: 3975587368667238616}
   - component: {fileID: 1336825255001711364}
   - component: {fileID: 4945823146895829422}
+  - component: {fileID: 3677847826442309385}
   m_Layer: 5
   m_Name: Defeat
   m_TagString: Untagged
@@ -4241,6 +4242,28 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3677847826442309385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073974988622237768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da30587ee2298484e859fca7b7330c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintsText: {fileID: 2099386002787702366}
+  hints:
+  - Try to always save some dream catcher energy
+  - Wandering specters have a cone-shaped range of vision, use this to your advantage
+  - In case you don't know where to go, look for the guiding particle
+  - You can hide in tents to regenerate your stress and wait for the dream catcher
+    to recharge
+  - You are completely invisible to the specters inside the tents
+  - The drawings on the floors show you where the boxes should be positioned
+  - Avoid entering dark zones, as it will greatly increase your stress.
 --- !u!1001 &3194021466929090958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4362,6 +4385,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
+--- !u!224 &8189250581564459308 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6770424929134860450, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
+  m_PrefabInstance: {fileID: 3194021466929090958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8189250581564459309 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6770424929134860451, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
@@ -4373,8 +4401,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272c1da79485eed48823ffc6725e3fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8189250581564459308 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6770424929134860450, guid: 1fc4b57b229f61e40b8c2ba3ca9456ce, type: 3}
-  m_PrefabInstance: {fileID: 3194021466929090958}
-  m_PrefabAsset: {fileID: 0}

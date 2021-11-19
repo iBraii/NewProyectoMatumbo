@@ -4467,6 +4467,7 @@ GameObject:
   - component: {fileID: 316705198}
   - component: {fileID: 316705197}
   - component: {fileID: 316705196}
+  - component: {fileID: 316705199}
   m_Layer: 5
   m_Name: Defeat
   m_TagString: Untagged
@@ -4548,6 +4549,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316705194}
   m_CullTransparentMesh: 1
+--- !u!114 &316705199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316705194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da30587ee2298484e859fca7b7330c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintsText: {fileID: 586153318}
+  hints:
+  - Try to always save some dream catcher energy
+  - Wandering specters have a cone-shaped range of vision, use this to your advantage
+  - In case you don't know where to go, look for the guiding particle
+  - You can hide in tents to regenerate your stress and wait for the dream catcher
+    to recharge
+  - You are completely invisible to the specters inside the tents
+  - The drawings on the floors show you where the boxes should be positioned
+  - Avoid entering dark zones, as it will greatly increase your stress.
 --- !u!1001 &317753654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9496,6 +9519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1417470662}
+  other: 0
+  soundToPlay: 
 --- !u!54 &921523802
 Rigidbody:
   m_ObjectHideFlags: 0
