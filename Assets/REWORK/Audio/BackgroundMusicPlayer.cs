@@ -15,6 +15,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 SoundManager.instance.Play("MenuTheme");
                 SoundManager.instance.Stop("BG1");
                 SoundManager.instance.Stop("LowRumble");
+                SoundManager.instance.Stop("TensionLoop");
                 SoundManager.instance.Stop("HeartBeat");
                 break;
             case "Comics":

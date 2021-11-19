@@ -37,6 +37,7 @@ public class ChangeScene : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
+        PlayerSingleton.Instance.stress = 0;
         SceneManager.LoadScene(sceneName);
     }
 

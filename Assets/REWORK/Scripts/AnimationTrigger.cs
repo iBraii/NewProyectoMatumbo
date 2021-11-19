@@ -1,10 +1,11 @@
 using UnityEngine;
-
+using DG.Tweening;
 public class AnimationTrigger : MonoBehaviour
 {
     [Header("Animation to play")]
     [SerializeField] private Animator anim;
-
+    public bool other=false;
+    public string soundToPlay;
     private void OnTriggerEnter(Collider other)
     {
         if(anim == null)
@@ -14,9 +15,23 @@ public class AnimationTrigger : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            anim.enabled = true;
-            SoundManager.instance.Play("Door");
-            Destroy(this.gameObject);
+            if (other == false) 
+            {
+                anim.enabled = true;
+                SoundManager.instance.Play("Door");
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                Other();
+            }
+            
         }   
+    }
+    private void Other()
+    {
+        anim.enabled = true;
+        SoundManager.instance.Play(soundToPlay);
+        Destroy(this.gameObject);
     }
 }
