@@ -36,7 +36,7 @@ public class StressManager : MonoBehaviour
     public bool beingAttacked;
     public float currentStress;
 
-    public System.Action onPlayerDead;
+    public static System.Action onPlayerDead;
     void Start()
     {
         #region nulls

@@ -52,19 +52,21 @@ public class EnemyStateController : MonoBehaviour
 
     private Vector3 initialPos;
 
-    private void OnDisable()
-    {
-        DetectPlayer.detection.player.GetComponent<StressManager>().onPlayerDead -= Restart;
-        Dreams.onWeaponUsed -= CallDeny;
-    }
+   
     private void Awake()
     {
-        DetectPlayer.detection.player.GetComponent<StressManager>().onPlayerDead += Restart;
+        
         initialPos = transform.position;
         agent = GetComponent<NavMeshAgent>();
         de = GetComponent<DenyEnemy>();
         anim = GetComponentInChildren<Animator>();
         Dreams.onWeaponUsed += CallDeny;
+        StressManager.onPlayerDead += Restart;
+    }
+    private void OnDisable()
+    {
+        StressManager.onPlayerDead -= Restart;
+        Dreams.onWeaponUsed -= CallDeny;
     }
     void Start()
     {
