@@ -43,9 +43,15 @@ public class GrabBox : MonoBehaviour
         if (interactAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.onAnimation)
         {
             if (boxGrabbed != null)
+            {
                 LetBox();
+                cc.Move(-transform.forward * .03f);
+            }
             else if (boxDetected != null&&!PlayerSingleton.Instance.onAnimation)
+            {
                 Grab();
+                cc.Move(-transform.forward * .05f);
+            }
         }
     }
     public void  Grab()
@@ -113,6 +119,7 @@ public class GrabBox : MonoBehaviour
     }
     public void LetBox()
     {
+        boxGrabbed.transform.parent = null;
         //.22
         //onAnim = true;
         PlayerSingleton.Instance.maxSpeed = .75f;
@@ -130,7 +137,7 @@ public class GrabBox : MonoBehaviour
     }
     public void LetBoxEvent()
     {
-        boxGrabbed.transform.parent = null;
+        //boxGrabbed.transform.parent = null;
         boxGrabbed.GetComponent<Rigidbody>().useGravity = true;
         boxGrabbed.GetComponent<Rigidbody>().isKinematic = false;
         PlayerSingleton.Instance.canMove = true;
@@ -170,7 +177,7 @@ public class GrabBox : MonoBehaviour
     void DetectBox()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, .1f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, distanceFromBox))
         {
             if (hit.collider.CompareTag("Box")) boxDetected = hit.collider.gameObject;
             else boxDetected = null;
@@ -182,7 +189,7 @@ public class GrabBox : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(grabPos.position, .02f);
-        Gizmos.DrawRay(transform.position, transform.forward * .1f);
+        Gizmos.DrawRay(transform.position, transform.forward * distanceFromBox);
     }
 
 }

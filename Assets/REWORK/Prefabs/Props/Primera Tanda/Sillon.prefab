@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1650962606696033890}
   - component: {fileID: 3534642875188976296}
   - component: {fileID: 8102673443156256830}
+  - component: {fileID: 6847070518101241986}
+  - component: {fileID: 2238533648182435170}
   m_Layer: 6
   m_Name: Sillon
   m_TagString: Wall
@@ -99,6 +101,32 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2129278713788614704, guid: 02663ef052e685d499660425eb12a56f, type: 3}
+--- !u!65 &6847070518101241986
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030199652557175677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.81467974, y: 0.42804426, z: 0.8508064}
+  m_Center: {x: 0, y: 0.21402213, z: 0}
+--- !u!65 &2238533648182435170
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030199652557175677}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2837924, y: 0.9042057, z: 0.8508064}
+  m_Center: {x: -0.18059982, y: 0.45210284, z: 4.0356038e-16}
 --- !u!1 &8137886230896420763
 GameObject:
   m_ObjectHideFlags: 0
