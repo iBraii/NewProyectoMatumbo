@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6616657685878414142}
   - component: {fileID: 7817347965901280411}
   - component: {fileID: 5447169477256667217}
-  - component: {fileID: 5807611309588758917}
+  - component: {fileID: 414688177593712794}
   m_Layer: 6
   m_Name: JARRON
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5807611309588758917
-BoxCollider:
+--- !u!64 &414688177593712794
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.27557838, y: 0.44439772, z: 0.29308772}
-  m_Center: {x: -0.005581908, y: 0.22048749, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4481652305281291112, guid: 6533030f88796d9448ac3381edd34991, type: 3}
