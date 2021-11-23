@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1025619964629426893}
   - component: {fileID: 1025619964629426892}
   - component: {fileID: 1025619964629426895}
+  - component: {fileID: 7367529938735420880}
   m_Layer: 6
   m_Name: BoxMid
   m_TagString: Box
@@ -49,7 +50,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!65 &1025619964629426892
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77,6 +78,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxType: 1
   centerMassY: -0.01
+--- !u!114 &7367529938735420880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025619964629426883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e479d9300207b244b8fcfc6b2d2ed63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1025619966645677957
 PrefabInstance:
   m_ObjectHideFlags: 0

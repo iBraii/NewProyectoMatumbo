@@ -54,7 +54,7 @@ public class GrabBox : MonoBehaviour
             }
         }
     }
-    public void  Grab()
+    public void Grab()
     {
         //onAnim = true;
         PlayerSingleton.Instance.grabingBox = true;

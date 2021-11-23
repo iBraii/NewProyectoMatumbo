@@ -29,8 +29,5 @@ public class DamageFunction : MonoBehaviour
             PlayerSingleton.Instance.beingAttacked = false;
         }
     }       
-    void DamagePlayer(float damage)
-    {
-        PlayerSingleton.Instance.stress += damage * Time.deltaTime;
-    }
+    private void DamagePlayer(float damage) => PlayerSingleton.Instance.stress += damage * Time.deltaTime;
 }

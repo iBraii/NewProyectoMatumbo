@@ -49,6 +49,7 @@ public class NewEspectroIra : MonoBehaviour
                 anim.SetBool("Stunned", false);
                 break;
             case Enemy2States.Active:
+                source.Stop();
                 anim.SetBool("Attacking", false);
                 anim.SetBool("Stunned", false);
                 HandleActive();

@@ -110,6 +110,10 @@ public class StressManager : MonoBehaviour
             {
                 isOnDefeat = true;
                 ShowDefeat();
+                GrabBox gb = GetComponent<GrabBox>();
+                if (gb.boxGrabbed == null) return;
+                gb.LetBox();
+                gb.LetBoxEvent();
             }
         }
     }

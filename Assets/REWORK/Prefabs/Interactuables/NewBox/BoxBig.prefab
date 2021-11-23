@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8108382927415441678}
   - component: {fileID: 8108382927415441677}
   - component: {fileID: 8108382927415441672}
+  - component: {fileID: -5506601124137496796}
   m_Layer: 6
   m_Name: BoxBig
   m_TagString: Box
@@ -62,7 +63,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &8108382927415441672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +78,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxType: 2
   centerMassY: -0.01
+--- !u!114 &-5506601124137496796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108382927415441676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e479d9300207b244b8fcfc6b2d2ed63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8108382926287045974
 PrefabInstance:
   m_ObjectHideFlags: 0
