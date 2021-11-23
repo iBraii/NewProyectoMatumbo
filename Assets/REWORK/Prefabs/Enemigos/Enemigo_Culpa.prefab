@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 8048988051428252059}
   - component: {fileID: 6349059978979022398}
   - component: {fileID: 9221282004478288628}
-  - component: {fileID: 7275687588949574432}
+  - component: {fileID: 3604909064772697316}
+  - component: {fileID: 7201422130260819532}
+  - component: {fileID: 2231113701732216630}
   m_Layer: 0
   m_Name: Enemigo_Culpa
   m_TagString: Untagged
@@ -87,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7275687588949574432
+--- !u!65 &3604909064772697316
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,5 +100,48 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 108.89022, y: 210.18974, z: 109.232414}
-  m_Center: {x: 0, y: 103.78455, z: 0}
+  m_Size: {x: 1.0889022, y: 2.1018975, z: 1.0923241}
+  m_Center: {x: 0, y: 1.0378455, z: 0}
+--- !u!114 &7201422130260819532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275687588949574433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1597ce0439ab3b84db4e168c6cb91fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSpeed: 0.5
+  fastSpeed: 0.75
+  slowSpeed: 0.25
+  rotationSpeed: 0.01
+  waypoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  minTreshhold: 5
+  maxTreshhold: 15
+--- !u!95 &2231113701732216630
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7275687588949574433}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97cb1d1aa4361964bb737f18d013b3b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
