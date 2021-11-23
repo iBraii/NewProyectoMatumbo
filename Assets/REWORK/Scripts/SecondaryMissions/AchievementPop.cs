@@ -18,5 +18,4 @@ public class AchievementPop : MonoBehaviour
         sequence.AppendInterval(3);
         sequence.Append(GetComponent<CanvasGroup>().DOFade(0, 1));
     }
-    
 }

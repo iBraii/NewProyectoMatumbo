@@ -105,18 +105,10 @@ public class EnemyStateController : MonoBehaviour
     {
         switch (currentState)
         {
-            case EnemyStates.OnPath:
-                HandlePath();
-                break;
-            case EnemyStates.Following:
-                HandleFollow();
-                break;
-            case EnemyStates.Confused:
-                HandleConfused(); 
-                break;
-            case EnemyStates.Denied:
-                HandleDenied();
-                break;
+            case EnemyStates.OnPath: HandlePath(); break;
+            case EnemyStates.Following: HandleFollow(); break;
+            case EnemyStates.Confused: HandleConfused();  break;
+            case EnemyStates.Denied: HandleDenied(); break;
         }
     }
 

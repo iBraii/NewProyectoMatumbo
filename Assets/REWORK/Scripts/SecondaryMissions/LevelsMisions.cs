@@ -5,8 +5,9 @@ using UnityEngine.Audio;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
-public class Level1Mision : MonoBehaviour
+public class LevelsMisions : MonoBehaviour
 {
     public Transform[] childPosition;
     public Vector3[] position;
@@ -21,6 +22,9 @@ public class Level1Mision : MonoBehaviour
     private AudioSource humming;
 
     public GameObject teddyNumber;
+    [SerializeField] private Text textObj;
+    [SerializeField] private int collectableIndex;
+
     void Start()
     {
         emisionSphere.SetActive(false);
@@ -56,9 +60,9 @@ public class Level1Mision : MonoBehaviour
             }
             else
             {
-                SaveSystem.data.achievementCompleted[1] = true;
+                SaveSystem.data.achievementCompleted[collectableIndex] = true;
                 SaveSystem.Save();
-                AchievementPop.onMisionCompleted?.Invoke("YOU HAVE FOUND THE TEDDY BEAR");
+                AchievementPop.onMisionCompleted?.Invoke("YOU HAVE COLLECTED THE TEDDY BEAR");
                 misionCompleted = true;
                 emisionSphere.SetActive(true);
                 humming.DOFade(0, 2);
@@ -73,13 +77,21 @@ public class Level1Mision : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
+        if (SaveSystem.data.achievementCompleted[collectableIndex]) return;
         if (other.CompareTag("Player"))
+        {
             playerClose = true;
+            textObj.DOFade(1, 1);
+        }          
     }
     private void OnTriggerExit(Collider other)
     {
+        if (SaveSystem.data.achievementCompleted[collectableIndex]) return;
         if (other.CompareTag("Player"))
-            playerClose = false;
+        {
+           playerClose = false;
+           textObj.DOFade(0, 1);
+        }
     }
 
 }

@@ -5495,11 +5495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5684625766343414510, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4885416
+      value: 0.48854166
       objectReference: {fileID: 0}
     - target: {fileID: 5684625766343414510, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06170978
+      value: 0.061709788
       objectReference: {fileID: 0}
     - target: {fileID: 5684625766343414510, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_LocalRotation.y
@@ -5507,7 +5507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5684625766343414510, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.10907167
+      value: -0.109071665
       objectReference: {fileID: 0}
     - target: {fileID: 5684625766570023171, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_BindingMode
@@ -5599,7 +5599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5684625767134308223, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.06170979
+      value: 0.061709803
       objectReference: {fileID: 0}
     - target: {fileID: 5684625767134308223, guid: c61412db5221d074f96816c266a34603, type: 3}
       propertyPath: m_LocalRotation.y
@@ -8203,6 +8203,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218238014}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1220494196 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2748983481240468704, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
+  m_PrefabInstance: {fileID: 1700134140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1230379845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8611,6 +8622,8 @@ MonoBehaviour:
   misionCompleted: 0
   emisionSphere: {fileID: 77863882}
   teddyNumber: {fileID: 7824249049481448735, guid: 338b473520429f74281ad5ba1a9c2fd0, type: 3}
+  textObj: {fileID: 1220494196}
+  collectableIndex: 1
 --- !u!135 &1307160271
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8636,7 +8649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6f7cae09bc4d4f46a56b1c6d5bd93b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  misionIndex: 1
+  collectableIndex: 1
   aditionalObj: []
 --- !u!1001 &1323558334
 PrefabInstance:
@@ -10568,6 +10581,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 158833601555002306, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 646946493665103684, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10720,6 +10737,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3772495803616347066, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869098971264186922, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155267941996440745, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7557756885411327231, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -10776,6 +10805,10 @@ PrefabInstance:
       propertyPath: generalVolume
       value: 
       objectReference: {fileID: 529246955}
+    - target: {fileID: 8189250581564459308, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8189250581564459309, guid: 3af36b4ac89d9cd45ada42c0da1eb653, type: 3}
       propertyPath: white
       value: 1

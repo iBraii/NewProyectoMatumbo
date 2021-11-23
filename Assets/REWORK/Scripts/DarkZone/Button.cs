@@ -7,15 +7,12 @@ public class Button : MonoBehaviour
     [SerializeField] private GameObject[] darkAura;
     [SerializeField] private GameObject[] darkZone;
     public bool buttonToggle;
-    public static event Action onButtonChanged;
+    public Action onButtonChanged;
     
     private void ButtonState(bool state) 
     {
         foreach (GameObject go in darkAura)
-        {
             go.SetActive(state);
-            
-        }
     }
     private void OnTriggerEnter(Collider other)
     {

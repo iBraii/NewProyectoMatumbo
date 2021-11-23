@@ -19,10 +19,16 @@ public class HideOnTent : MonoBehaviour
             Volume volume = generalVolume.GetComponent<Volume>();
             if(volume.profile.TryGet<Vignette>(out vig))
             {
-                vig.smoothness.value=1f;
+                vig.smoothness.value = 1f;
             }
         }
             
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Carpa"))
+            isHiding = true;
     }
 
     private void OnTriggerExit(Collider other)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2358268301910274441}
   - component: {fileID: 4882238488343862058}
   - component: {fileID: 6216996025367238544}
+  - component: {fileID: 967070747268710865}
   m_Layer: 0
   m_Name: Borde_trampilla
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &967070747268710865
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861243575505514059}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9019412910881718464, guid: 6b8c6f0b13b3ad340bf9a7aee3afb5ba, type: 3}
 --- !u!1 &6332961669242750929
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +107,7 @@ GameObject:
   - component: {fileID: 1281907828562282987}
   - component: {fileID: 7666033304439534712}
   - component: {fileID: 5333125629752454719}
+  - component: {fileID: 401989048646020244}
   m_Layer: 0
   m_Name: inside
   m_TagString: Untagged
@@ -162,6 +178,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &401989048646020244
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332961669242750929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3354480299382239052, guid: 6b8c6f0b13b3ad340bf9a7aee3afb5ba, type: 3}
 --- !u!1 &8738831836070655413
 GameObject:
   m_ObjectHideFlags: 0
