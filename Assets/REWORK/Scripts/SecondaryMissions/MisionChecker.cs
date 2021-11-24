@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class MisionChecker : MonoBehaviour
 {
-    public int collectableIndex;
-    public GameObject[] aditionalObj;
+    [SerializeField] private GameObject[] aditionalObj;
+
     void Start()
     {
-        //SaveSystem.Load();
-        if (SaveSystem.data.achievementCompleted[collectableIndex])
+        InteractText interact = FindObjectOfType<InteractText>();
+        if (interact == null) return;
+        if (SaveSystem.data.achievementCompleted[interact.collectableIndex])
         {
             gameObject.SetActive(false);
-            for(int i = 0; i < aditionalObj.Length; i++)
+            for (int i = 0; i < aditionalObj.Length; i++)
                 aditionalObj[i].SetActive(false);
         }
     }
