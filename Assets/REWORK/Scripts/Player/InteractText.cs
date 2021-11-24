@@ -14,6 +14,7 @@ public class InteractText : MonoBehaviour
         if (SaveSystem.data.achievementCompleted[collectableIndex]) return;
         if (other.CompareTag(interactableTag))
         {
+            text.text = "\"E\" ? ? ?";
             playerClose = true;
             text.DOFade(1, 1);
         }         
