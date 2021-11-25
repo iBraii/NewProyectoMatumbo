@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5106933315014073798
+--- !u!1 &2036524135572337572
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5106933315014073794}
-  - component: {fileID: 5106933315014073797}
-  - component: {fileID: 5106933315014073796}
-  - component: {fileID: 5106933315014073799}
+  - component: {fileID: 3357293242192327519}
+  - component: {fileID: 434659654639270545}
+  - component: {fileID: 4247452131639053503}
   m_Layer: 0
-  m_Name: Duck
+  m_Name: Patito
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5106933315014073794
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &3357293242192327519
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5106933315014073798}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22, y: 0, z: 0}
-  m_LocalScale: {x: 0.46366, y: 0.46366, z: 0.46366}
+  m_GameObject: {fileID: 2036524135572337572}
+  m_LocalRotation: {x: -0.07143289, y: 0.8821417, z: 0.14214629, w: 0.44330344}
+  m_LocalPosition: {x: -32.560715, y: 1.2378342, z: -1.0134177}
+  m_LocalScale: {x: 2.4204445, y: 2.4204443, z: 2.4204445}
   m_Children: []
   m_Father: {fileID: 5106933315442183892}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5106933315014073797
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -18.308, y: 126.638, z: 0}
+--- !u!33 &434659654639270545
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5106933315014073798}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5106933315014073796
+  m_GameObject: {fileID: 2036524135572337572}
+  m_Mesh: {fileID: -8637098936320430395, guid: 0c7fbdd636c7fc4448e6e402ea4f2c0c, type: 3}
+--- !u!23 &4247452131639053503
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5106933315014073798}
+  m_GameObject: {fileID: 2036524135572337572}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +59,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 6db119bd5064da547b893e502622a5e5, type: 2}
+  - {fileID: 2100000, guid: f342f990c76bc68498ddb26377af7f42, type: 2}
+  - {fileID: 2100000, guid: bd34403db70f5884a8ee96fe7dee5ba6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5106933315014073799
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5106933315014073798}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5106933315442183849
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,8 +113,8 @@ Transform:
   m_LocalPosition: {x: 16.036, y: 2.48, z: -5.156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5106933315014073794}
   - {fileID: 6068517166290812026}
+  - {fileID: 3357293242192327519}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -155,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b70fe49f322ec14384694c30a9bd278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duckToSpawn: {fileID: 5106933315014073798}
+  duckToSpawn: {fileID: 0}
   sphereOfLight: {fileID: 6068517166290812031}
   playerClose: 0
   duckActive: 0
@@ -273,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1520385400905720709, guid: d2538053f0116484ebf728f06d2e4c64, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1520385400905720709, guid: d2538053f0116484ebf728f06d2e4c64, type: 3}
       propertyPath: m_LocalScale.x

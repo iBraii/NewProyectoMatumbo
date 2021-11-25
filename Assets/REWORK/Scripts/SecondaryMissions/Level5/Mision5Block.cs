@@ -25,8 +25,9 @@ public class Mision5Block : MonoBehaviour
             parent.interact.text.DOFade(0, 1);
             SoundManager.instance.Play("Confirmation");
             GetComponent<Collider>().enabled = false;
-            GetComponent<MeshRenderer>().material.DOFade(0, 1).OnComplete(Disable);
+            gameObject.SetActive(false);        
             parent.currentInteractions++;
+            Disable();
         }
     }
 
