@@ -7,8 +7,9 @@ public class EspectroCulpaNuevo : MonoBehaviour
     [SerializeField] private float fastSpeed;
     [SerializeField] private float slowSpeed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private GameObject player;
 
-    private float speed;
+    public float currentSpeed;
     private int currentIndex;
     private float rotationTime;
 
@@ -17,12 +18,17 @@ public class EspectroCulpaNuevo : MonoBehaviour
 
     [Header("Dificultad Dinamica")]
     [SerializeField] private float minTreshhold;
-    [SerializeField] private float maxTreshhold; 
+    [SerializeField] private float maxTreshhold;
 
+    private Animator anim;
+    private AudioSource source;
     private void Start()
     {
+        player = GameObject.Find("Player");
+        anim = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
         currentIndex = 0;
-        speed = normalSpeed;
+        currentSpeed = normalSpeed;
     }
     private void Update()
     {
@@ -35,7 +41,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(waypoint[currentIndex].position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationTime);
 
-        transform.position = Vector3.MoveTowards(transform.position,waypoint[currentIndex].position , speed*Time.deltaTime);    
+        transform.position = Vector3.MoveTowards(transform.position,waypoint[currentIndex].position , currentSpeed*Time.deltaTime);    
 
         if (transform.position == waypoint[currentIndex].position)
         {
@@ -54,13 +60,29 @@ public class EspectroCulpaNuevo : MonoBehaviour
     }
     private void SpeedController()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, GameObject.Find("Player").transform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        Debug.Log(distanceToPlayer);
         if (distanceToPlayer < minTreshhold)
-            speed = slowSpeed;
+        {
+            currentSpeed = slowSpeed;
+            //anim.speed = 1.3f;
+        }            
         else if (distanceToPlayer > minTreshhold && distanceToPlayer < maxTreshhold)
-            speed = normalSpeed;
+        {
+            currentSpeed = normalSpeed;
+            //anim.speed = 2.6f;
+        }           
         else if (distanceToPlayer > maxTreshhold)
-            speed = fastSpeed;
+        {
+            currentSpeed = fastSpeed;
+            //anim.speed = 4;
+        }
+            
+    }
+    public void PlayStepSound()
+    {
+        source.pitch = Random.Range(.7f, 1);
+        source.Play();
     }
     private void Deactivate() => currentIndex = 0;
     private void OnDrawGizmos()
