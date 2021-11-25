@@ -38,6 +38,7 @@ namespace GameJolt.UI.Controllers {
 		}
 
 		public void Submit() {
+
 			ErrorMessage.enabled = false;
 
 			if(UsernameField.text.Trim() == string.Empty || TokenField.text.Trim() == string.Empty) {
