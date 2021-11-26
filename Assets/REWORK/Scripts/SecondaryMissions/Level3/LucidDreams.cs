@@ -40,6 +40,8 @@ public class LucidDreams : MonoBehaviour
             interact.playerClose = false;
             SaveSystem.data.achievementCompleted[interact.collectableIndex] = true;
             SaveSystem.Save();
+            if (FindObjectOfType<GameJoltTrophies>())
+                FindObjectOfType<GameJoltTrophies>().CompareTrophies();
             AchievementPop.onMisionCompleted?.Invoke("Reproducing Lucid Dreams");
             reproductorPos.gameObject.GetComponent<AudioSource>().Play();
         }

@@ -6,6 +6,7 @@ using UnityEngine;
     public float volume = .5f;
     public bool[] levelCompleted = new bool[6];
     public bool[] achievementCompleted = new bool[6];
+    public bool[] levelCompletedNoDmg = new bool[6];
 }
 
 public class DataManager : MonoBehaviour
@@ -18,7 +19,6 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SaveSystem.Load();
-        //Debug.Log("Data Loaded");
     }
 
 
@@ -32,6 +32,7 @@ public class DataManager : MonoBehaviour
         {
             SaveSystem.data.levelCompleted[i] = false;
             SaveSystem.data.achievementCompleted[i] = false;
+            SaveSystem.data.levelCompletedNoDmg[i] = false;
         }
         SaveSystem.Save();
     }
@@ -51,10 +52,20 @@ public class DataManager : MonoBehaviour
     public void ResetAchivement()
     {
         for (int i = 0; i < SaveSystem.data.levelCompleted.Length; i++)
-        {
             SaveSystem.data.achievementCompleted[i] = false;
+        SaveSystem.Save();
+    }
+
+    [ContextMenu("Reset achievements")]
+    public void ResetLevelsCompleted()
+    {
+        for (int i = 0; i < SaveSystem.data.levelCompleted.Length; i++)
+        {
+            SaveSystem.data.levelCompleted[i] = false;
+            SaveSystem.data.levelCompletedNoDmg[i] = false;
         }
         SaveSystem.Save();
     }
+
     private void OnApplicationQuit() => SaveSystem.Save();
 }
