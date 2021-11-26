@@ -34,8 +34,8 @@ public class GameJoltTrophies : MonoBehaviour
 
 		if (SaveSystem.data.achievementCompleted[0]) TryUnlockTrophy("152615");
 		if (SaveSystem.data.achievementCompleted[1]) TryUnlockTrophy("152616");
-		if (SaveSystem.data.achievementCompleted[2]) TryUnlockTrophy("152617");
-		if (SaveSystem.data.achievementCompleted[3]) TryUnlockTrophy("152618");
+		if (SaveSystem.data.achievementCompleted[2]) TryUnlockTrophy("152618");
+		if (SaveSystem.data.achievementCompleted[3]) TryUnlockTrophy("152617");
 		if (SaveSystem.data.achievementCompleted[4]) TryUnlockTrophy("152619");
 		if (SaveSystem.data.achievementCompleted[5]) TryUnlockTrophy("152620");
 
