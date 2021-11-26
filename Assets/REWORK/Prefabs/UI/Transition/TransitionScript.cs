@@ -7,10 +7,19 @@ public class TransitionScript : MonoBehaviour
     public string sceneName;
     public int comicNumber;
     public bool selectScreenColorToWhite;
+    public int currentLevel;
 
     private void OnTriggerEnter(Collider other)
     {
-        //CheckPoints.ResetStatics();
+        SaveSystem.data.levelCompleted[currentLevel] = true;
+
+        if (FindObjectOfType<StressManager>().hasReceivedDamage == false)
+            SaveSystem.data.levelCompletedNoDmg[currentLevel] = true;
+
+        SaveSystem.Save();
+
+        if (FindObjectOfType<GameJoltTrophies>())
+            FindObjectOfType<GameJoltTrophies>().CompareTrophies();     
 
         if (cs == null)
         {

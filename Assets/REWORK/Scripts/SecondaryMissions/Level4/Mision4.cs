@@ -29,6 +29,8 @@ public class Mision4 : MonoBehaviour
             AchievementPop.onMisionCompleted?.Invoke("You have learned the truth");
             SaveSystem.data.achievementCompleted[interact.collectableIndex] = true;
             SaveSystem.Save();
+            if (FindObjectOfType<GameJoltTrophies>())
+                FindObjectOfType<GameJoltTrophies>().CompareTrophies();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Collections;
 using DG.Tweening;
 using TMPro;
 
-public class GameJoltManager : MonoBehaviour
+public class GameJoltSignIn : MonoBehaviour
 {
 	[SerializeField] private GameObject warningPanel;
 	[SerializeField] private GameObject warningPopUp;
@@ -25,7 +25,11 @@ public class GameJoltManager : MonoBehaviour
     private IEnumerator SignIn()
 	{
 		yield return new WaitForSeconds(1.5f);
-		if (GameJoltAPI.Instance.HasUser) yield break;
+		if (GameJoltAPI.Instance.HasUser)
+		{
+			FindObjectOfType<GameJoltTrophies>().CompareTrophies();
+			yield break;
+		}
 		SignInButtonClicked();
 	}
 
@@ -52,26 +56,6 @@ public class GameJoltManager : MonoBehaviour
 	{
 		GameJoltUI.Instance.ShowSignIn(success => {
 			GameJoltUI.Instance.QueueNotification(success ? "Welcome, " + GameJoltAPI.Instance.CurrentUser.Name + "." : "Sign in cancelled");
-		});
-	}
-
-	public void UnlockTrophy(string trophyID)
-	{
-		Debug.Log("Unlocked Trophy.");
-
-		var trophyId = trophyID != string.Empty ? int.Parse(trophyID) : 0;
-		Trophies.Unlock(trophyId, success => {
-			Debug.LogFormat("Unlock Trophy {0}.", success ? "Successful" : "Failed");
-		});
-	}
-
-	public void TryUnlockTrophy(string trophyID)
-	{
-		Debug.Log("Trying Unlock Trophy");
-
-		var trophyId = trophyID != string.Empty ? int.Parse(trophyID) : 0;
-		Trophies.TryUnlock(trophyId, success => {
-			Debug.LogFormat("Try Unlock Trophy {0}.", success);
 		});
 	}
 

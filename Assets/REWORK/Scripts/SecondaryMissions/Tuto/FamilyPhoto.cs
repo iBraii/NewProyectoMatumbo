@@ -22,6 +22,9 @@ public class FamilyPhoto : MonoBehaviour
             interact.playerClose = false;
             transform.GetChild(0).gameObject.SetActive(false);
             SaveSystem.data.achievementCompleted[interact.collectableIndex] = true;
+            SaveSystem.Save();
+            if (FindObjectOfType<GameJoltTrophies>())
+                FindObjectOfType<GameJoltTrophies>().CompareTrophies();
             AchievementPop.onMisionCompleted?.Invoke("FAMILY PHOTO ACQUIRED");
         }        
     }

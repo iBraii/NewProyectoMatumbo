@@ -29,6 +29,8 @@ public class Mision5 : MonoBehaviour
             AchievementPop.onMisionCompleted?.Invoke("You faced your guilt");
             SaveSystem.data.achievementCompleted[interact.collectableIndex] = true;
             SaveSystem.Save();
+            if (FindObjectOfType<GameJoltTrophies>())
+                FindObjectOfType<GameJoltTrophies>().CompareTrophies();
         }
     }
 }

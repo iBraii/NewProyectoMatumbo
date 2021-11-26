@@ -36,6 +36,9 @@ public class StressManager : MonoBehaviour
     public float currentStress;
 
     public static System.Action onPlayerDead;
+
+    public bool hasReceivedDamage = false;
+
     void Start()
     {
         #region nulls
@@ -57,6 +60,7 @@ public class StressManager : MonoBehaviour
 
     void Update()
     {
+        if (PlayerSingleton.Instance.stress > 0) hasReceivedDamage = true;
         StressLimits();
         RegenStress(regenValue, delay);
         ChangeToDeafeatScene();
