@@ -10,8 +10,13 @@ public class GameJoltSignIn : MonoBehaviour
 	[SerializeField] private GameObject warningPanel;
 	[SerializeField] private GameObject warningPopUp;
 	[SerializeField] private TextMeshPro text;
+	private static bool isFirstTime = true;
 
-    private void Start() => StartCoroutine(SignIn());
+	private void Start()
+	{
+		if(isFirstTime) StartCoroutine(SignIn());
+		isFirstTime = false;
+	}
 
 	public void ChangeText(float t) => StartCoroutine(textChange(t));
 
