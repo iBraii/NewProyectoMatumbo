@@ -20,6 +20,23 @@ public class DataManager : MonoBehaviour
 
         SaveSystem.Load();
     }
+    void Start()
+    {
+        if (SaveSystem.data.levelCompleted == null)
+            SaveSystem.data.levelCompleted = new bool[6];
+
+        if (SaveSystem.data.achievementCompleted == null)
+            SaveSystem.data.achievementCompleted = new bool[6];
+
+        if (SaveSystem.data.levelCompletedNoDmg == null)
+            SaveSystem.data.levelCompletedNoDmg = new bool[6];
+
+        if (SaveSystem.data.sensitivity == 0)
+            SaveSystem.data.sensitivity=275;
+
+        if (SaveSystem.data.volume == 0)
+            SaveSystem.data.volume = .5f;
+    }
 
 
     [ContextMenu("Reset all")]
