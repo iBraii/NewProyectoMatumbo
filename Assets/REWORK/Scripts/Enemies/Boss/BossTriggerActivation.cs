@@ -23,6 +23,7 @@ public class BossTriggerActivation : MonoBehaviour
                 enemy.SetActive(true);
                 source.Play();
                 source.DOFade(.75f, 2);
+                Camera.main.GetComponent<Animator>().enabled = true;
             }
             if (state == 2)
             {

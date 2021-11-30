@@ -11,6 +11,8 @@ public class Mision5Block : MonoBehaviour
     void Start()
     {
         parent = GetComponentInParent<Mision5>();
+        transform.DOMoveY(transform.position.y + .1f, 10, false).SetEase(Ease.InOutBack).SetLoops(-1,LoopType.Yoyo);
+        transform.DORotate(new Vector3(0, 360, 0), 10, RotateMode.WorldAxisAdd).SetLoops(-1,LoopType.Yoyo);
     }
     private void Update()
     {

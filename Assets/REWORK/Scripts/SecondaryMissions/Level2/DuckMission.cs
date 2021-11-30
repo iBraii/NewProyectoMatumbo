@@ -11,6 +11,7 @@ public class DuckMission : MonoBehaviour
     public bool playerClose;
     public bool duckActive = false;
     [SerializeField] private AudioSource source;
+    [SerializeField] private GameObject llave;
     private float t;
     void Start()
     {
@@ -32,7 +33,9 @@ public class DuckMission : MonoBehaviour
         {
             if (duckActive == false)
             {
-                SoundManager.instance.Play("Confirmation");
+                SoundManager.instance.Play("LlaveAgua");
+                SoundManager.instance.Play("pichi");
+                llave.transform.DORotate(new Vector3(-360, 0,0), 5, RotateMode.WorldAxisAdd);
                 duckActive = true;
                 duckToSpawn.SetActive(true);
                 duckToSpawn.transform.parent = null;

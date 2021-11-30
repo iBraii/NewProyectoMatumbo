@@ -8,7 +8,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
     [SerializeField] private float slowSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject player;
-    [SerializeField] private bool active = true;
+    [SerializeField] private bool active = false;
 
     public float currentSpeed;
     private int currentIndex;
@@ -80,6 +80,11 @@ public class EspectroCulpaNuevo : MonoBehaviour
             //anim.speed = 4;
         }
             
+    }
+    public void StartWalking()
+    {
+        active = true;
+        anim.enabled = true;
     }
     public void PlayStepSound()
     {
