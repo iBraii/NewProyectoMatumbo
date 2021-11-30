@@ -35,20 +35,23 @@ public class GrabBox : MonoBehaviour
         DetectBox();
         BlockJumpingAndDC();
         MyInput();
+        EmergencyLetBox();
         //Falling();
         
     }
     private void MyInput()
     { 
-        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded&&!PlayerSingleton.Instance.onAnimation)
+        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded)
         {
-            if (boxGrabbed != null)
+            if (boxGrabbed != null && PlayerSingleton.Instance.onAnimation == false)
             {
+                PlayerSingleton.Instance.onAnimation = true;
                 LetBox();
                 cc.Move(-transform.forward * .03f);
             }
-            else if (boxDetected != null&&!PlayerSingleton.Instance.onAnimation)
+            else if (boxDetected != null&&!PlayerSingleton.Instance.onAnimation&&PlayerSingleton.Instance.grabingBox==false)
             {
+                PlayerSingleton.Instance.onAnimation = true;
                 Grab();
                 cc.Move(-transform.forward * .05f);
             }
@@ -134,6 +137,25 @@ public class GrabBox : MonoBehaviour
         pm.movementSpeed = initialSpeed;
         //pm.useGravity = true;
        
+    }
+    private void EmergencyLetBox()
+    {
+        if(PlayerSingleton.Instance.grabingBox==false && pm.acceleration != initialAcceleration)
+        {
+            PlayerSingleton.Instance.maxSpeed = .75f;
+            PlayerSingleton.Instance.canMove = true;
+            pm.acceleration = initialAcceleration;
+            cc.center = Vector3.forward * .01f;
+            cc.radius = .04f;
+            cc.height = .3f;
+            pm.turnSmoothTime = initialRotationSpeed;
+            pm.movementSpeed = initialSpeed;
+        }
+
+        if (PlayerSingleton.Instance.grabingBox == false && boxGrabbed != null&&PlayerSingleton.Instance.onAnimation==false)
+        {
+            boxGrabbed = null;
+        }
     }
     public void LetBoxEvent()
     {

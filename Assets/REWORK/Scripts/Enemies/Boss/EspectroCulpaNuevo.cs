@@ -84,7 +84,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
     public void StartWalking()
     {
         active = true;
-        anim.enabled = true;
+        anim.SetBool("walk", true);
     }
     public void PlayStepSound()
     {
@@ -94,7 +94,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
     private void Deactivate()
     {
         active = false;
-        anim.enabled = false;
+        anim.SetBool("walk",false);
     }
     private void OnDrawGizmos()
     {
