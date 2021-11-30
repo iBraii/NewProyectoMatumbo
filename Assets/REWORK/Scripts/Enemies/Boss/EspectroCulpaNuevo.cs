@@ -8,6 +8,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
     [SerializeField] private float slowSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private GameObject player;
+    [SerializeField] private bool active = true;
 
     public float currentSpeed;
     private int currentIndex;
@@ -32,6 +33,7 @@ public class EspectroCulpaNuevo : MonoBehaviour
     }
     private void Update()
     {
+        if (active == false) return;
         MoveToTarget();
     }
 
@@ -84,7 +86,11 @@ public class EspectroCulpaNuevo : MonoBehaviour
         source.pitch = Random.Range(.7f, 1);
         source.Play();
     }
-    private void Deactivate() => currentIndex = 0;
+    private void Deactivate()
+    {
+        active = false;
+        anim.enabled = false;
+    }
     private void OnDrawGizmos()
     {
         foreach(Transform waypoint in waypoint)

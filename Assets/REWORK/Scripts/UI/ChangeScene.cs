@@ -40,7 +40,7 @@ public class ChangeScene : MonoBehaviour
         PlayerSingleton.Instance.stress = 0;
         SceneManager.LoadScene(sceneName);
     }
-
+    public void Reload() => Change(SceneManager.GetActiveScene().name);
     public void SelectComic(int comicNumber) => ComicManager.comicNumber = comicNumber;
     public void SetWhite()=> gameObject.GetComponent<Image>().color = Color.white;
     public void SetBlack()=> gameObject.GetComponent<Image>().color = Color.black;
