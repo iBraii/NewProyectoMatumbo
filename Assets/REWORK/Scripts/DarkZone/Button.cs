@@ -7,7 +7,6 @@ public class Button : MonoBehaviour
     [SerializeField] private GameObject[] darkAura;
     [SerializeField] private GameObject[] darkZone;
     public bool buttonToggle;
-    public Action onButtonChanged;
     
     private void ButtonState(bool state) 
     {
@@ -19,7 +18,7 @@ public class Button : MonoBehaviour
         if (other.CompareTag("Box") || other.CompareTag("Player"))
         {
             ButtonState(false);
-            onButtonChanged?.Invoke();
+            GetComponentInChildren<ButtonChange>().ButtonColor();
             if (buttonToggle == false)
                 SoundManager.instance.Play("PlacaOn");
             buttonToggle = true;
@@ -38,7 +37,7 @@ public class Button : MonoBehaviour
         {
             ButtonState(false);
             buttonToggle = true;
-            onButtonChanged?.Invoke();
+            GetComponentInChildren<ButtonChange>().ButtonColor();
         }   
     }
 
@@ -50,7 +49,7 @@ public class Button : MonoBehaviour
             if (buttonToggle == true)
                 SoundManager.instance.Play("PlacaOff");
             buttonToggle = false;
-            onButtonChanged?.Invoke();
+            GetComponentInChildren<ButtonChange>().ButtonColor();
 
             foreach (GameObject go in darkZone)
             {

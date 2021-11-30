@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class ButtonChange : MonoBehaviour
 {
-    [SerializeField] private Material mat;
+    [SerializeField] private Material[] mats;
+    private MeshRenderer currentRender;
     [SerializeField] private Button btn;
-    [SerializeField] private Color color1 , color2;
 
-    private void Start() => mat.SetColor("_EmissionColor", color2);
+    private void Start() => currentRender.material = mats[0];
     private void Awake()
     {
         btn = GetComponentInParent<Button>();
-        btn.onButtonChanged += ButtonColor;
+        currentRender = GetComponent<MeshRenderer>();
     }
-    private void OnDisable() => btn.onButtonChanged -= ButtonColor;
-    private void ButtonColor()
+    public void ButtonColor()
     {
-        if(mat == null || btn == null) { Debug.LogWarning("No hay mat o btn"); return; }
+        if(mats == null || btn == null) { Debug.LogWarning("No hay mat o btn"); return; }
 
-        if(btn.buttonToggle) mat.SetColor("_EmissionColor", color1);
-        else mat.SetColor("_EmissionColor", color2 );
+        if(btn.buttonToggle) currentRender.material = mats[1];
+        else currentRender.material = mats[0];
     }
 }

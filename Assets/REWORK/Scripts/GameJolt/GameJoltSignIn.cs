@@ -36,6 +36,7 @@ public class GameJoltSignIn : MonoBehaviour
 		if (GameJoltAPI.Instance.HasUser)
 		{
 			FindObjectOfType<GameJoltTrophies>().CompareTrophies();
+			FindObjectOfType<MainMenuAchievements>().ActivateLights();
 			yield break;
 		}
 		SignInButtonClicked();
