@@ -17,6 +17,8 @@ public class GameJoltTrophies : MonoBehaviour
 
 	public void CompareTrophies()
     {
+		if (!GameJoltAPI.Instance.HasUser) return;
+
 		//BRONZE======================================================================
 		if (SaveSystem.data.levelCompleted[0]) TryUnlockTrophy("152608");
 		if (SaveSystem.data.levelCompleted[1]) TryUnlockTrophy("152609");

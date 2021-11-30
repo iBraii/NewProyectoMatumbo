@@ -10,15 +10,18 @@ public class GameJoltSignIn : MonoBehaviour
 	[SerializeField] private GameObject warningPanel;
 	[SerializeField] private GameObject warningPopUp;
 	[SerializeField] private TextMeshPro text;
-	private static bool isFirstTime = true;
+	private static bool isFirstTime;
 
 	private void Start()
 	{
-		if(isFirstTime) StartCoroutine(SignIn());
-		isFirstTime = false;
+		FindObjectOfType<GameOptions>().DeactivateOtherFunctions();
+		if(!isFirstTime) StartCoroutine(SignIn());
+		isFirstTime = true;
 	}
 
-	public void ChangeText(float t) => StartCoroutine(textChange(t));
+    private void Update() => ChangeText(0);
+
+    public void ChangeText(float t) => StartCoroutine(textChange(t));
 
 	private IEnumerator textChange(float t)
     {
@@ -66,16 +69,11 @@ public class GameJoltSignIn : MonoBehaviour
 
 	public void GameJoltSignInOutButtonClicked()
 	{
-		if (!GameJoltAPI.Instance.HasUser)
-        {
-			SignInButtonClicked();
-			ChangeText(0);
-		}
+		if (!GameJoltAPI.Instance.HasUser) SignInButtonClicked();
 		else
 		{
 			GameJoltAPI.Instance.CurrentUser.SignOut();
 			GameJoltUI.Instance.QueueNotification("Logged Out");
-			ChangeText(0);
 		}
 	}
 }
