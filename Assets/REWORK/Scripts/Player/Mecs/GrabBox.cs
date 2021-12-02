@@ -17,6 +17,7 @@ public class GrabBox : MonoBehaviour
 
     [SerializeField] private float distanceFromBox;
     private float initialAcceleration;
+    private bool hasGrabbedBox=false;
     //private bool onAnim;
     void Start()
     {
@@ -60,6 +61,7 @@ public class GrabBox : MonoBehaviour
     public void Grab()
     {
         //onAnim = true;
+        hasGrabbedBox = true;
         PlayerSingleton.Instance.grabingBox = true;
         PlayerSingleton.Instance.canMove = false;
         SoundManager.instance.Play("BoxLift");
@@ -140,8 +142,9 @@ public class GrabBox : MonoBehaviour
     }
     private void EmergencyLetBox()
     {
-        if(PlayerSingleton.Instance.grabingBox==false && pm.acceleration != initialAcceleration)
+        if(PlayerSingleton.Instance.grabingBox==false && pm.acceleration != initialAcceleration&&hasGrabbedBox)
         {
+            hasGrabbedBox = false;
             PlayerSingleton.Instance.maxSpeed = .75f;
             PlayerSingleton.Instance.canMove = true;
             pm.acceleration = initialAcceleration;
@@ -165,6 +168,7 @@ public class GrabBox : MonoBehaviour
         PlayerSingleton.Instance.canMove = true;
         boxGrabbed.layer = 6;
         boxGrabbed = null;
+        hasGrabbedBox = false;
     }
     //public void ResetMovement()
     //{

@@ -129,6 +129,7 @@ MonoBehaviour:
   usingWeap: 0
   isMoving: 0
   grounded: 0
+  grabingBox: 0
 --- !u!1 &8745534843480449293
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +395,7 @@ MonoBehaviour:
   attacked: 0
   beingAttacked: 0
   currentStress: 0
+  hasReceivedDamage: 0
 --- !u!114 &2061612018469239699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,7 +534,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 3033dd9c762d47b4bb238d11941700cb, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8fe9c49e39d5b084682fed966c9addfd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.2
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
