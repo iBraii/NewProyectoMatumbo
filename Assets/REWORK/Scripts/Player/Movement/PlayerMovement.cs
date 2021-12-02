@@ -141,7 +141,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (PlayerSingleton.Instance.isGrounded == false)
             acceleration *= 2.5f;
-        else acceleration = initialAccel;
+        else if(PlayerSingleton.Instance.isGrounded && PlayerSingleton.Instance.grabingBox == false)
+            acceleration = initialAccel;
 
         if (speed > 1) speed = 1;
         else if (speed < 0) speed = 0;
