@@ -12,6 +12,7 @@ public class MainMenuAchievements : MonoBehaviour
     {
         for (int i = 0; i < lights.Length; i++)
         {
+            Debug.Log("Mision "+i+" " + SaveSystem.data.achievementCompleted[i]);
             if (SaveSystem.data.achievementCompleted[i])
                 lights[i].SetActive(true);
             else lights[i].SetActive(false);

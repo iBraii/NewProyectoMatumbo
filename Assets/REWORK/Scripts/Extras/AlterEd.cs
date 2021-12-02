@@ -23,6 +23,7 @@ public class AlterEd : MonoBehaviour
             foreach(Material mat in GetComponent<MeshRenderer>().materials)
             {
                 mat.DOFade(0, 2);
+                GetComponent<BoxCollider>().enabled = false;
             }
         }
     }
