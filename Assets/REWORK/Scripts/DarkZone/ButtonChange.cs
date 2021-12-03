@@ -6,12 +6,12 @@ public class ButtonChange : MonoBehaviour
 {
     [SerializeField] private Material[] mats;
     private MeshRenderer currentRender;
-    [SerializeField] private Button btn;
+    [SerializeField] private BoxButton btn;
 
     private void Start() => currentRender.material = mats[0];
     private void Awake()
     {
-        btn = GetComponentInParent<Button>();
+        btn = GetComponentInParent<BoxButton>();
         currentRender = GetComponent<MeshRenderer>();
     }
     public void ButtonColor()

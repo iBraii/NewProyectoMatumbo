@@ -4,6 +4,7 @@ using GameJolt.UI;
 using System.Collections;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameJoltSignIn : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameJoltSignIn : MonoBehaviour
 	private void Start()
 	{
 		FindObjectOfType<GameOptions>().DeactivateOtherFunctions();
-		if(!isFirstTime) StartCoroutine(SignIn());
+		if (!isFirstTime) SignIn();
 		isFirstTime = true;
 	}
 
@@ -30,13 +31,14 @@ public class GameJoltSignIn : MonoBehaviour
 		else text.text = "GAMEJOLT SIGN IN";
 	}
 
-    private IEnumerator SignIn()
+	public void SignIn() => StartCoroutine(signIn());
+
+    private IEnumerator signIn()
 	{
 		yield return new WaitForSeconds(1.5f);
 		if (GameJoltAPI.Instance.HasUser)
 		{
 			FindObjectOfType<GameJoltTrophies>().CompareTrophies();
-			FindObjectOfType<MainMenuCollectablesAndLevels>().ActivateLights();
 			yield break;
 		}
 		SignInButtonClicked();
@@ -65,7 +67,7 @@ public class GameJoltSignIn : MonoBehaviour
 	{
 		GameJoltUI.Instance.ShowSignIn(success => {
 			GameJoltUI.Instance.QueueNotification(success ? "Welcome, " + GameJoltAPI.Instance.CurrentUser.Name + "." : "Sign in cancelled");
-		});
+		});		
 	}
 
 	public void GameJoltSignInOutButtonClicked()

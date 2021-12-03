@@ -47,6 +47,7 @@ public class DuckMission : MonoBehaviour
                 SaveSystem.Save();
                 if (FindObjectOfType<GameJoltTrophies>())
                     FindObjectOfType<GameJoltTrophies>().CompareTrophies();
+
                 interact.text.DOFade(0, 1);
                 interact.playerClose = false;
                 sphereOfLight.transform.parent = null;

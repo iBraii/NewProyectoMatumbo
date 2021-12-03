@@ -1,9 +1,10 @@
 using UnityEngine;
 using GameJolt.API;
+using System.Collections;
 
 public class GameJoltTrophies : MonoBehaviour
 {
-    private void Awake() => DontDestroyOnLoad(gameObject);
+	private void Awake() => DontDestroyOnLoad(gameObject);
 
     public void TryUnlockTrophy(string trophyID)
 	{
@@ -15,10 +16,17 @@ public class GameJoltTrophies : MonoBehaviour
 		});
 	}
 
-	public void CompareTrophies()
-    {
-		if (!GameJoltAPI.Instance.HasUser) return;
+	public void CompareTrophiesDelayed() => StartCoroutine(compareTrophiesDelayed());
 
+	private IEnumerator compareTrophiesDelayed()
+    {
+		yield return new WaitUntil(() => GameJoltAPI.Instance.HasUser);
+		CompareTrophies();
+		yield break;
+    }
+
+	public void CompareTrophies()
+    {	
 		//BRONZE======================================================================
 		if (SaveSystem.data.levelCompleted[0]) TryUnlockTrophy("152608");
 		if (SaveSystem.data.levelCompleted[1]) TryUnlockTrophy("152609");

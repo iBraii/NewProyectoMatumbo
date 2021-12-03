@@ -65,14 +65,14 @@ public class OsitoMision : MonoBehaviour
                 SaveSystem.Save();
                 if (FindObjectOfType<GameJoltTrophies>())
                     FindObjectOfType<GameJoltTrophies>().CompareTrophies();
+
                 interact.text.DOFade(0, 1);
                 interact.playerClose = false;
                 AchievementPop.onMisionCompleted?.Invoke("YOU HAVE COLLECTED THE TEDDY BEAR");
                 misionCompleted = true;
                 emisionSphere.SetActive(true);
                 humming.DOFade(0, 2);
-                Invoke("DeactivateTeddy", 2);
-                
+                Invoke("DeactivateTeddy", 2);        
             }
             
         }

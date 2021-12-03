@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 
-public class Button : MonoBehaviour
+public class BoxButton : MonoBehaviour
 {
     [SerializeField] private GameObject[] darkAura;
     [SerializeField] private GameObject[] darkZone;

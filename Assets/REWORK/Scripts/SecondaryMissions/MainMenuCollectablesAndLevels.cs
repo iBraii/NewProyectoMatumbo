@@ -26,11 +26,13 @@ public class MainMenuCollectablesAndLevels : MonoBehaviour
 
     private void ActivateButtons()
     {
-        for(int i = 1; i < buttons.Length; i++)
+        for(int i = 0; i < buttons.Length; i++)
         {
             if (SaveSystem.data.levelCompleted[i])
-                buttons[i].SetActive(true);
-            else buttons[i].SetActive(false);
-        }
+            {
+                if ((i + 1) == buttons.Length) return;
+                buttons[i + 1].SetActive(true);
+            }
+        }       
     }
 }

@@ -10,17 +10,7 @@ public class TransitionScript : MonoBehaviour
     public int currentLevel;
 
     private void OnTriggerEnter(Collider other)
-    {
-        SaveSystem.data.levelCompleted[currentLevel] = true;
-
-        if (FindObjectOfType<StressManager>().hasReceivedDamage == false)
-            SaveSystem.data.levelCompletedNoDmg[currentLevel] = true;
-
-        SaveSystem.Save();
-
-        if (FindObjectOfType<GameJoltTrophies>())
-            FindObjectOfType<GameJoltTrophies>().CompareTrophies();     
-
+    {   
         if (cs == null)
         {
             Debug.LogWarning("No hay changescene script");
@@ -28,6 +18,16 @@ public class TransitionScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
+            SaveSystem.data.levelCompleted[currentLevel] = true;
+
+            if (FindObjectOfType<StressManager>().hasReceivedDamage == false)
+                SaveSystem.data.levelCompletedNoDmg[currentLevel] = true;
+
+            SaveSystem.Save();
+
+            if (FindObjectOfType<GameJoltTrophies>())
+                FindObjectOfType<GameJoltTrophies>().CompareTrophies();
+
             other.gameObject.GetComponent<PlayerMovement>().movementSpeed = 0;
             PlayerSingleton.Instance.stress = 0;
             if (selectScreenColorToWhite)
