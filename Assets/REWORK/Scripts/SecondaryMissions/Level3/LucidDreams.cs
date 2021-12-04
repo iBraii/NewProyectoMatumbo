@@ -6,10 +6,12 @@ public class LucidDreams : MonoBehaviour
 {
     private InteractText interact;
     private PlayerInput playerInput;
-    [HideInInspector] public bool hasDisc;
+    /*[HideInInspector]*/ public bool hasDisc;
     private Transform[] discPos;
     [SerializeField] private Transform posParent;
     [SerializeField] private Transform reproductorPos;
+
+   
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class LucidDreams : MonoBehaviour
             hasDisc = true;
             GetComponent<MeshRenderer>().enabled = false;
             transform.position = reproductorPos.position;
+            GetComponent<CapsuleCollider>().radius = 3;
         }
         else if(playerInput.actions["Interact"].triggered && hasDisc == true)
         {
@@ -42,7 +45,7 @@ public class LucidDreams : MonoBehaviour
             SaveSystem.Save();
             if (FindObjectOfType<GameJoltTrophies>())
                 FindObjectOfType<GameJoltTrophies>().CompareTrophies();
-            AchievementPop.onMisionCompleted?.Invoke("Reproducing Lucid Dreams");
+            AchievementPop.onMisionCompleted?.Invoke("Reproducing \"Lucid Dreams\"");
             reproductorPos.gameObject.GetComponent<AudioSource>().Play();
         }
     }
