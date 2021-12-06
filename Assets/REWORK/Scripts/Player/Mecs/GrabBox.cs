@@ -42,7 +42,7 @@ public class GrabBox : MonoBehaviour
     }
     private void MyInput()
     { 
-        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded)
+        if (interactAction.triggered && PlayerSingleton.Instance.isGrounded&&PlayerSingleton.Instance.isHiding==false)
         {
             if (boxGrabbed != null && PlayerSingleton.Instance.onAnimation == false)
             {
@@ -147,12 +147,16 @@ public class GrabBox : MonoBehaviour
             hasGrabbedBox = false;
             PlayerSingleton.Instance.maxSpeed = .75f;
             PlayerSingleton.Instance.canMove = true;
+            boxGrabbed.GetComponent<Rigidbody>().useGravity = true;
+            boxGrabbed.GetComponent<Rigidbody>().isKinematic = false;
+            boxGrabbed.layer = 6;
             pm.acceleration = initialAcceleration;
             cc.center = Vector3.forward * .01f;
             cc.radius = .04f;
             cc.height = .3f;
             pm.turnSmoothTime = initialRotationSpeed;
             pm.movementSpeed = initialSpeed;
+            Debug.Log("Emergency letbox");
         }
 
         if (PlayerSingleton.Instance.grabingBox == false && boxGrabbed != null&&PlayerSingleton.Instance.onAnimation==false)
