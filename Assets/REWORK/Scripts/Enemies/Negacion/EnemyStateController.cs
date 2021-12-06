@@ -55,7 +55,6 @@ public class EnemyStateController : MonoBehaviour
    
     private void Awake()
     {
-        
         initialPos = transform.position;
         agent = GetComponent<NavMeshAgent>();
         de = GetComponent<DenyEnemy>();
@@ -99,6 +98,8 @@ public class EnemyStateController : MonoBehaviour
         AnimationController();
 
         if (deniedTime < 0) deniedTime = 0;
+
+        Debug.Log(currentState);
     }
 
     void StateController()
@@ -185,7 +186,7 @@ public class EnemyStateController : MonoBehaviour
     }
     void CallDeny()
     {
-        if (de.inRange&&detectObstacle==false) currentState = EnemyStates.Denied;     
+        if (de.inRange && detectObstacle==false) currentState = EnemyStates.Denied;     
     }
     void HandleDenied()
     {
