@@ -27,6 +27,7 @@ public class Mision4 : MonoBehaviour
         {
             completed = true;
             AchievementPop.onMisionCompleted?.Invoke("You have learned the truth");
+            SoundManager.instance.Play("carcrash");
             SaveSystem.data.achievementCompleted[interact.collectableIndex] = true;
             SaveSystem.Save();
             if (FindObjectOfType<GameJoltTrophies>())
