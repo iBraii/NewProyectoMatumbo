@@ -48,6 +48,13 @@ public class BackgroundMusicPlayer : MonoBehaviour
                 SoundManager.instance.Stop("MenuTheme");
                 SoundManager.instance.Play("BG1");
                 break;
+            case "Creditos":
+                SoundManager.instance.Stop("MenuTheme");
+                SoundManager.instance.Stop("BG1");
+                SoundManager.instance.Stop("LowRumble");
+                SoundManager.instance.Stop("TensionLoop");
+                SoundManager.instance.Stop("HeartBeat");
+                break;
         }
     }
 }
