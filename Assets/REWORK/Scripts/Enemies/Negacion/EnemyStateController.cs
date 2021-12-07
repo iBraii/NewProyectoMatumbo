@@ -99,7 +99,7 @@ public class EnemyStateController : MonoBehaviour
 
         if (deniedTime < 0) deniedTime = 0;
 
-        Debug.Log(currentState);
+        //Debug.Log(currentState);
     }
 
     void StateController()

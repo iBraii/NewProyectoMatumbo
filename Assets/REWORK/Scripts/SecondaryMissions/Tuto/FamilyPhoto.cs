@@ -4,13 +4,13 @@ using DG.Tweening;
 
 public class FamilyPhoto : MonoBehaviour
 {
-    private InteractText interact;
-    private PlayerInput playerInput;
+    [SerializeField] private InteractText interact;
+    [SerializeField] private PlayerInput playerInput;
 
     private void Awake()
     {
-        interact = FindObjectOfType<InteractText>();
-        playerInput = FindObjectOfType<PlayerInput>();
+        //interact = FindObjectOfType<InteractText>();
+        //playerInput = FindObjectOfType<PlayerInput>();
     }
     private void Update()
     {
@@ -19,13 +19,14 @@ public class FamilyPhoto : MonoBehaviour
         if (playerInput.actions["Interact"].triggered)
         {
             interact.text.DOFade(0, 1);
-            interact.playerClose = false;
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);      
+            AchievementPop.onMisionCompleted?.Invoke("FAMILY PHOTO ACQUIRED");
+
             SaveSystem.data.achievementCompleted[interact.collectableIndex] = true;
             SaveSystem.Save();
             if (FindObjectOfType<GameJoltTrophies>())
                 FindObjectOfType<GameJoltTrophies>().CompareTrophies();
-            AchievementPop.onMisionCompleted?.Invoke("FAMILY PHOTO ACQUIRED");
+            interact.playerClose = false;
         }        
     }
 }

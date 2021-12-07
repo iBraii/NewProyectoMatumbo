@@ -59,12 +59,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(PlayerSingleton.Instance.canMove&&!PlayerSingleton.Instance.onAnimation) MovementAndRotate();
-        Gravity();
+        //if (PlayerSingleton.Instance.canMove && !PlayerSingleton.Instance.onAnimation) MovementAndRotate();
+        //Gravity();
     }
     private void Update()
     {
-        if(!PlayerSingleton.Instance.onAnimation) Jumping();
+        if (PlayerSingleton.Instance.canMove && !PlayerSingleton.Instance.onAnimation) MovementAndRotate();
+        Gravity();
+        if (!PlayerSingleton.Instance.onAnimation) Jumping();
 
         Acceleration();
         anim.SetBool("JumpTrigger", jumpAction.triggered);
