@@ -41,6 +41,7 @@ public class OsitoMision : MonoBehaviour
     void Update()
     {
         transform.position = position[currentIndex];
+        transform.localEulerAngles = childPosition[currentIndex].localEulerAngles;
         emisionSphere.transform.position = transform.position;
         PlayerInteraction();
     }
