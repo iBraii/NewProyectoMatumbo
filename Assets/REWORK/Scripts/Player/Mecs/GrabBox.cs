@@ -48,13 +48,11 @@ public class GrabBox : MonoBehaviour
             {
                 PlayerSingleton.Instance.onAnimation = true;
                 LetBox();
-                cc.Move(-transform.forward * .03f);
             }
             else if (boxDetected != null&&!PlayerSingleton.Instance.onAnimation&&PlayerSingleton.Instance.grabingBox==false)
             {
                 PlayerSingleton.Instance.onAnimation = true;
                 Grab();
-                cc.Move(-transform.forward * .05f);
             }
         }
     }

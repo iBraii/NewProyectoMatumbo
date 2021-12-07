@@ -36,7 +36,7 @@ public class ComicManager : MonoBehaviour
     void AppearSkipButton()
     {
         appearBtnTime -= Time.deltaTime;
-        if (appearBtnTime <= 0)
+        if (appearBtnTime <= 0 || Input.anyKey)
             btn.SetActive(true);
     }
     public void SkipBtn()
