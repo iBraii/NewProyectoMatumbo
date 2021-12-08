@@ -9,6 +9,7 @@ public class TransitionScript : MonoBehaviour
     public bool selectScreenColorToWhite;
     public int currentLevel;
 
+    [SerializeField]private bool specialLevel;
     private void OnTriggerEnter(Collider other)
     {   
         if (cs == null)
@@ -18,16 +19,18 @@ public class TransitionScript : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            SaveSystem.data.levelCompleted[currentLevel] = true;
+            if (specialLevel==false)
+            {
+                SaveSystem.data.levelCompleted[currentLevel] = true;
 
-            if (FindObjectOfType<StressManager>().hasReceivedDamage == false)
-                SaveSystem.data.levelCompletedNoDmg[currentLevel] = true;
+                if (FindObjectOfType<StressManager>().hasReceivedDamage == false)
+                    SaveSystem.data.levelCompletedNoDmg[currentLevel] = true;
 
-            SaveSystem.Save();
+                SaveSystem.Save();
 
-            if (FindObjectOfType<GameJoltTrophies>())
-                FindObjectOfType<GameJoltTrophies>().CompareTrophies();
-
+                if (FindObjectOfType<GameJoltTrophies>())
+                    FindObjectOfType<GameJoltTrophies>().CompareTrophies();
+            }
             other.gameObject.GetComponent<PlayerMovement>().movementSpeed = 0;
             PlayerSingleton.Instance.stress = 0;
             if (selectScreenColorToWhite)

@@ -42,7 +42,7 @@ public class ImprovedUIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        SoundManager.instance.Play("BG1");
+        //SoundManager.instance.Play("BG1");
 
         #region nulls
         if (pausePanel == null)
