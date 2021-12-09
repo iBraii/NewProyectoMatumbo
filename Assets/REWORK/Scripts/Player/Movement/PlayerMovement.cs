@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
         Acceleration();
         anim.SetBool("JumpTrigger", jumpAction.triggered);
     }
-
     public Vector3 lastMove;
 
     public void MovementAndRotate()
@@ -161,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerSingleton.Instance.isGrounded && playerVelocity.y < 0)
             playerVelocity.y = 0f;
 
-        if (playerVelocity.y > 0)
+        if (playerVelocity.y > 0f)
             playerVelocity += Vector3.up * gravity * Time.deltaTime;
     }
 
@@ -177,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         else PlayerSingleton.Instance.canJump = false;
 
         if (jumpAction.triggered && PlayerSingleton.Instance.canJump && PlayerSingleton.Instance.isMoving)
-            Invoke("Jump", .1f);
+            Invoke("Jump", 0f);
     }
     public void Jump()
     {
