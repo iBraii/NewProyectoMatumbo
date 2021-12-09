@@ -40,7 +40,7 @@ public class PlayerAnimations : MonoBehaviour
         isMoving = PlayerSingleton.Instance.isMoving;
         grabingBox = PlayerSingleton.Instance.grabingBox;
         grounded = ps.isGrounded;
-        if (pm.playerVelocity.y < 0)
+        if (!ps.isGrounded)
         {
             jumpTimer += Time.deltaTime;
             if (jumpTimer >= maxJumpTimer)
