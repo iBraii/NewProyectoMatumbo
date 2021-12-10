@@ -78,6 +78,10 @@ public class ComicManager : MonoBehaviour
                 sceneName = "Nivel4.5";
                 video.clip = comics[5];
                 break;
+            case 6:
+                sceneName = "Creditos";
+                video.clip = comics[6];
+                break;
         }
     }
 }

@@ -3569,8 +3569,8 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: Falling
+  - m_ConditionMode: 2
+    m_ConditionEvent: grounded
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: JumpTrigger
